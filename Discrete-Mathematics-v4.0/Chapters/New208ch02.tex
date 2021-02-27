@@ -1,0 +1,313 @@
+\chapter{Logical Equivalence} 
+\newthought{It is clear that} the propositions {\itshape It is sunny and it is warm} and
+{\itshape It is warm and it is sunny} mean the same thing. More generally, for any
+propositions $p$, $q$, we see that $p\land q$ and $q\land p$ have the same meaning. To say it a little differently,
+for any choice of truth values for $p$ and $q$, the propositions  $p\land q$ and 
+$q\land p$ have the
+same truth value. One more time: $p\land q$ and $q\land p$ have identical truth tables.
+
+\section{Logical Equvalence}
+Two propositions with identical truth values are called {\bfseries logically equivalent}.
+The expression $p\equiv q$ means $p,q$ are logically equivalent. 
+
+Some logical equivalences are not as transparent as the example above. With a little thought
+it should be clear that {\itshape I am not taking math or I am not taking physics} means the same as
+{\itshape It's not the case that I taking math and physics}. In symbols, $(\lnot m)\lor(\lnot p)$ means the\marginnote[-1.5cm]{To be convinced these two proposition really have the same content,
+look at the truth table, (\ref{tbl: De Morgan's Law}), for the two propositions, and notice that the final truth values are identical.}
+same as $\lnot(m\land p)$.
+
+\begin{exmp}[De Morgan] Prove that
+$\lnot(p\land q)\equiv (\lnot p \lor \lnot q)$ using a truth table. We construct the truth table \ref{tbl: De Morgan's Law} in the order
+or precedence: $\lnot$ before $\land$ or $\lor$, but the expresion in parentheses has highest precedence.
+%We construct the table using additional columns for compound parts of the two expressions.
+
+\begin{margintable}[-1.0cm]
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{ } | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q & $\lnot$ & ( & p & $\land$ & q & ) &  & $\lnot$ & p & $\lor$ & $\lnot$ & q & \\
+\hline 
+T & T & \textcolor{red}{F} &  & T & T & T &  &  & F & T & \textcolor{red}{F} & F & T & \\
+T & F & \textcolor{red}{T} &  & T & F & F &  &  & F & T & \textcolor{red}{T} & T & F & \\
+F & T & \textcolor{red}{T} &  & F & F & T &  &  & T & F & \textcolor{red}{T} & F & T & \\
+F & F & \textcolor{red}{T} &  & F & F & F &  &  & T & F & \textcolor{red}{T} & T & F & \\
+\end{tabular}\label{tbl: De Morgan's Law}
+\caption{De Morgan's Law}
+\end{margintable}
+\end{exmp} 
+
+It is probably a little harder to believe
+ $(p\to q)\equiv (\lnot p\lor q)$, but checking a truth table shows they are in fact equivalent.
+Saying {\itshape If it is Monday, then I am tired} is identical to saying
+{\itshape It isn't Monday or I am tired.} Complete table \ref{tbl: p->q=not pvq} to demonstrate their
+equivalence.
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\rightarrow$ & q &  &  & $\sim$ & p & $\lor$ & q & \\
+\hline 
+T & T &  & T &  & T &  &  &  & T &  & T & \\
+T & F &  & T &  & F &  &  &  & T &  & F & \\
+F & T &  & F &  & T &  &  &  & F &  & T & \\
+F & F &  & F &  & F &  &  &  & F &  & F & \\
+\end{tabular}
+\caption{Prove $p\to q \equiv \lnot p\lor q$}
+\label{tbl: p->q=not pvq}
+\end{margintable}
+
+
+\section{Tautologies and Contradictions}
+A proposition , $\mathbb{T}$, which is always true is called a {\bfseries tautology}. A {\bfseries contradiction} is a 
+proposition, $\mathbb{F}$,
+which is always false.  The prototype example of a tautology is $p\lor \lnot p$, and for a contradiction,
+$p\land \lnot p$.  Notice that since $p\iff q$ is $T$ exactly when $p$ and $q$ have the same
+truth value,  two propositions $p$ and $q$ will be logically equivalent provided
+ $p\iff q$ is a tautology. 
+
+\section{Related \textbf{If \textellipsis, then \textellipsis} propositions} 
+There are three propositions related to the basic \textbf{If \textellipsis, then \textellipsis} implication: $p\to q$. First  
+$\lnot q\to \lnot p$  is called the {\bfseries contrapositive}
+of the implication. The {\bfseries converse} of the implication is the
+proposition $q\to p$. Finally, the {\bfseries inverse} of the implication is  $\lnot p\to \lnot q$. 
+Using a truth table, it is easy to check that an implication and its contrapositive are
+logically equivalent, as are the converse and the inverse. A common slip is to think
+the implication and its converse are logically equivalent. Checking a truth table shows that
+isn't so. The implication {\itshape If an integer ends with a $2$, then it is even}
+is $T$, but its converse, {\itshape If an integer is even, then it ends with a $2$},
+is certainly $F$. 
+
+\section{Fundamental equivalences}
+Table \ref{tbl:fund_eqvs} contains the most often used equivalences.
+ These are well worth learning by sight and by name. 
+\begin{table}\label{tbl:fund_eqvs}
+\begin{tabular}{ c  c }
+\hline
+\textbf{Equivalence}  & \textbf{Name} \\
+\hline
+$\lnot (\lnot p)\equiv p$ & \hbox{Double Negation} \\
+\hline
+$p\land \mathbb{T} \equiv p$ & {\lower 5pt\hbox{Identity laws}} \\
+$p\lor \mathbb{F} \equiv p$ &  \\
+\hline
+$p\lor \mathbb{T} \equiv \mathbb{T}$ &  {\lower 5pt\hbox{Domination laws}}\\
+$p\land \mathbb{F} \equiv \mathbb{F}$ & \\
+\hline
+$p\lor p \equiv p$ &  {\lower 5pt\hbox{Idempotent laws}}\\
+$p\land p\equiv p$ & \\
+\hline
+$p\lor q \equiv q\lor p$ &  {\lower 5pt\hbox{Commutative laws}}\\
+$p\land q \equiv q\land p$ & \\
+\hline
+$(p\lor q)\lor r \equiv p\lor (q\lor r)$ &  {\lower 5pt\hbox{Associative laws}}\\
+$(p\land q)\land r\equiv p\land (q\land r)$ & \\
+\hline
+$p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$ &  
+{\lower 5pt\hbox{Distributive laws}} \\
+$p\land (q\lor r) \equiv (p\land q) \lor (p\land r)$ & \\
+\hline
+$\lnot (p\land q) \equiv (\lnot p\lor \lnot q)$ 
+& {\lower 5pt \hbox{De Morgan's laws}} \\
+$\lnot (p\lor q) \equiv (\lnot p \land \lnot q)$ & \\
+\hline
+$p\lor \lnot p \equiv \mathbb{T}$ &\hbox{ Law of Excluded Middle} \\
+$p\land \lnot p \equiv \mathbb{F}$ & \hbox{Law of Contradiction} \\
+\hline
+$p \to q \equiv \lnot p \lor q$ & \text{Disjunctive form} \\ 
+\hline
+$p \to q \equiv \lnot q \to \lnot p$ & \text{Implication $\equiv$ Contrapositive}\\
+$\lnot p \to \lnot q \equiv q \to p$ & \text{Inverse $\equiv$ Converse} \\
+\hline
+\end{tabular}
+\caption{Logical Equivalences}
+\end{table}
+
+\section{Disjunctive normal form}%
+Five basic connectives have been given: $\lnot, \land, \lor, \to, \iff$, but that is really just
+for convenience. It is possible to eliminate some of them using logical equivalences.
+For example, $p\iff q \equiv (p\to q)\land (q\to p)$ so there really is no need to
+explicitly use the biconditional. Likewise, $p\to q \equiv \lnot p\lor q$, so the use
+of the implication can also be avoided. Finally, $p\land q \equiv \lnot(\lnot p \lor\lnot q)$
+so that there really is no need ever to use the connective $\land$. Every proposition
+made up of the five basic connectives can be rewritten using only $\lnot$ and $\lor$ (probably
+with a great loss of  clarity however). 
+
+The most often used standardization, or normalization, of logical propositions is the
+\textbf{disjunctive normal form (DNF)}, using only $\lnot$ (negation), $\land$ (conjunction), 
+and $\lor$ (disjunction). A propositional form is considered to be in DNF if and only if it is a disjunction of one or more conjunctions of one or more {\it literals} (a {\itshape literal} is a letter or a letter preceded by the negation symbol). For example, the following are
+all in disjunctive normal form:
+\begin{itemize}
+\item $p \land q$
+\item $p$
+\item $(a \land q) \lor r$
+\item $(p \land \lnot q \land \lnot r) \lor (\lnot s \land t \land u)$
+\end{itemize}
+While, these are \textbf{not} in DNF:
+\sidenote{
+Use the fundamental equivalences to find DNF versions of each.}
+\begin{itemize}
+\item  $\lnot(p \lor q)$ \em this is \textbf{not} the disjunction of literals.
+\item $p \land (q \land (r \lor s))$ \em an \text{or} is embedded in a conjunction.
+\end{itemize}
+
+\section{Proving equivalences}
+It is always possible the verify a logical equivalence via a truth table. But it also possible to
+verify equivalences by stringing together previously known equivalences. Here are
+two examples of this process.
+
+\begin{exmp}
+\label{exmp:formalproof1}
+Show $\lnot(p\lor(\lnot p\land q))\equiv \lnot p\land\lnot q$. %
+\sidenote{ %
+The plan is to start with the expression $\lnot(p\lor(\lnot p\land q))$, work
+through a sequence of equivalences ending up with $\lnot p\land\lnot q$. It's pretty
+much like proving identities in algebra or trigonometry.}
+\begin{proof}
+\begin{align*}
+\lnot(p\lor(\lnot p\land q))
+&\equiv \lnot p \land \lnot(\lnot p\land q)         &\text{De Morgan's Law}\\
+&\equiv \lnot p \land (\lnot(\lnot p)\lor\lnot q)   &\text{De Morgan's Law}\\
+&\equiv \lnot p\land(p\lor\lnot q)                  &\text{Double Negation Law}\\
+&\equiv (\lnot p\land p)\lor(\lnot p\land \lnot q)  &\text{Distributive Law}\\
+&\equiv ( p\land \lnot p)\lor(\lnot p\land \lnot q) &\text{Commutative Law}\\
+&\equiv \mathbb{F} \lor (\lnot p \land \lnot q)     &\text{Law of Contradiction}\\
+&\equiv  (\lnot p \land \lnot q)\lor\mathbb{F}      &\text{Commutative Law}\\
+&\equiv \lnot p\land\lnot q                         &\text{Identity Law}
+\end{align*}
+
+\end{proof}
+\end{exmp}
+
+\clearpage
+\begin{exmp}
+\label{exmp:formalproof2}
+Show $(p\land q)\to(p\lor q)\equiv\mathbb{T}$.
+
+\begin{proof}
+\begin{align*}
+(p\land q)\to(p\lor q)
+&\equiv\lnot(p\land q)\lor(p\lor q)         &\text{Disjunctive form}\\
+&\equiv (\lnot p\lor\lnot q)\lor(p\lor q)   &\text{De Morgan's Law}\\
+&\equiv (p\lor \lnot p)\lor(q \lor \lnot q) &\text{Associative and Commutative Laws}\\
+&\equiv \mathbb{T}\lor\mathbb{T}            &\text{Commutative Law and Excluded Middle}\\
+&\equiv \mathbb{T}                          &\text{Domination Law}
+\end{align*}
+\end{proof}
+
+\end{exmp}
+
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}
+ Use truth tables to verify each of the following equivalences:
+\begin{tasks}(2)
+	\task $(p\lor q)\lor r \equiv p\lor (q\lor r)$
+	\task $\lnot p\land(p\lor q)\equiv \lnot(q \to p)$
+	\task $p\lor (q\land r)\equiv (p\lor q)\land (p\lor r)$
+	\task 
+	\end{tasks}
+\end{exer}
+
+\begin{exer}
+Show that the statements are not logically equivalent. 
+\begin{enumerate}[label= \alph*)]
+\item $p\land (q\to r)\not\equiv (p \land q)\to r$
+
+\item $p\to q\not\equiv q\to p$
+
+\item $p\to q\not\equiv \lnot p\to \lnot q$
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+Use truth tables to show that the following are tautologies.
+\begin{enumerate}[label= \alph*)]
+\item $[p\land (p\to q)]\to q$
+
+\item $[(p\to q)\land (q\to r)]\to (p\to r)$
+
+\item $[(p\lor q)\to r]\to [(p\to r) \land (q\to r)]$
+\end{enumerate}
+\end{exer}
+
+\begin{exer} Consider the implication {\itshape If it is Saturday, then I will mow the lawn}.
+\label{exer:conincon} 
+\begin{enumerate}[label= \alph*)]
+\item Write the converse of the implication.
+\item Write the inverse of the implication.
+\item Write the contrapositive of the implication.
+\end{enumerate}
+\end{exer}
+
+\begin{exer} Consider the three answers for exercise \ref{exer:conincon}.
+One of the three is logically equivalent to the implication. Which one?
+Two of the three are not logically equivalent to the implication, but are
+logically equivalent to each other. Which two?
+\end{exer}
+
+\begin{exer}
+The statements below are not tautologies. In each case, find an assignment of truth values to the literals, (that is, a letter or a letter preceded
+by the negation symbol), so the statement is false.
+\begin{enumerate}[label= \alph*)]
+\item $[(p\land q)\to r]\longleftrightarrow [(p\to r)\land (q\to r)]$
+
+\item $[(p\land q)\lor r]\to [p\land (q\lor r)]$
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+Give proofs of the following equivalences using the Fundamental Logical Equivalences, following the pattern
+of examples \ref{exmp:formalproof1} and \ref{exmp:formalproof2}.
+\begin{enumerate}[label= \alph*)]
+\item $(\lnot p \land (p \lor q))\to q \equiv \mathbb{T}$.
+
+\item $(p\land\lnot r)\to\lnot q \equiv p\to(q\to r)$.
+
+\item $p\lor(p\land q)\equiv p$. (This is a tough one.)\label{setablaw}
+\end{enumerate}
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Use a truth table to show $p\to q\equiv \lnot p \lor q$.
+\end{prob}
+
+\begin{prob}
+Use a truth table to show $(p\land q)\to r \equiv p\to (q\to r)$.
+\end{prob}
+
+\begin{prob}
+Use a truth table to show $p\to q\equiv \lnot q\to \lnot p$.
+\end{prob}
+
+\begin{prob} Consider the implication {\itshape If I work, then I get paid. }
+\label{prob:conincon} 
+\begin{enumerate}[label= \alph*)]
+\item Write the converse of the implication.
+\item Write the inverse of the implication.
+\item Write the contrapositive of the implication.
+\item Write the inverse of the contrapositive of the implication.
+\end{enumerate}
+\end{prob}
+
+\begin{prob} Consider the four answers for exercise \ref{prob:conincon}.
+Which of the are logically equivalent to the implication?
+Which of the four are not logically equivalent to the implication, (but are
+logically equivalent to each other)?
+\end{prob}
+
+\begin{prob}
+Use a truth table to show $[p\to (q\to r)]\not\equiv [(p\to q)\to r]$.
+\end{prob}
+
+\begin{prob}
+ Use a truth table to show that $(p\land q)\to p$ is a  tautology.
+\end{prob}
+
+\begin{prob}
+Give a proof of $\lnot p\to(p\to q)\equiv \mathbb{T}$ using the Fundamental Logical Equivalences, following the pattern of examples \ref{exmp:formalproof1} and \ref{exmp:formalproof2}.
+\end{prob}
+
+
+
+

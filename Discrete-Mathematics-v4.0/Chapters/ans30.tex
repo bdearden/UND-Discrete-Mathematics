@@ -1,0 +1,99 @@
+   \section*{Chapter 30}
+    
+\begin{Solution}{30.1}
+Adding one more row to the triangle as given in the text using Pascal's Identity, we get
+\begin{center}
+\resizebox{\textwidth}{!}
+{ %
+\def\N{6}
+\tikz[x=0.75cm,y=0.5cm, 
+  pascal node/.style={font=\footnotesize}, 
+  row node/.style={font=\footnotesize, anchor=west, shift=(180:1)}]
+  \path  
+    \foreach \n in {0,...,\N} { 
+       (-\N/2-1, -\n) node  [row node/.try]{Row \n:}
+        \foreach \k in {0,...,\n}{
+          (-\n/2+\k,-\n) node [pascal node/.try] {%
+            \pgfkeys{/pgf/fpu}%
+            \pgfmathparse{round(\n!/(\k!*(\n-\k)!))}%
+            \pgfmathfloattoint{\pgfmathresult}%
+            \pgfmathresult%
+        }}};
+}
+\end{center}
+
+\end{Solution}
+
+\begin{Solution}{30.2}
+
+$\displaystyle \binom{10}{3}(3)^{3}(-2)^{7}$
+
+\end{Solution}
+
+\begin{Solution}{30.3}
+\[
+\binom{2n}{2} = \frac{2n!}{2!(2n-2)!} = \frac{(2n)(2n-1) (2n-2)!}{2!(2n-2)!} = \frac{(2n)(2n-1)}{2} = n(2n-1) = 2n^{2} - n.
+\]
+and
+\begin{align*}
+ 2\binom{n}{2} + n^2 = & 2\left(\frac{n!}{2!(n-2)!}\right)+ n^{2} = 2\left(\frac{n(n-1)(n-2)!}{2!(n-2)!}\right)\\[3pt]
+& = 2\left(\frac{n(n-1)}{2}\right) + n^{2} = n(n-1) + n^{2} = 2n^{2}-n.
+\end{align*}
+So the two expressions are equal; both equal $2n^{2}-n$.
+
+
+\end{Solution}
+
+\begin{Solution}{30.4}
+\[
+\binom{r}{s}\binom{s}{t}  = \frac{r!}{s!(r-s)!}\frac{s!}{t!(s-t)!} = \frac{r!}{(r-s)!t!(s-t)!}
+\]
+and
+\[
+\binom{r}{t}\binom{r-t}{s-t} = \frac{r!}{t!(r-t)!}\frac{(r-t)!}{(s-t)!((r-t)-(s-t))!} = \frac{r!}{t!(r-t)!}\frac{(r-t)!}{(s-t)!(r-s)!}
+=   \frac{r!}{(r-s)!t!(s-t)!}.
+\]
+So the two expressions are equal.
+\end{Solution}
+
+\begin{Solution}{30.5}
+Scenario: We want to pick a committee of $s$ people from a company with $r$ employees, and a subcommittee of  $t$ of those $s$ to act as the committee's board. In how many ways can that be done?
+
+Method 1: Select the $s$ people from the total of all $r$ ($\binom{r}{s}$ ways to do that), and then select $t$ of those $s$ to be the board ($\binom{s}{t}$
+ways to do that. So, according the the product rule, there are $\binom{r}{s}\binom{s}{t}$ ways to form the committee and its board.
+
+Method 2: First select the $t$ people to serve on the board from the $r$ people available ($\binom{r}{t}$ ways to do that). To fill out the committee, we need to pick $s-t$ more people from the remaining $r-t$ people ($\binom{r-t}{s-t}$ ways to do that). So, according the the product rule, there are $\binom{r}{t}\binom{r-t}{s-t}$ ways to form the committee and its board.
+
+Since the two counting methods must give the same answer, we get $\binom{r}{s}\binom{s}{t}=\binom{r}{t}\binom{r-t}{s-t}$.
+
+
+\end{Solution}
+
+\begin{Solution}{30.4}
+
+\end{Solution}
+
+\begin{Solution}{30.5}
+
+\end{Solution}
+
+\begin{Solution}{30.6}
+
+$(x+y+z)^{15} = (x+y+z)(x+y+z)(x+y+z)\cdots(x+y+z)(x+y+z)$ where there are $15$ of the trinomials $x+y+z$.
+When this is expanded, we will get a term of the form $x^{4}y^{5}z^{6}$ by selecting $4$ of the $15$ trinomials to take the $x$ from, and then $5$ of the remaining $11$ trinomials to take the $y$ from (and, by default, taking $z$ from the remaining six trinomials). So the number of terms of the form $x^{4}y^{5}z^{6}$ (before terms are combined) will be
+\[
+\binom{15}{4}\binom{11}{5}\binom{6}{6} = \frac{15!}{4!11!}\frac{11!}{5!6!}\frac{6!}{6!0!} = \frac{15!}{4!5!6!}.
+\]
+
+
+\end{Solution}
+
+\begin{Solution}{30.7}
+
+Suppose $p$ is a prime and $k$ is an integer with $1<k<p$.
+Let $\binom{p}{k} = n$ (note that $n$ is an integer). Expanding the binomial coefficient, we get $\frac{p!}{k!(p-k)!}  = n$
+Rewrite that equation as $p! = n\cdot k! \cdot (p-k)!$. We want to show $p$ divides $n$.  Since the prime $p$ divides the left side of that equation, it must divide the right side, and one of the properties of primes we proved is that if a prime divides a product of integers, it must divide one of those integers. So we can conclude $p$ divides $n$ or $k!$, or $(p-k)!$. Since
+$k! = (1)(2)\cdots (k)$ and $k<p$, there is no factor of $p$ in $k!$. So $p$ does not divide $k!$. Likewise,
+$(p-k)! = (1)(2)\cdots (p-k)$ and $p-k<p$, so $p$ does not divide $(p-k)!$. We conclude $p$ must divide $b$ as we wanted to prove. $\clubsuit$
+
+\end{Solution}

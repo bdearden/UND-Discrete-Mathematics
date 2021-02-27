@@ -1,0 +1,174 @@
+\chapter{The Fundamental Theorem of Arithmetic}
+
+\newthought{The Fundamental Theorem of Arithmetic states} the familiar fact that 
+every positive integer greater than $1$ can be written in exactly one 
+way as a product of primes. For example, the prime factorization
+of $60$ is $2^2\cdot3\cdot5$, and the prime factorization of
+$625$ is $5^4$. The factorization of $60$ can be written is several
+different ways: $60 = 2\cdot2\cdot3\cdot5 = 5\cdot2\cdot3\cdot2$, and so
+on. The order in which the factors are written does not matter. The
+factorization of $60$ into primes will always have two $2$'s, one $3$,
+and one $5$. One more example: The factorization if $17$ 
+consists of the single factor $17$. In the {\it standard form} of
+the factorization of an integer greater than $1$, the primes are
+written in order of size, and  exponents are used for primes
+that are repeated in the factorization. So, for example, the
+standard factorization of $60$ is $60 = 2^2\cdot3\cdot5$.
+
+\section{Prime divisors}
+Before proving the Fundamental Theorem of Arithmetic, we will need 
+to assemble a few facts.
+
+\begin{thm}
+If $n|ab$ and $n$ and $a$ are relatively prime, then $n|b$.
+\end{thm}
+\begin{proof}
+Suppose $n|ab$ and that $gcd(n,a)=1$. We can
+find integers $s,t$ such that $ns+at = 1$. Multiply both sides of that
+equation by $b$ to get $nsb + abt = b$. Since $n$ divides both
+terms on the left side of that equation, it divides their sum, which
+is $b$.
+\end{proof}
+
+One consequence of this theorem is that if a prime divides a product
+of some integers, then it must divide one of the factors. That is so
+since if a prime does not divide an integer, then it is relatively prime
+to that integer. That is useful enough to state as a theorem.
+
+\begin{thm}
+If $p$ is a prime, and $p|a_1a_2\cdots a_n$, then
+$p|a_j$ for some $j=1,2,\cdots,n$.
+\end{thm}
+ 
+ \section{Proving the Fundamental Theorem}
+\begin{thm}[Fundamental Theorem of Arithmetic]
+{\it {If $n>1$ is an integer, then there  
+exist prime numbers $p_1\leq p_2\leq...\leq p_r$ such that 
+$n=p_1 p_2\cdots p_r$
+and there is only one such prime factorization of $n$.}}
+\end{thm}
+\begin{proof}
+There are two things to prove: (1) every $n>1$ can
+be written in at least one way as a product of primes (in increasing order)
+and (2) there cannot be two different such expressions equal to $n$.
+
+We will prove these by induction. For the basis, we see that
+$2$ can be written as a product of primes (namely $2=2$) and,
+since $2$ is the smallest prime, this is the only way to write $2$
+as a product of primes.
+
+For the inductive step, suppose every integer from $2$ to $k$
+can be written uniquely as a product of primes. Now consider
+the number $k+1$.  We consider two cases:
+\begin{enumerate}
+ \item
+ If $k+1$ is a prime then $k+1$ is already
+ an expression for $k+1$ as a product of primes. There
+ cannot be another expression for $k+1$ as a product of
+ primes, for if $k+1 = pm$ with $p$ a prime, then $p|k+1$
+ and $p$ and $k+1$ both primes tells us $p=k+1$, and so $m=1$.
+ 
+ \item If $k+1$ is not a prime, then we can write
+ $k+1 = ab$ with $2\leq a,b\leq k$. By the inductive hypothesis,
+ each of $a$ and $b$ can be written as products of primes, 
+ say $a=p_1p_2\cdots p_s$ and $b=q_1q_2\cdots q_t$. That
+ means $k+1 = p_1p_2\cdots p_sq_1q_2\cdots q_t$, and
+ we can rearrange the primes in increasing order.
+ To complete the proof, we need to show $k+1$ cannot be written
+ in more than one way as a product of an increasing list of primes. So
+ suppose $k+1$ has two different such  expressions:
+ $k+1 = u_1u_2\cdots u_l = v_1v_2\cdots v_m$. Since
+  $u_1|  v_1v_2\cdots v_m$, $u_1$ must divide some one of the
+ $v_i$'s and since $u_1$ and that $v_i$ are both primes, they
+ must be equal. As the $v$'s are listed in increasing order, we can
+ conclude $u_1\geq v_1$. The same reasoning shows $v_1\geq u_1$.
+ Thus $u_1=v_1$. Now cancel $u_1, v_1$ from each side of
+ $u_1u_2\cdots u_l = v_1v_2\cdots v_m$
+ to get $u_2\cdots u_l = v_2\cdots v_m$. Since $k+1$ was not a prime,
+ both sides of this equation are greater than $1$. Both sides are 
+ also less than $k+1$. Since we started with two different factorizations,
+ and canceled the same thing from both sides, we now have two
+ different factorizations of a number between $2$ and $k$. That
+ contradicts the inductive assumption. We conclude the the 
+ prime factorization of $k+1$ is unique. 
+\end{enumerate}
+Thus, our induction proof is complete.
+\end{proof}
+
+
+\section{Number of positive divisors of $n$}
+We can apply the Fundamental Theorem of Arithmetic to the problem of
+counting the number of positive divisors of an integer greater than $1$. 
+For example, consider the
+integer $12 = 2^23$. It follows from the Fundamental Theorem
+that the positive divisors of $12$ must look like $2^a3^b$ where
+$a=0,1,2$, $b=0,1$. So there are six positive divisors of $12$:
+$$
+2^03^0 = 1\quad 2^13^0=2\quad 2^23^0=4\quad
+ 2^03^1=3\quad 2^13^1=6\quad 2^23^1=12
+$$ 
+
+
+\clearpage
+
+\section{Exercises}
+\begin{exer} 
+Determine the prime factorization of $345678$.
+\end{exer}
+
+\begin{exer} 
+Determine the prime factorization of $1016$.
+\end{exer}
+
+\begin{exer} 
+List all the positive divisors of $1016$.
+\end{exer}
+
+\begin{exer} 
+How many positive divisors does $345678$ have?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Determine the prime factorization of $13579$.
+\end{prob}
+
+\begin{prob}
+List all the positive divisors of $13579$.
+\end{prob}
+
+\begin{prob}
+
+Prove that if $n$ is an even integer bigger than $2$, then $2^{n}-1$ is not a prime.
+Examples: $2^{4}- 1 = 15 = (3)(5)$, $2^{10}- 1 = 1023= (3)(11)(31)$, and  Hint: Recall the factorization from college algebra $s^{2}-t^{2}= (s+t)(s-t)$.
+
+\end{prob}
+
+\begin{prob}
+Prime factorizations can be used to find greatest common divisors. The method is very inefficient compared to the Euclidean Algorithm since there is no known fast method of finding prime factorizations. Suppose $a$ and $b$ are two positive integers. Factor them each as product of primes. Say
+\[ 
+a = p_{1}^{e_{1}}p_{2}^{e_{2}}p_{3}^{e_{3}}\cdots p_{n}^{e_{n}} \quad\text{and}\quad b = p_{1}^{f_{1}}p_{2}^{f_{2}}p_{3}^{f_{3}}\cdots p_{n}^{f_{n}}.
+\]
+Note that the same list of primes is used for both factorizations, so we will need to allow exponents to be $0$ or more. For example, for 
+$a = 12$ and $b = 15$ we will write $a = 12 = 2^{2}\cdot 3^{1}\cdot 5^{0}$ and $15 = 2^{0}\cdot 3^{1}\cdot5^{1}$.\\[3pt]
+Prove: $\gcd(a,b) = p_{1}^{\min(e_{1},f_{1})}p_{2}^{\min(e_{2},f_{2})}p_{3}^{\min(e_{3},f_{3})}\cdots p_{n}^{\min(e_{n},f_{n})}$.\\[3pt]
+Example: $\gcd(12,15) = 2^{\min(2,0)}3^{\min(1,1)}5^{\min(0,1)} = 2^{0}3^{1}5^{0}= 3$.
+\end{prob}
+
+\begin{prob}
+Prime factorizations can be used to find least common multiples  The method, which is likely the one you were taught in grade school for adding fractions,  is, once again, very inefficient.  Say
+\[ 
+a = p_{1}^{e_{1}}p_{2}^{e_{2}}p_{3}^{e_{3}}\cdots p_{n}^{e_{n}} \quad\text{and}\quad b = p_{1}^{f_{1}}p_{2}^{f_{2}}p_{3}^{f_{3}}\cdots p_{n}^{f_{n}}.
+\] 
+Prove: $\lcm(a,b) = p_{1}^{\max(e_{1},f_{1})}p_{2}^{\max(e_{2},f_{2})}p_{3}^{\max(e_{3},f_{3})}\cdots p_{n}^{\max(e_{n},f_{n})}$.\\[3pt]
+Example: $\gcd(12,15) = 2^{\max(2,0)}3^{\max(1,1)}5^{\max(0,1)} = 2^{2}3^{1}5^{1}= 60$.
+\end{prob}
+
+\begin{prob}
+Using the formulas for $\gcd$ and $\lcm$ in the previous two problems, prove the result you guessed in the last chapter for the product
+of $\gcd(a,b)\lcm(a,b)$. (Hint: The fact you need is $\min(s,t) + \max(s,t) = s+t$, which is not hard to prove.)
+\end{prob}
+
+
+

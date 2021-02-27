@@ -1,0 +1,57 @@
+   \section*{Chapter 32}
+    
+\begin{Solution}{32.1}
+
+
+If we distribute eight objects (people) into seven piles (days of the week),
+there will be at least one pile (day) with $\lceil\frac{8}{7}\rceil = 2$ objects (people).
+
+\end{Solution}
+
+\begin{Solution}{32.2}
+
+If we distribute $100$ objects (people) into seven piles (days of the week),
+there will be at least one pile (day) with  $\lceil\frac{100}{7}\rceil = 15$ objects (people).
+
+\end{Solution}
+
+\begin{Solution}{32.3}
+
+Since there are four suits (piles), we need the least value of $n$ so that $\lceil\frac{n}{4}\rceil = 6$.
+That will $5\cdot 4 + 1 = 21$. 
+
+\end{Solution}
+
+\begin{Solution}{32.4}
+Let $a_{1}, a_{2},\ldots ,a_{n}$ be $n$ integers. They are each equivalent to one of $0,1,2, \ldots, n-2$ modulo $n-1$.
+Since there are $n$ values, but only $n-1$ options modulo $n-1$, some two of those numbers must be the same modulo
+$n-1$. Say $a_{k}\equiv a_{j}\, (\bmod\,n-1)$. That means $a_{k}-a_{j}\equiv 0\,(\bmod\,n-1)$, and that means $n-1$ divides $a_{k}-a_{j}$.
+
+\end{Solution}
+
+\begin{Solution}{32.5}
+
+Let $t_i$ denote the total number of hours studied from day $1$ to day $i$.\\
+We are told\\
+\[
+0<t_1<t_2<\cdots <t_{75} \leq 125.
+\]
+Adding $24$ to each of those numbers gives
+\[
+24<t_1+24<t_2+24<\cdots <t_{75}+24 \leq 149.
+\]
+
+So we have $150$ numbers (namely $t_1, t_2, \cdots, t_{75}$ and $t_1+24, t_2+24, \cdots ,t_{75}+24$)\\
+ all between $1$ and $149$.  By the Pigeonhole Principle some two of those must be equal. Since\\ 
+the numbers in the first list are all different, and the numbers int he second list are also all \\
+different, it must be that $t_i = t_j + 24$ for some $i$ and $j$. That means $t_i - t_j = 24$. \\
+That tells us that on days $j+1, j+2,\cdots , i$, Al studied exactly a total of $24$ hours.
+\end{Solution}
+
+\begin{Solution}
+ Since
+there are only $216$ different values modulo $216$, the pigeonhole principle says
+some two of the $217$ numbers, say $m$ and $n$, must have the same value modulo 
+$216$. So $m\equiv n\,(mod\,216)$. That means $216\,|\,m-n$. So $m$ and $n$ have 
+a difference that is a multiple of $216$.
+\end{Solution}

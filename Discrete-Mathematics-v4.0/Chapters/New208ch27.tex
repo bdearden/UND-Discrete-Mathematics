@@ -1,0 +1,224 @@
+\chapter{Integers in Other Bases}
+
+The usual way of
+writing integers is in terms of groups of ones (units), and groups of
+tens, and groups of tens of tens (hundreds), and so on. Thus $237$
+stands for $7$ units plus $3$ tens and $2$ hundreds, or
+$2(10^2)+3(10)+7$.  This is the familiar decimal notation for numbers
+(deci = ten). But there is really nothing special about the number ten
+here, and it could be replaced by any integer bigger than one. That is,
+we could use say $7$ the way $10$ was used above to describe a number. Thus we
+would specify how many units, how many $7$'s
+and $7^2$'s and $7^3$'s, and so on are needed to make up the
+number. When a number is expressed in this fashion with $b$ in place
+of the $10$, the result is called the {\bfseries base-$\mathbf{b}$} expansion
+(or {\bfseries radix-$\mathbf{b}$} expansion) of the integer.
+
+For example, the decimal integer $132$,   is made up
+of two $7^2$'s, four $7$'s and finally six units. Thus we express the
+base ten number $132$ as $246$ in base $7$, or as $246_7$, the little
+$_7$ indicating the base. For small numbers, with a couple of minutes
+practice, conversion from base $10$ (decimal) to other
+bases, and back again can be carried out mentally.  For larger numbers, mental
+arithmetic 
+will prove a little awkward. Luckily there is a handy algorithm
+to do the conversion automatically.  
+
+\section{Converting to and from base-$10$}
+For base $10$ integers, we use the decimal digits: $0,1,2,3,4,5,6,7,8,9$.
+In general, for base $b$, the digits will be $0,1,2,3\cdots,b-1$. So, for example,
+a base $7$ numbers use digits $0,1,2,3,4,5,6$.
+
+
+Conversion from the base $b$ expansion of a number to its decimal version
+is a snap: For example, the meaning of $2302_5$
+is 
+$$
+2302_5= 2\cdot5^3+3\cdot5^2+0\cdot5+2 = 2(125)+3(25) +0(5) + 2 = 327
+$$
+
+That sort of computation is so easy because we have been practicing base $10$
+arithmetic for so many years. If we were as good at arithmetic in some base $b$,
+then conversion from base $10$ to base $b$ would be just as simple. But, lacking
+that comfort with base $b$ arithmetic, we need to describe the conversion 
+algorithm from decimal to base $b$ a little more formally. Here's the idea.
+
+Suppose we have a decimal number $n$ that we want to convert to some base $b$.
+Let's say the base $b$ expansion is $d_kd_{k-1}\cdots d_2d_1d_0$, with the
+base $b$ digits between $0$ and $b-1$.
+That means
+
+$$
+n =  d_k\cdot b^k+d_{k-1}\cdot b^{k-1}+\cdots+ d_2\cdot b^2+d_1\cdot b+ d_0
+$$
+
+Now, if we divide $n$ by $b$, we can see the equation above tells us
+
+$$
+n =  (d_k\cdot b^{k-1}+d_{k-1}\cdot b^{k-2}+\cdots+ d_2\cdot b+d_1) b+ d_0
+$$
+
+So the quotient is $q=d_k\cdot b^{k-1}+d_{k-1}\cdot b^{k-2}+\cdots+ d_2\cdot b+d_1$, and
+and the remainder is the base $b$ digit $d_0$ of $n$. So we have found the units digit
+in the base $b$ expansion of $n$. If we repeat that process on the quotient $q$, the result
+is 
+
+$$
+q =  (d_k\cdot b^{k-2}+d_{k-1}\cdot b^{k-3}+\cdots+ d_2) b+ d_1
+$$
+so the next base $b$ digit, $d_1$ appears as the remainder. Continuing in this fashion,
+the base $b$ expansion is produced one digit at a time.
+
+Briefly, to convert a positive
+decimal integer $n$ to its base $b$ representation, divide $n$ by $b$,
+to find the quotient and the remainder.  That remainder will be needed units
+digit.  Then divide the quotient by $b$ again, to get a new
+quotient and a new remainder. That remainder gives the next base $b$
+digit. Then divide the new quotient by $b$ again,  and so on. In this way 
+producing the
+base $b$ digits  one after the other. 
+\ms
+
+\begin{exmp}
+To convert $14567$ from decimal to base $5$, the steps are:
+\begin{align*}
+ 14567 & =2913\cdot 5 + 2 \\
+ 2913 &= 582\cdot 5 + 3 \\
+ 582 & = 116\cdot 5 + 2  \\
+ 116 & = 23\cdot 5 + 1 \\
+ 23 & = 4\cdot 5 + 3 \\
+ 4 & = 0\cdot 5 + 4.
+\end{align*}
+So, we see that $14567=431232_5$.
+\end{exmp}
+
+\section{Converting between non-decimal bases}
+\begin{exmp}
+Convert $n=3355_7$ to base $5$.
+
+The least confusing way to do such a problem would be to convert $n$ from base $7$ to base $10$,
+and then convert the base $10$ expression for $n$ to base $5$. This method allows us to do
+all our work in base $10$ where we are comfortable. The computations start with:
+\[
+n = 3\cdot7^3+3\cdot7^2+5\cdot7+5 = 1216.
+\]
+Then, we calculate: 
+\begin{align*}
+ 1216 & =243\cdot 5 + 1 \\
+ 243 &= 48\cdot 5 + 3 \\
+ 48  & = 9\cdot 5 + 3  \\
+ 9 &= 1\cdot 5 +4 \\
+ 1 & = 0\cdot 5 + 1.
+\end{align*}
+So, we have $3355_7=14331_5$.
+\end{exmp}
+
+An alternative method, not for the faint of heart, is convert directly from base $7$ to
+base $5$ skipping the middle man, base $10$. In this method, we simply divide
+$n$ by $5$, take the remainder, getting the units digit, then divide the quotient by
+$5$ to get the next digit, and so on, just as described above. The rub is that the arithmetic
+must all be done in base $7$, and we don't know the base $7$ times table very well.
+For example, in base $7$, $3\cdot 5 = 21$ is correct since three $5$'s add up to two $7$'s
+plus one more.
+
+The computation would now look like (all the $_7$'s indicating base $7$ are suppressed
+for readability):
+\begin{align*}
+ 3355 &= 465\cdot5+ 1 \quad\text{ (yes, that's really correct!),} \\
+ 465  &= 66\cdot 5 + 3 \\
+ 66  & =12\cdot 5 + 3  \\
+ 12 &= 1\cdot 5 +4 \\
+ 1 & = 0\cdot 5 + 1.
+\end{align*}
+Hence, once again, we have  $3355_7=14331_5$.
+
+
+
+\section{Computer science bases: $2$, $8$, and $16$}
+Particularly important in computer science applications of
+discrete mathematics are the bases $2$ (called binary), $8$ (called octal)
+and $16$ (called hexadecimal, or simply hex). Thus the decimal number
+$75$ would be $1001011_2$ (binary), $113_8$ (octal) and $4B_{16}$ in
+hex. Note that for hex numbers, symbols will be needed to represent hex
+digits for $10$, $11$, $12$, $13$, $14$ and $15$.  The letters
+$A,B,C,D,E$ and $F$ are traditionally used for these digits.
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}
+Convert to decimal: $21_3$, $321_4$,  $4321_5$, and $FED_{16}$.
+\end{exer}
+
+\begin{exer}
+Convert the decimal integer $11714$ to bases $2$, $6$, and $16$.
+Remember to use $A,B, \cdots, F$ to represent base $16$ digits from $10$
+to $15$, if needed.
+\end{exer}
+
+\begin{exer}\label{exer:base 7 mult tbl}
+Complete the following \emph{base $7$} multiplication table. 
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{1.75}
+\begin{tabular}%
+{|>{\raggedleft\arraybackslash}p{0.5cm}||*{6}{>{\raggedleft\arraybackslash}p{0.5cm}|}}
+\hline
+$\times$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\ \hline\hline
+     $1$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ \\ \hline
+     $2$ & $2$ & $4$ &     &     &     &     \\ \hline
+     $3$ &     &     & $12$ &     &     &     \\ \hline
+     $4$ &     &     &     & $22$ &     &     \\ \hline
+     $5$ &     &     &     &     &     &     \\ \hline
+     $6$ &     &     &     &     &     &     \\ \hline
+\end{tabular}
+\end{table}
+\end{exer}
+
+\begin{exer}
+Make \emph{base $6$} addition and multiplication tables similar to the base $7$
+multiplication table of exercise~\ref{exer:base 7 mult tbl}.
+\end{exer}
+
+\begin{exer}
+(\textbf{For those with a sweet tooth for punishment!}) 
+Use the Euclidean algorithm
+to compute $gcd(5122_7, 1312_7)$ without converting the numbers to base $10$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Convert to decimal: $12_3$, $123_4$,  $1234_5$, and $DDD_{16}$.
+\end{prob}
+
+\begin{prob}
+Convert the decimal integer $3177$ to bases $2$, $6$, and $16$.
+Remember to use $A,B, \cdots, F$ to represent base $16$ digits from $10$
+to $15$, if needed.
+\end{prob}
+
+\begin{prob}\label{prob:base 8 mult tbl}
+Make \emph{base $8$} addition and multiplication tables similar to the base $7$
+multiplication table of exercise~\ref{exer:base 7 mult tbl}.
+\end{prob}
+
+\begin{prob}
+Using the table in  problem~\ref{prob:base 8 mult tbl}, add  $126_8 + 457_8$.
+\end{prob}
+
+\begin{prob}
+Using the table in  problem~\ref{prob:base 8 mult tbl}, multiply $(126_8)(457_8)$.
+\end{prob}
+
+\begin{prob}
+Determine all choices of base $b\geq 2$ such that when the decimal number $100$ is written in
+base $b$, the units digit is $0$.
+\end{prob}
+
+\begin{prob}
+Determine all choices of base $b\geq 2$ such that when the decimal number $100$ is written in
+base $b$, the units digit is $1$.
+\end{prob}
+

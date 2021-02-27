@@ -1,0 +1,198 @@
+    \section*{Chapter 2}
+\begin{Solution}{2.1}
+\quad
+    \begin{tasks}(1)
+        \task
+\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c}
+p & q & r &  & ( & p & $\lor$ & q & ) & $\lor$ & r &  &  & p & $\lor$ & ( & q & $\lor$ & r & ) & \\
+\hline
+T & T & T &  &  & T & T & T &  & \textcolor{red}{T} & T &  &  & T & \textcolor{red}{T} &  & T & T & T &  & \\
+T & T & F &  &  & T & T & T &  & \textcolor{red}{T} & F &  &  & T & \textcolor{red}{T} &  & T & T & F &  & \\
+T & F & T &  &  & T & T & F &  & \textcolor{red}{T} & T &  &  & T & \textcolor{red}{T} &  & F & T & T &  & \\
+T & F & F &  &  & T & T & F &  & \textcolor{red}{T} & F &  &  & T & \textcolor{red}{T} &  & F & F & F &  & \\
+F & T & T &  &  & F & T & T &  & \textcolor{red}{T} & T &  &  & F & \textcolor{red}{T} &  & T & T & T &  & \\
+F & T & F &  &  & F & T & T &  & \textcolor{red}{T} & F &  &  & F & \textcolor{red}{T} &  & T & T & F &  & \\
+F & F & T &  &  & F & F & F &  & \textcolor{red}{T} & T &  &  & F & \textcolor{red}{T} &  & F & T & T &  & \\
+F & F & F &  &  & F & F & F &  & \textcolor{red}{F} & F &  &  & F & \textcolor{red}{F} &  & F & F & F &  & \\
+\end{tabular}
+
+        \task
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\rightarrow$ & q &  &  & $\lnot$ & q & $\rightarrow$ & $\lnot$ & p & \\
+\hline
+T & T &  & T & \textcolor{red}{T} & T &  &  & F & T & \textcolor{red}{T} & F & T & \\
+T & F &  & T & \textcolor{red}{F} & F &  &  & T & F & \textcolor{red}{F} & F & T & \\
+F & T &  & F & \textcolor{red}{T} & T &  &  & F & T & \textcolor{red}{T} & T & F & \\
+F & F &  & F & \textcolor{red}{T} & F &  &  & T & F & \textcolor{red}{T} & T & F & \\
+\end{tabular}
+
+        \task
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{ }}
+p & q &  & $\lnot$ & p & $\land$ & ( & p & $\lor$ & q & ) &  & $\lnot$ & ( & q & $\rightarrow$ & p & )\\
+\hline
+T & T &  & F & T & \textcolor{red}{F} &  & T & T & T &  &  & \textcolor{red}{F} &  & T & T & T & \\
+T & F &  & F & T & \textcolor{red}{F} &  & T & T & F &  &  & \textcolor{red}{F} &  & F & T & T & \\
+F & T &  & T & F & \textcolor{red}{T} &  & F & T & T &  &  & \textcolor{red}{T} &  & T & F & F & \\
+F & F &  & T & F & \textcolor{red}{F} &  & F & F & F &  &  & \textcolor{red}{F} &  & F & T & F & \\
+\end{tabular}
+
+        \task
+\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c}
+p & q & r &  & p & $\lor$ & ( & q & $\land$ & r & ) &  &  & ( & p & $\lor$ & q & ) & $\land$ & ( & p & $\lor$ & r & ) & \\
+\hline
+T & T & T &  & T & \textcolor{red}{T} &  & T & T & T &  &  &  &  & T & T & T &  & \textcolor{red}{T} &  & T & T & T &  & \\
+T & T & F &  & T & \textcolor{red}{T} &  & T & F & F &  &  &  &  & T & T & T &  & \textcolor{red}{T} &  & T & T & F &  & \\
+T & F & T &  & T & \textcolor{red}{T} &  & F & F & T &  &  &  &  & T & T & F &  & \textcolor{red}{T} &  & T & T & T &  & \\
+T & F & F &  & T & \textcolor{red}{T} &  & F & F & F &  &  &  &  & T & T & F &  & \textcolor{red}{T} &  & T & T & F &  & \\
+F & T & T &  & F & \textcolor{red}{T} &  & T & T & T &  &  &  &  & F & T & T &  & \textcolor{red}{T} &  & F & T & T &  & \\
+F & T & F &  & F & \textcolor{red}{F} &  & T & F & F &  &  &  &  & F & T & T &  & \textcolor{red}{F} &  & F & F & F &  & \\
+F & F & T &  & F & \textcolor{red}{F} &  & F & F & T &  &  &  &  & F & F & F &  & \textcolor{red}{F} &  & F & T & T &  & \\
+F & F & F &  & F & \textcolor{red}{F} &  & F & F & F &  &  &  &  & F & F & F &  & \textcolor{red}{F} &  & F & F & F &  & \\
+\end{tabular}
+    \end{tasks}
+\end{Solution}
+
+\begin{Solution}{2.2}
+\quad
+    \begin{tasks}(1)
+        \task
+\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c}
+p & q & r &  & p & $\rightarrow$ & ( & q & $\rightarrow$ & r & ) &  &  & ( & p & $\rightarrow$ & q & ) & $\rightarrow$ & r & \\
+\hline
+T & T & T &  & T & \textcolor{red}{T} &  & T & T & T &  &  &  &  & T & T & T &  & \textcolor{red}{T} & T & \\
+T & T & F &  & T & \textcolor{red}{F} &  & T & F & F &  &  &  &  & T & T & T &  & \textcolor{red}{F} & F & \\
+T & F & T &  & T & \textcolor{red}{T} &  & F & T & T &  &  &  &  & T & F & F &  & \textcolor{red}{T} & T & \\
+T & F & F &  & T & \textcolor{red}{T} &  & F & T & F &  &  &  &  & T & F & F &  & \textcolor{red}{T} & F & \\
+F & T & T &  & F & \textcolor{red}{T} &  & T & T & T &  &  &  &  & F & T & T &  & \textcolor{red}{T} & T & \\
+F & T & F &  & F & \textcolor{red}{T} &  & T & F & F &  &  &  &  & F & T & T &  & \textcolor{red}{F} & F & \\
+F & F & T &  & F & \textcolor{red}{T} &  & F & T & T &  &  &  &  & F & T & F &  & \textcolor{red}{T} & T & \\
+F & F & F &  & F & \textcolor{red}{T} &  & F & T & F &  &  &  &  & F & T & F &  & \textcolor{red}{F} & F & \\
+\end{tabular}\newline
+Consider either$(p,q,r)=(F,T,F)$ or $(p,q,r)= (F,F,F)$.
+    \task
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\rightarrow$ & q &  &  & $\lnot$ & p & $\rightarrow$ & $\lnot$ & q & \\
+\hline
+T & T &  & T & \textcolor{red}{T} & T &  &  & F & T & \textcolor{red}{T} & F & T & \\
+T & F &  & T & \textcolor{red}{F} & F &  &  & F & T & \textcolor{red}{T} & T & F & \\
+F & T &  & F & \textcolor{red}{T} & T &  &  & T & F & \textcolor{red}{F} & F & T & \\
+F & F &  & F & \textcolor{red}{T} & F &  &  & T & F & \textcolor{red}{T} & T & F & \\
+\end{tabular}\newline
+Consider either $(p,q)=(T,F)$ or $(p,q)=(F,T)$.
+
+    \end{tasks}
+\end{Solution}
+\begin{Solution}{2.3}
+\quad
+    \begin{tasks}(1)
+        \task
+		\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c}
+		p & q &  & ( & p & $\land $ & ( & p & $\rightarrow$ & q & ) & ) & $\rightarrow$ & q & \\
+		\hline
+		T & T &  &  & T & T &  & T & T & T &  &  & \textcolor{red}{T} & T & \\
+		T & F &  &  & T & F &  & T & F & F &  &  & \textcolor{red}{T} & F & \\
+		F & T &  &  & F & F &  & F & T & T &  &  & \textcolor{red}{T} & T & \\
+		F & F &  &  & F & F &  & F & T & F &  &  & \textcolor{red}{T} & F & \\
+		\end{tabular}
+
+        \task
+		\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c}
+		p & q & r &  & ( & ( & p & $\rightarrow$ & q & ) & $\land $ & ( & q & $\rightarrow$ & r & ) & ) & $\rightarrow$ & ( & p & $\rightarrow$ & r & ) & \\
+		\hline
+		T & T & T &  &  &  & T & T & T &  & T &  & T & T & T &  &  & \textcolor{red}{T} &  & T & T & T &  & \\
+		T & T & F &  &  &  & T & T & T &  & F &  & T & F & F &  &  & \textcolor{red}{T} &  & T & F & F &  & \\
+		T & F & T &  &  &  & T & F & F &  & F &  & F & T & T &  &  & \textcolor{red}{T} &  & T & T & T &  & \\
+		T & F & F &  &  &  & T & F & F &  & F &  & F & T & F &  &  & \textcolor{red}{T} &  & T & F & F &  & \\
+		F & T & T &  &  &  & F & T & T &  & T &  & T & T & T &  &  & \textcolor{red}{T} &  & F & T & T &  & \\
+		F & T & F &  &  &  & F & T & T &  & F &  & T & F & F &  &  & \textcolor{red}{T} &  & F & T & F &  & \\
+		F & F & T &  &  &  & F & T & F &  & T &  & F & T & T &  &  & \textcolor{red}{T} &  & F & T & T &  & \\
+		F & F & F &  &  &  & F & T & F &  & T &  & F & T & F &  &  & \textcolor{red}{T} &  & F & T & F &  & \\
+		\end{tabular}
+
+        \task
+		\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c}
+		p & q &  & ( & p & $\land $ & q & ) & $\rightarrow$ & p & \\
+		\hline
+		T & T &  &  & T & T & T &  & \textcolor{red}{T} & T & \\
+		T & F &  &  & T & F & F &  & \textcolor{red}{T} & T & \\
+		F & T &  &  & F & F & T &  & \textcolor{red}{T} & F & \\
+		F & F &  &  & F & F & F &  & \textcolor{red}{T} & F & \\
+		\end{tabular}
+    \end{tasks}
+\end{Solution}
+
+\begin{Solution}{2.4}
+\begin{enumerate}[label= \alph*)]
+\item If I mow the lawn, then it is Saturday.
+\item If it is not Saturday, then I do not mow the lawn.
+\item If I do not mow the lawn, then it is not Saturday.
+\end{enumerate}
+\end{Solution}
+
+\begin{Solution}{2.5}
+An implication is logically equivalent to its contrapositive. So, (If it is Saturday, 
+then I mow the lawn) is logically equivalent to (If I do not mow the lawn, then
+it is not Saturday).
+The inverse and converse of an implication are logically equivalent (but
+not logically equivalent to the implication) so (If it is not Saturday, then I do not
+mow the lawn) is logically equivalent to (If I mow the lawn, then it is Saturday).
+\end{Solution}
+
+
+\begin{Solution}{2.6}
+\quad
+    \begin{tasks}(2)
+        \task $(p,q,r)=(T,F,F),\ (F,T,F)$
+        \task $(p,q,r)=(F,T,T),\ (F,F,T)$
+    \end{tasks}
+\end{Solution}
+
+\begin{Solution}{2.7}
+
+\begin{enumerate}[label=(\alph*)]
+
+\item
+\begin{proof}
+\begin{align*}
+(\lnot p\land (p\lor q))\to q
+&\equiv ((\lnot p \land p) \lor(\lnot p\land q)) \to q        &\text{Distributive Law}\\
+&\equiv ((p \land \lnot p) \lor(\lnot p\land q)) \to q    &\text{Commutative Law}\\
+&\equiv (\mathbb{F} \lor (\lnot p\land q)) \to q   &\text{Law of Contradiction}\\
+&\equiv ((\lnot p\land q) \lor \mathbb{F})\to q                 &\text{Commutative Law}\\
+&\equiv (\lnot p\land q)\to q                                &\text{Identity Law}\\
+&\equiv \lnot(\lnot p\land q)\lor q                         &\text{Disjunctive Form}\\
+&\equiv (\lnot\lnot p \lor \lnot q) \lor q     &\text{De Morgan's Law}\\
+&\equiv \lnot\lnot p\lor(\lnot q\lor q)                        &\text{Associative Law}\\
+&\equiv \lnot\lnot p\lor(q\lor\lnot q)                        &\text{Commutative Law}\\
+&\equiv \lnot\lnot p \lor \mathbb{T}                     &\text{Law of Excluded Middle}\\
+& \equiv \mathbb{T}         &\text{Domination Law}
+\end{align*}   
+\end{proof}
+
+\item
+\begin{proof}
+\begin{align*}
+(p \lor \lnot r)\to \lnot q
+&\equiv \lnot (p \land \lnot r) \lor \lnot q         &\text{Disjunctive Form}\\
+&\equiv (\lnot p \lor \lnot\lnot r) \lor \lnot q   &\text{De Morgan's Law}\\
+&\equiv (\lnot p\lor r) \lor\lnot q                  &\text{Double Negation Law}\\
+&\equiv \lnot p\lor( r\lor\lnot q)       &\text{Associative Law}\\
+&\equiv \lnot p\lor(\lnot q\lor r) &\text{Commutative Law}\\
+&\equiv \lnot p \lor (q \to r)     &\text{Disjunctive Form}\\
+&\equiv  p \to (q\to r)      &\text{Disjunctive Form}\\
+\end{align*}
+\end{proof}
+
+\item
+\begin{proof}
+\begin{align*}
+p\lor(p\land q))
+&\equiv (p\land \mathbb{T}) \lor(p\land q)         &\text{Identity Law}\\
+&\equiv p \land  (\mathbb{T} \lor q)   &\text{Distributive Law}\\
+&\equiv p\land(q\lor \mathbb{T})                  &\text{Commutative Law}\\
+&\equiv p \land \mathbb{T}   &\text{Domination Law}\\
+&\equiv p                    &\text{Identity Law}\\
+\end{align*}
+\end{proof}
+\end{enumerate}
+\end{Solution}

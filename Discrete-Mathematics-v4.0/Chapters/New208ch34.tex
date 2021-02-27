@@ -1,0 +1,541 @@
+\chapter{Counting Using Recurrence Relations}\label{chpt:counting use recur}
+
+
+\newthought{ It is not always convenient} to use the methods of earlier chapters to solve
+counting problems. Another technique for finding the solution to a counting
+problem is {\bfseries recursive counting}. The method will be illustrated
+with several examples.
+
+\section{Recursive counting method}
+\begin{exmp}\label{exmp:recur bit strings n}
+ Recall that a bit string is a list of $0$'s and $1$'s, and the
+ length of a bit string is the total number of $0$'s and $1$'s in the string. For
+ example, $10111$ is a bit string of length five, and $000100$ is a bit string of
+ length six. The problem of counting the number of bit strings of length $n$
+ is duck soup. There are two choices for each bit, and so, applying the product
+ rule, there are $2^n$ such strings. However, consider the problem of counting the
+ number of bit strings of length $n$ {\itshape with no adjacent $0$'s}.
+ 
+ Let's use $a_n$ to denote the number of bit strings of length $n$ with no
+ adjacent $0$'s. Here are a few sample cases for small values of $n$.
+ \begin{enumerate}[label=\bfseries {n=\arabic*:},start=0]
+   \item Just one {\itshape good} bit string of length zero, and that is
+   $\lambda$, the empty bit string. So $a_0 = 1$.
+   
+   \item There are two good bit strings of length one. Namely $0$ and
+   $1$. So $a_1 = 2$.
+   
+   \item There are three good bit strings of length two. Namely, $01$,
+   $10$ and $11$. (Of course, $00$ is a bad bit string.) That means $a_2=3$.
+   
+   \item Things start to get confusing now. But here is the list of good
+   bit strings of length three: $010$, $011$, $101$, $110$, and $111$. So $a_3=5$.
+   
+   \item A little scratch work produces the good bit strings $0101$,
+   $0111$, $1011$, $1101$, $1111$, $0110$, $1010$, and $1110$, for a total of eight.
+   That means $a_4 = 8$.  
+ \end{enumerate}
+ 
+ 
+ We can do a few more, but it is hard to see a formula for $a_n$ like the $2^n$
+ formula that gives the total number of all bit strings of length $n$. Even though
+ a formula for $a_n$ is difficult to spot, there is a pattern to the list of
+ values for $a_n$ which looks like the Fibonacci sequence pattern. In fact, the
+ list so far looks like $1$, $2$, $3$, $5$, $8$, and if a few more are worked out
+ by brute force, it turns out the list continues $13$, $21$, $34$. So, it certainly
+ seems that the solution to the counting problem can be expressed recursively as
+ $a_0=1$, $a_1=2$, and for $n\geq2$, $a_n=a_{n-1}+a_{n-2}$. If this guess is really
+ correct, then we can quickly compute the number of good bit strings of length
+ $n$. We just calculate $a_0$, $a_1$, $a_2$, etc., until we reach the $a_n$ we are
+ interested in. 
+\end{exmp} 
+
+
+Such a recursive solution to counting problems is certainly less
+satisfactory than a simple formula, but some counting problems are so messy that a
+simple formula might not be possible, and the recursive solution is better than
+nothing in such a case.
+
+There is one problem with the recursive solution offered in 
+example~\ref{exmp:recur bit strings n}. We said that
+{\itshape it seems that} the solution to the counting problem can be expressed
+recursively as 
+$a_0=1$, $a_1=2$, and for $n\geq2$, $a_n=a_{n-1}+a_{n-2}$. That {\itshape it seems
+that} is not an acceptable justification of the formula. After all, we are basing
+that guess on just eight or ten values of the infinite sequence $a_n$, and it
+is certainly possible that those values happen to follow the pattern we've guessed
+simply by accident. Maybe the true pattern is much more complicated, and we have
+been tricked by the small number of cases we have considered. It is necessary to
+show that the guessed pattern is correct by supplying a logical argument.
+
+Our argument would begin by checking the initial conditions we offered. In
+other words, we would verify by hand that $a_0=1$ and $a_1=2$. This serves as a
+basis for the verification of the recursive formula. Now what we want to do is
+assume that we have already calculated all the values $a_0$, $a_1$, $\cdots$,
+$a_k$ for some $k\geq1$, and {\bfseries show} that $a_{k+1}$ must equal $a_k+a_{k-1}$.
+It is very important to understand that {\itshape we do not want to compute the value
+of $a_{k+1}$. We only want to prove that $a_{k+1} = a_k+a_{k-1}$.} The major error
+made doing these types of problems is attempting to compute the specific value of
+$a_{k+1}$. {\bfseries Don't fall for that trap!} After all, if it were possible to
+actually compute the specific value of $a_{k+1}$, then we could find a formula for
+$a_n$ in general, and we wouldn't have to be seeking a recursive relation at all.
+
+Here is how the argument would go in the bit string example. Suppose we have
+lists of the good bit strings of lengths $0$, $1$, $\cdots$, $k$. Here is how to
+make a list of all the good bit strings of length $k+1$. First, take any good bit
+string of length $k$ and add a $1$ on the right hand end. The result must be a
+good bit string of length $k+1$ (since we added a $1$ to the end, and the original
+bit string didn't have two consecutive $0$'s, the new bit string cannot have two
+consecutive $0$'s either). In that way we form some good bit strings of length
+$k+1$. In fact, we have built exactly $a_k$ good bit strings of length $k+1$. But
+wait, there's more! (as they say in those simple-minded TV ads). Another way to
+build a good bit string of length $k+1$ is to take a good bit
+string of length $k-1$ and add $10$ to the right end. Clearly these will also be
+good bit strings of length $k+1$. And these all end with a $0$, so they are all
+new ones, and not ones we built in the previous step. How many are there of this
+type? One for each of the good bit strings of length $k-1$, or a total of
+$a_{k-1}$. Thus, so far we have built $a_k+a_{k-1}$ good bit strings of length
+$k+1$. Now we will show that in fact we have a complete list of all good bit
+string of length $k+1$, and that will complete the proof that $a_{k+1} = a_k +
+a_{k-1}$. But before driving that last nail into the coffin, let's look at the
+steps outlined above for the case $k+1=4$.
+
+
+
+The previous paragraph essentially provides an algorithm for building good
+bit strings of length $k+1$ from good bits strings of lengths $k$ and $k-1$. The
+algorithm instructs us to add $1$ to the right end of all the good bit strings of
+length $k$ and $10$ to the right of all the good bit strings of length
+$k-1$. Applying the algorithm for the case $k+1=4$, gives the following list,
+where the added bits are put in parentheses to make them stand out.
+$010(1)$,
+$011(1)$, $101(1)$, $110(1)$, $111(1)$, $01(10)$, $10(10)$, and $11(10)$.
+
+There remains one detail to iron out. It is clear that the algorithm will
+produce good bit strings of length $k+1$. But, does it produce \emph{every}
+good bit string of length $k+1$? If it does not, then the recursive relation we
+are offering for the solution to the counting problem will eventually begin to
+produce answers that are too small, and we will undercount the number of good bit
+strings. To see that we do count all good bit strings of length $k+1$, consider
+any particular good bit string of length $k+1$, call it $s$ for short,  and look
+at the right most 
+bit of $s$. There are two possibilities for that bit. It could be a $1$. If that
+is so, 
+then when the $1$ is removed the remaining bit string is a good of length $k$ (it
+can't have two adjacent $0$'s since $s$ doesn't have two adjacent $0$'s). That
+means the bit string $s$ is produced by adding a $1$ to the right end of a
+good bit string of length $k$, and so $s$ is produced by the first step in the
+algorithm. The other option for $s$ is that the right most bit is a $0$. But then
+the second bit in from the right must be a $1$, since $s$ is a good bit string, so
+it doesn't have adjacent $0$'s. So the last two bits on the right of $s$ are
+$10$. If those two bits are removed, there remains a good bit string of length
+$k-1$. Thus $s$ is produced by adding $10$ to the right end of a good bit string of
+length $k-1$, and so $s$ is produced by the second case in the algorithm.
+
+In a nutshell, we have shown our algorithm produces $a_k+a_{k-1}$ good
+bit strings of length $k+1$, and that the algorithm does not miss any good bit
+strings of length $k+1$. Thus we have proved that $a_{k+1}=a_k+a_{k-1}$ for all
+$k\geq2$. 
+
+Example~\ref{exmp:recur bit strings n} was explained in excruciating detail. Normally, the
+verifications will be much more briefly presented. It takes a while to get used to
+recursive counting, but once the light goes on, the beauty and simplicity of the method will
+become apparent.
+
+\section{Examples}
+\begin{exmp}
+ This example is a little
+ silly since it is very easy to write down a formula to solve the counting
+ problem. But the point of the example is not find the solution to the problem but
+ rather  to exhibit recursive counting in action. The problem is to compute the
+ total number of individual squares on an $n\times n$ checkerboard. If we let the
+ total number of squares be denoted by $s_n$, then obviously $s_n=n^2$. For
+ example, an ordinary checkerboard is an $8\times8$ board, and it has a total of
+ $s_8= 8^2 = 64$ individual squares. But let's count the number of squares
+ recursively. Clearly $s_0 = 0$. Now suppose we have computed the values of $s_0,
+ s_1, \cdots,s_k$, for some $k\geq0$. We will show how to compute $s_{k+1}$ from
+ those known values. To determine $s_{k+1}$, draw a $(k+1)\times(k+1)$
+ checkerboard. ({\itshape You should make a little sketch of such a
+ board for say $k+1 = 5$ so you can follow the process described next.}) 
+ From that $(k+1)\times(k+1)$
+ board, slice off the right hand column of squares, and the bottom row of squares.
+ What is left over will be a $k\times k$ checkerboard, so it will have $s_k$
+ individual squares. That means that 
+ $$
+ s_{k+1} = s_k + \text{ the number of squares sliced off}
+ $$
+ Now ignore the lower right hand corner square for a moment. There are $k$ other
+ squares in the right hand column that was sliced off. Likewise, ignoring the
+ corner square, there are $k$ other
+ squares in the bottom row that was sliced off. Hence the total number of squares
+ sliced off was $k+k+1$, the $1$ accounting for the corner square. Thus
+ $$
+ s_{k+1} = s_k + k+k + 1 = s_k+2k+1
+ $$
+ 
+ So a recursive solution to the problem of counting $s_n=$ number of individual
+ squares on an $n\times n$ checkerboard is
+ \begin{align*}
+  s_0&=0, \text{ and} \\
+  s_{k+1} &=  s_k+2k+1, \text{ for $k\geq0$.}
+ \end{align*}
+ 
+ Using the recursive relation, we get $s_0=0$, $s_1 = s_0+2(0)+1 =0+0+1=1$,
+ $s_2 = s_1+2(1)+1 = 1+2+1 = 4$, $s_3 = s_2+2(2)+1 = 4+4+1 = 9$, and so on, giving
+ what we recognize as the correct answers.
+\end{exmp}
+
+
+\begin{exmp}
+ Suppose we have available an unlimited number of
+ pennies and nickels to deposit in a vending machine (a really old vending machine
+ it seems, since it even accepts pennies). Let $d_n$ be the number of different
+ ways of depositing a total of $n$ cents in the machine. Just to make sure we
+ understand the problem, let's compute $d_n$ for a few small values of $n$. Clearly
+ $d_0=1$ since there is only one way to deposit no money in the machine (namely
+ don't put any money in the machine!). $d_1 = 1$ (put in one penny), $d_2=1$ (put
+ in two pennies), $d_3=1$ (put in three pennies), $d_4 = 1$ (put in four
+ pennies). Now things start to get exciting! $d_5= 2$ (put in five pennies or put
+ in one nickel). And even more thrilling is $d_6 = 3$ (the three options are (1)
+ six pennies, (2) one penny followed by a nickel, and (3) one nickel followed by a
+ penny). That last count indicates a fact that may not have been clear: the order
+ on which pennies and nickels are deposited is considered important. With a little
+ more trial and error with pencil and paper, further values are found to be
+ $d_7=4$, $d_8=5$, $d_9=6$, $d_{10}=8$, $d_{11}=11$, and $d_{12}=15$. It is hard to
+ see 
+ a formula for these values. But it is duck soup to write down a recursive
+ relation that produces this sequence of values. Think of it this way, suppose we
+ wanted to put $n$ cents in the machine, where $n\geq5$. We can make the first coin
+ either a penny or a nickel. If we make the first coin a penny, then we will need
+ to add $n-1$ more cents, which can be done in $d_{n-1}$ ways. On the other hand,
+ if we make the first coin a nickel, we will need to deposit $n-5$ more cents, and
+ that can be done in $d_{n-5}$ ways. By the sum rule of counting, we conclude that
+ the number of ways of depositing $n$ cents is $d_{n-1}+d_{n-5}$. In other words, 
+ $d_n = d_{n-1}+d_{n-5}$ for $n\geq 5$.
+ 
+ Since our recursive relation for $d_n$ does  not kick in until $n$ reaches
+ $5$, we will need to include $d_0, d_1, d_2, d_3$, and $d_4$ as initial terms. So
+ the recursive solution to this counting problem is
+ \begin{align*}
+  d_0 =1\qquad d_1=1\qquad& d_2=1\qquad d_3=1\qquad d_4=1 \\
+  \hbox{for}\quad n\geq5,& \qquad d_n = d_{n-1}+d_{n-5}
+ \end{align*}
+\end{exmp}
+
+\begin{exmp}[\bfseries The Tower of Hanoi] The classic example of recursive counting 
+ concerns the story of the 
+ Tower of Hanoi. 
+ A group of monks wished a magical tower to be constructed from 1000 stone rings.
+ The rings were to be of 1000 different sizes. The size and composition of the rings was to
+ be  designed so that any ring could support the entire weight of all of the rings
+ smaller than itself, but each ring would be crushed beneath the weight of any larger ring.
+ 
+ The monks hired the lowest bidder to construct the tower in a clearing in the dense jungle nearby.
+ Upon completion of construction the engineers brought the monks to see their work.
+ The monks admired the exquisite workmanship, but informed the engineers that the tower
+ was not in the proper clearing.
+ 
+ In the jungle there were only three permanent clearings. The monks had labelled them $A$, $B$ and
+ $C$. The engineers had labelled them in reverse order. The monks instructed the engineers to move
+ the tower from clearing $A$ to clearing $C$!
+ 
+ Because of the massive size of the rings, the engineers could only move one per day. No ring
+ could be left anywhere in the jungle except one of $A$, $B$, or $C$. Finally each clearing
+ was only large enough so that rings could be stored there by stacking them one on top of another. 
+ 
+ The monks then asked the engineers how long it would take for them to fix the problem.
+ 
+ Before they all flipped a gasket, the most mathematically talented engineer came upon the
+ following solution.
+ 
+ Let $H_n$ denote the minimum number of days required to move an $n$ ring tower from $A$ to $C$
+ under the constraints given. Then $H_1=1$, and in general an $n$ ring tower can be moved
+ from $A$ to $C$ by first moving the top $(n-1)$ rings from $A$ to $B$ leaving the bottom ring at $A$,
+ then moving the bottom ring from $A$ to $C$, and then moving the top $(n-1)$ rings from clearing
+ $B$ to clearing $C$. That shows $H_n\leq2\cdot H_{n-1} + 1$, for $n\geq 2$, and a little more
+ thought shows the algorithm just described cannot be improved upon. Thus
+ $H_n=2\cdot H_{n-1} + 1$. 
+ 
+ Using the initial condition  $H_1=1$ together with the recursive relation 
+ $H_n=2\cdot H_{n-1} + 1$, we can generate terms of the sequence:
+ \[
+   1, 3, 7, 15, 31, 63, 127, 255, 511, \cdots,
+ \] 
+ and it looks like $H_n = 2^n-1$
+ for $n \geq 1$, which can be verified by an easy induction.
+ 
+ So, the problem would be fixed in $2^{1000}-1$ days, or approximately 
+ $2.93564 \times 10^{296}$ centuries. Now, that is \emph{job security!}
+\end{exmp}
+
+\section{General rules for finding recursive solutions}
+Here are a few general rules for solving counting problems recursively: 
+\begin{enumerate}
+ \item do a few small cases by brute force,
+ \item think recursively: how can a larger case be solved if 
+       the solutions to smaller cases are known, and  
+ \item check the numbers produced by the
+       recursive solution to make sure they agree with the values obtained by brute force.
+\end{enumerate}
+
+
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+On day zero, a piggy bank contains $\$0$. Each day, one more penny is added to the bank than the day before.
+So, on day $1$, one penny is added, on day $2$, two pennies are added. Write a recursive formula for the total 
+number of pennies in the bank each day, $n = 0,1,2,\ldots$.
+\end{exer}
+
+
+
+\begin{exer}
+Al climbs stairs by taking either one or two steps at a time. For example, he can climb a flight of three steps in three different ways: (1) one step, one step, one step or 
+(2) two step, one step, or (3) one step, two step. Determine a recursive formula for the number of different ways Al can climb a flight of $n$ steps.
+\end{exer}
+%\begin{Solution}
+%
+%For $n\geq 0$, let $c_n$ be the number of different ways Sal can climb $n$ steps.
+%
+%The initial conditions are $c_0 = 1$, $c_1 = 1$, and $c_2 = 2$. 
+%
+%For the recursive formula: When climbing $n\geq 3$ steps, Sal can start with one step and finish the climb in $c_{n-1}$ ways, or start with two steps and finish the climb in $c_{n-2}$ ways, or start with three steps and finish in $c_{n-3}$ ways. So, for $n\geq 3$, $c_n = c_{n-1}+c_{n-2}+c_{n-3}$.
+%
+%\end{Solution}
+
+
+
+
+\begin{exer}
+Find a recurrence relation for the number of bit strings of length $n$ that contain an even number of $0$'s.
+\end{exer}
+
+\begin{exer}
+Find a recurrence relation for the number of bit strings of length $n$ that contain two consecutive $0$'s.
+\end{exer}
+
+\begin{exer}
+Find a recurrence relation for the number of bit strings of length $n$ that contain the string $01$.
+\end{exer}
+
+\begin{exer}
+Find a recurrence relation for the number of ternary strings of length $n$ that contain two consecutive $0$'s.
+\end{exer}
+
+\begin{exer}
+Find a recurrence relation for the number of subsets of $\{1,2,3,\ldots,n\}$ that do not contain any consecutive integers.
+Examples for $n = 9$: the subset $\{1,3,8\}$ is good, but the subset $\{ 2, 5,6,9\}$ is bad since it contains the consecutive integers $5,6$.
+\end{exer}
+
+
+\begin{exer}
+Suppose in the original Tower of Hanoi problem there are four clearings $A,B,C,D$. Find a recursive relation for $J_n$, the minimum number of moves needed to transfer 
+the tower from clearing $A$ to clearing $D$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Suppose on December $31$, $2000$, a deposit of $\$100$ is made in a savings account that pays $10\%$ annual interest (Ah, those were the days!). So one year after 
+the initial deposit, on  December $31$, $2001$, the account will be credited with $\$10$, and have a value of $\$110$. On  December $31$, $2002$ that account will be credited 
+with an additional $\$11$, and have value $\$121$. Find a recursive relation that gives the value of the account $n$ years after the initial deposit.
+\end{prob}
+
+%\begin{Solution}
+%
+%\[
+%a_0 = 100 \quad \text{and for } n\geq 1, \quad a_n = a_{n-1} + (.1)a_{n-1} = 1.1a_{n-1}.
+%\]
+%
+%\end{Solution}
+
+
+\begin{prob}
+Sal climbs stairs by taking either one, two, or three steps at a time. Determine a recursive formula for the number of different ways Sal can climb a flight of $n$ steps. In how many ways can Sal climb a flight of $10$ steps?
+\end{prob}
+
+\begin{prob}
+Passwords for a certain computer system are strings of uppercase letters. A valid password must contain an even number of $X$'s. Determine a recurrence relation for 
+the number of valid passwords of length $n$.
+\end{prob}
+%\begin{Solution}
+%For $n\geq 0$, let $v_n$ be the number of valid passwords of length $n$.
+%
+%The initial  condition is $v_0 = 1$ (or $v_1 = 25$ if you object to the empty password! Either way works out okay).
+%
+%To form a valid password of length $n\geq 1$, we can take any of the valid passwords of length $n-1$ and add a non-X to the end so the number of X's is still even.  There are $25v_{n-1}$ ways to do that. That produces all the length $n$ valid passwords that end with a non-X. To get the length $n$ valid passwords that end in X, we take any  invalid password of length $n-1$ and add an X to the end, ending up with a length $n$ word with an even number of X's. There are $26^{n-1} - v_{n-1}$ invalid passwords of length $n-1$.
+%These two operations account for all length $n$ valid passwords.
+%
+%So, for $n\geq 1$,  the number of length $n$ valid passwords is
+%\[
+%v_n = 25v_{n-1} + (26^{n-1} - v_{n-1}) = 24v_{n-1} + 26^{n-1}.
+%\]
+%\end{Solution}
+
+\begin{prob}
+A (cheap) vending machine accepts pennies, nickels, and dimes. Let $d_n$ be the number of ways of depositing $n$ cents in the machine, where the order in which the 
+coins are deposited matters. Determine a recurrence relation for $d_n$. Give the initial conditions.
+\end{prob}
+%\begin{Solution}{34.2}
+%
+%Let $d_{n}$ be the number of ways of depositing $n$ cents. Here are initial values for the $d_{n}$'s found by brute force:
+%
+%\begin{gather*}
+%d_{1} = d_{2}=d_{3}= d_{4}=1\\
+%d_{5} = 2 \qquad d_{6} = 3 \qquad d_{7}= 4 \qquad d_{8}= 5\\
+%d_{9} = 6 \qquad d_{10} = 9
+%\end{gather*}
+%
+%For $n\geq 11$, we can begin with a penny, and finish in $d_{n-1}$ ways, or begin with a nickel, and finish in $d_{n-5}$ ways, or begin with a dime, and finish in $d_{n-10}$ ways, so the recursive part of the formula is\\
+%$d_{n} = d_{n-1}+d_{n-5}+d_{n-10}$ for $n\geq 11$. 
+%
+%\end{Solution}
+
+
+\begin{prob}
+Suppose the Tower of Hanoi rules are changed so that stones may only be transferred to an adjacent clearing in one move. Let $I_n$ be the minimum number of moves 
+required to transfer tower from clearing $A$ to clearing $C$?
+\begin{enumerate}[label=(\alph*)]
+ \item By brute force, determine $I_1, I_2,$ and $I_3$. 
+ \item Find a recursive relation for $I_n$.
+ \item Guess a formula for $I_n$.
+\end{enumerate} 
+\end{prob}
+%\begin{Solution}
+%Lets use the following encoding: $(r,s,t)$ means there are $r$ disks on peg $A$, $s$ disks on peg $B$, and $t$ disks on peg $c$. All configurations will be legal (no large disk above a smaller one). The notation $(3, 1, 4)\to(2,2,4)$ indicates the top disk on peg $A$ was moved to peg $B$.
+%
+%The solution for the one disk problem is $(1,0,0)\to(0,1,0)\to(0,0,1)$ for two moves. So $I_{1}= 2$.
+%
+%With a little experimenting, we see the two disk tower is solved  by
+%\begin{align*}
+%(2,0,0) \to & (1,1,0) \to (1,0,1) \to (0,1,1)\to (0,2,0) \to (1,1,0)\\[3pt]  
+%&\to (1,0,1) \to (0,1,1)\to (0,0,2)
+%\end{align*}
+%for a total of $8$ moves.
+%
+%The three disk tower takes $26$ moves:
+%\begin{align*}
+%(3,0,0) \to & (2,1,0) \to (2,0,1) \to (1,1,1) \to (1,2,0) \to (2,1,0)\\[3pt]
+%& \to (2,0,1) \to (1,1,1) \to (1,0,2) \to (0,1,2) \to (0,2,1) \to (1,1,1)\\[3pt]
+%& \to  (1,2,0) \to (0,3,0) \to (0,2,1) \to (1,1,1) \to (1,2,0) \to (2,1,0)\\[3pt]
+%& \to (2,0,1) \to (1,1,1) \to (1,0,2) \to (0,1,2) \to (0,2,1) \to (1,1,1) \\[3pt]\
+%& \to (1,0,2) \to (0,1,2) \to (0,0,3).\\[3pt]
+%\end{align*}
+%
+%\end{Solution}
+
+%\begin{Solution}
+
+%To solve the $n$ disk tower problem, we start in position $(n,0,0)$. In order to move the bottom disk,
+%we will need to get to position $(1,0,n-1)$ and that will take $I_{n-1}$ moves since we needed to move the top $n-1$ disks from peg $A$ to peg $C$. Now move the biggest disk to get position $(0,1,n-1)$. That takes $1$ move. Now move the $n-1$ disk towner on peg $C$ back to peg $A$ to reach position $(n-1,1,0)$. That is just like moving an $n-1$ disk tower from $A$ to $C$, so it will take $I_{n-1}$ moves.
+%Move the biggest disk from peg $B$ to peg $C$ to get position $(n-1,0,1)$. That takes one move. Finally, move the $n-1$ disk tower from $A$ back to $C$ reaching the final position $(0,0,n)$ in $I_{n-1}$ more moves. 
+%
+%Conclusion: $I_{0}= 0$ and for $n\geq 1$, $I_{n}= I_{n-1}+ 1 + I_{n-1} + 1 + I_{n-1} = 3I_{n-1}+2$.\\[3pt]
+%
+%\end{Solution}
+
+%\begin{Solution}
+%
+%Using the recursive formula of part (b), we see the number of moves for $n=0,1,2,3\dots$ disks
+%is given by $0, 2, 8, 26, 80, 242, 728, \dots$. It looks like $I_{n}= 3^{n} - 1$.\\[5pt]
+%\end{Solution}
+
+
+\begin{prob}
+Find a recurrence relation for the number of binary strings of length $n$ which do not contain the substring $010$.
+\end{prob}
+%\begin{Solution}
+%Let $g_n$ be the number of binary strings of length $n$ that do not contain $010$.
+%For initial values we have 
+%\[
+%g_{0}= 1\qquad g_{1}= 2 \qquad g_{2}=4\qquad g_{3}= 7.
+%\]
+%
+%Now suppose $n\geq 4$ and let's see how we can build good bit strings of length $n$.  
+%We can add $1$ to the end of any good bit sting of length $n-1$, so that gives $b_{n-1}$ good bit strings of length $n$, all the ones that end with a $1$. Now we need the good length $n$ bit strings that end with $0$. To count those, make a list of
+%the good bit strings of length $n-2$, and consider the last two bits of those strings.
+%\begin{itemize}
+%\item For those the end with $00$, we can add $00$ (only option).
+%\item For those that end with $01$, we can add $10$ (only option).
+%\item For those that end with $10$, we can add $00$ (only option).
+%\item For those that end with $11$, we can add $00$ (one of two options! The other is $10$ which we count below.)
+%\end{itemize}
+%
+%Those four together account for $g_{n-2}$ good length bit strings.
+%
+%The one remaining option is to add $1110$ to the end of a good length $n-4$ bit string.
+%
+%So, the recursive formula is, for $n\geq 4$, $g_{n} = g_{n-1}+ g_{n-2}+ g_{n-4}$.
+%
+%The sequence begins $1, 2, 4, 7, 12, 21, 37, 65, 114, 200$.
+%
+
+%\end{Solution}
+
+\begin{prob}
+Find a recurrence relation for the number of ternary strings of length $n$ that contain three consecutive zeroes.
+\end{prob}
+%\begin{Solution}
+%Let $g_n$ be the number of ternary strings of length $n$ that contain $000$. A little trial{-}and{-}error 
+%gives the values $g_0 = 0$,
+%$g_1 = 0$, $g_2 = 0$, and $g_3 = 1$, and $g_4 = 5$.
+%
+%Forming strings of length $n\geq 4$:
+%
+%Add any of $0,1,2$ to strings of length $n-1$ which already have $000$ in them ($3g_{n-1}$ ways to do that), or  add $1000,2000$ to strings of length $n-4$ which do not ($2(3^{n-4} - g_{n-4})$ to do that). Adding initial conditions 
+%
+%\begin{gather*}
+%g_n = 3g_{n-1} + 2(3^{n-4} - g_{n-4}) \text{ for } n\geq 4\\
+%\text{ with } g_0 = 0 \qquad g_1 = 0 \qquad g_2 = 0 \qquad g_3 = 1
+%\end{gather*}
+%
+%
+%The sequence begins $0, 0, 0, 5, 21, 81, 295, 1037, 3555$.
+%\end{Solution}
+
+
+\begin{prob}
+Find a recurrence relation for the number of quaternary strings which contain two consecutive $1$'s.
+\end{prob}
+%Let $g_n$ be the number of quaternary strings of length $n$ that contain $00$.
+%
+%Add any of $0,1,2,3$ to strings of length $n-1$ which already have $00$ in them ($4g_{n-1}$ ways to do that), or  add $100,200, 300$ to strings of length $n-3$ which do not ($3(4^{n-3} - g_{n-3})$ to do that). Adding initial conditions 
+%
+%\begin{gather*}
+%g_n = 4g_{n-1} + 3(4^{n-3} - g_{n-3}) \text{ for } n\geq 3\\
+%\text{ with } g_0 = 0 \qquad g_1 = 0 \qquad g_2 = 1
+%\end{gather*}
+%
+%The sequence begins $0, 0, 1, 7, 40, 205, 991, 4612$.
+%
+%Alternative solution:
+%
+%Break the problem of finding longer strings into a number of cases:
+%\begin{itemize}
+%\item Length $n$ strings ending with $1$. ($g_{n-1}$ of these)
+%\item Length $n$ strings ending with $2$. ($g_{n-1}$ of these)
+%\item Length $n$ strings ending with $3$. ($g_{n-1}$ of these)
+%\item Length $n$ strings ending with $0$.
+%  \subitem ending with $00$. ($4^{n-2}$ of these)
+%  \subitem ending with $10$. ($g_{n-2}$ of these)
+%  \subitem ending with $20$. ($g_{n-2}$ of these)
+%  \subitem ending with $30$. ($g_{n-2}$ of these)
+%\end{itemize}
+%
+%That accounts for all the good strings of length $n$, so the recursive formula is
+%\begin{gather*}
+%g_0 = 0 \qquad g_1 = 0\\
+%g_n = 3g_{n-1} +3g_{n-2} + 4^{n-2}.
+%\end{gather*}
+%\end{Solution}
+
+
+\begin{prob}
+Let $n$ be a positive integer. Find a recurrence relation that counts the number of increasing sequences of distinct integers that start with $1$ and end with $n$. Example: For $n = 4$, there are $4$ such sequences. They are $1,4$, $1,2,4$, $1,3,4$, and $1,2,3,4$.
+\end{prob}
+
+\begin{prob}
+Find a recurrence relation that counts the number of ways of painting the squares of an $n\times n$ chess board  with blue, green, and yellow paint so that no two squares that share an edge have the same color.
+\end{prob}

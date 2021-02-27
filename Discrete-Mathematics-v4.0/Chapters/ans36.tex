@@ -1,0 +1,305 @@
+   \section*{Chapter 36}
+   
+       
+\begin{Solution}{36.1a}
+
+$a_{0} = 3$ and for $n\geq 1$, $a_{n} = a_{n-1}+2$.
+
+\end{Solution}
+
+\begin{Solution}{36.1b}
+
+$a_{1} = 6$ and for $n\geq 2$, $a_{n} = 2a_{n-1}$.
+
+\end{Solution}
+
+
+\begin{Solution}{36.1c}
+
+$a_{1} = 1$ and for $n\geq 2$, $a_{n} = a_{n-1} + 2n-1$.
+
+\end{Solution}
+
+
+\begin{Solution}{36.1d}
+
+$a_{0} = 1$ and for $n\geq 1$, $a_{n} = a_{n-1}+2(-1)^n+1$.
+
+\end{Solution}
+
+
+\begin{Solution}{36.2}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - x -6 = (x+2)(x-3) =0.
+\] 
+
+The characteristic roots are $x = -2, 3$.
+
+The general solution is $a_{n}=\alpha (-2)^{n} + \beta3^{n}$.
+
+The initial values ($n = 0,1$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha + \beta &= 3\\
+     -2\alpha + 3\beta &= 6\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = \frac{3}{5}$ and $\beta = \frac{12}{5}$.
+
+So the closed form formula is 
+\[
+a_{n} = \frac{3}{5}(-2)^{n} +\frac{12}{5}(3^{n})
+\]   
+for $n\geq 0$.
+
+
+\end{Solution}
+
+
+\begin{Solution}{36.3}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - 5x +6 = (x-2)(x-3) =0.
+\] 
+
+The characteristic roots are $x = 2, 3$.
+
+The general solution is $a_{n}=\alpha 2^{n} + \beta3^{n}$.
+
+The initial values ($n = 0,1$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha + \beta &= 4\\
+     2\alpha + 3\beta &= 7\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = 5$ and $\beta = -1$.
+
+So the closed form formula is 
+\[
+a_{n} = 5\cdot2^{n} -3^{n}
+\]   
+for $n\geq 0$.
+
+
+\end{Solution}
+
+\begin{Solution}{36.4}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - 7x +10 = (x-2)(x-5) =0.
+\] 
+
+The characteristic roots are $x = 2, 5$.
+
+The general solution is $a_{n}=\alpha 2^{n} + \beta5^{n}$.
+
+The initial values (be careful! $n = 2,3$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     4\alpha + 25\beta &= 5\\
+     8\alpha + 125\beta &= 13\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = 1$ and $\beta = \frac{1}{25}$.
+
+So the closed form formula is 
+\[
+a_{n} = 2^{n} +\frac{5^{n}}{25} = 2^{n} +5^{n-2}
+\]   
+for $n\geq 2$.
+
+\end{Solution}
+
+\begin{Solution}{36.5}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - 4x +4 = (x-2)^{2} =0.
+\] 
+
+The characteristic roots are $x = 2, 2$.
+
+The general solution is $a_{n}=\alpha 2^{n} + \beta n2^{n}$.
+
+The initial values (be careful! $n = 1,2$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     2\alpha + 2\beta &= 3\\
+     4\alpha + 8\beta &= 5\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = \frac{7}{4}$ and $\beta = -\frac{1}{4}$.
+
+So the closed form formula is 
+\[
+a_{n} = \frac{7\cdot2^{n}}{4} -\frac{n(2^{n})}{4} = \frac{2^{n}(7-n)}{4}= 2^{n-2}(7-n)
+\]   
+for $n\geq 1$.
+
+
+
+\end{Solution}
+
+\begin{Solution}{36.6}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - 6x +9 = (x-3)^{2} =0.
+\] 
+
+The characteristic roots are $x = 3, 3$.
+
+The general solution is $a_{n}=\alpha 3^{n} + \beta n3^{n}$.
+
+The initial values ($n = 0,1$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha  &= 1\\
+     3\alpha + 3\beta &= 6\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = 1$ and $\beta = 1$.
+
+So the closed form formula is 
+\[
+a_{n} = 3^{n} +n3^{n} = 3^{n}(n+1)
+\]   
+for $n\geq 0$.
+
+
+\end{Solution}
+
+\begin{Solution}{36.7}
+
+This one is easily solved by inspection (that is, it is easy to guess the solution), but let's
+use the characteristic equation method for the practice.
+
+ The characteristic equation is 
+\[
+\chi(x) = x^{2} -1 = (x+1)(x-1) =0.
+\] 
+
+The characteristic roots are $x = -1,1$.
+
+The general solution is $a_{n}=\alpha(-1)^{n} + \beta$.
+
+The initial values ($n = 1,2$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     -\alpha  + \beta &= 2\\
+     \alpha + \beta &= 8\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = 3$ and $\beta = 5$.
+
+So the closed form formula is 
+\[
+a_{n} = 3(-1)^{n} + 5 
+\]   
+for $n\geq 1$.
+
+\end{Solution}
+
+\begin{Solution}{36.8}
+
+The characteristic equation is 
+\[
+\chi(x) = x^{3} - 6x^{2} +11x -6 = (x-1)(x-2)(x-3) =0.
+\] 
+
+(You might need to review the topic ({\it finding rational roots of polynomials}
+in a college algebra text or via an internet search ) to refresh your memory
+about finding that factorization.) 
+
+The characteristic roots are $x = 1,2,3$.
+
+The general solution is $a_{n}=\alpha 1^{n} + \beta 2^{n} + \gamma 3^{n}$.
+
+The initial values ($n = 0,1,2$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha + \beta+ \gamma &= 2\\
+     \alpha + 2\beta  + 3\gamma &= 5\\
+     \alpha + 4\beta + 9\gamma  &= 15\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = 1$, $\beta = -1$, and $\gamma =2$ .
+
+So the closed form formula is 
+\[
+a_{n} = 1 - 2^{n} + 2\cdot 3^{n}
+\]   
+for $n\geq 0$.
+
+\end{Solution}
+
+\begin{Solution}{36.9}
+
+
+The characteristic equation is 
+\[
+\chi(x) = x^{2} - x +1 =0.
+\] 
+
+The characteristic roots  (use the quadratic formula) are $x = \frac{1\pm\sqrt{5}}{2}$.
+To save a bit or writing, let's set $r_{1} = \frac{1+\sqrt{5}}{2}$ and $r_{2} = \frac{1-\sqrt{5}}{2}$
+
+The general solution is $a_{n}=\alpha r_{1}^{n} + \beta r_{2}^{n}$.
+
+The initial values ($n = 0,1$)  produce the linear system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha + \beta &= 0\\
+     \alpha r_{1} + \beta r_{2} &= 1\\
+     \end{aligned}
+   \right.
+\]
+   
+with solution $\alpha = \frac{1}{r_{1}-r_{2}}= \frac{1}{\sqrt{5}}$ and $\beta = -\frac{1}{\sqrt{5}}$.
+
+So the closed form formula is 
+\[
+a_{n} = \frac{1}{\sqrt{5}}r_{1}^{n}-\frac{1}{\sqrt{5}}r_{2}^{n}= \frac{1}{\sqrt{5}}\left( \frac{1+\sqrt{5}}{2}\right)^{n}-\frac{1}{\sqrt{5}}\left( \frac{1-\sqrt{5}}{2} \right)^{n}
+\]   
+for $n\geq 0$. This closed form formula for the Fibonacci numbers is called Binet's Formula.
+
+
+
+
+\end{Solution}
+

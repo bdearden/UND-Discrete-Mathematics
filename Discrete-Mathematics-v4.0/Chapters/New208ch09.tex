@@ -1,0 +1,296 @@
+\chapter{Properties of Relations}
+
+\newthought{There are several conditions} that can be imposed on a relation $R$ on a set  
+$A$ that make it 
+useful.  These requirements distinguish those relations which are interesting 
+for some reason from
+the garden variety junk, which is, let's face it,  what most relations are. 
+
+\section{Reflexive} \marginnote{Reflexive: $(\forall a\in A)[aRa]$}
+A relation $R$ on $A$ is {\bfseries reflexive} provided $\forall a\in A, aRa.$
+In plain English, a relation is reflexive if every element of its domain is related to
+itself. The relation $B(x,y) : x \textbf{ is the brother of } y$ is not 
+reflexive since no person is his own brother. On the other hand, the relation
+$S(m,n) : m+n \textbf{ is even}$.  is a reflexive relation on the set of integers
+since, for any integer $m$, $m+m=2m$ is even.
+
+It is easy to spot a reflexive relation from its digraph:  there is a loop at every vertex.
+Also, a reflexive relation can be spotted quickly from its matrix. First, let's agree
+that when the matrix of a relation on a set $A$ is written down, the same ordering
+of the elements of $A$ is used for both the row and column designators.  For a 
+reflexive relation, the entries on the {\bfseries main diagonal} of its matrix
+will all be $1$'s. The main diagonal of a square matrix runs from the upper
+left corner to the lower right corner.
+
+\section{Irreflexive} \marginnote{Irreflexive: $(\forall a\in A)[a\cancel{R}a]$\\ \qquad\  $\equiv \lnot(\exists a\in A)[aRa]$}
+The flip side of the coin from reflexive is irreflexive.
+A relation $R$ on $A$ is {\bfseries irreflexive} in case $a{\cancel{R}}a$ for all $a\in A$.
+In other words, no element of $A$ is related to itself. The {\itshape brother of} relation
+is irreflexive. 
+The digraph of an irreflexive relation  contains no loops, and its matrix has all $0$'s 
+on the main diagonal.
+
+Actually, that discussion was a little careless. To see why, consider the relation
+$S(x,y) : \textbf{ the square of } x \text{ is bigger than or equal to } y$.
+Is this relation reflexive? The answer is: we can't tell. The answer depends on the 
+domain of the relation, and we haven't been told what that is to be. For example, if the
+domain is the set $\N$ of natural numbers, then the relation is reflexive, since
+$n^2\geq n$ for all $n\in \N$. However, if the domain is  the set $\R$ of all
+real numbers, the relation is not reflexive. In fact, a counterexample to the claim
+that $S$ is reflexive on $\R$ is the number $\frac{1}{2}$ since
+ $\left(\frac{1}{2}\right)^2 = \frac{1}{4}$, and
+$\frac{1}{4} < \frac{1}{}$, so $\frac{1}{2}{\cancel{S}}\frac{1}{2}$. The lesson to be learned
+from this example is that the question of whether a relation is reflexive cannot be
+answered until the domain has been specified.  The same is true for the irreflexive condition
+and the other conditions defined below. Always be sure you know the domain before
+trying to determine which properties a relation satisfies. 
+
+
+\section{Symmetric} \marginnote{Symmetric: $(\forall a,b\in A)[aRb \rightarrow bRa]$}
+A relation $R$ on $A$ is {\bfseries symmetric} provided $(a,b)\in R\to (b,a)\in R$. 
+Another way to say the
+same thing: $R$ is symmetric provided $R=R^{-1}$. In words, $R$ is symmetric provided that
+whenever $a$ is related to $b$, then $b$ is related to $a$. 
+Any digraph representing a symmetric relation $R$ will have a return edge for every non-loop.
+Think of this as saying the graph has no one-way streets.
+The matrix $M$ of a symmetric relation satisfies $M=M^T$.
+In this case $M$ is symmetric about its main diagonal in the usual geometric sense of symmetry.
+The $B(x,y): x \textbf{ is the brother of } y$ relation mentioned before is not
+symmetric if the domain is taken to be all people since, for example, $Donny\,B\, Marie$,
+but $Marie\,{\cancel{B}}\,Donny$. On the other hand, if we take the domain to be all (human)
+males, then $B$ is symmetric. 
+
+\section{Antisymmetric} \marginnote{Antisymmetric:\[ (\forall a,b\in A)[(aRb)\land(bRa) \rightarrow (a=b)] \] }
+A relation $R$ on $A$ is {\bfseries antisymmetric} if whenever $(a,b)\in R$ and $(b,a)\in R$,
+then $a=b$.  In other words,  the only objects that are each related to the other
+are objects that are the same. For example, the usual $\leq$ relation for the 
+integers is antisymmetric since if $m\leq n$ and $n\leq m$, then $n=m$.  A digraph 
+representing an
+ antisymmetric relation will have all streets one-way except loops.
+If $M$ is a matrix for $R$, then whenever $a_{i,j}=1$ and $i\neq j$, $a_{j,i}=0$.
+
+\section{Transitive} \marginnote{Transitive: \[ (\forall a,b,c \in A)[(aRb)\land(bRc) \rightarrow (aRc)] \]}
+A relation $R$ on $A$ is {\bfseries transitive} if  whenever $(a,b)\in R$ and $(b,c)\in R$, then
+$(a,c)\in R$. This can also be expressed by saying $R\circ R\subseteq R$. 
+In a digraph for a transitive relation whenever we have a directed path of
+ length two
+from $a$ to $c$ through $b$, we must also have a direct link from $a$ to $c$. This means
+ that any
+digraph of a transitive relation has lots of triangles. This includes degenerate triangles
+ where
+$a, b$ and $c$ are not distinct. A matrix $M$ of a transitive relation satisfies 
+$M\odot M\leq M$. 
+The relation $\leq$ on $\N$ is transitive, since from $k\leq m$ and $m\leq n$, we can 
+conclude $k\leq n$. 
+
+\section{Examples}
+\begin{exmp}
+ \item Define a relation, $N$ on the set of all living people by the rule
+ $a\,N\,b$ if and only if $a, b$ live within one mile of each other.
+ This relation is reflexive since every person lives within a mile of himself.
+ It is not irreflexive since I live within a mile of myself.
+ It is  symmetric since if $a$ lives within a mile of $b$, then $b$ lives within
+ a mile of $a$. It is not antisymmetric since Mr{.} and Mrs{.} Smith live within
+ a mile of each other, but they are not the same person. It is not transitive:
+ to see why, think of the following situation (which surely exists somewhere 
+ in the world!): there is a straight road of length $1.5$ miles. Say Al lives
+ at one end of the road, Cal lives at the other end, and Sal lives half way between
+ Al and Cal. Then Al$\,N\,$Sal and Sal$\,N\,$Cal, but not Al$\,N\,$Cal. 
+\end{exmp}
+ 
+\begin{exmp}
+ Let $A=\R$ and define $aRb$ iff $a\leq b$, then $R$ is a reflexive, 
+ transitive, antisymmetric relation. Because of this example, any relation
+ on a set that is reflexive, antisymmetic, and transitive is called an 
+ {\bfseries ordering} relation. The subset relation on any collection of sets
+ is another ordering relation.
+\end{exmp}
+ 
+\begin{exmp} Let $A=\R$ and define $aRb$ iff $a<b$. Then $R$ is irreflexive,
+ and transitive.
+\end{exmp}
+ 
+\begin{exmp} If $A=\{1,2,3,4,5,6\}$ then 
+\begin{align*}
+ R=\{&(1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(1,3),(3,1),(1,5), \\
+     &(5,1),(2,4),(4,2),(2,6),(6,2),(3,5),(5,3),(4,6),(6,4)\}
+\end{align*}
+ is reflexive, symmetric, and transitive. In artificial examples such as this one,
+ it can be a tedious chore checking that the relation is transitive.
+\end{exmp}
+ 
+\begin{exmp} If $A=\{1,2,3,4\}$ and $R=\{(1,1),(1,2),(2,3),(1,3),(3,4),(2,4),(4,1)\}$
+  then $R$ is not 
+ reflexive, not irreflexive, not symmetric, and not transitive  but it is antisymmetric.
+\end{exmp}
+
+\clearpage
+
+
+
+
+\section{Exercises}
+
+\begin{exer}
+ Define a relation on $\{1,2,3\}$ which is both symmetric and antisymmetric.
+\end{exer}
+
+\begin{exer} 
+Define a relation on $\{1,2,3,4\}$ by
+ \[
+  R=\{(1,2),(2,1),(2,3),(3,2),(3,4),(4,3)\}.
+ \]
+For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $R$ satisfies the property, or explain why it does not.
+\end{exer}
+
+\begin{exer}
+Each matrix below specifies a relation $R$ on $\{1,2,3,4,5,6\}$ with respect to the
+ given ordering  $1,2,3,4,5,6$. 
+ 
+ For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $R$ satisfies the property, or explain why it does not.
+
+\vspace*{0.25cm}
+\begin{enumerate*}[label=\alph*), itemjoin=\qquad]
+\item 
+ $\left[
+\begin{matrix}
+ 1&1&1&0&0&0\\ 
+ 1&1&1&0&0&0\\ 
+ 1&1&1&0&0&0\\
+ 0&0&0&1&1&1\\ 
+ 0&0&0&1&1&1\\ 
+ 0&0&0&1&1&1
+\end{matrix}
+\right]$ 
+
+\item 
+$\left[
+\begin{matrix}
+ 1&1&1&1&1&1\\
+ 0&0&0&0&0&1\\ 
+ 0&0&0&0&0&1\\ 
+ 0&0&0&0&0&1\\ 
+ 0&0&0&0&0&1\\ 
+ 0&0&0&0&0&1
+\end{matrix}
+\right]$
+\end{enumerate*}
+
+\vspace*{0.25cm}
+\begin{enumerate*}[label=\alph*), itemjoin=\qquad]
+\item[c)] 
+$\left[
+\begin{matrix}
+ 1&0&0&0&0&1\\ 
+ 0&1&0&0&1&0\\ 
+ 0&0&1&1&0&0\\ 
+ 0&0&1&1&0&0\\ 
+ 0&1&0&0&1&0\\ 
+ 1&0&0&0&0&0
+\end{matrix}
+\right]$
+
+\item[d)]
+$\left[
+\begin{matrix}
+ 1&0&0&0&0&1\\ 
+  0&1&0&0&1&0\\ 
+  0&0&1&1&0&0\\ 
+  0&0&1&1&0&0\\ 
+  0&1&0&0&1&0\\ 
+  1&0&0&0&0&1
+\end{matrix}
+\right]$
+\end{enumerate*}
+\end{exer}
+
+\begin{exer}
+Define the relation {\itshape $C(A,B) : |A|\leq|B|$}, where the
+domains for $A$ and $B$ are all subsets of $\Z$. 
+
+For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $S$ satisfies the property, or explain why it does not.
+\end{exer}
+
+\begin{exer} 
+Explain why $\emptyset$ is a relation on any set.
+\end{exer}
+
+\begin{exer}
+Define the relation {\itshape $M(A,B) : |A\cap B| = 1$ (or, in plain English, $A$ and $B$ have exactly one element in common)}, where the
+domains for $A$ and $B$ are all subsets of $\Z$. A few examples: 
+
+\begin{itemize}
+
+\item $\{5,10\}\,M\,\{ 1,2,3,4,5,6\}$ is true since the sets $\{5,10\}$
+and $\{1,2,3,4,5,6\}$ have exactly one element in common (namely $5$). 
+
+\item $\{ 1,2,3\}\,M\, \{6,7,8,9\}$ is false since  $\{ 1,2,3\}$ and $\{6,7,8,9\}$ have no elements in common.
+
+\item $\{1,2,3,4\}\,M\, \{2,4,6,8\}$ is false since $\{1,2,3,4\}$ and $\{2,4,6,8\}$ have more than one element in common.
+
+\item $\{n | n \in Z \text{ and } n\leq 0\} \, M\, \{n | n \in Z \text{ and } n\geq 0\}$ is true since $\{n | n \in Z \text{ and } n\leq 0\}$
+and  $\{n | n \in Z \text{ and } n\geq 0\}$ have exactly one element in common (namely $0$).
+
+\end{itemize}
+
+
+For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $M$ satisfies the property, or explain why it does not.
+\end{exer}
+
+\clearpage
+
+\section{Problems}
+
+\begin{prob}
+Let $R$  be the relation  $\{(1,1)\}$ on the set $A = \{ 1,2\}$. For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $S$ satisfies the property, or explain why it does not.
+\end{prob}
+
+\begin{prob}
+Let $R$  be the relation  $\{(1,1), (1,2), (1,3), (2,3)\}$ on the set $A = \{ 1,2,3\}$. For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $S$ satisfies the property, or explain why it does not.
+\end{prob}
+
+\begin{prob}
+Let $A$ be the relation on the set $\Z$ of all integer defined by $s\,A\,t$ if and only if $|s|\leq |t|$.  For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) either show $S$ satisfies the property, or explain why it does not.
+\end{prob}
+
+
+\begin{prob}
+Let $D$ be the relation on the natural numbers defined by the rule $mDn$ if and only if $m$ does not equal $n$. Examples: $5D7$ is true and $4D4$
+is false. For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $S$ satisfies the property, or explain why it does not.
+\end{prob}
+
+\begin{prob}
+Let $R$ be the relation  $\{(1,2), (2,3), (3,4)\}$ on the set $A=\{1,2,3\}$. The relation $R$ is not transitive on $A$. What is the fewest number of ordered 
+pairs that need to be added to $R$ so it becomes a transitive relation on $A$?
+\end{prob}
+
+\begin{prob}
+Give a counterexample to the claim that a relation $R$ on a set $A$ that is both symmetric and transitive must be reflexive. Hint: There is a very simple example!
+\end{prob}
+
+\begin{prob} 
+Define the relation {\itshape $M(A,B) : A\cap B = \emptyset$}, where the
+domains for $A$ and $B$ are all subsets of $\Z$. 
+
+For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $M$ satisfies the property, or explain why it does not.
+\end{prob}
+
+
+\begin{prob}
+\ %
+\begin{enumerate}[label=(\alph*)]
+ \item  Let $A=\{1\}$, and consider the empty relation, $\emptyset$,  on $A$. 
+ For each of the five properties of a relation defined in this chapter (reflexive, irreflexive, symmetric, antisymmetric, and transitive) 
+either show $\emptyset$ satisfies the property, or explain why it does not.
+
+ \item Same question as (a), but now with $A=\emptyset$.
+\end{enumerate}
+\end{prob}

@@ -1,0 +1,378 @@
+\chapter{Tougher Counting Problems}\label{ch:Tougher Counting Problems}
+
+\newthought{All of the counting exercises} you've been asked to complete so far 
+have not been realistic. In general it won't be true that a counting problem
+fits neatly into a section. So we need to work on the bigger picture.
+
+When we start any counting exercise it is true that there is an underlying exercise at the
+basic level that we want to consider first. So instead of answering the question immediately
+we might first want to decide on what type of exercise we have. So far
+we have seen three types which are distinguishable by the answers to 
+two questions.
+\begin{enumerate}
+ \item In forming the objects we want to count, is repetition  allowed?
+ \item In forming the objects we want to count, does the order of selection matter?
+\end{enumerate}
+
+The three scenarios we have seen so far are described in table~\ref{tbl:basic count probs}.
+\begin{margintable}
+\centering
+\begin{tabular}{cclc}
+\toprule
+Order & Repetition & Type & Form \\
+\midrule
+Y   &  Y   &  $r$-strings & $n^r$   \\
+Y   &  N   &  $r$-permutations & $P(n,r)$   \\
+N   &  N   &  $r$-combinations & ${n\choose r}$  \\
+\bottomrule %\addlinespace
+\end{tabular} %
+\caption{Basic counting problems}\label{tbl:basic count probs}
+\end{margintable}
+
+There are two problems to address. First of all, table~\ref{tbl:basic count probs}
+ is incomplete.
+What about, for example, counting objects where repetition is allowed, but order
+doesn't matter. Second of all, there are connections among the types which
+make some solutions appear misleading. But as a general rule of thumb, if we
+correctly identify the type of problem we are working on, then all we have to do
+is use the principles of addition, multiplication, inclusion/exclusion, or exclusion
+to decompose our problem into subproblems. The solutions to the subproblems 
+often have the same form as the underlying problem. The principles we employed
+direct us on how the sub-solutions should be recombined to give the final answer.
+
+\begin{exmp}
+ As an example of the second problem, if we ask how many binary strings of length $10$ contain
+ exactly three $1$'s, then the underlying problem is an $r$-string problem. But in this case
+ the answer is $\dl{{10\choose 3}}$. Of course this is really $\dl{{10\choose 3}1^31^7}$ from
+ the binomial theorem. In this case the part of the answer which looks like $n^r$ is suppressed
+ since it's trivial. To see the difference we might ask how many ternary strings of length $10$
+ contain exactly three $1$'s. Now the answer is $\dl{{10\choose 3} 1^3 2^7}$, since we choose
+ the three positions for the $1$'s to go in, and then fill in each of the $7$ remaining positions with a $0$ or a $2$.
+\end{exmp}
+
+
+
+\section{The Basic Donut Shop Problem}\label{sect:basic donut shop problem}
+To begin to address the first problem we introduce
+If you get to the donut shop before the cops get there,
+you will find that they have a nice variety of donuts. You might want to order several dozen.
+They will put your order in a box. You don't particularly care what order the donuts are put into
+the box. You do usually want more than one of several types. The number of ways for you to
+complete your order is therefore a counting problem where order doesn't matter, and repetition
+is allowed.
+
+In order to answer the question of how many ways you can complete your order, we first
+recast the problem mathematically. From among $n$ types of objects we want to select 
+$r$ objects. If $x_i$ denotes the number of objects of the $i$th type selected, we have
+$0\leq x_i$, (since we cannot choose a negative number of chocolate donouts), also
+$x_i\in \Z$, (since we cannot select fractional parts of donuts). So, the different ways to order 
+are in one-to-one correspondence with the solutions  to
+\[
+ x_1+x_2+...+x_n=r, \text{ with $x_i \geq 0$, $x_i \in \Z$, for $i-1,2,\dots,n$.}
+\]
+Next, in order to compute the number of solutions in non-negative integers to $x_1+x_2+...+x_n=r $, 
+we model each solution as a string (possibly empty) of $x_1$ 1's followed by a $+$, 
+then a string of $x_2$ 1's followed by a $+$, ... then a string of $x_{n-1}$ 1's followed by a $+$, then
+a string of $x_n$ 1's. So for example, if $x_1=2, x_2=0, x_3=1, x_4=3$ is a solution to $x_1+x_2+x_3+x_4=6$
+the string we get is $11++1+111$. 
+
+Finally, we see that
+ the total number of solutions in non-negative integers to 
+$x_1+...+x_n=r$, is the number of binary strings of length $r+n-1$ with exactly $r$ $1$'s and
+$(n-1)$ $+$'s.
+From the remark above, the number of ways to select $r$ donuts from $n$ different types
+ is 
+\[
+ \binom{n+r-1}{r}.
+\]
+
+
+\section{The More Realistic Donut Shop Problem} \label{sect:more realistic donut shop problem}
+The basic donut shop problem is not very realistic in two ways. First it is common that some of your order
+will be determined by other people. You might for example canvas the people in your office before
+you go to see if there is anything you can pick up for them. So whereas you want to order $r$ donuts,
+you might have been asked to pick up a certain number of various types.
+
+Now suppose that we know that we want to select
+$r$ donuts from among $n$ types so that at least $a_i(a_i\geq 0)$ donuts of type $i$ are selected.
+In terms of our equation, we have $x_1+x_2+...+x_n=r$, where $a_i\leq x_i$, and $x_i\in \Z$.
+If we set $y_i=x_i-a_i$ for $i=1,...,n$, and $\dl{a=\sum_{i=1}^n a_i}$, then $0\leq y_i$, $y_i\in \Z$ and 
+\[
+\sum_{i=1}^n y_i =\sum_{i=1}^n (x_i-a_i)=\left[\sum_{i=1}^n x_i\right]-\left[\sum_{i=1}^n a_i\right]=r-a.
+\]
+So, the number of ways to complete our order is $\displaystyle{\binom{n+(r-a)-1}{(r-a)}}$.
+\marginnote{First ask for the donuts your colleagues wanted (total of $a$), then randomly get
+the rest ($r-a$).}
+
+
+Still, we qualified the donut shop problem by supposing that we arrived before the cops did.
+
+
+\section{The Real Donut Shop Problem}\label{sect:real donut shop problem}
+ If we arrive at the donut shop after canvassing our friends,
+we want to select $r$ donuts from among $n$ types. The problem is that there are probably only 
+a few left of each type. This may place an upper limit on how often we can select a particular type.
+So now we wish to count solutions to 
+\[
+ x_1+x_2+...+x_n=r, \text{ with $a_i\leq x_i\leq b_i$, $x_i \in \Z$.}
+\]
+ 
+We proceed by replacing $r$ by $s=r-a$, where $a$ is the sum of lower bounds. 
+We also replace $b_i$ by $c_i=b_i-a_i$ for $i=1,..., n$. So we want to find the number of solutions
+to $0\leq y_i\leq c_i$, $y_i\in \Z$, and $y_1+y_2+...+y_n=s$. There are several ways to proceed.
+We choose inclusion/exclusion. Let us set $\U$ to be all solutions in non-negative integers to $y_1+...+y_n=s$.
+Next let $A_i$ denote those solutions in non-negative integers to $y_1+...+y_n=r$, where $c_i<y_i$.
+Then we want to compute $|\vl{A_1}\cap \vl{A_2}\cap \vl{A_3}\cap ...\cap \vl{A_n}|$, which we can do
+by general inclusion/exclusion, and the ideas from the more realistic donut shop problem.
+
+\begin{exmp}
+ Let us count the number of solutions to 
+ \[
+ x_1+x_2+x_3+x_4=34,
+ \]
+ where
+ $0\leq x_1\leq 4$, $0\leq x_2\leq 5$, $0\leq x_3\leq 8$ and $0\leq x_4\leq 40$.
+ 
+ As discussed above, we
+ have $c_1=4, c_2=5, c_3=8$, and $c_4=40$. Hence, we see that 
+ \[
+ \left\lvert \U\right\rvert=\binom{34+4-1}{34}.
+ \]
+ Now, $A_i$ will denote the solutions in non-negative
+ integers to 
+ \[
+ x_1+x_2+x_3+x_4=34, \text{ with } x_i>c_i, \text{ for } i=1,2,3,4.
+ \]
+ Next, realize that $A_4=\emptyset$, so we have 
+ \[
+ \vl{A_4}=\U \quad\text{ and }\quad 
+ \vl{A_1}\cap \vl{A_2}\cap \vl{A_3}\cap \vl{A_4}=\vl{A_1}\cap \vl{A_2}\cap \vl{A_3}.
+ \]
+ Now, to compute $A_1$, we must first rephrase $x_1>4$ as a non-strict inequality, i.e.~$5\leq x_1$.
+ So, it follows that 
+ \[
+ {|A_1|={29+4-1\choose 29}}.
+ \]
+ Similarly, we have
+ \[
+  \lvert A_2\rVert=\binom{28+4-1}{28}, \quad\text{ and }\quad
+ \lvert A_3\rvert=\binom{25+4-1}{25}.
+ \] 
+ Next, we observe that $A_1\cap A_2$ represents the set of  all solutions in non-negative
+ integers to
+ \[
+ x_1+x_2+x_3+x_4=34 \quad\text{with $5\leq x_1$ and $6\leq x_2$}.
+ \]
+  So, we have 
+ \[
+ \left\lvert A_1\cap A_2\right\rvert=\binom{23+4-1}{23}.
+ \]
+  Also, we find that
+ \[
+  \lvert A_1\cap A_3\rvert=\binom{20+4-1}{20}
+  \quad\text{and}\quad \lvert A_2\cap A_3\rvert=\binom{19+4-1}{19}.
+ \]
+  Finally, we see that
+ \[
+ \lvert A_1\cap A_2\cap A_3\rvert=
+ \binom{14+4-1}{14}.
+ \]
+ Hence, the final answer is\sidenote{We leave the answer in this form for clarity. The numerical value is not illuminating.}
+\begin{align*}
+  {34+4-1\choose 34}&-{29+4-1\choose 29}-{28+4-1\choose 28}-{25+4-1\choose 25}\\
+  +{23+4-1\choose 23}&+{20+4-1\choose 20}+{19+4-1\choose 19}-{14+4-1\choose 14}.
+\end{align*}
+\end{exmp}
+
+We can now solve general counting exercises where order is unimportant and repetition is restricted
+somewhere between no repetition, and full repetition.
+
+
+\section{Problems with order and some repetition}
+To complete the picture we should be able to also solve counting exercises where order is important
+and repetition is partial. This is somewhat easier. It suffices to consider the subcases in
+ example~\ref{exmp:quaternary 15}.
+
+
+\begin{exmp}\label{exmp:quaternary 15}
+Let us take as initial problem the number of quaternary strings of length $15$.
+There are $4^{15}$ of these. 
+
+Now, if we ask how many contain exactly two $0$'s, the answer is
+$\dl{{15\choose 2}3^{13}}$. 
+
+If we ask how many contain exactly two $0$'s and four $1$'s, the answer
+is 
+\[
+\binom{15}{2}\binom{13}{4}2^9.
+\]
+
+And, if we ask how many contain exactly two $0$'s, four $1$'s and
+five $2$'s, the answer is
+\[
+\binom{15}{2}\binom{13}{4}\binom{9}{5}\binom{4}{4} = \frac{15!}{2!\cdot4!\cdot5!\cdot4!}.
+\]
+\end{exmp}
+So, in fact many types of counting are related by what we call the multinomial theorem.
+\begin{thm}
+ When $r$ is a non-negative integer and $x_1,x_2,...,x_n\in \R$, we have
+ \[
+  (x_1+x_2+...+x_n)^r=\sum_{{e_1+e_2+...+e_n=r\atop 0\leq e_i}} 
+  \binom{r}{e_1,e_2,...,e_n} x_1^{e_1} x_2^{e_2}... x_n^{e_n},
+ \]
+ where $\displaystyle {\binom{r}{e_1,e_2,...e_n}=\frac{r!}{e_1!e_2!...e_n!}}$.
+\end{thm}
+
+\section{The six fundamental counting problems}
+To recap, when we have a counting exercise, we should first ask whether order is important and then
+ask whether repetition is allowed. This will get us into the right ballpark as far as the form of the solution.
+We must use basic counting principles to decompose the exercise into sub-problems. Solve the 
+sub-problems, and put the pieces back together. Solutions to sub-problems usually take the same
+form as the underlying problem, though they may be related to it via the multinomial theorem. 
+Table~\ref{tbl:six counting problems} synopsizes our six fundamental cases.
+\begin{margintable}
+\centering
+\begin{tabular}{ccc}
+\toprule
+Order & Repetition & Form \\
+\midrule
+Y   &  Y   &  $\dl{n^r}$   \\ \addlinespace
+Y   &  N   &  $\dl{P(n,r)}$   \\ \addlinespace
+N   &  Y   &  $\dl{{r+n-1\choose r}}$ \\ \addlinespace
+N   &  N   &  $\dl{{n\choose r}}$  \\ \addlinespace 
+Y   & some & $\dl{{r\choose k_1,k_2,...,k_n}}$ \\ \addlinespace
+N   & some & $\dl{{r+n-1\choose r}}$ w/ I-E \\ \addlinespace
+\bottomrule
+\end{tabular} %
+\caption{Six counting problems}\label{tbl:six counting problems}
+\end{margintable}
+
+
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+How many quaternary strings of length $n$ are there (a quaternary string uses 0's, 1's, 2's, and 3's)?
+\end{exer}
+
+\begin{exer}
+How many quaternary strings of length less than or equal to 7 are there?
+\end{exer}
+
+\begin{exer}
+How many solutions in integers are there to $x_1+x_2+x_3+x_4+x_5+x_6+x_7=54$, where $3\leq x_1$, $4\leq x_2$, $5\leq x_3$, and $6\leq x_4,x_5,x_6, x_7$?
+\end{exer}
+
+\begin{exer}
+\begin{fullwidth}
+How many ternary strings of length $n$ start $0101$ and end $212$?
+\end{fullwidth}
+\end{exer}
+
+\begin{exer} 
+A doughnut shop has 8 kinds of doughnuts: chocolate, glazed, sugar, cherry, strawberry, vanilla, caramel, and jalapeno. How many ways are there to order three 
+dozen doughnuts, if at least 4 are jalapeno, at least 6 are cherry, and at least 8 are strawberry, but there are no restrictions on the other varieties?
+\end{exer}
+
+\begin{exer}
+
+How many strings of twelve lowercase English letters are there\\
+\begin{enumerate}[label=(\alph*)]
+ \item which start and end with the letter $x$, if letters may be repeated?
+ \item which contain the letter $x$ exactly once, if letters can be repeated?
+ \item which contain each of the letters $x$ and $y$ both exactly once, if letters can be repeated?
+ \item which contain at least one letter from the first half of the alphabet (a through m), where letters may be repeated?
+\end{enumerate}
+
+\end{exer}
+
+
+\begin{exer}
+How many bit strings of length 19 either begin $0101$, or have 4th, 5th and 6th digits $101$, or end $1010$?
+\end{exer}
+
+\begin{exer}
+How many pentary strings of length 15 consist of three 0's, four 1's, three 2's, four 3's and one 4?
+\end{exer}
+
+\begin{exer}%9
+9
+\end{exer}
+
+\begin{exer}
+Seven lecturers and fourteen professors are on the faculty of a math department.
+\begin{enumerate}[label=(\alph*)]
+\item How many ways are there to form a committee with seven members which contains more lecturers
+      than professors?
+\item How many ways are there to form a committee with seven members where the professors outnumber
+      the lecturers on the committee by at least a two-to-one margin?
+\item How many ways are there to form a committee consisting of at least five lecturers?
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+In how many ways can twenty people form a line at a ticket window if Hans and wife Brunhilda are having a spat, and refuse to stand in consecutive places in the line?
+
+\end{exer}
+
+\begin{exer}
+Prove that a set with $n\geq 1$ elements has the same number of subsets with an even number of elements, as
+subsets with an odd number of elements.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+A doughnut shop has 8 kinds of doughnuts: chocolate, glazed, sugar, cherry, strawberry, vanilla, caramel, and jalapeno. How many ways are there to order three 
+dozen doughnuts, if at most 4 are jalapeno, at most 6 are cherry, and at most 8 are strawberry, but there are no restrictions on the other varieties?
+\end{prob}
+
+\begin{prob}
+\begin{fullwidth}
+How many strings of twelve lowercase English letters are there
+\end{fullwidth}
+\begin{enumerate}[label=(\alph*)]
+ \item which start with the letter $x$, if letters may be repeated?
+ \item which contain the letter $x$ at least once, if letters can be repeated?
+ \item which contain each of the letters $x$ and $y$ at least once, if letters can be repeated?
+ \item which contain at least one vowel, where letters may not be repeated?
+\end{enumerate}
+
+\end{prob}
+
+\begin{prob}
+How many ternary strings of length 9 have
+\begin{enumerate}[label=(\alph*)]
+ \item exactly four 1's?
+ \item at least three 0's?
+ \item at most three 1's?
+\end{enumerate}
+\end{prob}
+
+
+\begin{prob}
+How many ways are there to seat six people at a circular table where two seatings are considered equivalent if one
+can be obtained from the other by rotating the table?
+\end{prob}
+
+\begin{prob}
+A donut shop sells six types of donut. You buy a scratch{-}off ticket that promises you will win anywhere from one to two dozen donuts. How many different prizes are possible?
+\end{prob}
+
+\begin{prob}
+How many ternary strings of length $n$ contain no two adjacent identical symbols? Examples: ($n = 8$)
+$13123231$ is good, but $13112321$ is bad.
+\end{prob}
+
+\begin{prob}
+How many ternary strings of length $n$ contain at least two adjacent identical symbols? Examples: ($n=9$)
+$131212321$ is bad, but $131123321$ is good.
+\end{prob}
+
+\begin{prob}
+We have five identical buckets, and six markers numbered $1$ to $6$. How many final distributions of the markers are possible? Examples: one distribution: markers 1, 3 together in one bucket, markers 2, 4,
+5 in another bucket, and marker 6 in another bucket. A second possible distribution: markers 1,2,3,4 together in one bucket and markers 5,6 in another bucket. One more example: markers 1,2,3,4, each in a different bucket,
+and 5,6 together in one bucket.
+\end{prob}
+

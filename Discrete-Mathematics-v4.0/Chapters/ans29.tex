@@ -1,0 +1,73 @@
+   \section*{Chapter 29}
+    
+\begin{Solution}{29.1}
+
+$26!$
+
+\end{Solution}
+
+\begin{Solution}{29.2}
+
+Part 1: (vowels together, assume the vowels are {\it a,e,i,o,u})  (Task 1) arrange the five vowels in some order: $5!$ ways to do that. (Task 2) arrange the $21$ non-vowels in some order: $21!$ ways to do that. (Task 3): pick a spot in the row of $21$ non-vowels to place the row of five vowels: $22$ choices for that spot. Since we need to do all three tasks, the number
+of possible arrangements is $5!\cdot21!\cdot22$. 
+
+
+Part 2: (no adjacent vowels) (Task 1) arrange the $21$ non-vowels in some order: $21!$ ways to do that. (Task 2) There are $22$ gaps between those volumes, and we need to select five of them for the vowels: we can do that in $\binom{22}{5}$ ways. (Task 3): arrange the five vowels in some order to place in the five open spots: $5!$ ways to do that. Since we need to do all three tasks, the number
+of possible arrangements is $21!\cdot\binom{22}{5}\cdot5!$. 
+
+\end{Solution}
+
+\begin{Solution}{29.3}
+There are $13!$ to arrange the books for each shelf. Since we need to arrange shelf 1 and shelf 2, there will be $(13!)(13!) = (13!)^2$ way to arrange the bookcase.
+
+
+\end{Solution}
+
+\begin{Solution}{29.4}
+People are normally considered distinguishable. (Task 1) arrange the seven men in some order: $7!$ ways to do that. (Task 2) arrange the four  women in some order: $4!$ ways to do that. (Task 3): pick a spot in the row of four women to place the row of seven men: $5$ choices for that spot. Since we need to do all three tasks, the number
+of possible arrangements is $7!\cdot4!\cdot5$. 
+
+\end{Solution}
+
+\begin{Solution}{29.5}
+
+We need to select $10$ of the $20$ to form one of the teams (the remaining $10$ will form the other team).
+That can be done in $\binom{20}{10}$ ways. Since that counts each division into two teams twice, the total
+number of ways to divide the group into two teams is $\frac{\binom{20}{10}}{2}$.
+
+\end{Solution}
+
+\begin{Solution}{2 9.6}
+
+The order of the numbers on the lottery ticket do not matter, so there are $\binom{99}{5}$ lottery tickets possible.
+In order to have at least a one-in-a-million chance of winning the lottery by matching all five numbers we need to have $n$ tickets, where $\frac{n}{\binom{99}{5}} \geq \frac{1}{1,000,000}$. In other words, we need
+$n\geq \frac{\binom{99}{5}}{1,000,000} = \frac{71,523,144}{1,000,000} = 71.52\ldots$. That means we need to buy $72$ tickets.
+
+
+
+\end{Solution}
+
+\begin{Solution}{29.7a}
+
+We need to select six of the $22$ people available. That can be done in $\binom{22}{6}$ ways.
+
+
+\end{Solution}
+
+\begin{Solution}{29.7b}
+
+(Task 1) Select two clowns: $\binom{9}{2}$ ways.\\
+(Task 2) Select four lion tamers: $\binom{13}{4}$ ways.\\
+We need to do task 1 and task 2, so there are $\binom{9}{2}\binom{13}{4}$ such committees.
+
+\end{Solution}
+
+\begin{Solution}{29.7c}
+
+The options are (1) six lion tamers, (2)five lion tamers and one clown, or (3) four lion tamers and two clowns.
+So the total number of acceptable committees is
+\[
+\binom{13}{6} +\binom{13}{5}\binom{9}{1}+\binom{13}{4}\binom{9}{2}.
+\]
+
+\end{Solution}

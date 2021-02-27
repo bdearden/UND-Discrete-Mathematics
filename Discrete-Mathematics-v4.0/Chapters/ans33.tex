@@ -1,0 +1,153 @@
+   \section*{Chapter 33}
+    
+\begin{Solution}{33.1}
+
+There are four choices for each of the $n$ positions in the string. So there are $4^n$ such strings.
+
+\end{Solution}
+
+\begin{Solution}{33.2}
+
+Including the string of length $0$, there are 
+$1+4+4^2+\cdots 4^7 = \frac{4^8-1}{4-1} = \frac{4^8-1}{3}$ such strings.
+
+\end{Solution}
+
+
+\begin{Solution}{33.3}
+
+(a donut shop problem) Ask for $3$ $x_1$'s, $4$ $x_2$'s, $5$ $x_3$'s, and $6$ each of $x_4$'s, $x_5$'s, $x_6$'s, and $x_7$'s. That gives us $36$ donuts so far. The remaining $18$ can be selected in any way at all. So there are
+$\binom{18+7-1}{18} = \binom{25}{18}$ acceptable solutions to the equation.
+
+\end{Solution}
+
+\begin{Solution}{33.4}
+
+For ternary strings, each position is a $0$, $1$, or $2$. If the ternary string begins $0101$ and ends $212$
+(and must be of length $7$ or more!). There will be $n-7$ positions left to fill, and there are three choices for each position, so there are $3^{n-7}$ such strings.
+
+\end{Solution}
+
+\begin{Solution}{33.5}
+When you build your order, tell the clerk to start with four jalapeno,  six  cherry, and eight are strawberry. That accounts for $18$ donuts, and so you need $18$ more, and any combination is okay for those last $18$. So there are $\binom{8 + 18 -1}{18} = \binom{25}{18}$ to form the donut order.
+\end{Solution}
+
+\begin{Solution}{33.6a}
+
+$26^{10}$ (There are $26$ choices for each of the middle ten spots.)
+
+\end{Solution}
+
+\begin{Solution}{33.6b}
+
+
+Pick a spot for the $x$ ($12$ options). Fill in the $11$ empty spots ($25$ choices for each spot since we can't use the $x$
+again): Answer: $(12)(25^{11})$.
+
+\end{Solution}
+
+\begin{Solution}{33.6c}
+Pick a spot for the $x$ ($12$ choices), then pick a spot for the $y$ ($11$ choices), then fill in the remaining $10$ spots ($24$ choices
+for each spot): Answer: $(12)(11)(25^{10})$.
+\end{Solution}
+
+\begin{Solution}{33.6d}
+(good = total - bad method) There are $13$ letters in the second half of the alphabet, and so $13^{12}$ twelve letter words made up of
+only letters from the second half of the alphabet. These are all {\it bad} for this problem. There are $26^{12}$ words of length twelve.
+So, there are $26^{12}-13^{12}$ twelve letters words with at least one letter from the first half of the alphabet.
+\end{Solution}
+
+\begin{Solution}{33.7}
+
+Let $A$ be the length $19$ bit strings of the form $0101...............$.\\
+Let $B$ be the length $19$ bit strings of the form $...101.............$.\\
+Let $C$ be the length $19$ bit strings of the form $...............1010$.\\
+
+(inclusion/exclusion)
+
+\begin{align*}
+|A \cup B \cup C| = |A| + |B| + |C|\\
+\qquad - (|A \cap B| + |A \cap C| + |B \cap C|)\\
+\qquad +|A \cap B \cap C|\\
+= 2^{15} + 2^{16} + 2^{15} -(2^{13} + 2^{11} + 2^{12}) + 2^9.
+\end{align*}
+
+
+\end{Solution}
+
+\begin{Solution}{33.8}
+
+(Task 1) Pick three of the fifteen spots for $0$'s: $\binom{15}{3}$ ways to do that.\\
+(Task 2) Prick four of the remaining twelve spots for $1$'s: $\binom{12}{4}$ ways.\\
+(Task 3) Pick three of the remaining eight spots for $2$'s: $\binom{8}{3}$ ways.\\
+(Task 4) Pick four of the remaining five spots for $3$'s: $\binom{5}{4}$ ways.\\
+(Task 5) Pick one of the remaining one spot for the $4$: $\binom{1}{1} =1$ way.\\
+
+Number of {\it good} strings is 
+\[
+\binom{15}{3}\binom{12}{4}\binom{8}{3}\binom{5}{4}
+= \frac{15!}{3!12!}\frac{12!}{4!8!}\frac{8!}{3!5!}\frac{5!}{4!1!} = \frac{15!}{3!4!3!4!1!}.
+\]
+
+\end{Solution}
+
+\begin{Solution}{33.9a}
+Select the two spots for the 0's ($\binom{9}{2}$ choices) and fill the remaining seven spots with 1's and 2's in any way ($2^{7}$ ways).
+Answer: $\binom{9}{2}2^{7}$.
+\end{Solution}
+
+\begin{Solution}{33.9b}
+Select the three spots for the 1's ($\binom{9}{3}$ choices) and fill the remaining seven spots with 0's and 2's in any way ($2^{6}$ ways).
+Answer: $\binom{9}{3}2^{6}$.
+\end{Solution}
+
+\begin{Solution}{33.9c}
+Select the two spots for the 0's ($\binom{9}{2}$ choices), then select three of the remaining seven spots for the 1's ($\binom{7}{3}$ choices),
+then fill in the remaining spots with 0's (one way). Answer: $\binom{9}{2}\binom{7}{3}$.
+
+
+\end{Solution}
+\begin{Solution}{33.10a}
+As usual, we assume people are distinguishable.
+We can pair $7,6,5$ or $4$ lecturers with $0,1,2$ or $3$ professors respectively.
+
+$\binom{7}{7} + \binom{7}{6}\binom{14}{1} + \binom{7}{5}\binom{14}{2} + \binom{7}{4}\binom{14}{3}.$
+
+\end{Solution}
+
+\begin{Solution}{33.10b}
+
+We can pair $7,6$, or $5$ professors with $0,1$ or $2$ lecturers respectively.
+
+$\binom{14}{7} +\binom{14}{6}\binom{7}{1} + \binom{14}{5}\binom{7}{2}.$
+
+\end{Solution}
+
+\begin{Solution}{33.10c}
+The final size of the committee isn't specified so we will assume any size (five or more) is ok
+We will pick $5, 6$, or $7$ lecturers, and pair each selection with any subset of the professors.
+
+$\binom{7}{5} 2^{14} + \binom{7}{6}2^{14} + \binom{7}{7}2^{14}.$
+
+\end{Solution}
+
+\begin{Solution}{33.11}
+
+(good = total - bad method) There are $20!$ ways to form a line of the $20$ people. If we tie Hans and Brunhilda together, there are $19$ items,
+and so there are $19!$ ways to line those $19$ items up. Of course Hans and Brunhilda could be in either order, so there are $2(19!)$ bad lines.
+The number of good lines is $20! - 2(19!)$.
+\end{Solution}
+
+\begin{Solution}{33.12}
+
+Here is a proof by induction:
+
+(basis) For a set of one element, $\{a\}$, the two subsets are $\{ \}$ and $\{a\}$. The first has an even number of elements, and the second has an odd number of elements, so we are okay in this case.
+
+(inductive step) Suppose that for some $n\geq 1$, an $n$ element set has the same number of subsets of even cardinality as odd odd cardinality. Now consider a set with $n+1$ elements. Say the set, $A$, consists of $n$ elements
+along with one additional element $e$ (for extra). List all the subsets of $A$. By the inductive hypothesis, there will be some number $t$ with even cardinality, and the same number $t$ with odd cardinality. Adding the element $e$
+to the subsets of $A$ with even cardinality will produce $t$ subsets of $A \cup \{e\}$ with odd cardinality, and adding the $e$ to the subsets of $A$ with odd cardinality will produce $t$ subsets of $A \cup \{e\}$ with even cardinality. Conclusion: $A \cup \{e\}$ has the same number ($2t$ in fact) of subsets with even and odd cardinality.
+$\clubsuit$
+
+\end{Solution}
+

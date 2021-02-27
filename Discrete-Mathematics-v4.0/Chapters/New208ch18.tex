@@ -1,0 +1,215 @@
+\chapter{Algorithm Efficiency}
+
+\newthought{There are many different algorithms} for solving any particular class 
+of problems. In the last chapter, we considered two algorithms for 
+solving the problem of looking up a phone number given a person's name.
+
+\noindent\textbf{Algorithm L:} Look at the first entry in the book. 
+If it's the number you're looking for you're
+done. Else move to the next entry. 
+It's either the number you're looking for or you move to the
+next entry, and so on. (The {\bfseries linear search algorithm}) 
+
+\noindent\textbf{Algorithm B:} The second algorithm took advantage of the
+arrangement of a phone book in alphabetical order.
+We open the phone book to the middle entry. If it's the number we're 
+looking for, we're done.
+Otherwise we know the number is listed in the first half of the book, 
+or the last half of the book. We then pick the middle entry
+of the appropriate half, and repeat the process. After a number of
+repetitions, we will either be at the name we want, or learn the
+name isn't in the book. (The {\bfseries {binary search algorithm}}) 
+
+The question arises, which algorithm is {\it better}?
+The question is pretty vague. Let's assume that {\it better}
+means {\it uses fewer steps}. Now if there are only one or two
+names in the phone book, it doesn't matter which algorithm we use,
+the look-up always takes one or two steps. But what if the phone
+book contains $10000$ names? In this case, it is hard to say
+which algorithm is better: looking up Adam Aaronson will likely 
+only take one step by the linear search algorithm, but binary
+search will take $14$ steps or so. But for   Zebulon Zyzniewski,
+the linear search will take $10000$ steps, while the binary search
+will again take about $14$ steps.
+
+\section{Comparing algorithms}
+There are two lessons to be learned from those last examples:
+\begin{enumerate}
+ \item Small cases of the problem can be misleading when
+ judging the quality of an algorithm, and 
+ \item It's unlikely that
+ one algorithm will always be more efficient than another.
+\end{enumerate}
+
+
+The common  approach to compare the efficiency of two algorithms takes
+those two lessons into account by agreeing to the following protocol:
+\begin{enumerate}
+ \item only compare the algorithms
+ when the size, $n$,  of the problem it is applied to is huge. 
+ In the phone book example, don't worry about phone books of $100$ names
+ or even $10000$ names. Worry instead about phone books with $n$ names
+ where $n$ gets arbitrarily large.
+ 
+ \item to compare two algorithms, first, for each algorithm,
+  find the maximum number of steps
+ ever needed when applied to a problem of size $n$. For
+ a phone book  of size $n$ the linear search algorithm will require
+ $n$ steps in the worst possible case of the name not being in the
+ book. On the other hand, the halving process of the binary search
+ algorithm means that it will never take more than about $\log_2 n$ steps
+ to locate a name (or discover the name is missing) in the phone book.
+ This information is expressed compactly by saying the linear search
+ algorithm has {\bfseries worst case scenario} efficiency $w_{_L}(n)=n$ while
+ the binary search algorithm has worst case scenario efficiency
+ $w_{_B}(n) = \log_2 n$.
+ 
+ \item we declare that algorithm \#1 is {\bfseries more efficient} than 
+ algorithm \#2 provided, for all problems of huge sizes $n$, 
+ $w_1(n)<w_2(n)$, where $w_1$ and $w_2$ are the worst case scenario
+ efficiencies for each algorithm.
+\end{enumerate}
+
+
+Notice that for huge $n$, $w_{_B}(n)<w_{_L}(n)$. In fact, there is no real
+contest. For example, when $n=1048576 = 2^{20}$, we get
+$w_{_B}(n)=20$ while $w_{_L}(n)=1048576$, and things only get better for 
+$w_{_B}$
+as $n$ gets larger.
+
+In summary, to compare two algorithms designed to solve the same
+class of problems we: 
+\begin{enumerate}
+ \item Determine a number $n$ that indicates the size of the a problem.
+ For example, if the algorithm manipulates a list of numbers, $n$
+ could be the length of the list.  If the algorithm is designed to
+ raise a number to a power, the size could be the power $n$.
+ 
+ \item Decide what will be called a {\itshape step} when applying the
+ algorithms. In the phone book example, we took a step to mean a 
+ comparison. When raising a number to a power, a step might
+ consist of performing a multiplication. A step is usually taken
+ to be the most time consuming action in the algorithm, and
+ other actions are ignored. Also, when determining the function,
+ $w$ don't get hung up worrying about miniscule details. Don't
+ spend time trying to determine if $w(n) = 2n+7$ or $w(n) = 2n + 67$.
+ For huge values of $n$, the $+7$ and $+67$ become unimportant.
+ In such a case, $w(n) =2n$ has all the interesting information.
+ Don't sweat the small stuff.
+ 
+ \item Determine the worst case scenario functions for the two algorithms,
+ and compare them. The smaller of the two (assuming they are not
+ essentially the same) is declared the more efficient algorithm.
+\end{enumerate}
+
+\begin{exmp}
+Let's do a worst case scenario computation
+for the following algorithm designed to determine the largest
+number in a list of $n$ numbers.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+     \Require{a list of $n$ numbers $a_1,a_2,\cdots,a_n$}
+     \Ensure{$\mathrm{maximum}(a_1,a_2,\dots,a_n)$} 
+     \State $max \gets a_1$
+     \State $ k \gets 2$
+     \While{$k\leq n$}
+      \If{$max < a_k$}
+       \State $max \gets a_k$
+       \State $k \gets k+1$
+      \EndIf
+     \EndWhile
+     \State \textbf{output} $max$
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+  \caption{Maximum list value}\label{alg:max list val}
+\end{algrthm}
+%\no {\bfseries input}: a list of $n$ numbers $a_1,a_2,\cdots,a_n$
+%
+%\no step 1: {\bfseries set} $max = a_1$
+%
+%\no step 2: {\bfseries set} $k = 2$
+%
+%\no step 3: {\bfseries if} $k>n$, {\bfseries then} {\bfseries output} $max$ and {\bfseries stop}
+%
+%\no step 4: {\bfseries if} $max<a_k$, then {\bfseries set} $max = a_k$
+%
+%\no step 5: {\bfseries replace} $k$ by $k+1$  and  {\bfseries go to} step 3
+%\ms
+
+It would be natural to use the number of items in the list, $n$, to represent
+the size of a problem. And let's use the comparisons as steps. We are
+going to make two comparisons each for each of the items in the list
+in every case (every case is a worst case for this algorithm!).
+So we give this algorithm an efficiency $w(n) =2n$.
+Notice that we actually only need comparisons for the last $n-1$ items
+in the list, and the exact number of times the comparisons in instructions
+(3) and (4) are carried out might take a few minutes to figure out.
+But it's clear that both are carried out {\itshape about} $n$ times, and
+since we are only interested in huge $n$'s, being off by a few (or a few
+billion) isn't really going to matter at all.
+\end{exmp}
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}\label{exer:18.1}
+For the algorithm presented in exercise~\ref{exer:17.2} from the last chapter:
+\begin{enumerate}[label=(\alph*)]
+ \item Select a value to represent the {\itshape size} of an instance of the 
+ problem the algorithm is designed to solve. 
+ 
+ \item Decide what will constitute a {\itshape step} in the algorithm.
+ 
+ \item Determine the worst case scenario function $w(n)$.
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+ Repeat exercise~\ref{exer:18.1} for the following algorithm:
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+    \Require{Sets of reals: $\{x_1,x_2,\dots,x_n\}$ and $\{y_1,y_2,\dots,y_n\}$ of size $n$}
+    \Ensure{(to be determined)} 
+    \State $S \gets 0$
+    \State $i \gets 1$
+    \While{$i \leq n$}
+      \State $S \gets S+x_i\cdot y_i$
+      \State $i \gets i+1$
+    \EndWhile
+    \State \textbf{output} $S$
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+\end{algrthm}
+
+%\no {\bfseries {Input:}} Two strings of real numbers $x_1,x_2,...,x_n$, and $y_1,y_2,...,y_n$
+%
+%\no Step 1: {\bfseries {set}} $S=0$
+%
+%\no Step 2: {\bfseries {set}} $i=1$
+%
+%\no Step 3: {\bfseries {If}} $i>n$, {\bfseries {output}} $S$ and {\bfseries {stop}}
+%
+%\no Step 4: {\bfseries {replace}} $S$ by $S+x_i*y_i$
+%
+%\no Step 5: {\bfseries {replace}} $i$ by $i+1$
+%
+%\no Step 6: {\bfseries {go to}} Step 3
+
+%\begin{enumerate}[label=(\alph*)]
+% \item Select a value to represent the {\itshape size} of an instance of the 
+% problem the algorithm is designed to solve. 
+% 
+% \item Decide what will constitute a {\itshape step} in the algorithm.
+% 
+% \item Determine the worst case scenario function $w(n)$.
+%\end{enumerate}
+
+\end{exer}
+
+\clearpage
+
+\section{Problems}
+

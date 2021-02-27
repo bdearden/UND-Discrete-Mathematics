@@ -1,0 +1,194 @@
+    \section*{Chapter 10}
+    
+\begin{Solution}{10.1}
+The relation $R$ is reflexive since $(0,0),(1,1),(2,2)$ are all in $R$. $R$ is symmetric since the reverse
+of each ordered pair in $R$ is also in $R$.  Finally, $R$ is transitive (there are a lot of cases to check
+for this condition. For example, $(1,1)$ and $(1,0)$ are both in $R$, so we need to check that $(1,0)$
+is also in $R$! But it is of course. There is a total of nine such checks needed to verify that $R$ is transitive,
+but they are all just as automatic as that one.) So $R$ is an equivalence relation on $A$. There are two 
+equivalence classes: $[0] = [1] = \{0,1\}$ and $[2] = \{2\}$.
+\end{Solution}
+
+\begin{Solution}{10.2}
+The relation $R$ is not reflexive on $A$ since $(3,3)$ is not in $R$. So $R$ is not an equivalence relation on $A$. Notice
+that $R$ is symmetric and transitive.
+\end{Solution}  
+
+\begin{Solution}{10.3}
+The relation $R$ is not symmetric on $A$ since $(1,0)$ is in $R$, but $(0,1)$ is not in $R$. So $R$ is not an equivalence relation on $A$. 
+Notice that $R$ is reflexive on $A$ and is transitive.
+\end{Solution}  
+
+\begin{Solution}{10.4}
+The relation $R$ is not transitive on $A$ since $(0,1)$  and $(1,2)$ are in $R$, but $(0,2)$ is not in $R$. So $R$ is not an equivalence relation on $A$. 
+Notice that $R$ is reflexive on $A$ and is symmetric.
+\end{Solution}  
+
+\begin{Solution}{10.5}
+True. The relation is symmetric since the reverse of each ordered pair in $R$ is also in $R$ (after all, the reverse of each ordered pair in $R$ is just the ordered pair itself). To check the antisymmetric condition, we need to look at all cases where an ordered pair and its reverse are both in $R$, and make sure the two coordinates are equal in each such case. There are only two cases to check: $(1,1)$ and its reverse are both in $R$, and sure enough, $1=1$. The story is the same for $(2,2)$. So $R$ passes the antisymmetry test. The moral of the story: It is possible for a relation to be both symmetric and antisymmetric.
+\end{Solution}
+
+\begin{Solution}{10.6}
+$S$ is reflexive since, for any integer $m$, $m^{2} = m^{2}$. 
+$S$ is symmetric since if $m^{2}= n^{2}$, then $n^{2}= m^{2}$. 
+Finally, $S$ is transitive since if $m^{2}= n^{2}$ and $n^{2}= t^{2}$, then $m^{2}= t^{2}$.
+So $S$ is an equivalence relation on $\Z$.
+
+The equivalence class of an integer $m$ the the set of all integers with the same square as $m$. For $m=0$, the only
+element in the equivalence class would be $0$ itself: $[0] = \{0\}$. For any integer, $m$, other than $0$,  we
+get $[m] = \{m, -m\}$. For example, $[2] = \{2,-2\}$ since $2^{2} = 4$ and $(-2)^{2} = 4$.
+\end{Solution}
+
+\begin{Solution}{10.7}
+The relation $C$ is obviously reflexive and symmetric. But it is not transitive. For example, The lines $l_{1}:y=x$ crosses the $l_{2}: x+y = 2$
+at the point $(1,1)$ and the line $l_{2}: x+y = 2$ crosses the line $l_{3}: y = x+2$ at the point $(0,2)$. But the lines $l_{1}: y = x$ and
+$l_{3}: y = x+2$ are distinct parallel lines, so they do not cross. In other words $l_{1}\, C\, l_{2}$ and  $l_{2}\, C\, l_{3}$  are both true, 
+but  $l_{1}\, C\, l_{3}$ is false. So $C$ is not transitive.
+\end{Solution}
+
+\begin{Solution}{10.8}
+Proof Specification: $(\forall a\in A)[aRa]$ \\
+Definitions: $R$ is symmetric $\equiv (\forall a,b\in A)[aRb \rightarrow bRa]$ \\
+ $R$ is transitive $\equiv (\forall a,b,c \in A)[aRb \land bRc \rightarrow aRc]$ \\
+Suppostition: $(\forall a\in A)(\exists b\in A)[aRb]$ \newline
+\textbf{Proof:}
+\begin{enumerate}[noitemsep, label=$\blacktriangleright$]
+    \item Let $a\in A$ be given, by Universal Instantiation
+   \item There is a $b\in A$ so that $aRb$, by supposition
+   \item $bRa$, since $R$ is symmetric
+   \item Thus, we have $aRb$ and $bRa$, by conjunction
+   \item Thus, $aRa$, since $aRb \land bRa \rightarrow aRa$ by transitivity
+   \item Therefore, $R$ is reflexive
+   \item Since $R$ is reflexive, symmetric and transitive, it is an equivalence relation
+\end{enumerate}
+
+
+\end{Solution}
+\begin{Solution}{10.9}
+Proof specification:
+\begin{align*}
+  &(\forall a,b\in A)\left[([a]\cap[b]=\emptyset) \lor  ([a]=[b])\right] \equiv   (\forall a,b\in A)\left[\lnot([a]\cap[b]=\emptyset) \rightarrow  ([a]=[b])\right]  \\
+\equiv & (\forall a,b\in A)\left[([a]\cap[b]\ne\emptyset) \rightarrow  ([a]=[b])\right] \equiv  (\forall a,b\in A)\left[([a]\cap[b]\ne\emptyset) \rightarrow  ([a]\subseteq[b] \land [b] \subseteq[a])\right] \\
+\equiv &  (\forall a,b\in A)\left[\left([a]\cap[b]\ne\emptyset \rightarrow  [a]\subseteq[b]\right) \land \left([a]\cap[b]\ne\emptyset \rightarrow  [b] \subseteq[a]\right)\right]
+\end{align*}
+Definition: $[a]\subseteq [b] \equiv (\forall x \in A)[x\in[a] \rightarrow x\in[b]]$
+\begin{itemize}[noitemsep, label=$\blacktriangleright$]
+    \item \textbf{Proof:} (List form)
+    \item Let $a,b \in A$ be given
+    \item Suppose that $[a] \cap [b] \ne \emptyset$.
+    \item $\implies$ there is a $c \in [a]\cap[b]$
+    \item $\implies$ $c\in[a]$ and $c\in[b]$
+   \item $\implies$ $cEa$ and $cEb$, by definitions of $[a]$ and $[b]$
+   \item  $\implies$ (\textbf{*}) $aEc$ and $bEc$, by symmetry
+    \item We show that $[a]\subseteq[b]$
+    \item \quad Suppose $x \in [a]$ is given.
+    \item \quad $\implies$ $xEa$ and $aEc$, by defintion of $[a]$ and line $*$
+    \item \quad $\implies$ $xEc$, by transitivity
+   \item \quad $\implies$ $xEc$ and $cEb$, by line $*$
+   \item \quad $\implies$ $xEb$, by transitivity
+   \item \quad $\implies$ $x \in[b]$, by definition of $[b]$
+   \item  Therefore, $[a] \subseteq [b]$.
+   \item  We show that $[b]\subseteq[a]$
+    \item \quad Suppose $y \in [b]$ is given.
+    \item \quad $\implies$ $yEb$ and $bEc$, by defintion of $[b]$ and line $*$
+    \item \quad $\implies$ $yEc$, by transitivity
+   \item \quad $\implies$ $yEc$ and $cEa$, by $*$
+   \item \quad $\implies$ $yEa$, by transitivity
+   \item \quad $\implies$ $y \in[a]$, by definition of $[a]$
+   \item  Therefore, $[b] \subseteq [b]$.
+  \item Thus, $[a] \cap [b] \ne \emptyset$ implies $[a]=[b]$.
+\end{itemize}
+\end{Solution}
+
+\begin{Solution}{10.10}
+\quad
+\begin{tasks}(1)
+\task
+\raisebox{-4.0cm}{
+ \begin{tikzpicture}[->,>=stealth',node distance=2cm,
+                       thick,main node/.style={circle,fill=blue!20,draw,outer sep=2pt,inner sep=2pt}
+                      ]
+
+  \node[main node] (1) at (-2.0,1.5) {$1$};
+  \node[main node] (2) at (-1.0,0.00) {$2$};
+  \node[main node] (4) at (-3.0,0.0) {$4$};
+  \node[main node] (3) at (2.0,1.5) {$3$};
+  \node[main node] (5) at (3.0,0.00) {$5$};
+  \node[main node] (7) at (1.0,0.0) {$7$};
+  \node[main node] (6) at (-1.0,-1.50) {$6$};
+  \node[main node] (8) at (1.0,-1.50) {$8$};
+  \node (E) at (0.0,1.0) {$G_E$};
+  \path%
+   (1) edge [out=107.5,in=72.5,looseness=8] node {} (1)
+        edge [bend left] node {} (2)
+        edge [bend left] node {} (4)
+   (2) edge [out=330,in=295,looseness=8] node {} (2)
+        edge [bend left] node {} (1)
+        edge [bend left] node {} (4)
+   (4) edge [out=235,in=200,looseness=8] node {} (4)
+        edge [bend left] node {} (1)
+        edge [bend left] node {} (2);
+  \path%
+  (3) edge [out=107.5,in=72.5,looseness=8] node {} (3)
+        edge [bend left] node {} (5)
+        edge [bend left] node {} (7)
+   (5) edge [out=330,in=295,looseness=8] node {} (5)
+        edge [bend left] node {} (3)
+        edge [bend left] node {} (7)
+   (7) edge [out=235,in=200,looseness=8] node {} (7)
+        edge [bend left] node {} (3)
+        edge [bend left] node {} (5);
+  \path%
+   (6) edge  [out=197.5,in=162.5,looseness=8] node {} (6)
+        edge [bend left,->] node {} (8)
+   (8) edge  [out=17.5,in=-17.5,looseness=8] node {} (8)
+        edge [bend left] node {} (6);
+ \end{tikzpicture}
+}
+
+
+
+\task
+Using the natural order $[1,2,3,4,5,6,7,8]$:
+\[
+ M_E = \begin{bmatrix}
+              1&1&0&1&0&0&0&0 \\
+              1&1&0&1&0&0&0&0 \\
+              0&0&1&0&1&0&1&0 \\
+              1&1&0&1&0&0&0&0 \\
+              0&0&1&0&1&0&1&0 \\
+              0&0&0&0&0&1&0&1 \\
+              0&0&1&0&1&0&1&0 \\
+              0&0&0&0&0&1&0&1
+            \end{bmatrix}
+\]
+
+Using an order grouped by equivalence classes $[1,2,4 | 3,5,7 | 6,8]$:
+\[
+ M_E = \begin{bmatrix}
+              1&1&1&0&0&0&0&0 \\
+              1&1&1&0&0&0&0&0 \\
+              1&1&1&0&0&0&0&0 \\
+              0&0&0&1&1&1&0&0 \\
+              0&0&0&1&1&1&0&0 \\
+              0&0&0&1&1&1&0&0 \\
+              0&0&0&0&0&0&1&1 \\
+              0&0&0&0&0&0&1&1
+            \end{bmatrix}
+\]
+
+\end{tasks}
+\end{Solution}
+
+\begin{Solution}{10.11}
+A matrix represents an equivalence relation if it defines a partition of $\{a,b,c,d,e,f,g,h\}$.
+\begin{enumerate}[label=(\alph*)]
+\item $[a]=\{a,c,e,g\}=[c]=[e]=[g]$, $[b]=\{b,d,f\}=[d]=[f]$, and  $[h]=\{h\}$ partition $\{a,b,c,d,e,f,g,h\}$.
+
+\item $[a]=\{a,b,g,h\}=[b]=[g]=[h]$, $[c]=\{c,d\}=[d]$, and $[e]=\{e,f\}=[f]$ partition $\{a,b,c,d,e,f,g,h\}$.
+\end{enumerate}
+\end{Solution}
+
+\begin{Solution}{10.12}
+Here are the facts we know: (1) $E$ is an equivalence relation on the set $A$, (2) $a\in [b]$ ($a$ is in the equivalence class of $b$). Our job is to show that if $c\in [a]$, then $c\in [b]$. So, suppose $c\in [a]$. That means $cEa$ is true according to the definition of equivalence class. We also know $aEb$ is true, since $a$ is in the equivalence class of $b$. Since $cEa$ and $aEb$ are true, the transitive condition tells us $cEb$ is true, and that means $c\in [b]$, as we needed to show.$\clubsuit$
+\end{Solution}

@@ -1,0 +1,268 @@
+\chapter{Permutations and Combinations}
+
+\newthought{By a {\bfseries permutation} of a set of objects} we mean a listing of the objects of the set in
+a specific order. For example, there are six possible permutations of the set
+$A = \{a,b,c\}$. They are
+\[
+abc,\quad acb,\quad  bac,\quad bca,\quad cab,\quad cba.
+\]
+
+The product rule explains why there are six permutation of $A$: there are
+$3$ choices for the first letter, once that choice has been made there are $2$
+choices for the second letter, and finally that leaves $1$ choice for the last
+letter. So the total number of permutations is $3\cdot2\cdot1 = 6$.
+
+\section{Permutations}
+A set with $n$ elements is called an {\bfseries $n$-set}. We have just shown that
+a $3$-set has $6$ permutations. The same reasoning shows that an $n$-set
+has $n\cdot(n-1)\cdot(n-2)\cdots2\cdot1 = n!$ permutations. So the total
+number of different ways to arrange a deck of cards is $52!$,
+a number with $68$ digits:
+{\color{blue}$80658175170943878571660636856403766975289505440883277824000000000000$}.
+
+Instead of forming a permutation of all the elements of an $n$-set, we might
+consider the problem of first selecting some of the elements of the set, say
+$r$ of them, and then forming a permutation of just those $r$ elements.
+In that case we say we have formed an {\bfseries $r$-permutation} of
+the $n$-set. All the possible $2$-permutations of the $4$-set
+$A=\{a,b,c,d\}$ are
+\[ab,\quad ac,\quad ad,\quad ba,\quad bc,\quad bd,\quad ca,\quad
+cb,\quad cd,\quad da, \quad db, \quad dc
+\]
+Hence, there are twelve $2$-permutations of a $4$-set. 
+
+\begin{notation}
+ In general, $P(n,r)$ denotes the number of different
+ \marginnote{The number of $2$-permutations of a $4$-set is
+ $\displaystyle P(4,2)$=12.}
+ $r$-permutations of an $n$-set.
+\end{notation}
+
+The product rule provides a simple formula for $P(n,r)$.
+There are $n$ choices for the first element, and once that choice has been
+made, there are $n-1$ choices for the second element, then $n-2$ for the
+third, and so on, until finally, there are $n-(r-1) = n-r+1$ choices for the
+$r^{th}$ element. So $\dl{P(n,r)=n(n-1)\cdot ...\cdot (n-r+1)}$.
+That expression can be written more neatly as follows:
+\marginnote{And, that is the way to remember the formula:{\color{blue} \[P(n,r)=  \frac{n!}{(n-r)!}.\]}}
+\begin{align*}
+ P(n,r)&=n(n-1)\cdot ...\cdot (n-r+1) \\
+ &= {\frac{n(n-1)\cdot ...\cdot (n-r+1)(n-r)(n-r-1)\cdots2\cdot1}
+ {(n-r)(n-r-1)\cdots2\cdot1}} = {\frac{n!}{(n-r)!}}
+\end{align*}
+
+\begin{exmp}\label{exmp:pres v.pres etc.}
+As an example, the number of ways of selecting a president, vice-president,
+secretary, and treasurer from  a group of $20$ people is $P(20,4)$ (assuming
+no person can hold more than one office). If you want the actual numerical
+value, it is $\displaystyle {\frac{20!}{(20-4)!}} = 20\cdot19\cdot18\cdot17
+= 116280$, but the best way to write the answer in most cases would be
+just $\displaystyle P(20,4)=\frac{20!}{16!}$, and skip the numerical computations.
+\end{exmp}
+
+
+\begin{exmp}
+ How many one-to-one functions are there from a
+ $5$-set to a $7$-set?
+ 
+ While this question doesn't sound on the surface like a problem of permutations, 
+ it really is. Suppose the $5$-set is $A=\{1,2,3,4,5\}$ and the $7$-set is
+ $B=\{a,b,c,d,e,f,g\}$. One example of a one-to-one function from  $A$ to $B$ 
+ would be $f(1) =a, f(2) = c, f(3)=g, f(4)=b, f(5) = d$. But, if we agree to
+ think of the elements of $A$ listed in their natural order, we could specify
+ that function more briefly as $acgbd$. In other words, each one-to-one function
+ specifies a $5$-permutation of $B$, and, conversely, each $5$-permutation
+ of $B$ specifies a one-to-one function.\marginnote{The same reasoning shows there are
+  $P(n,r)$ one-to-one functions from an $r$-set to an $n$-set.}
+   So the number of one-to-one functions
+ from a $5$-set to a $7$-set is equal to the number of $5$-permutations of a
+ $7$-set, and that is $P(7,5)=2520$. 
+\end{exmp}
+
+\begin{exmp}
+ Here are a few easily seen values of $P(n,r)$:
+ \begin{enumerate}
+   \item $P(n,n) = n!$
+   
+   \item $P(n,1) = n$
+   
+   \item $P(n,0) = 1$\marginnote{There is only one $0$-permutation, the one with no symbols!}
+   
+   \item $P(n,r) = 0$ if $r>n$\marginnote{There are no permutations with length
+   greater than $n$ of $n$ objects.}
+ \end{enumerate}
+\end{exmp}
+
+\section{Combinations}
+When forming permutations, the order in which the elements are listed is
+important. But there are many cases when we are interested only in 
+which elements are selected and we do not care about the order. For example,
+when playing poker, a hand consists of five cards dealt from a standard
+$52$-card deck. The order  in which the cards arrive in a hand does not
+matter, only the final selection of the five cards is important. When order
+is not important, the selection is called a combination rather than a permutation.
+More carefully, an {\bfseries $r$-combination} from an $n$-set is an 
+$r$-subset of the $n$-set. In other words an $r$-combination of an $n$-set is 
+an unordered selection of  $r$ distinct elements from the $n$-set. 
+
+
+\begin{exmp}\label{exmp:C(5,2)}
+ The $2$-combinations of the $5$-set $\{a,b,c,d,e\}$ are
+ \begin{align*}
+   \{a,b\},\quad  &\{a,c\},\quad \{a,d\},\quad \{a,e\},\quad \{b,c\}, \\
+   \{b,d\},\quad  &\{b,e\},\quad \{c,d\},\quad \{c,e\},\quad \{d,e\}.
+ \end{align*}
+
+\end{exmp}
+
+\begin{notation}
+ The number of $r$-combinations from an $n$-set is denoted
+ \marginnote{Example~\ref{exmp:C(5,2)} shows that \newline
+ $\displaystyle C(5,2) = {5\choose 2}=10$.}
+  by $C(n,r)$ or, sometimes, $\displaystyle{{n\choose r}}$.
+\end{notation}
+
+\begin{exmp}
+ Here are a few easily seen values of $C(n,r)$:
+ \begin{enumerate}
+  \item $C(n,n) = 1$
+   
+  \item $C(n,1) = n$
+   
+  \item $C(n,0) = 1$\marginnote{There is only one $0$-subset, the empty set.}
+   
+  \item $C(n,r) = 0$ if $r>n$\marginnote{There are no subsets of an $n$-set with size
+   greater than $n$.}
+ \end{enumerate}
+ 
+\end{exmp}
+
+
+There is a compact formula for $C(n,r)$ which can be derived using the
+product rule in a sort of back-handed way. An $r$-permutation of an
+$n$-set can be built using a sequence of two tasks. First, select
+$r$ elements of the $n$-set. There are $C(n,r)$ ways to do that task. Next, 
+arrange those $r$ elements in some specific order. There are $r!$ ways
+to do that task. So, according to the product rule, the number
+of $r$-permutations of an $n$-set will be $C(n,r)r!$. However, we
+know that the number of $r$-permutations of an $n$-set are $P(n,r)$.
+So we may conclude that $P(n,r) = C(n,r)r!$, or, rearranging that, we see
+\[
+C(n,r) = {n\choose r}= {{P(n,r)}\over{r!}} = {{n!}\over{{r!(n-r)!}}}
+\]
+
+\begin{exmp}
+Suppose we have a club with $20$ members. 
+If we want to select a committee
+of $4$ members, then there are 
+\[C(20,4)= {{20!}\over{4!(20-4)!}}
+= {{20\cdot19\cdot18\cdot17}\over{4\cdot3\cdot2\cdot1}}= 4845
+\]
+ways to do this since the order 
+of people on the committee
+doesn't matter.  
+\end{exmp}
+
+Compare this answer with example~\ref{exmp:pres v.pres etc.}  where we counted the number
+of possible selections\sidenote{$P(5,4)=20!/16!=116280$ ways} for president, vice-president, secretary, and treasurer
+from the group of $20$. 
+The difference between the two
+cases is that the earlier example is a question about permutations 
+(order matters), whereas this example is
+a question about combinations (order does not matter). 
+
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+In how many ways can the $26$ volumes (labeled $A$ through $Z$) 
+of the Encyclopedia of PseudoScience be placed on a shelf?
+\end{exer}
+
+\begin{exer}
+In how many ways can those same $26$ volumes be placed on a shelf
+ if superstitions demand the volumes labeled with vowels must be adjacent?
+ In how many ways can they be placed on the shelf obeying the conflicting superstition
+ that volumes labeled with vowels cannot touch each other?
+\end{exer}
+
+\begin{exer}
+For those same $26$ volumes, how many ways can they be placed
+in a two shelf bookcase if volumes $A$-$M$ go on the top shelf and $N$-$Z$
+go on the bottom shelf?
+\end{exer}
+
+\begin{exer}
+In how many ways can  seven men and four women sit in a row if the
+men must sit together?
+\end{exer}
+
+\begin{exer}
+$20$ players are to be divided into two $10$-man teams. In how many
+ways can that be done?
+\end{exer}
+
+\begin{exer}
+A lottery ticket consists of five different integers selected from $1$ to $99$.
+How many different lottery tickets are possible? How many tickets would you need
+to buy to have a one-in-a-million chance of winning by matching all five randomly
+selected numbers?
+\end{exer}
+
+\begin{exer}
+A committee of size six is selected from a group of nine clowns and
+thirteen  lion tamers. 
+\begin{enumerate}[label=(\alph*)]
+ \item How many different committees are possible?
+ 
+ \item How many committees are possible if there must be exactly two clowns
+ on the committee?
+ 
+ \item How many committees are possible if lion tamers must outnumber clowns
+ on the committee?
+\end{enumerate}
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+In how many ways can the ten digits be written in a row?
+\end{prob}
+
+
+\begin{prob}
+In how many ways can the ten digits be written in a row if the odd digits have to be adjacent?
+\end{prob}
+
+
+\begin{prob}
+In how many ways can the ten digits be written in a row if the even and odd digits have to alternate?
+\end{prob}
+
+
+\begin{prob}
+How many bit strings of length ten have exactly four $0$'s?
+\end{prob}
+
+
+\begin{prob}
+How many bit strings of length ten have at most four $0$'s?
+\end{prob}
+
+
+\begin{prob}
+How many length twenty strings of $a$'s, $b$'s, and $c$'s have ten $a$'s, six $b$'s, and four $c$'s? 
+\end{prob}
+
+
+\begin{prob}
+How many bit strings of length ten have more $0$'s than $1$'s?
+\end{prob}
+
+
+\begin{prob}
+In how many ways can a subset of two numbers from $1$ to $100$ (inclusive)  be selected if the selected numbers cannot be consecutive? 
+\end{prob}
+
+

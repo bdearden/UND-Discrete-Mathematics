@@ -1,0 +1,111 @@
+    \section*{Chapter 1}
+\begin{Solution}{1.1}
+\quad
+    \begin{tasks}(1)
+      \task yes
+      \task no
+      \task no
+      \task This is not a proposition. As in many examples where a variable is involved,
+this can be tricky. The truth value of this sentence depends on the value assigned to $x$. For example,
+if $x$ is $2$, then $x=2$ is $T$ while $x^2-2x+1=0$ is $F$. So the entire sentence is $F$. On the
+other hand, if $x$ is $0$, then both $x=2$ and $x^2-2x+1=0$ are $F$, so the sentence is $T$.
+Since the sentence does not have a definite truth value, it is not a proposition. We'll have more
+to say about this example in the next lesson.
+      \task no (same reasoning as the previous item)
+      \task* yes
+    \end{tasks}%
+  
+\end{Solution}
+\begin{Solution}{1.2}
+\quad
+   \begin{tasks}(2)
+     \task
+	\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+	p & q &  & p & $\oplus$ & $\lnot$ & q & \\
+	\hline
+	T & T &  & T & \textcolor{red}{T} & F & T & \\
+	T & F &  & T & \textcolor{red}{F} & T & F & \\
+	F & T &  & F & \textcolor{red}{F} & F & T & \\
+	F & F &  & F & \textcolor{red}{T} & T & F & \\
+	\end{tabular}
+
+      \task
+         \begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{ }}
+              p & q & $\lnot$ & ( & q & $\rightarrow$ & p & )\\
+              \hline
+             T & T & \textcolor{red}{F} &  & T & T & T & \\
+            T & F & \textcolor{red}{F} &  & F & T & T & \\
+           F & T & \textcolor{red}{T} &  & T & F & F & \\
+          F & F & \textcolor{red}{F} &  & F & T & F & \\
+      \end{tabular}
+
+    \task
+       \begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+	p & q &  & q & $\land$ & $\lnot$ & p & \\
+	\hline
+	T & T &  & T & \textcolor{red}{F} & F & T & \\
+	T & F &  & F & \textcolor{red}{F} & F & T & \\
+	F & T &  & T & \textcolor{red}{T} & T & F & \\
+	F & F &  & F & \textcolor{red}{F} & T & F & \\
+    \end{tabular}
+
+  \task
+     \begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+	p & q &  & $\sim$ & q & $\lor$ & p & \\
+	\hline
+	T & T &  & F & T & \textcolor{red}{T} & T & \\
+	T & F &  & T & F & \textcolor{red}{T} & T & \\
+	F & T &  & F & T & \textcolor{red}{F} & F & \\
+	F & F &  & T & F & \textcolor{red}{T} & F & \\
+   \end{tabular}
+
+  \task
+      \begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c}
+	p & q & r &  & p & $\rightarrow$ & ( & $\lnot $ & q & $\land$ & r & ) & \\
+	\hline
+	T & T & T &  & T & \textcolor{red}{F} &  & F & T & F & T &  & \\
+	T & T & F &  & T & \textcolor{red}{F} &  & F & T & F & F &  & \\
+	T & F & T &  & T & \textcolor{red}{T} &  & T & F & T & T &  & \\
+	T & F & F &  & T & \textcolor{red}{F} &  & T & F & F & F &  & \\
+	F & T & T &  & F & \textcolor{red}{T} &  & F & T & F & T &  & \\
+	F & T & F &  & F & \textcolor{red}{T} &  & F & T & F & F &  & \\
+	F & F & T &  & F & \textcolor{red}{T} &  & T & F & T & T &  & \\
+	F & F & F &  & F & \textcolor{red}{T} &  & T & F & F & F &  & \\
+      \end{tabular}
+   \end{tasks}
+ 
+\end{Solution}
+\begin{Solution}{1.3}
+\quad\begin{fullwidth}
+ \begin{enumerate}[label=\alph*),labelindent=0.25cm,leftmargin=*]
+  \item $(1101\; 0111 \oplus 1110 \; 0010)\land 1100\; 1000=(0011\; 0101)\land 1100\; 1000=0000\; 0000$
+  \item $(1111\; 1010\land 0111\; 0010)\lor (0101\; 0001)=(0111\; 0010)\lor (0101\; 0001)=0111\; 0011$
+  \item $(1001\; 0010 \lor 0101\; 1101)\land (0110\;0010\lor 0111\; 0101)=(1101\; 1111)\land (0111\; 0111)=0101\;0111$
+ \end{enumerate}
+ \end{fullwidth}
+\end{Solution}
+\begin{Solution}{1.4}
+\quad
+    \begin{tasks}(3)
+        \task $s \land \lnot f$
+         \task $f \land \lnot s$
+        \task $ \lnot s \to \lnot f$
+    \end{tasks}
+\end{Solution}
+\begin{Solution}{1.5}
+\quad
+ \begin{enumerate}[label=\alph*),labelindent=0.25cm,leftmargin=*]
+  \item Jordan did not play and the Wizards won.
+  \item If Jordan played, then the Wizards lost.
+  \item The Wizards won or Jordan played.
+  \item Jordan didn't play when the Wizards won.
+        OR If the   Wizards won, then Jordan did not play.
+ \end{enumerate}
+\end{Solution}
+\begin{Solution}{1.6}
+\quad
+  \begin{tasks}(3)
+       \task If Sam plays chess with the white pieces, he wins.
+       \task  $(c\land \lnot w)\to b$
+  \end{tasks}
+\end{Solution}

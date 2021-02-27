@@ -1,0 +1,69 @@
+    \section*{Chapter 4}
+\begin{Solution}{4.1}
+\quad
+\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{}c@{}@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c}
+p & q & r &  & ( & ( & p & $\lor$ & q & ) & $\land$ & ( & $\lnot$ & p & $\lor$ & r & ) & ) & $\rightarrow$ & ( & q & $\lor$ & r & ) & \\
+\hline
+T & T & T &  &  &  & T & T & T &  & T &  & F & T & T & T &  &  & \textcolor{red}{T} &  & T & T & T &  & \\
+T & T & F &  &  &  & T & T & T &  & F &  & F & T & F & F &  &  & \textcolor{red}{T} &  & T & T & F &  & \\
+T & F & T &  &  &  & T & T & F &  & T &  & F & T & T & T &  &  & \textcolor{red}{T} &  & F & T & T &  & \\
+T & F & F &  &  &  & T & T & F &  & F &  & F & T & F & F &  &  & \textcolor{red}{T} &  & F & F & F &  & \\
+F & T & T &  &  &  & F & T & T &  & T &  & T & F & T & T &  &  & \textcolor{red}{T} &  & T & T & T &  & \\
+F & T & F &  &  &  & F & T & T &  & T &  & T & F & T & F &  &  & \textcolor{red}{T} &  & T & T & F &  & \\
+F & F & T &  &  &  & F & F & F &  & F &  & T & F & T & T &  &  & \textcolor{red}{T} &  & F & T & T &  & \\
+F & F & F &  &  &  & F & F & F &  & F &  & T & F & T & F &  &  & \textcolor{red}{T} &  & F & F & F &  & \\
+\end{tabular}\\
+The statement is a tautology, hence a valid rule of inference.
+\end{Solution}
+\begin{Solution}{4.2}
+\quad
+
+\textbf{Proof:}
+Make the assignments $Porche(x)$: ``$x$ owns a Porche'',  $Speeder(x)$: ``$x$ is a speeder'',  $Sedan(x)$: ``$x$ owns a sedan'', \newline
+and  $BuysPrem(x)$:``$x$ buys premium fuel''. The argument has the symbolic form:
+
+\begin{tabular}[t]{l}
+$\forall{x}\,(Porche(x) \to Speeder(x))$ \\
+$\lnot\exists{x}\,(Sedan(x) \land BuysPrem(x))$ \\
+$\forall{x}\,(\lnot BuyPrem(x) \to \lnot Speeder(x))$\\
+\hline
+$\thus \forall{x}\,(Porche(x) \to \lnot Sedan(x))$
+\end{tabular}
+
+\vspace*{0.25cm}
+          \textbf{Proof:}
+	\begin{tabular}[t]{l l}
+          1) $\forall{x}\,(Porche(x) \to Speeder(x))$                        & Hypothesis \\
+          2) $Porche(c) \to Speeder(c)$                                           & Universal Instantiation (1) \\
+          3) $\forall{x}\,(\lnot BuyPrem(x) \to \lnot Sedan(x))$     & Hypothesis \\
+          4) $\lnot BuyPrem(c) \to \lnot Speeder(c)$                    & Universal Instantiation (3) \\
+          5) $Speeder(c) \to BuyPrem(c)$                                       & Contrapositive (4) \\
+          6) $Porche(c) \to BuyPrem(c)$                                         & Hypothetical syllogism (2) and (5) \\
+          7) $\lnot \exists{x}(Sedan(x) \land BuysPrem(x))$        & Hypothesis \\
+          8) $\forall{x}\,\lnot(Sedan(x) \land BuysPrem(x))$          & De Morgan's Law (Existential negation) (7) \\
+          9) $\lnot(Sedan(c) \land BuysPrem(c))$                          & Universal Instantiation \\
+        10) $\lnot Sedan(c) \lor \lnot BuysPrem(c)$                     & De Morgan's Law (9) \\
+        11) $\lnot BuysPrem(c) \lor \lnot Sedan(c)$                     & Commutative law (10) \\
+       12) $BuysPrem(c) \to \lnot Sedan(c)$                                 & Disjunctive form (11) \\
+       13) $Porche(c) \to \lnot Sedan(c)$                                       & Hypothetical syllogism (6) and (12) \\
+       14) $\forall{x}\,(Porche(x) \to \lnot Sedan(x))$                     & Universal generalization (13) $\qedhere$
+\end{tabular}
+
+\end{Solution}
+
+\begin{Solution}{4.3}
+
+	 \begin{tabular}[t]{r l l}
+	 1)& $\lnot w $               & Hypothesis\\
+	 2)& $u \lor w$                 & Hypothesis\\
+	 3)& $u$                   & Disjunctive syllogism \\
+	 4)& $u \to \lnot p$                   & Hypothesis\\
+	 5)& $\lnot p$              & Modus Ponens (3) and (4)\\
+	 6)& $\lnot p \to (r \land \lnot s)$                      & Hypothesis\\
+	 7)& $r \land \lnot s$             & Modus Ponens (5) and (6) \\
+	 8)& $\lnot s$                       & Simplification \\
+	 9)& $t \to s$                      & Hypothesis\\
+	 10)& $\lnot t$             & Modus Tollens (8) and (9) \\
+	 11)& $\lnot t \lor w$                       & Addition \\	 
+	 \end{tabular}
+\end{Solution}

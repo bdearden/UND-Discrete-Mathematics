@@ -1,0 +1,214 @@
+\chapter{GCD's and the Euclidean Algorithm}
+
+
+\newthought{The {\bfseries greatest common divisor} of $a$ and $b$, not both $0$,} is the largest
+integer which divides both $a$ and $b$. For example, the greatest common divisor
+of $21$ and $35$ is $7$.
+We write $\gcd(a,b)$, as shorthand for the greatest common divisor of $a$ and $b$. So 
+$\gcd(35,21) = 7$. 
+
+There are several ways to find the $\gcd$ of two integers, $a$ and $b$ (not both $0$).
+
+First, we could simply list all the positive divisors of $a$ and $b$ and pick the largest
+number that appears in both lists. Notice that $1$ will appear in both lists.
+For the example above the positive divisors of $35$ are $1$, $5$, $7$, and $35$. For $21$
+the positive divisors are $1$, $3$, $7$, and $21$. The largest number appearing in both lists
+is $7$, so $\gcd(35,21) = 7$. 
+
+Another way to say the same thing: If we let $D_a$ denote the set of positive divisors
+of $a$, then $\gcd(a,b) = $ the largest number in $D_a\cap D_b$.
+
+The reason $\gcd(0,0)$ is not defined is that every positive integer divides $0$, and so there
+is no largest integer that divides $0$. From now on, when we use the symbol $\gcd(a,b)$,
+we will tacitly assume $a$ and $b$ are not both $0$. The integers $a$ and $b$ can be
+negative.
+For example if $a=-34$ and $b=14$, then the set of positive divisors of $-34$
+is $\{1,2,17,34\}$ and the set of positive divisors of $14$ is $\{1,2,7,14\}$. The set of positive common divisors
+of $14$ and $-34$ is the set $\{1,2,17,34\}\cap \{1,2,7,14\}=\{1,2\}$. The largest number in this
+ set is $2=\gcd(-34,14)$.
+
+Obviously then $\gcd(a,b)=\gcd(-a,b)$ since $a$ and $-a$ have the same set of positive divisors.
+So when computing the $\gcd(a,b)$ we may as well replace $a$ and $b$ by their absolute values
+if one or both happen to be negative.
+
+Here are a few easy facts about $\gcd$'s: 
+\begin{enumerate}
+ \item If $a\not = 0$, then  $\gcd(a,a) = a$.
+ 
+ \item  $\gcd(a,1) = 1$.
+ 
+ \item  $\gcd(a,b) = \gcd(b,a)$. 
+ (The order $a$ and $b$ are given is not important,\\
+ but it is traditional to list them with $a\geq b$.)
+ 
+ \item If $a\not = 0$ and $a|b$, then $\gcd(a,b)=|a|$. 
+ 
+ \item If $a\neq 0$, $\gcd(a,0)=|a|$.
+\end{enumerate}
+
+
+If $\gcd(a,b)= 1$, we say that $a$ and $b$ are {\bfseries relatively prime}\label{def:rel prime}. When $a$ and $b$ are relatively prime, they
+have no common prime divisor. For example $12$ and $35$ are relatively prime. 
+
+\section{Euclidean algorithm}
+It's pretty clear that computing $\gcd(a,b)$ by listing all the positive visors of $a$ and all the positive divisors of $b$, and selecting the largest integers that appears in both lists is not very efficient.  
+There is a better way of 
+computing $\gcd(a,b)$.
+
+\begin{thm}
+If $a$ and $b$ are integers (not both $0$)  and $a=sb+t$ for integers $s$ and $t$, 
+then $\gcd(a,b)=\gcd(b,t)$.
+\end{thm}
+\begin{proof}
+To prove the theorem, we will show that the list of positive integers that 
+divide both $a$ and $b$
+is identical to the list of positive integers that divide both $b$ and $t=a-sb$. So, suppose 
+$d|a$ and $d|b$. Then $d|(a-sb)$ so $d|t$. Hence $d$ divides both $b$ and $t$. On the other
+hand, suppose $d|b$ and $d|t$. Then $d|(sb+t)$, so that $d|a$. Hence $d$ divides both
+$a$ and $b$. It follows that $\gcd(a,b)=\gcd(b,t)$.
+\end{proof}
+
+
+Euclid is given the credit for discovering this fact, and its use for computing $\gcd$'s is
+called the {\bfseries Euclidean algorithm} in his honor. The idea is to
+use the theorem repeatedly until a pair of numbers is reached for which the $\gcd$
+is obvious.
+Here is an example of
+the Euclidean algorithm in action.
+
+\begin{exmp}
+Since $14=1\cdot 10 + 4$, $\gcd(14,10)=\gcd(10,4)$. In turn $10=2\cdot 4+2$ so
+$\gcd(10,4)=\gcd(4,2)$. Since $4=2\cdot 2$, $\gcd(4,2)=\gcd(2,0)=2$. So $\gcd(10,14)=2$.
+
+The same example, presented a little more compactly, and without explicitly 
+writing out the divisions, looks like
+$$
+\gcd(14,10) = \gcd(10,4) = \gcd(4,2) = \gcd(2,0) = 2
+$$
+At each step, the second number is replaced by the remainder when the 
+first number is divided by the second, and the second moves into the first spot.
+The process is repeated until the second number is a $0$ (which must happen eventually
+since the second number never will be negative, and it goes down by at least $1$ with each
+repetition of the process). The $\gcd$ is then the number in the first spot when the second
+spot is $0$ in the last step of the algorithm.
+\end{exmp}
+
+Now, a more exciting example.
+\begin{exmp}
+Find the greatest common divisor of $540$ and $252$. We may present the computations compactly,
+without writing\sidenote{Do the divisions yourself to verify the results.} out the divisions. 
+We have
+\[\gcd(540,252)=\gcd(252,36)=\gcd(36,0) = 36.
+\]
+\end{exmp}
+
+
+\section{Efficiency of the Euclidean algorithm}
+Using the Euclidean algorithm to find $\gcd$'s is extremely efficient. Using a calculator
+with a ten digit display, you can find the $\gcd$ of two ten digit integers in a matter of a few
+minutes at most using the Euclidean algorithm. On the other hand, doing the same problem
+by first finding the positive divisors of the two ten digit integers would be a tedious
+project lasting several days. Some modern cryptographic systems rely on the computation
+of the gcd's of integers of hundreds of digits. Finding the positive divisors of such
+large integers, even with a computer, is, at present, a hopeless task. But a computer
+ implementation of
+the  Euclidean  algorithm will produce the gcd of integers of hundreds of digits in the blink
+of an eye. 
+
+
+
+\section{The Euclidean algorithm in quotient/remainder form}
+The Euclidean algorithm can also be written out as a sequence of divisions: 
+\begin{align*}
+ a &= q_1\cdot b + r_1, ~~0< r_1 < b \\
+ b &= q_2\cdot r_1 + r_2, ~~0< r_2 < r_1 \\
+ r_1 &= q_3\cdot r_2 + r_3, ~~0< r_3 < r_2 \\
+ \vdots & = \vdots  \\
+ r_k &= q_{k+2}\cdot r_{k+1} + r_{k+2}, ~~0< r_{k+2} < r_{k+1} \\
+ \vdots & = \vdots  \\
+ r_{n-2} &= q_n\cdot r_{n-1} + r_n, ~~0< r_n < r_{n-1} \\
+ r_{n-1} &= q_{n+1}\cdot r_n + 0
+\end{align*}
+The sequence of integer remainders $b>r_1>...>r_k>...\geq 0$ must eventually reach $0$. 
+Let's say $r_n\not=0$, but $r_{n+1}=0$, so that $r_{n-1}=q_{n+1}\cdot r_n$. 
+That is, in the sequence of remainders, $r_n$ is the last non-zero term. 
+Then, just as in the examples above we see that the $\gcd$ of $a$ and $b$ is the last nonzero
+remainder:
+\begin{align*}
+ \gcd(a,b) = \gcd(b,r_1) = \gcd(r_1,r_2) =\cdots&= \gcd(r_{n-1},r_n) \\
+ & = \gcd(r_n,r_{n+1})
+ = \gcd(r_n,0) = r_n.
+\end{align*}
+Let's find $\gcd(317,118)$ using this version of the Euclidean algorithm.  Here are the
+steps:
+\begin{align*}
+ 317 &= 2\cdot118+81 \\
+ 118 &= 1\cdot81+37\\
+  81 &= 2\cdot37+7\\
+  37 &= 5\cdot7+2 \\
+  7  &= 3\cdot2+1 \\
+  2  &= 2\cdot1+0
+\end{align*}
+Since the last non{-}zero remainder is $1$, we conclude that
+$\gcd(317,118)=1$. So, in the terminology introduced above, we would say that
+$317$ and $118$ are relatively prime.
+
+
+
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}
+Use the Euclidean algorithm to compute $\gcd(a,b)$ in each case.\\
+\no a) $a=233,\,b=89$\hskip .3in b) $a=1001,\, b=13$\hskip .3in c) $a=2457,\,b=1458$\hskip .3in d) $a=567,\,b=349$
+\end{exer}
+
+\begin{exer}
+Compute $\gcd(987654321,123456789)$.
+\end{exer}
+
+\begin{exer}
+ Write a step-by-step  algorithm 
+that implements the Euclidean algorithm for finding $\gcd$'s.
+\end{exer}
+
+\begin{exer}
+If $n$ is a positive integer, what is $\gcd(n, 2n)$?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+
+Use the Euclidean algorithm to compute $\gcd(a,b)$ in each case.\\
+
+\no a) $a=216,\,b=111$\hskip .3in b) $a=1001,\, b=11$\hskip .3in c) $a=663,\,b=5168$\hskip .3in d) $a=1357,\,b=2468$
+\end{prob}
+
+\begin{prob}
+Compute $\gcd(733103,91637)$.
+\end{prob}
+
+\begin{prob}
+If $p$ is a prime, and $n$ is any integer, what are the
+possible values of $\gcd(p,n)$?
+\end{prob}
+
+\begin{prob}
+Prove or give a counterexample: If $p$ and $q$ are two different primes, then $\gcd(2p,2q) = 2$.
+\end{prob}
+
+\begin{prob}
+If $p$ is a prime, and $m$ is a  positive integer, determine $\gcd(p, p^{m})$.
+\end{prob}
+
+\begin{prob}
+If $p$ is a prime, and $m\leq n$ are positive integers, determine $\gcd(p^{m}, p^{n})$.
+ \end{prob}
+ 
+ \begin{prob}
+ Show that if $n$ is a positive integer, then $\gcd(n, n+1) = 1$.
+ \end{prob}
+

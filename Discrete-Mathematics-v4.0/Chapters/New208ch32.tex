@@ -1,0 +1,206 @@
+\chapter{The Pigeonhole Principle}\label{ch:The Pigeonhole Principle}
+
+\newthought{The pigeonhole principle,} like the sum and product rules, is another one of
+those absolutely 
+obvious counting facts.
+ The statement is simple: If $n+1$ objects are divided into
+$n$ piles (some piles can be empty), then at least one pile must have two or
+more objects in it. Or, more colorfully, if $n+1$ pigeons land in $n$ pigeonholes,
+then at least one pigeonhole has two or more pigeons. What could be more obvious?
+The pigeonhole 
+principle is used to show that no matter how a certain task is carried
+out, some specific result must always happen. 
+
+As a simple example, suppose we have a drawer containing ten 
+identical black socks and ten identical white socks. 
+How many socks do we need to select to be sure we have a matching pair? The
+answer is three. Think of the pigeonholes as the colors black and white, and
+as each sock is selected put it in the pigeonhole of its color. After we have
+placed the third sock, one of the two pigeonholes must have at least two
+socks in it, and we will have a matching pair. Of course, we may have been
+lucky and had a pair after picking the second sock, but the pigeonhole principle
+\emph{guarantees} that with the third sock we will have a pair.
+
+
+As another example, suppose license plates are made consisting
+of four digits followed by two letters. Are there enough license plates for a state
+with seven million cars? No, since there are only $10^4\cdot26^2 = 6760000$ 
+possible license plates, and so, by the pigeonhole principle, at least two of
+the seven million plates assigned would have to be the same.
+
+\section{General pigeonhole principle}
+A slightly fancier version of the pigeonhole principle says that if $N$
+objects are distributed in $k$ piles, then there must be a least one pile with
+$\left\lceil\frac{N}{k}\right\rceil$ objects in it. 
+
+That formula looks impressive,
+ but actually is easy to understand. For example, if there are $52$ people
+in a room, we can be absolutely certain that there are at least eight born
+on the same day of the week. Think of it this way: with $49$ people, it would be
+possible to have seven born on each of the seven days of the week. But when the
+\marginnote{Avoidance  principle: how long can we go before our hand is forced?}
+$50^{th}$ one is reached, it must boost one day up to an eighth person. That is
+really about all there is to it. The general proof of the fancy pigeonhole
+principle uses this same sort of reasoning. It is a proof by contradiction, 
+and goes as follows:
+
+\begin{thm}[Pigeonhole Principle] If $N$
+objects are distributed in $k$ piles, then there must be a least one pile with
+$\left\lceil{N\over k}\right\rceil$ objects in it.
+\end{thm}
+\begin{proof}
+Suppose we have $N$ objects distributed in $k$ piles, and suppose that every
+pile has fewer than $\left\lceil{N\over k}\right\rceil$ objects in it. 
+That means that the piles each contain $\left\lceil{N\over k}\right\rceil-1$ or fewer
+objects. We will use the fact that $\left\lceil{N\over k}\right\rceil< {N\over k}+1$
+to complete the proof. 
+The
+total number of object will be at most 
+$k\left(\left\lceil{N\over k}\right\rceil-1\right)< k\left(\left({N\over k}+1\right)-1\right)
+= N$. That is a contradiction since we know there is a total of $N$ objects in the
+$k$ piles.
+\end{proof}
+
+
+\section{Examples}
+Even though the pigeonhole principle sounds very simple, clever applications
+of it can produce totally unexpected results. 
+
+\begin{exmp}
+ Five misanthropes move to a perfectly square deserted island that
+ measures two kilometers on a side. Of course, being misanthropes, they want to live 
+ as far from each other as possible. Show that, no matter where they build on the
+ island, some two will be no more than $\sqrt{2}$ kilometers of each other.
+\end{exmp}
+\begin{soln}
+ Divide the island into four one kilometer by one kilometer
+ squares by drawing lines joining the midpoints of opposite sides. Since there
+ are five people and four squares, the pigeonhole principle guarantees there
+ will be two people living in one of those four squares. But people in one of
+ those squares cannot be further apart than the length of the diagonal of the
+ square which is, according to Pythagoras, $\sqrt{2}$.\;\qed
+\end{soln} 
+
+\begin{exmp}
+  For any positive integer $n$, there is a positive multiple of $n$
+ made up of a number of $1$'s followed by a number of $0$'s. For example, for $n=1084$,
+ we see
+ $1084\cdot 1025 = 1111100$.
+\end{exmp}
+\begin{soln}
+ Consider the $n+1$ integers $1$, $11$, $111$, $\cdots$, 
+ $11\cdots1$, where the last one consists of $1$ repeated  $n+1$ times. Some two of these
+ must be the same modulo $n$, and so $n$ will divide the difference of some two
+ of them. But the difference of two of those numbers is of the required type.\;\qed
+\end{soln}
+
+\begin{exmp}
+ Bill has $20$ days to prepare his tiddledywinks title defense. 
+ He has decided to practice at least one hour every day.  But, to avoid burn-out,
+ he  will not practice more than a total of $30$ hours. Show there is a  sequence
+ of consecutive days during which he practices exactly $9$ hours. 
+\end{exmp}
+\begin{soln}
+ For $j = 1,2,\cdots 20$, let $t_j = $ the total number of hours
+ Bill practices up to and including day $j$.
+ Since he practices at least one hour every day, and the total number of hours 
+ is no more than $30$, we see
+ \[
+ 0<t_1<t_2<\cdots<t_{20}\leq 30.
+ \]
+ Adding $9$ to each term we get
+ \[
+ 9<t_1+9<t_2+9<\cdots<t_{20}+9\leq 39.
+ \]
+ 
+ So we have $40$ integers $t_1,t_2,\cdots, t_{20}, t_1+9,\cdots t_{20}+9$,
+ all between $1$ and $39$. By the pigeonhole principle, some two must be
+ equal, and the only way that can happen is for $t_i= t_j+9$ for some 
+ $i$ and $j$. It follows that $t_i-t_j = 9$, and since the difference
+ $t_i-t_j$ is the the total number of hours Bill practiced
+ from day $j+1$ to day $i$, that shows there is a sequence of consecutive
+ days during which he practiced exactly $9$ hours.\;\qed
+\end{soln}
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+Show that in any group of eight people, at least two were born on the 
+same day of the week.
+\end{exer}
+
+\begin{exer}
+Show that in any group of $100$ people, at least $15$ were born on the
+same day of the week.
+\end{exer}
+
+\begin{exer}
+How many cards must be selected from a deck to be sure that at least
+six of the selected cards have the same suit?
+\end{exer}
+
+\begin{exer}
+Show that in any set of $n$ integers, where $n\geq2$, there must be a pair
+with a difference that is a multiple of $n-1$.
+\end{exer}
+
+\begin{exer}
+Al has $75$ days to master discrete mathematics. He decides to study
+at least one hour every day, but no more than a total of $125$ hours.
+Show there must be a sequence of consecutive days during which
+he studies exactly $24$ hours.
+\end{exer}
+
+\begin{exer}
+Show that in any set of $217$ integers, there must be a pair
+with a difference that is a multiple of $216$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Show that in a town with population $18,000$, there must be at least two people with the same three initials. 
+\end{prob}
+
+\begin{prob}
+What is the smallest town population that will guarantee there will be at least two people with the same three initials?
+\end{prob}
+
+\begin{prob}
+What is the smallest town population that will guarantee there will be at least five people with the same three initials?
+\end{prob}
+
+\begin{prob}
+How many cards have to be selected from a $52$ card deck to be sure there will be two cards of the same suit?
+\end{prob}
+
+\begin{prob}
+How many cards have to be selected from a $52$ card deck to be sure there will be two cards of the same rank?
+\end{prob}
+
+\begin{prob}
+Five misanthropes buy a six mile by eight mile rectangular plot in the arctic. Show that no matter where they build 
+their igloos, there will be at least two people that are no more than five miles apart. (You can assume the ice sheet
+they buy is perfectly flat.)
+\end{prob}
+
+\begin{prob}
+In any list of $n$ integers, there will be a  chunk of  consecutive entries from the list that add up to a multiple of $n$.
+For example: in the list $-8, 4, 22, -11, 7$, we have $4+22-11= 15$ is a multiple of $5$. 
+\end{prob}
+
+\begin{prob}
+Suppose $a_{1}, a_{2}, a_{3}\ldots,a_{99}$ is a permutation of $1,2,\ldots,99$. Show that the product
+\[
+(a_{1}+1)(a_{2}+2)(a_{3}+3) \dots(a_{99}+99)
+\]
+is even.
+\end{prob}
+
+\begin{prob}
+In a rematch, Bill has $30$ days to train for a new defense of his tiddledywinks title. He plans to practice at least one hour
+every day, but no more than $45$ hours total. Show there is a sequence of consecutive days during which he practices 
+exactly $14$ hours. 
+\end{prob}
+

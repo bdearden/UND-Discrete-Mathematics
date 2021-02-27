@@ -1,0 +1,421 @@
+\chapter{Algorithms}
+
+
+\newthought{An {\bfseries algorithm} is a recipe} to solve a problem. For example, here is an algorithm
+that solves the problem of finding the distance traveled by a car given the time it has traveled,
+$t$, and its average speed, $s$: \textsf{multiply $t$ and $s$}. 
+
+\section{Properties of an algorithm}
+Over time, the requirements of what exactly constitutes an algorithm have matured. A really
+precise definition would be filled with all sorts of technical jargon, but the ideas are 
+commonsensible
+enough that an informal description will suffice for our purposes. So, suppose we have in mind a 
+certain class of problems (such as determine the distance traveled given time traveled and 
+average speed). The properties of an
+algorithm to solve examples of that class of problems are:
+\begin{enumerate}
+ \item {\bfseries Input}: The algorithm is provided with data.
+ 
+ \item {\bfseries Output}: The algorithm produces a solution.
+ 
+ \item {\bfseries Definiteness}: The instructions that make up the algorithm are precisely
+ described. They are not open to interpretation.
+ 
+ \item {\bfseries Finiteness}: The output is produced in a finite number of steps.
+ 
+ \item {\bfseries Generality}: The algorithm produces correct output for any set of
+ input values.
+\end{enumerate}
+
+The algorithm for finding distance traveled given time traveled and average speed obviously 
+meets all five requirements of an algorithm. Notice that, in this example, we have assumed 
+the user of the algorithm understands what it means to multiply
+two numbers. If we cannot make that assumption, then we would need to add a number of 
+additional steps to the algorithm to solve the problem of multiplying two numbers together.
+Of course, that would make the algorithm significantly longer. When describing algorithms,
+we'll assume the user knows the usual algorithms for solving common problems such
+as addition, subtraction, multiplication, and division  of numbers, and knows how to determine
+if one number is larger than another, and so on.
+
+\section{Non-algorithms}\label{sec:non-algorithms}
+Just as important as an example of what an algorithm is, is an example of what is not an algorithm.
+For example, we might describe the method by which most people look up a number in a phone book.
+You open the book and look to see if the listing you're looking for is on that page or not. If it is
+you find the number using the fact that the listings are alphabetized and you're done. If the number
+you're looking for is not on the page, you use the fact that the listings are alphabetized to either
+flip back several pages, or forward several pages. This page is checked to see if the listing is on it.
+If it is not we repeat the process. One problem in this case is that this description is not definite.
+The phrase {\itshape flip back several pages} is too vague, it violates the definiteness 
+requirement. Another problem is that someone could flip
+back and forth between two pages and never find the number, and so violate the finiteness 
+requirement. So this method is not an algorithm.
+
+\section{Linear search algorithm}
+Continuing the example from section \ref{sec:non-algorithms} of looking up a phone number, one algorithm
+for completing this is to look at the first entry in the book. If it's the number you're looking for you're
+done. Else move to the next entry. It's either the number you're looking for or you move to the
+next entry. This is an example of a {\bfseries linear search algorithm}. It's not too bad
+for finding Adam Aaronson's number if he is in the book, but it is terrible if you're trying to reach 
+Zebulon Zyzniewski.
+
+\section{Binary search algorithm}
+Another algorithm to complete that task of finding a phone number is the {\bfseries binary search algorithm}.
+We open the phone book to the middle entry. If it's the number we're looking for, we're done.
+Else we know the number is listed in the first half of the book, or the last half of the book since
+ the entries are alphabetized. We then pick the middle entry
+of the appropriate  half, and repeat the halving process on that half, 
+until eventually the name is located.
+There are a few details to fix up to make this a genuine algorithm. For example, what is the
+middle entry if there are an even number of items listed? Also, what happens if the name
+we are looking for isn't in the phone book? But it is clear with a little effort we can add a 
+few lines to the instructions to make this process into an algorithm.
+
+
+\section{Presenting algorithms}
+It is traditional to present algorithms %in a telegraphic format or 
+in a \emph{pseudocode} form
+similar to a program for a computer. 
+For instance, the linear search name lookup algorithm given above could be written 
+%in telegraphic form as:
+%\begin{algrthm}
+%\hrule\kern5pt\relax
+% \begin{enumerate}[label=\bfseries step \arabic*:,leftmargin=*]
+%  \setlength{\itemsep}{0cm}%
+%  \setlength{\parskip}{0cm}%
+%  \item[\bfseries input:] {\itshape name} to be found in a given {\itshape list}
+%  \item {\bfseries set} $n=1$
+%  \item {\bfseries if} list is shorter than $n$, {\bfseries output} {\itshape name not found} 
+%  and {\bfseries stop}
+%  \item {\bfseries if} name in spot $n$ is the one we want, {\bfseries then} {\bfseries output}
+%   phone number in spot $n$ and {\bfseries stop}
+%  \item {\bfseries replace}  $n$ by $n+1$ and  {\bfseries go to} step 2.
+% \end{enumerate}\hrule\kern5pt\relax
+%\caption{Linear search (telegraphic)}\label{alg:lin search telegraphic}
+%\end{algrthm}
+%
+%The same algorithm\sidenote{There are many other ways to implement a linear search.} in pseudocode format might look like:
+in pseudocode form, as shown in Algorithm~\ref{alg:lin srch repeat} on page~\pageref{alg:lin srch repeat}. Another version using a \textbf{for} loop is displayed in Agorithm~\ref{alg:lin srch for loop}.
+\begin{algrthm}
+\hrule\kern5pt\relax
+\begin{algorithmic}[1]
+\Require{\textit{(name,phonelist):} \textit{name} to be found in a given \textit{phonelist}}
+\Ensure{ \textit{phonelist(namespot)} $=$ phone number of \textit{name} in \textit{phonelist}} 
+\State $\text{\itshape namespot}\gets 1$ \Comment{{\color{blue}set \textit{namespot} to $1$, position of first \textit{name} in \textit{list}}}
+\Repeat \Comment{{\color{blue}execute the block of code between \textbf{repeat} and \textbf{until}}}
+  \If{\textit{list(namespot)} is \textit{name}} %  
+        \Comment{{\color{blue}if \textbf{True} execute code to \textbf{end if}}}
+    \State \textbf{output} \textit{phonelist(namespot)}
+    \State \textbf{stop} \Comment{{\color{blue}We're Done!}}
+  \EndIf \Comment{{\color{blue}execute the lines between \textbf{if} and \textbf{end if}}}
+  \State $namespot \gets namespot+1$ \Comment{{\color{blue}increment $namespot$ by $1$}}
+\Until{\textit{length(list)} < $namespot$} \Comment{{\color{blue}if \textbf{False}, jump back to \textbf{repeat}}}
+\State \textbf{output} \textit{name not found}
+    \State \textbf{stop}
+\end{algorithmic}
+\kern2pt\hrule\kern5pt\relax
+\caption{Linear search (repeat/until). {(A $\vartriangleright$ \color{blue} indicates a comment follows.)}}\label{alg:lin srch repeat}
+\end{algrthm}
+
+\begin{algrthm}
+\hrule\kern5pt\relax
+\begin{algorithmic}[1]
+ \Require{\textit{(name,phonelist)}} \Ensure{phonelist(namespot)}
+ \Ensure{ \textit{phonelist(namespot)} $=$ phone number of \textit{name} in \textit{phonelist}} 
+ \For{ $namespot \in \{1,2,\dots,length(phonelist)\}$ }
+   \If{\textit{list(namespot)} is \textit{name}}
+     \State \textbf{output} \textit{phonelist(namespot)}
+     \State \textbf{stop}
+   \EndIf
+ \EndFor
+ \State \textbf{output} \textit{name not found}
+ \State \textbf{stop}
+\end{algorithmic}
+\kern2pt\hrule\kern5pt\relax
+\caption{Linear search (for loop)}\label{alg:lin srch for loop}
+\end{algrthm}
+
+\clearpage
+\section{Examples}
+
+\begin{exmp}
+Here is an algorithm for determining $\lfloor{m/n}\rfloor$ for 
+positive integers $m,n$.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+     \Require{positive integers $m$ and $n$}
+     \Ensure{integer value of $\lfloor m/n \rfloor$} 
+     \State $k \gets 0$ \Comment{$k$ will eventually hold our answer}
+     \While{$m\geq 0$}
+       \State $m \gets m-n$ \Comment{We're doing division by repeated subtraction}
+       \State $k \gets k+1$ \Comment{$k$ counts the number of subtractions}
+     \EndWhile
+     \State \textbf{output} $k-1$ \Comment{We counted one too many subtractions!(How?)}
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+  \caption{Calculate $\lfloor m/n \rfloor$}
+\end{algrthm}
+%\begin{marginalgrthm}
+%\kern2pt\hrule\kern5pt\relax
+%\begin{algorithmic}[1]
+% \Require{positive integers $m$ and $n$}
+% \Ensure{value of $\lfloor{m/n}\rfloor$}
+% \State $k\gets 0$
+% \Repeat
+%   \State {\bfseries replace} $m$ by $m-n$
+%   \State $k \gets k+1$ 
+% \Until{$m<0$}
+% \State \textbf{output} $k$
+% \State \textbf{stop}
+% \end{algorithmic}
+% \kern2pt\hrule\kern5pt\relax
+% \caption{telegraphic form}
+%\end{marginalgrthm}
+
+\noindent Here are the sequence of steps this algorithm would carry out with input $m = 23$ and $n=7$:
+\qquad[initial status. $m=23$, $n=7$, $k=\text{(undefined)}$]
+\begin{enumerate}\itemsep0pt
+ \item[instr 1:] \emph{Set $k$ to be $0$} \qquad[status: $m=23$, $n=7$, $k=0$]
+ \item[instr 2:] is $m\geq 0$? \emph{Yes, $(23\geq0)$ is true. 
+    Do next instruction (i.e.~instr 3).}
+ \item[instr 3:] \emph{$m$ reset to be $m-n=23-7=16$.} \quad[status: $m=16$, $n=7$, $k=0$]
+ \item[instr 4:] \emph{$k$ reset to be $k+1=0+1=1$.} \qquad[status: $m=16$, $n=7$, $k=1$]
+ \item[instr 5:] \emph{jump back to the matching \textbf{while} (i.e.~instr 2).}
+ \item[instr 2:] is $m \geq 0$? \emph{Yes, $(16\geq0)$ is true. Do next instruction.} 
+ \item[instr 3:] \emph{$m$ reset to be $m-n=16-7=9$.} \qquad[status: $m=9$, $n=7$, $k=1$]
+ \item[instr 4:] \emph{$k$ reset to be $k+1=2+1=3$.} \qquad[status: $m=9$, $n=7$, $k=2$]
+ \item[instr 5:]\emph{ jump back to the matching \textbf{while}.} 
+ \item[instr 2:] is $m \geq 0$? \emph{Yes, $(9\geq0)$ is true. Do next instruction. } 
+ \item[instr 3:] \emph{$m$ reset to be $m-n=9-7=2$.} \qquad[status: $m=2$, $n=7$, $k=2$]
+ \item[instr 4:] \emph{$k$ reset to be $k+1=2+1=3$.} \qquad[status: $m=2$, $n=7$, $k=3$]
+ \item[instr 5:] \emph{jump back to the matching \textbf{while}.}
+ \item[instr 2:] is $m \geq 0$? \emph{Yes, $(2\geq0)$ is true. Do next instruction.} 
+ \item[instr 3:] \emph{$m$ reset to be $m-n=2-7=-5$.} \qquad[status: $m=-5$, $n=7$, $k=2$]
+ \item[instr 4:] \emph{$k$ reset to be $k+1=3+1=4$.} \qquad[status: $m=-5$, $n=7$, $k=4$]
+ \item[instr 5:] \emph{jump back to the matching \textbf{while}.}
+ \item[instr 2:] is $m \geq 0$? \emph{\textbf{No}, $()-5\geq0)$ is false. 
+                 Jump to instr after \textbf{end while}.}  
+ \item[instr 6:] \textbf{output} value of $k-1$~(i.e. $3$). 
+                           \qquad[status: $m=-5$, $n=7$, $k=4$]        
+ \item[\bfseries stop!] \qquad(This is what happens when there are no more instructions to execute.)                               
+\end{enumerate}
+
+\noindent
+Here is a second algorithm for the same problem.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+     \Require{positive integers $m$ and $n$}
+     \Ensure{integer value of $\lfloor m/n \rfloor$} 
+     \State \textbf{divide} $m$ by $n$ to one place beyond the decimal, call the result $r$.
+      \State \textbf{output} the digits of $r$ preceding the decimal point.
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+  \caption{Calculate $\lfloor m/n \rfloor$ (again)}
+\end{algrthm}
+
+%\begin{algrthm}
+%  \hrule\kern5pt\relax
+%  \begin{enumerate}[label=\bfseries step \arabic*:,leftmargin=*]
+%   \setlength{\itemsep}{0cm}%
+%   \setlength{\parskip}{0cm}%
+%   \item[\bfseries input:] positive integers $m$ and $n$.
+%   \item[\bfseries output:] value of $\lfloor{m/n}\rfloor$.
+%   \item{\bfseries divide} $m$ by $n$ to one place beyond the decimal,\\ call the result $r$
+%   \item{\bfseries output} the digits in $r$ preceding the decimal point, and {\bfseries stop}
+%  \end{enumerate} 
+%    \hrule\kern5pt\relax
+%\end{algrthm}
+\noindent
+So, again, given input $m=23$ and $n=7$ we go through the steps.
+\begin{enumerate}
+ \item[instr 1:] $r = 3.2$ 
+ \item[instr 2:] Output $3$
+ \item[\bfseries stop!]
+\end{enumerate}
+\end{exmp}
+
+\clearpage
+\begin{exmp}
+An algorithm to make \$n change using \$10, \$5, and \$1 bills.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+    \Require{positive integers $m$ and $n$}
+    \Ensure{integer value of $\lfloor m/n \rfloor$} 
+      \While{$n\geq10$}
+        \State \textbf{output} \$$10$
+        \State $n \gets n-10$
+      \EndWhile
+      \While{$n\geq5$}
+        \State \textbf{output} \$$5$
+        \State $n \gets n-5$
+      \EndWhile
+      \While{$n\geq1$}
+        \State \textbf{output} \$$1$
+        \State $n \gets n-1$
+      \EndWhile
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+  \caption{Make change}
+\end{algrthm}
+
+%\no {\bfseries input}: integer amount $n\geq 0$
+%
+%\no step 1: {\bfseries if} $n\geq 10$, {\bfseries then} {\bfseries output} \$10 and
+% {\bfseries replace} $n$ by $n-10$, {\bfseries repeat} step 1
+%
+%\no step 2:   {\bfseries if} $n\geq 5$, {\bfseries then} {\bfseries output} \$5 and
+% {\bfseries replace} $n$ by $n-5$, and {\bfseries repeat} step 2
+%
+%\no step 3: {\bfseries output} \$1 $n$ times, {\bfseries output} {\itshape done!}, and {\bfseries stop}
+\noindent
+For an input of $27$, the output would be \quad\$$10$, \$$10$, \$$5$, \$$1$, \$$1$.
+\end{exmp}
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+Consider the following algorithm: The input will be two 
+integers, $m\geq 0$, and $n\geq 1$.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}
+    \Require{positive integers $m\geq0$ and $n\geq1$}
+    \Ensure{(to be determined)} 
+    \State $s \gets 0$
+    \While{$m\not=0$}
+      \State $s \gets n+s$
+      \State $m \gets m-1$
+    \EndWhile
+    \State \textbf{output} $s$
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+\end{algrthm}
+%
+%\no step 1: {\bfseries set} $s=0$
+%
+%\no step 2: {\bfseries if} $m=0$, {\bfseries then output} $s$ and {\bfseries stop}
+%
+%\no step 3: {\bfseries replace} $s$ by $n+s$
+%
+%\no step 4: {\bfseries replace} $m$ by $m-1$ and {\bfseries go to} step 2
+
+Describe in words what this algorithm does. In other words,
+what problem does this algorithm solve?
+\end{exer}
+
+\begin{exer}\label{exer:17.2}
+Consider the following algorithm: The input will be any integer $n$,
+greater than $1$.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}
+    \Require{integer $n>1$}
+    \Ensure{(to be determined)} 
+    \State $t \gets 0$
+    \While{$n$ is even}
+      \State $t \gets t+1$
+      \State $n \gets n/2$
+    \EndWhile
+    \State \textbf{output} $t$
+  \end{algorithmic}
+  \hrule\kern5pt\relax
+\end{algrthm}
+
+%\no step 1. {\bfseries set} $t=0$
+%
+%\no step 2. {\bfseries if} $n$ is odd, {\bfseries then output} $t$ and {\bfseries stop}
+%
+%\no step 3. {\bfseries add} $1$ to $t$
+%
+%\no step 4. {\bfseries replace} $n$ by ${n\over 2}$, and {\bfseries go to} step 2
+
+\begin{enumerate}[label=(\alph*)]
+ \item List the steps the algorithm follows for the input $n=12$.
+ 
+ \item Describe in words what this algorithm does. In other words,
+ what problem does this algorithm solve?
+\end{enumerate}
+\end{exer}
+
+\begin{exer}\marginnote{Such an algorithm is needed quite often in computer science.}
+Design an algorithm that takes any positive integer $n$ and returns half of $n$ if it is even and
+half of $n+1$ if $n$ is odd.
+\end{exer}
+
+\clearpage
+\begin{exer}
+Consider the following algorithm. The input will be a function $f$ together
+with its finite domain, $D = \{d_1,d_2,\cdots,d_n\}$.
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}[1]
+    \Require{function $f$ with domain  $D = \{d_1,d_2,\cdots,d_n\}$}
+    \Ensure{(to be determined)} 
+    \State $i \gets 1$
+    \While{$i<n$}
+      \State $j \gets i+1$
+      \While{$j<n$}
+        \If{$f(d_j)=f(d_i)$}
+          \State \textbf{output} \textsf{NO}
+          \State \textbf{stop}
+        \EndIf
+        \State $j \gets j+1$
+      \EndWhile
+      \State $i \gets i+1$
+    \EndWhile
+    \State \textbf{output} \textsf{YES}
+  \end{algorithmic}\label{alg:exer 17.3 words}
+  \hrule\kern5pt\relax
+\end{algrthm}
+
+%\no step 1. {\bfseries set} $i=1$
+%
+%\no step 2. {\bfseries if} $i=n$, {\bfseries then output} YES and {\bfseries stop}
+%
+%\no step 3. {\bfseries set} $j=i+1$
+%
+%\no step 4. {\bfseries if} $j = n$, {\bfseries then go to} step 7
+%
+%\no step 5. {\bfseries if} $f(d_j) = f(d_i)$, {\bfseries then output} NO and {\bfseries stop}
+%
+%\no step 6. {\bfseries replace} $j$ by $j+1$ and {\bfseries go to} step 4
+%
+%\no step 7. {\bfseries replace} $i$ by $i+1$
+%
+%\no step 8. {\bfseries go to} step 2
+
+\begin{enumerate}[label=(\alph*)]
+ \item List the steps the algorithm follows for the input $f: \{a,b,c,d,e\}\lra\{+,*,\&,\$,\#,@\}$
+ given by $f(a)=*, f(b)= \$, f(c) = +, f(d) = \$$, and $f(e)= @$.
+ 
+ \item Describe in words what this algorithm does. In other words,
+ what problem does this algorithm solve?
+\end{enumerate}
+
+\end{exer}
+
+\begin{exer}
+Design an algorithm that will convert the ordered triple $(a,b,c)$ to the
+ordered triple $(b,c,a)$. For example, if the input is $(7,X, *)$, the ouput
+will be $(X,*,7)$.
+\end{exer}
+
+\begin{exer}
+Design an algorithm whose input is a  finite  list of positive integers and whose output
+is the sum of the even integers in the list. If there are no even integers in the list, the 
+output should be $0$.
+\end{exer}
+
+\begin{exer}
+ A {\bfseries palindrome} is a string of letters that reads the same in each direction.
+For example, \textsf{refer} and \textsf{redder} are palindromes of length five and six respectively.
+Design an algorithm that will take a string as  input and output  \textsf{yes} if the string
+is a palindrome, and \textsf{no} if it is not. 
+\end{exer}
+
+\clearpage
+
+\section{Problems}

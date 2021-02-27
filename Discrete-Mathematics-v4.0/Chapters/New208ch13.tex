@@ -1,0 +1,460 @@
+\chapter{Sequences and Summation}
+
+
+\newthought{A {\bfseries sequence} is a
+list} of numbers in a specific order. For example, the positive integers 
+$1,2,3,\cdots$ is a
+sequence, as is the list $4$, $3$, $3$, $5$, $4$, $4$, $3$, $5$, $5$, $4$ of the number of letters
+in the English words of the ten digits in order {\itshape zero}, {\itshape one}, $\cdots$,
+{\itshape nine}. 
+Actually, the first is an example of an infinite sequence, the second is
+a finite sequence. The first sequence goes on forever; there is no last number. The
+second sequence eventually comes to a stop. In fact the second sequence has only
+ten items. A {\bfseries term} of a sequence is one of the numbers that
+appears in the sequence. The first term is the first number in the list,
+the second term is the second number in the list, and so on.
+
+\section{Specifying sequences}
+  A more general way to think of a sequence is as a function from some subset
+of $\mathbb{Z}$ having a least member (in most cases
+either
+ $\{\,0,\,1,\,2,\,\cdots\,\}$ or
+$\{\,1,\,2,\,\cdots\,\}$) with codomain some {\itshape arbitrary} set. %
+\marginnote{Computer science texts use the former and elementary math application texts use the later. Mathematicians use any such well-ordered domain set.}%
+ In most mathematics
+courses the codomain will be a set of numbers, but that isn't necessary. For
+example, consider the finite sequence of initial letters of the words in the
+previous paragraph: $a,s,i,a,l,o,n,\cdots,a,s,o$. If the letter $L$ is used to
+denote the function that forms this sequence, then $L(1) = a$, $L(2) = s$, and so on.
+
+\subsection{Defining a Sequence With a Formula}
+  The examples of sequences given so far were described in words,
+but there are other ways to tell what objects appear in the sequence.
+One way is with a formula. For example, let $s(n)=n^2$, for
+$n=1,2,3,\cdots$. As the values $1,2,3$ and so on are plugged into
+$s(n)$ in succession, the infinite sequence $1,4,9,16,25,36,\cdots$ is
+built up. It is traditional to write $s_n$ (or $t_n$, etc)
+instead of $s(n)$ when describing the terms of a sequence, so the
+formula above would usually be seen as $s_n=n^2$. Read that as
+{\itshape $s$ sub $n$ equals $n^2$}. When written this
+way, the $n$ in the $s_n$ is called a {\itshape subscript} or {\itshape index}. 
+The subscript of $s_{173}$ is $173$.
+
+\begin{exmp}
+ What is the $50^{th}$ term of the sequence defined by the formula 
+ $\displaystyle s_j = \frac{j+1}{j+2}$, where $j=1,2,3,\ldots$? We
+ see that
+ \[
+ s_{50} = \frac{51}{52}.
+\]
+\end{exmp}
+
+\begin{exmp}
+ What is the $50^{th}$ term of the sequence defined by the formula 
+ $\displaystyle t_k = \frac{k+1}{k+2}$, where $k=0,1,2,3,\ldots$? 
+ Since the indicies start at $0$, the $50$th term will be $t_{49}$:
+ \[
+ t_{49} = \frac{50}{51}.
+\]
+\end{exmp}
+
+\subsection{Defining a Sequence by Suggestion}
+A sequence can also be specified by listing an initial portion
+of the sequence, and trust the reader to successfully perform the
+mind reading trick of guessing how the sequence is to continue
+based on the pattern suggested by those initial terms. For example,\
+consider the sequence $7,10,13,16,19,22,\cdots$. The symbol $\cdots$
+means {\itshape and so on}. In other words, you {\it should} be able to figure
+out the way the sequence will continue. This method of specifying
+a sequence is dangerous of course. For instance, the number of terms 
+sufficient for  one person to spot the pattern might not be 
+enough for another person. Also, maybe there are several different
+{\itshape obvious} ways to continue the pattern
+
+\begin{exmp}
+ What is the next term in the sequence $1,3,5,7\cdots$?
+ One possible answer is $9$, since it looks like we are listing the positive
+ odd integers in increasing order. But another possible answer is $8$: 
+ maybe we are listing each positive integer with an {\bfseries e} in its name.
+ You can probably think of other ways to continue the sequence. 
+ \end{exmp}
+ 
+ In fact,
+ for any finite list of initial terms, there are always infinitely
+ many more or less natural ways to continue the sequence. A reason can
+ always be provided for absolutely any number to be the next in the 
+ sequence. However, there will typically be only one or two {\itshape obvious}
+ simple choices for continuing a sequence after five or six terms.   
+  
+ 
+ \section{Arithmetic sequences}
+ The simple  pattern suggested by the initial terms $7,10,13,16,19,22,\cdots$ 
+ is that the sequence begins with a $7$, and each term is produced
+ by adding $3$ to the previous term. This is an
+ important type of sequence. The general form is $s_1=a$ ($a$ is just some
+ specific number), and, from the second term on, each new term
+ is produced by adding $d$ to the previous term (where $d$ is some
+ fixed number). In the last example, $a=7$ and $d=3$. A sequence of this
+ form is called an {\bfseries arithmetic sequence}. The number $d$ is called
+ the {\bfseries common difference}, which makes sense since $d$ is the
+ difference of any two consecutive terms of the sequence.   It is
+ possible to write down a formula for $s_n$ in this case. After all, to
+ compute $s_n$ we start with the number $a$, and begin adding $d$'s to
+ it. Adding one $d$ gives $s_2=a+d$, adding two $d$'s gives $s_3=a+2d$, and so
+ on. For $s_n$ we will add $n-1$ $d$'s to the $a$, and so we see
+ $s_n=a+(n-1)d$. In the numerical example above, the $5^{th}$ term of the
+ sequence ought to be $s_5=7+4\cdot3=19$, and sure enough it is. The
+ $407^{th}$ term of the sequence is $s_{407}=7+406\cdot3= 1225 $.
+ 
+ \begin{exmp}
+  The $1^{st}$ term of an arithmetic sequence is $11$
+  and the the $8^{th}$ term is $81$. What is a formula for the $n^{th}$
+  term?
+  
+  We know $a_1 = 11$ and $a_8 = 81$. Since 
+  $a_8 = a_1 + 7d$, where $d$ is the common difference, we get the
+  equation $81 = 11 + 7d$. So $d=10$. We can now write down a 
+  formula for the terms of this sequence: $a_n = 11 + (n-1)10 = 1 + 10n$.
+  Checking, we see this formula does give the required values for $a_1$
+  and $a_8$.
+ \end{exmp}
+
+\section{Geometric sequences}
+  For an arithmetic sequence we added the same quantity to get from
+one term of the sequence to the next. If instead of adding we multiply
+each term by the same thing to produce the next term the result
+is called a {\bfseries geometric sequence}. 
+ 
+\begin{exmp}
+  Let $s_1=2$, and suppose we multiply by $3$ to get from
+ one term to the next.
+ The sequence we build now looks like
+ $2,6,18,54,162,\cdots$, each term being $3$ times as large as the previous term.
+\end{exmp}
+ 
+
+In general, if $s_1=a$, and, for  
+$n\geq1$, each new term is $r$ times the preceeding term, then the formula for the $n^{th}$ term of
+the sequence is $s_n=ar^{n-1}$, which is reasoned out just as for
+the formula for the arithmetic sequence above. The quantity $r$ in the
+geometric sequence is called the {\bfseries common ratio} since it is the ratio
+of any term in the sequence to its predecessor (assuming $r\not=0$ at any
+rate).
+
+\section{Summation notation}
+   A sequence of numbers is an ordered list of numbers. A {\bf
+summation} (or just {\bfseries sum}) is a sequence of numbers added up. A sum with
+$n$ terms (that is, 
+with $n$ numbers added up) will be denoted by $S_n$ typically. Thus if
+we were dealing with sequence $1,3,5,7,\cdots,2n-1,\cdots$,
+then $S_3 = 1+3+5$, and $S_n = 1+3+5+\cdots+(2n-1)$. For the arithmetic
+sequence $a, a+d, a+2d, a+3d,\cdots$, we see $S_n = a +(a+d) +
+(a+2d)+\cdots+(a+(n-1)d)$.
+
+
+  It gets a little awkward writing out such extended sums and so a
+compact way to indicate a sum, called {\bfseries summation notation},
+is introduced. For the sum of the first $3$ odd positive integers above
+we would write $\displaystyle{\sum_{j=1}^3(2j-1)}$. The Greek letter
+sigma $(\Sigma)$ is supposed to be reminiscent of the word summation. The $j$ is
+called 
+the {\bfseries index of summation} and the number on the bottom of the
+$\Sigma$
+specifies the starting value of $j$ while the number above the $\Sigma$
+gives the ending value of $j$. The idea is that we replace $j$ in
+turn by $1$, $2$ and $3$, in each case computing the value of the
+expression following the $\Sigma$, and then add up the terms produced.
+In this example, when $j=1$, $2j-1=1$, when $j=2$, $2j-1=3$ and finally,
+when $j=3$, $2j-1=5$. We've reached the stopping value, so we have
+$\displaystyle{\sum_{j=1}^3(2j-1)}=1+3+5=9.$ 
+
+Notice that the index of
+summation takes only integer values. If it starts at $6$, then next it
+is replaced by $7$, and so on. If it starts at $-11$, then next it is
+replaced by $-10$, and then by $-9$, and so on.
+
+The symbol used for the index of summation does not have to be $j$. Other
+traditional choices for the index of summation are $i$, $k$, $m$ and $n$. So for
+example, 
+\[
+\sum_{j=0}^4 (j^2+2) = 2+3+6+11+18,
+\]
+and
+\[
+\sum_{i=0}^4 (i^2+2) = 2+3+6+11+18,
+\]
+and
+\[
+\sum_{m=0}^4 (m^2+2) = 2+3+6+11+18,
+\]
+and so on. Even though a different index letter is used, the formulas produce the
+same sequence of numbers to be added up in each case, so the sums are the
+same.
+
+Also, the starting and ending points can for the index can be changed
+without changing the value of the sum provided
+care is taken to change the formula appropriately. Notice that
+\[
+\sum_{k=1}^3 (3k-1)= \sum_{k=0}^2 (3k+2)
+\]
+In fact, if the terms are written out, we see
+\[
+\sum_{k=1}^3 (3k-1)= 2+5+8
+\]
+and 
+\[
+\sum_{k=0}^2 (3k+2) = 2+5+8
+\]
+
+\begin{exmp} We see that
+\[
+\sum_{m=-1}^5 2^m = 2^{-1} + 2^0 + 2^1 + 2^2 + 2^3 + 2^4 +2^5 = \frac{127}{2}.
+\]
+\end{exmp}
+
+\begin{exmp} We find that
+\[
+ \sum_{n=3}^6 2 = 2+2+2+2 = 8.
+\]
+\end{exmp}
+
+\section{Formulas for arithmetic and geometric summations}
+  There are two important formulas for finding  sums 
+that are worth remembering. The first is the sum of the first $n$ terms of
+an arithmetic sequence.
+\[
+S_{n} = a +(a+d)+(a+2d) +\cdots +(a+(n-1)d).
+\]
+  Here is a clever trick that can be used to find a simple
+formula for the quantity $S_n$: the list of numbers is added up twice,
+once from left to right, the second time from right to left. When the
+terms are paired up, it is clear the sum is $2S_{n}= n[a+(a+(n-1)d)]$.
+A diagram will make the idea clearer:
+\begin{align*}
+     &a         &+ (a+d)~~~~~~~~~~~        &+ (a+2d)       &+ \cdots &+ ~(a+(n-1)d) \\
+ +  (&a+(n-1)d) &+ (a+(n-2)d)   &+ (a+(n-3)d)   &+ \cdots &+ ~~a \\
+ \hline
+   (2&a+(n-1)d) &+ (2a+ (n-1)d) &+ (2a+ (n-1)d) &+\cdots  &+ (2a+ (n-1)d)
+\end{align*}
+
+%$$\vbox{\offinterlineskip
+%\halign { $#$ & $#$ & $#$ & $#$ & $#$ & $#$ \cr
+%~ & a & + (a+d) & + (a+2d) &+ \cdots & + (a+(n-1)d) \cr
+%+ & (a+(n-1)d) & + (a+(n-2)d) & + (a+(n-3)d) &+\cdots & + a\cr
+%\noalign{\hrule}
+%~& (2a+(n-1)d) & +(2a+ (n-1)d) & +(2a+ (n-1)d) &+\cdots & +(2a+ (n-1)d)\cr}}$$
+
+The bottom row contains $n$ identical terms, each equal to $2a+(n-1)d$,
+and so 
+ $2S_{n}= n\left[2a+(n-1)d)\right]$. 
+Dividing by $2$ gives the important formula, for $n=1,2,3,\ldots$, %
+\marginnote{An easy way to remember the formula is to think of the quantity in the
+parentheses as the average of the first and last terms to be added, and
+the coefficient, $n$, as the number of terms to be added.}
+\begin{equation}\label{eqn:arith series formula}
+S_{n}= n\left(\frac{2a+(n-1)d}{2}\right)=
+  n\left(\frac{a +(a+(n-1)d)}{2}\right).
+\end{equation}
+
+\begin{exmp}
+The first $20$ terms of the arithmetic sequence $5, 9, 13, \cdots$ is
+found to be
+\[
+S_{20} = 20\left({5+ 81}\over2\right) = 860.
+\]
+\end{exmp}
+
+ 
+For a geometric sequence,
+ a little algebra  produces a formula for
+the sum of the first $n$ terms of the sequence. 
+The resulting formula for $S_{n} =
+a+ar+ar^2+\cdots+ar^{n-1}$, is 
+\[
+S_{n} = {{a-ar^{n}}\over{1-r}}= a\left({{1-r^{n}}\over{1-r}}\right),
+\text{ if $r\not=1$.}
+\]
+
+\begin{exmp} The sum of the first ten
+terms of the geometric sequence $2,{2\over3},{2\over9},\cdots$
+would be %
+\marginnote{Notice that the numerator in this case is the difference of the first
+term we have to add in and the term {\itshape immediately following} the last
+term we have to add in.}
+\[
+S_{10}={{2-2\left(1\over3\right)^{10}}\over{1-\left(1\over3\right)}}
+\]
+ The expression for $S_{10}$ can be simplified as
+\[
+S_{10}={{2-2\left(1\over3\right)^{10}}\over{1-\left(1\over3\right)}}=2\left({{1-\left(1\over3\right)^{10}}\over{1-\left(1\over3\right)}}\right)=
+2\left({{1-\left(1\over3\right)^{10}}\over{2\over3}}\right)=
+3\left(1-{1\over{3^{10}}}\right)= 3-{1\over{3^9}}
+\]
+\end{exmp}
+
+
+Here is the algebra that shows the geometric sum formula is correct.
+
+Let $S_n = a+ar+ar^2+\cdots+ar^{n-1}$. Multiply both sides of that
+equation by $r$ to get
+\[
+rS_n = r(a+ar+ar^2+\cdots+ar^{n-1}) = ar +ar^2+ar^3+\cdots +ar^{n-1}+ar^n
+\]
+Now subtract, and observe that most terms will cancel:
+\begin{align*}
+ S_n-rS_n & = (a+ar+ar^2+\cdots+ar^{n-1})-(ar +ar^2+ar^3+\cdots +ar^{n-1}+ar^n) \\
+ &= a + (ar+ar^2+\cdots+ar^{n-1}) -(ar +ar^2+ar^3+\cdots +ar^{n-1})-ar^n \\
+ &= a - ar^n
+\end{align*}
+So $S_n(1-r) = a-ar^n$. Assuming $r\not=1$, we can divide both sides of that
+equation by $1-r$, producing the promised formula\sidenote{Find a formula for $S_n$ when $r=1$.}:
+\begin{equation}\label{eqn:geom series formula}
+S_n= {{a-ar^{n}}\over{1-r}}= a\left({{1-r^{n}}\over{1-r}}\right), \text{ if $r\not=1$.}
+\end{equation}
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer} 
+Guess the next term in the sequence $1,2,4,5,7,8,\cdots$. What's
+another possible answer?
+\end{exer}
+
+\begin{exer} 
+What is the $100^{th}$ term of the arithmetic sequence with initial
+term $2$ and common difference $6$?
+\end{exer}
+
+\begin{exer}
+The $10^{th}$ term of an arithmetic sequence is $-4$
+and the $16^{th}$ term is $47$. What is the $11^{th}$ term?
+\end{exer}
+
+\begin{exer} 
+ What is the $6^{th}$ term of the geometric sequence with initial
+term $6$ and common ratio $2$?
+\end{exer}
+
+\begin{exer}
+The first two terms of a geometric sequence are $g_1=5$ and $g_2=-11$. What is the $g_5$?
+\end{exer}
+
+\begin{exer}
+Which sequences are both a geometric sequence also an arithmetic sequence?
+\end{exer}
+
+\begin{exer} 
+ Evaluate $\sum_{j=1}^{4} (j^2+1)$.
+\end{exer}
+
+\begin{exer}
+  Evaluate $\sum_{k=-2}^{4} (2k-3)$.
+\end{exer}
+
+\begin{exer}
+ What is the sum of the first $100$ terms  of the arithmetic sequence with initial
+term $2$ and common difference $6$?
+\end{exer}
+
+\begin{exer} 
+ What is the sum of the first five terms of the geometric sequence with initial
+term $6$ and common ratio $2$?
+\end{exer}
+
+\begin{exer} 
+ Evaluate $\sum_{i=0}^{4} \left(-{3\over2}\right)^i$.
+ \end{exer}
+
+\begin{exer}
+ Express in summation notation: $\displaystyle {1\over2}+{1\over4}+{1\over6}+
+\cdots+{1\over{2n}}$, the sum of the reciprocals of the first $n$ even
+positive integers.
+ \end{exer}
+ 
+ \clearpage
+ 
+\section{Problems}
+
+\begin{prob} 
+Guess the next term in the sequence $1, 3, 5, 7, 8, 9\cdots$. What's
+another possible answer?
+\end{prob}
+
+\begin{prob}
+Guess the next term in the sequence $1, 2, 2, 3, 2, 4, 2, 4, 3\cdots$.
+\end{prob}
+
+\begin{prob}
+A sequence begins $1, 3, 9, 15$. Could it be an arithmetic sequence?
+Could it be a geometric sequence?
+\end{prob}
+
+\begin{prob}
+What is the $20^{th}$ term of the arithmetic sequence with initial
+term $4$ and common difference $5$?
+\end{prob}
+
+\begin{prob}
+The $8^{th}$ term of an arithmetic sequence is $20$
+and the $12^{th}$ term is $40$. What is the $25^{th}$ term?
+\end{prob}
+
+\begin{prob} 
+ What is the $7^{th}$ term of the geometric sequence with initial
+term $3$ and common ratio $4$?
+\end{prob}
+
+\begin{prob}
+Two terms of a geometric sequence are $g_3=2$ and $g_5=72$. There two possible
+values for $g_4$. What are those two values?
+\end{prob}
+
+\begin{prob}
+A geometric sequence has initial term $3$, and common ration $7$. Determine the smallest value of $n$
+so that the $n^{th}$ term of the sequence is more that one million.
+\end{prob}
+
+\begin{prob} 
+ Evaluate $\sum_{j=1}^{4} (j+1)^{2}$.
+\end{prob}
+
+\begin{prob}
+ Evaluate $\sum_{k=-2}^{4} (2k+3)$.
+\end{prob}
+
+\begin{prob}
+ What is the sum of the first $100$ terms  of the arithmetic sequence with initial
+term $2$ and common difference $6$?
+\end{prob}
+
+\begin{prob} 
+ What is the sum of the first four terms of the geometric sequence with initial
+term $3$ and common ratio $-2$?
+\end{prob}
+
+\begin{prob}
+What is the sum of the first four thousand terms of the geometric sequence with initial
+term $3$ and common ratio $-1$?
+\end{prob}
+
+\begin{prob}
+You have two parents, and four grandparents, and eight great grandparents, for a total fourteen 
+ancestors three generations back. How many ancestors do you have $50$ generations back?
+(A generation is generally taken to be about $30$ years, so $50$ generations is about $1500$
+years. That would take us back to about the time the decimal system was invented in India. 
+How can you explain the obviously impossible answer to this problem?)
+\end{prob}
+
+\begin{prob} 
+ Evaluate $\sum_{i=0}^{4} \left({3\over2}\right)^i$.
+ \end{prob}
+
+\begin{prob}
+ Express in summation notation: $\displaystyle {1\over1}+{1\over3}+{1\over5}+
+\cdots+{1\over{2n-1}}$, the sum of the reciprocals of the first $n$ odd
+positive integers.
+ \end{prob}
+ 
+
+

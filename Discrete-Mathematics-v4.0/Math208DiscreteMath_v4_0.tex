@@ -1,0 +1,519 @@
+%\title{Math208book-v3Corr}
+\documentclass[letterpaper, twoside]{tufte-book}
+% symmetric,notoc options output left-right/even-odd format for traditional print book. May make a mess!
+% justified option right justifies left & right margins of body box. May cause over hyphenation.
+% Use just twoside to get Tufte's design for print books.
+
+%% Draft only packages
+%\usepackage{showframe}
+
+% Utility packages
+\usepackage{standalone}
+\usepackage{etoolbox}
+\newtoggle{tufte}
+\toggletrue{tufte}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{thmtools}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{manfnt}
+\usepackage{cancel}
+%\usepackage{relsize}
+
+\usepackage{graphicx}
+
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+%\usepackage{pseudocode}
+
+%\makeatletter
+%\def\BState{\State\hskip-\ALG@thistlm}
+%\makeatother
+
+\usepackage{enumerate}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+\usepackage{hyperref}
+\usepackage{xparse}
+\usepackage{xspace}
+\usepackage[inline]{enumitem}
+\usepackage{multirow}
+\usepackage{todonotes}
+\usepackage{dcolumn}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{colortbl, xcolor}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{natbib}
+\usepackage{python}
+
+\usepackage[page,toc]{appendix}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{mathdots}
+\usepgflibrary{fpu}
+\usetikzlibrary{positioning,chains,fit,shapes,calc,arrows,patterns}
+\usepackage{tkz-graph}
+\usetikzlibrary{arrows, petri, topaths}
+\usepackage{tkz-berge}
+\usepackage[all]{xy}
+
+\usepackage{pdfpages} % to use \includepdf in chapter 
+
+\hypersetup{colorlinks=true}
+
+\graphicspath{./Graphics}
+
+%thmtools
+\declaretheorem[numberwithin=chapter,name=Theorem]{thm}
+\declaretheorem[name=Lemma,sibling=thm]{lem}
+\declaretheorem[name=Corollary,sibling=thm]{corollary}
+\declaretheorem[name=Definition,sibling=thm,style=definition]{defn}
+\declaretheorem[name=Proposition,sibling=thm]{proposition}
+\declaretheorem[name=Example,sibling=thm]{exmp}
+%\declaretheorem[name=Exercise,sibling=thm]{exer}
+\declaretheorem[numberwithin=chapter,name=Exercise]{exer}
+\declaretheorem[numberwithin=chapter,name=Problem]{prob}
+\declaretheorem[name=History,sibling=thm]{history}
+\declaretheorem[name=Question,sibling=thm]{question}
+\declaretheorem[name=Remark,sibling=thm]{remark}
+\declaretheorem[name=Notation,numbered=no]{notation}
+\declaretheorem[name=Theorem,sibling=thm,thmbox=L]{boxthm}
+\declaretheorem[name=Argument,numbered=no]{argu}
+\declaretheorem[name={\itshape Solution},numbered=no]{soln}
+
+\let\proof\relax
+\def\qedsymbol{\square}% PLEASE NOTE: this is in the AMS symbols font.
+\declaretheorem[name=Proof,style=thm,numbered=no,qed=\qedsymbol]{proof} %this uses Richard's \clubsuit, not Halmos Tombstone: \square!
+\declaretheorem[name=Counterexample,style=thm,numbered=no,qed=\spadesuit]{cntrxmpl}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\aff}{aff}
+\DeclareMathOperator*{\rint}{rint}
+\DeclareMathOperator*{\lev}{lev}
+\DeclareMathOperator*{\tr}{tr}
+\DeclareMathOperator*{\interior}{int}
+\DeclareMathOperator*{\epi}{epi}
+\DeclareMathOperator*{\dom}{dom}
+\DeclareMathOperator*{\vecspan}{span}
+\DeclareMathOperator*{\con}{con}
+\DeclareMathOperator*{\cl}{cl}
+\DeclareMathOperator*{\grad}{\nabla}
+\DeclareMathOperator*{\crit}{crit}
+\DeclareMathOperator*{\diag}{diag}
+\DeclareMathOperator*{\res}{Res}
+\DeclareMathOperator*{\boundary}{boundary}
+\DeclareMathOperator*{\range}{range}
+\DeclareMathOperator*{\Tr}{Tr}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator{\lcm}{lcm}
+%\setlist[enumerate]{label=(\alph*)}
+\setlist[enumerate]{label=(\arabic*)}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Format Exercises and Answers %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlist{exercises}{enumerate}{1}
+\setlist[exercises]{label=Ex. \arabic*}
+%%%%%%%%%%%%%%%%%%%%%% Answers Package %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{answers}  %Put solutions in an appendix
+%\usepackage[nosolutionfiles]{answers} %Put solutions with exercises
+\Newassociation{sol}{Solution}{ans}
+\renewcommand{\Solutionlabel}[1]{\textbf{#1.}}% Make the period appear after soln number
+% Fix the exercise number in a solution after a tasks environment in the exercies (uses etoolbox macro AtBeginEnvironment)
+\AtBeginEnvironment{sol}{\addtocounter{exer}{-1}\refstepcounter{exer}}
+%\AtBeginEnvironment{sol}{\renewcommand{\Solutionlabel}[1]{\textbf{\theexer.}}} %% My first attempt. It works, but is not elegant.
+\newtheorem{exc}{}
+\newenvironment{ex}{\begin{exc}\normalfont}{\end{exc}}
+
+
+% Use multicol package to format solutions in columns,
+% writing the multicol environment into the answer file
+%\newenvironment{solnmulticols}[1]%
+%{\Writetofile{ans}{\string\begin{multicols}{#1}}}%
+%{\Writetofile{ans}{\string\end{multicols}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tasks}
+
+
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
+\onehalfspacing
+
+
+% Book metadata
+\title{Math208:\\Discrete\\Mathematics %
+\thanks{Thanks to UND Math.}}
+\author[UND Math Book Developers]{UND Mathematics}
+\publisher{Department of Mathematics\\The University of North Dakota}
+
+
+%
+% Prints the month name (e.g., January) and the year (e.g., 2008)
+\newcommand{\monthyear}{%
+  \ifcase\month\or January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or
+  December\fi\space\number\year
+}
+
+
+% % macros from Richard's mathmacs.tex, augmented with some extras
+\def \U {{\cal {U}}} 
+\def \P {{\cal {P}}}
+\def \Z {\mathbb{Z}}
+\def \N {\mathbb{N}}
+\def \Q {\mathbb{Q}}
+\def \R {\mathbb{R}}
+\def \C {\mathbb{C}}
+\def \F {\mathbb{F}}
+\def \ms {\medskip}
+\def \ss {\smallskip}
+\def \no {\noindent}
+\def \vl {\overline}
+\def \ub {\underbar}
+\def \cl {\centerline}
+\def \dl {\displaystyle}
+\def \lra {\longrightarrow}
+\def \iff {\longleftrightarrow}
+\def \thus {{.\raise 4pt\hbox{.}.\;}}
+%\def \mod {{\rm {~(mod~}}}
+\def \ctrdct {\rightarrow \!\leftarrow}
+\def \div {{\bf {~div~}}}
+%\def \bmod #1{{~(\bf {mod~{#1}})}}
+\def \qed {$\clubsuit$}
+%\def \notdiv #1 #2{{#1}\kern -3pt\not|\kern 2pt{#2}}
+\def\notdiv{\not|\;}
+\font\Bigbf = cmr10 scaled\magstep 2
+\font\sm = cmr10 scaled 900
+\font\headerfont = cmti10 scaled 600
+\def\LaTeX{{\rm L\kern-.36em\raise.3ex\hbox{\sc a}\kern-.15em\TeX}}
+
+\def\doblue #1 {\color{blue}}
+
+%%%% Make new algorithm float: algrthm, and margin algorithm float: marginalgrthm
+\newcounter{algrthm}[chapter]
+\newcommand\algrthmname{Algorithm}
+\newcommand\listalgrthmname{List of Algorithms}
+
+\makeatletter
+\newcommand\listofalgrthms{%
+  \ifthenelse{\equal{\@tufte@class}{book}}%
+    {\chapter*{\listalgrthmname}}%
+    {\section*{\listalgrthmname}}%
+%  \begin{fullwidth}%
+    \@starttoc{loa}%
+%  \end{fullwidth}%
+}
+\renewcommand\thealgrthm
+     {\ifnum \c@chapter>\z@ \thechapter.\fi \@arabic\c@algrthm}
+\def\fps@algrthm{tbp}
+\def\ftype@algrthm{1}
+\def\ext@algrthm{loa}
+\def\fnum@algrthm{\algrthmname\nobreakspace\thealgrthm}
+
+% Main body algorithm environment
+\newenvironment{algrthm}[1][htbp]
+  {\begin{@tufte@float}[#1]{algrthm}{}}
+  {\end{@tufte@float}}
+\let\l@algrthm\l@figure
+\makeatother
+
+%%
+% Margin algorithm environment
+\newenvironment{marginalgrthm}[1][-1.2ex]%
+  {\begin{@tufte@margin@float}[#1]{algrthm}}
+  {\end{@tufte@margin@float}}
+
+%% environments with bounding lines
+\newenvironment{algo}{\begin{algrthm} \kern2pt\hrule\kern5pt\relax}
+{\kern2pt\hrule\kern5pt\relax\end{algrthm}}
+
+\newenvironment{malgo}{\begin{marginalgrthm}\begin{minipage}{\marginparwidth}\kern2pt\hrule\kern5pt\relax}
+{\end{minipage}\kern2pt\hrule\kern5pt\relax\end{marginalgrthm}}
+
+% % % % % % End definition of algrthm environments
+% Generates the index
+%\usepackage{makeidx}
+%\makeindex
+
+\begin{document}
+
+% Front matter
+\frontmatter
+
+%full title page
+\maketitle
+
+%copyright page
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ \thanklessauthor
+
+\par\smallcaps{Published by \thanklesspublisher}
+
+\par\smallcaps{~\url{http://arts-sciences.und.edu/math//}}
+
+
+\noindent Copyright \copyright\  
+2005, 2006, 2007, 2008, 2009, 2014, 2015, 2016, 2017 University of North Dakota Mathematics Department
+\par
+ Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.2
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+    A copy of the license is included in the section entitled "GNU
+    Free Documentation License".
+
+\par\textit{Third edition, First printing: \monthyear} 
+\end{fullwidth}
+
+% contents, figures and tables
+\tableofcontents
+
+\listoffigures
+
+\listoftables
+
+\listofalgrthms
+
+
+%% dedication
+%\cleardoublepage
+%~\vfill
+%\begin{doublespace}
+%\noindent\fontsize{18}{22}\selectfont\itshape
+%\nohyphenation
+%Dedicated to the students of Discrete Mathematics.
+%\end{doublespace}
+%%\vfill
+%%\vfill
+
+
+\cleardoublepage
+\mainmatter
+
+
+% introduction
+\cleardoublepage
+\chapter*{Introduction}
+\begin{quote}
+\newthought{%
+Discrete math has become increasingly important in recent years, for a number of reasons:\sidenote{\textit{The Art of Problem Solving} ~\url{http://www.artofproblemsolving.com/articles/discrete-math}}
+}
+
+\vspace*{0.25cm}
+\noindent
+{\large\color{blue}Discrete math is essential to college-level mathematics --- 
+and beyond.}
+
+Discrete math --- together with calculus and abstract algebra --- is one of the core
+ components of mathematics at the undergraduate level. Students who learn a significant
+ quantity of discrete math before entering college will be at a significant advantage
+ when taking undergraduate-level math courses.
+
+\vspace*{0.25cm}
+\noindent
+{\large\color{blue}Discrete math is the mathematics of computing.}
+
+The mathematics of modern computer science is built almost entirely on discrete math,
+ in particular combinatorics and graph theory. This means that in order to learn the
+ fundamental algorithms used by computer programmers, students will need a solid
+ background in these subjects. Indeed, at most universities, a undergraduate-level
+ course in discrete mathematics is a required part of pursuing a computer science
+ degree.
+
+\vspace*{0.25cm}
+\noindent
+{\large\color{blue}Discrete math is very much ''real world'' mathematics.}
+
+Many students' complaints about traditional high school math --- algebra, geometry,
+ trigonometry, and the like --- is "What is this good for?" The somewhat abstract
+ nature of these subjects often turn off students. By contrast, discrete math, in
+ particular counting and probability, allows students --- even at the middle school
+ level --- to very quickly explore non-trivial "real world" problems that are
+ challenging and interesting.
+
+%\vspace*{0.25cm}
+\clearpage
+\noindent
+{\large\color{blue}Discre te math shows up on most middle and high school math contests.}
+
+Prominent math competitions such as MATHCOUNTS (at the middle school level) and the
+ American Mathematics Competitions (at the high school level) feature discrete math
+ questions as a significant portion of their contests. On harder high school contests,
+ such as the AIME, the quantity of discrete math is even larger. Students that do not
+ have a discrete math background will be at a significant disadvantage in these
+ contests. In fact, one prominent MATHCOUNTS coach tells us that he spends nearly
+ 50\% of his preparation time with his students covering counting and probability
+ topics, because of their importance in MATHCOUNTS contests.
+
+\vspace*{0.25cm}
+\noindent
+{\large\color{blue}Discrete math teaches mathematical reasoning and proof techniques.}
+
+Algebra is often taught as a series of formulas and algorithms for students to memorize
+ (for example, the quadratic formula, solving systems of linear equations by
+ substitution, etc.), and geometry is often taught as a series of
+ ''definition-theorem-proof'' exercises that are often done by rote (for example, the
+ infamous ''two-column proof''). While undoubtedly the subject matter being taught is
+ important, the material (as least at the introductory level) does not lend itself
+ to a great deal of creative mathematical thinking. By contrast, with discrete
+ mathematics, students will be thinking flexibly and creatively right out of the
+ box. There are relatively few formulas to memorize; rather, there are a number
+ of fundamental concepts to be mastered and applied in many different ways.
+
+\vspace*{0.25cm}         
+\noindent
+{\large\color{blue}Discrete math is fun.}
+
+Many students, especially bright and motivated students, find algebra, geometry, and even calculus dull and uninspiring. Rarely is this the case with most discrete math topics. When we ask students what their favorite topic is, most respond either ''combinatorics'' or ''number theory.'' (When we ask them what their least favorite topic is, the overwhelming response is ''geometry.'') Simply put, most students find discrete math more fun than algebra or geometry.
+\end{quote}
+
+%%
+% Start the main matter (normal chapters)
+\mainmatter
+
+
+% Chapters
+%\include{Chapters/208ch01} %Logical Connectives and Compound Propositions
+\include{Chapters/New208ch01} %Logical Connectives and Compound Propositions
+%\include{Chapters/208ch02} %Logical Equivalence
+\include{Chapters/New208ch02} %Logical Equivalence
+%\include{Chapters/208ch03} %Predicates and Quantifiers
+\include{Chapters/New208ch03} %Predicates and Quantifiers
+%\include{Chapters/208ch04} %Rules of Inference
+\include{Chapters/New208ch04} %Rules of Inference
+%\include{Chapters/208ch05} %Sets: Basic Definitions
+\include{Chapters/New208ch05} %Sets: Basic Definitions
+%\include{Chapters/208ch06} %Set Operations
+\include{Chapters/New208ch06} %Set Operations
+%\include{Chapters/208ch07} %Styles of Proof
+\include{Chapters/New208ch07} %Styles of Proof
+%\include{Chapters/208ch08} %Relations
+\include{Chapters/New208ch08} %Relations
+%\include{Chapters/208ch09} %Properties of Relations
+\include{Chapters/New208ch09} %Properties of Relations
+%\include{Chapters/208ch10} %Equivalence Relations
+\include{Chapters/New208ch10} %Equivalence Relations
+%\include{Chapters/208ch11} %Functions and Their Properties
+\include{Chapters/New208ch11} %Functions and Their Properties
+%\include{Chapters/208ch12} %Special Functions
+\include{Chapters/New208ch12} %Special Functions
+%\include{Chapters/208ch13} %Sequences and Summation
+\include{Chapters/New208ch13} %Sequences and Summation
+%\include{Chapters/208ch14} %Recursively Defined Sequences
+\include{Chapters/New208ch14} %Recursively Defined Sequences
+%\include{Chapters/208ch15} %Recursively Defined Sets
+\include{Chapters/New208ch15} %Recursively Defined Sets
+%\include{Chapters/208ch16} %Mathematical Induction
+\include{Chapters/New208ch16} %Mathematical Induction
+%\include{Chapters/208ch17} %Algorithms
+\include{Chapters/New208ch17} %Algorithms
+%\include{Chapters/208ch18} %Algorithm Efficiency
+\include{Chapters/New208ch18} %Algorithm Efficiency
+%\include{Chapters/208ch19} %The Growth of Functions
+\include{Chapters/New208ch19} %The Growth of Functions
+%\include{Chapters/208ch20} %The Integers
+\include{Chapters/New208ch20} %The Integers
+%\include{Chapters/208ch21} %The \textsf{divides} Relation and Primes
+\include{Chapters/New208ch21} %The \textsf{divides} Relation and Primes
+%\include{Chapters/208ch22} %GCD's and the Euclidean Algorithm
+\include{Chapters/New208ch22} %GCD's and the Euclidean Algorithm
+%\include{Chapters/208ch23} %GCD's Reprised
+\include{Chapters/New208ch23} %GCD's Reprised
+%\include{Chapters/208ch24} %The Fundamental Theorem of Arithmetic
+\include{Chapters/New208ch24} %The Fundamental Theorem of Arithmetic
+%\include{Chapters/208ch25} %Linear Diophantine Equations
+\include{Chapters/New208ch25} %Linear Diophantine Equations
+%\include{Chapters/208ch26} %Modular Arithmetic
+\include{Chapters/New208ch26} %Modular Arithmetic
+%\include{Chapters/208ch27} %Integers in Other Bases
+\include{Chapters/New208ch27} %Integers in Other Bases
+%\include{Chapters/208ch28} %The Two Fundamental Counting Principles
+\include{Chapters/New208ch28} %The Two Fundamental Counting Principles
+%\include{Chapters/208ch29} %Permutations and Combinations
+\include{Chapters/New208ch29} %Permutations and Combinations
+%\include{Chapters/208ch30} %The Binomial Theorem and Pascal's Triangle
+\include{Chapters/New208ch30} %The Binomial Theorem and Pascal's Triangle
+%\include{Chapters/208ch31} %Inclusion-Exclusion Counting
+\include{Chapters/New208ch31} %Inclusion-Exclusion Counting
+%\include{Chapters/208ch32} %The Pigeonhole Principle
+\include{Chapters/New208ch32} %The Pigeonhole Principle
+%\include{Chapters/208ch33} %Tougher Counting Problems
+\include{Chapters/New208ch33} %Tougher Counting Problems
+%\include{Chapters/208ch34} %Counting Using Recurrence Relations
+\include{Chapters/New208ch34} %Counting Using Recurrence Relations
+%\include{Chapters/208ch35} %Solutions to Recurrence Relations
+\include{Chapters/New208ch35} %Solutions to Recurrence Relations
+%\include{Chapters/208ch36} %The Method of Characteristic Roots
+\include{Chapters/New208ch36} %The Method of Characteristic Roots
+%\include{Chapters/208ch37} %Solving Nonhomogeneous Recurrences
+\include{Chapters/New208ch37} %Solving Nonhomogeneous Recurrences
+%\include{Chapters/208ch38} %Graphs
+\include{Chapters/New208ch38} %Graphs
+
+
+
+\appendix
+\chapter{Answers to Exercises}
+\input{Chapters/ans01} %Logical Connectives and Compound Propositions
+\input{Chapters/ans02} %Logical Equivalence
+\input{Chapters/ans03} % Predicates and Quantifiers
+\input{Chapters/ans04} %Rules of Inference
+\input{Chapters/ans05} %Sets: Basic Definitions
+\input{Chapters/ans06} %Set Operations
+\input{Chapters/ans07} %Styles of Proof
+\input{Chapters/ans08} %Relations
+\input{Chapters/ans09} %Properties of Relations
+\input{Chapters/ans10} %Equivalence Relations
+\input{Chapters/ans11} %Functions and Their Properties
+\input{Chapters/ans12} %Special Functions
+\input{Chapters/ans13} %Sequences and Summation
+\input{Chapters/ans14} %Recursively Defined Sequences
+\input{Chapters/ans15} %Recursively Defined Sets
+\input{Chapters/ans16} %Mathematical Induction
+\input{Chapters/ans17} %Algorithms
+\input{Chapters/ans18} %Algorithm Efficiency
+\input{Chapters/ans19} %The Growth of Functions
+\input{Chapters/ans20} %The Integers
+\input{Chapters/ans21} %The \textsf{divides} Relation and Primes
+\input{Chapters/ans22} %GCD's and the Euclidean Algorithm
+\input{Chapters/ans23} %GCD's Reprised
+\input{Chapters/ans24} %The Fundamental Theorem of Arithmetic
+\input{Chapters/ans25} %Linear Diophantine Equations
+\input{Chapters/ans26} %Modular Arithmetic
+\input{Chapters/ans27} %Integers in Other Bases
+\input{Chapters/ans28} %The Two Fundamental Counting Principles
+\input{Chapters/ans29} %Permutations and Combinations
+\input{Chapters/ans30} %The Binomial Theorem and Pascal's Triangle
+\input{Chapters/ans31} %Inclusion-Exclusion Counting
+\input{Chapters/ans32} %The Pigeonhole Principle
+\input{Chapters/ans33} %Tougher Counting Problems
+\input{Chapters/ans34} %Counting Using Recurrence Relations
+\input{Chapters/ans35} %Solutions to Recurrence Relations
+\input{Chapters/ans36} %The Method of Characteristic Roots
+\input{Chapters/ans37} %Solving Nonhomogeneous Recurrences
+\input{Chapters/ans38} %Graphs
+
+\chapter{Problems From Old Exams}
+\input{Chapters/OldExams}
+%%%%%%%%%%%%%%%%%%% Copyright %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{Chapters/fdl_1_3} %
+
+
+\end{document}

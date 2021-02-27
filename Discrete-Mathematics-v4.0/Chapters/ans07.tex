@@ -1,0 +1,108 @@
+    \section*{Chapter 7}
+\begin{Solution}{7.1}
+ Proof Specification:
+$(\forall m,n \in\mathbb{Z})[  (m \text{ is even}) \land (n \text{ is even}) \rightarrow (m+n \text{ is even}) ]$ \newline
+\noindent\textbf{Proof:} (List form)
+\begin{itemize}[noitemsep, label=$\blacktriangleright$]
+    \item Let $m,n\in\mathbb{Z}$ be given. \\
+    \item Suppose $m$ and $n$ are even.\\
+    \item $\implies$ $m=2i$ and $n=2j$, %for some $i,j\in\mathbb[Z}$, by the definition of \textit{even}. \\
+    \item $\implies$  $m+n = 2i+2j = 2(i+j) $
+    \item $\implies$  $m+n = 2\ell$,  where $\ell=i+j$.
+    \item $\implies$ $m+n$ is even, by the definition of \textit{even}.
+    \item $\therefore$ if $m$ and $n$ are even, then $m+n$ is even. \qed
+\end{itemize}
+\begin{proof}(Prose form)
+Suppose $m$ and $n$ are even integers. Then, by the definition of \textit{even}, $m=2i$ and $n=2j$, for some $i,j\in\mathbb{Z}$.
+Thus, we have
+\[
+ m+n = 2i + 2j = 2(i+j)= 2\ell, \text{ where $\ell=i+j$}.
+\]
+Hence, $m+n$ is even, by the definition of \textit{even}.
+\end{proof}
+\end{Solution}
+\begin{Solution}{7.2}
+$(\forall n\in\mathbb{Z})[ (n^2 \text{ is odd}) \rightarrow (n \text{ is odd}) ]$ \newline
+$   \equiv (\forall n\in\mathbb{Z})[ \lnot(n \text{ is odd}) \rightarrow \lnot(n^2 \text{ is odd}) ]$ \newline
+$   \equiv (\forall n\in\mathbb{Z})[ (n \text{ is even}) \rightarrow (n^2 \text{ is even}) ]$
+\begin{itemize}[noitemsep, label=$\blacktriangleright$]
+    \item \textbf{Proof:} (List form)
+    \item Let $n\in\mathbb{Z}$ be given. \\
+    \item Suppose  $n$ is even.\\
+    \item $\implies$ $n=2j$, %for some $ij\in\mathbb[Z}$, by the definition of \textit{even}. \\
+    \item $\implies$  $n^2=(2j)^2 $
+    \item $\implies$  $n^2 = 2(2j^2)=2\ell$, \text{ where $\ell=2j^2$}
+    \item $\implies$ $n^2$ is even, by the definition of \textit{even}.
+    \item $\therefore$ if $n$ is even, then $n^2$ is even. \qed
+\end{itemize}
+\begin{proof}(Prose form)
+Suppose $n$ is an even integer. Then, by the definition of \textit{even}, $n=2j$, for some $j\in\mathbb{Z}$.
+Thus, we have
+\[
+ n^2 = (2j)^2 = 2(2j^2)= 2\ell, \text{ where $\ell=2j^2$}.
+\]
+Hence, $n^2$ is even, by the definition of \textit{even}.
+\end{proof}
+\end{Solution}
+\begin{Solution}{7.3}
+\begin{align*}
+&(\forall x,y\in\mathbb{R})[ (x \text{ is rational}) \land (y \text{ is irrational}) \rightarrow (x+y \text{ is irrational}) ]\equiv \\
+&(\forall x,y\in\mathbb{R})[ (x \text{ is rational}) \land (y \text {is irrational}) \land \lnot (x+y \text{ is irrational}) \rightarrow \mathbb{F} ]\equiv \\
+&(\forall x,y\in\mathbb{R})[ (x \text{ is rational}) \land (y \text{ is irrational}) \land (x+y \text{ is rational}) \rightarrow \mathbb{F} ]
+\end{align*}
+\begin{itemize}[noitemsep, label=$\blacktriangleright$]
+    \item \textbf{Proof:} (List form)
+    \item Let $x,y\in\mathbb{R}$ be given
+    \item Suppose  $x$ is rational and $y$ is irrational
+    \item Suppose for the sake of argument that $x+y$ were rational
+    \item $\implies$ $y=(x+y)-x$ is rational because the difference of rational numbers is rational
+    \item $\implies$  $y$ is rational and $y$ is irrational $\rightarrow\leftarrow$
+    \item This is impossible
+    \item $\therefore$ $x+y$ must have been irrational. \qed
+\end{itemize}
+\begin{proof}(Prose form)
+Suppose $x$ is rational and $y$ is irrational. Suppose, for the sake of argument, that $x+y$ were rational.
+Then, $y=(x+y)-x$ would be rational, since the difference of two rational numbers is rational. But,
+$y$ was given to be irrational. This  is impossible. Therefore, $x+y$ must have been irrational.
+\end{proof}
+\end{Solution}
+\begin{Solution}{7.4}
+\begin{align*}
+&(\forall n\in\mathbb{Z})[ (5n-1 \text{ is odd}) \rightarrow (n \text{ is even}) ]\equiv \\
+&(\forall n\in\mathbb{Z})[ (5n-1 \text{ is odd}) \land  \lnot(n \text{ is even}) \rightarrow \mathbb{F}]\equiv \\
+&(\forall n\in\mathbb{Z})[ (5n-1 \text{ is odd}) \land (n \text{ is odd}) \rightarrow \mathbb{F} ]
+\end{align*}
+\begin{itemize}[noitemsep, label=$\blacktriangleright$]
+    \item \textbf{Proof:} (List form)
+    \item Let $n\in\mathbb{Z}$ be given
+    \item Suppose  $5n-1$ is odd.
+    \item Suppose for the sake of argument that $n$ were odd
+    \item $\implies$ $n=2j+1$, for some $j\in\mathbb{Z}$, by the definition of \textit{odd}
+    \item $\implies$  $5n-1=5(2j+1)-1=10j+4=2(5j+2)$
+    \item $\implies$  $5n-1=2\ell$, where $\ell=5j+2$
+    \item $\implies$ $5n-1$ is even, by the definition of \textit{even}
+    \item But, $5n-1$ was given to be odd $\rightarrow\leftarrow$
+    \item This is impossible
+    \item $\therefore$, $n$ must have been even. \qed
+\end{itemize}
+\begin{proof}(Prose form)
+Suppose that $5n-1$ is odd for some $n\in\mathbb{Z}$. And, suppose, for the sake of argument, that
+$n$ were odd. That is, $n=2j+1$, for some $j\in\mathbb{Z}$. Then, we have
+\[
+ 5n-1 = 5(2j+1)-1 =10j+4=2(5j+2).
+\]
+That is, $5n-1$ is even, since $5n-1=2\ell$, for $\ell=5j+2$. But, $5n-1$ was given to be odd.
+This is impossible. Therefore, $n$ must have been even.
+\end{proof}
+\end{Solution}
+
+\begin{Solution}{7.5}
+The convention says that $x$ is bound by a universal quantifier. Thus, the sentence means, for example in $\mathbb{R}$, the
+(False) proposition:
+\[
+(\forall x\in\mathbb{R})[ (x=2) \rightarrow (x^2-2x+1=0)  ].
+\]
+\end{Solution}
+\begin{Solution}{7.6}
+The positive integer $77$ ends in a $7$, but is not prime since $77 = 7\cdot 11$.
+\end{Solution}

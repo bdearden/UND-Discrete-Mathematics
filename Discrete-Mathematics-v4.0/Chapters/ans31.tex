@@ -1,0 +1,66 @@
+   \section*{Chapter 31}
+    
+\begin{Solution}{31.1}
+Let $M$ be the set of students with a math major, $C$: chemistry majors, $B$: biology majors, $G$: geology majors, $P$: physics majors, and $A$: anthropology majors.
+
+The total number of students is (taking advantage of the fact each student has at most two majors, and some double majors have no students)
+\begin{gather*}
+|M \cup C \cup B \cup G \cup P \cup A| = |M|+|C|+B|+|P|+|A| \\
+\qquad - |M \cap P| - |M \cap C| - |M \cap B| - |B \cap C|  - |B \cap A| \\
+= 70 + 160 +230+56+24+35 - 12-10-4-53-5 = 491.
+\end{gather*}
+
+\end{Solution}
+
+\begin{Solution}{31.2}
+Let $A$ be the length $15$  bit strings that start with $1111$ (they look like $1111...........$).
+ Let $B$ be the set of length $15$ bit strings that end with $1000$ (they look like $...........1000$),
+ and let $C$ be the set of length $15$ bit strings with bits $4$ through $7$ equal to $1010$ (they look like
+ $...1010........$. We need to compute $|A \cup B \cup C|$. 
+ 
+ \begin{gather*}
+ |A\cup B \cup C| = |A| + |B| + |C| -|A \cap B| - |A \cap C| - |B \cap C| + |A \cap B \cap C|\\
+ = 2^{11} + 2^{11} + 2^{11} - 2^7 -2^8 - 2^7 + 2^4 = 5648.
+ \end{gather*}
+
+\end{Solution}
+
+\begin{Solution}{31.3}
+Let $A$ be the set of integers between $1000$ and $9999$ (inclusive) that are multiples of $4$.
+To count the number of integers, $n$, in $A$, we want to solve $1000\leq 4n \leq 9999$. In other 
+words, solve $250 \leq n \leq 2499.75$. The number of integers in the range $[250,2499]$ is
+$2499-250+1 = 2250$. So $|A| = 2250$. Likewise, letting $B$ be the set of multiples of $10$ in the range
+$1000$ to $9999$, we get $|B| = 900$, and with $C$ being the set of multiples of $25$ in that range,
+we get $|C|= 360$. Now things get a little trickier: For $A \cap B$ we want to count the integers that are both multiples of $4$ and $10$. But that is the same as the multiples of $20$, so $|A \cap B| = 450$.
+Likewise $A \cap C$ (multiples of $100$) has $|A \cap C| = 90$, and $B \cap C$ (multiples of $50$)
+has $|B \cap C| = 180$. Finally, $A \cap B \cap C$ (also multiples of $100$)  has $|A \cap B \cap C| = 90$.
+So
+\begin{gather*}
+|A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| -|A \cap C| - |B \cap C| + |A\cap B \cap C|\\
+= 2250 +900+360 - 450 -100 - 180 + 100 = 2880.
+\end{gather*}
+
+\end{Solution}
+
+\begin{Solution}{31.4}
+
+Letting $A_1$ be the set of permutations of $1,2,3,4,5$ with $1$ in spot 1, $A_2$ be the set of permutations of $1,2,3,4,5$ with $2$ in spot 2, and so on, until $A_5$ is the set of permutations of $1,2,3,4,5$ with $5$ in spot 5,
+we want to count in the number of elements in $A_1 \cup A_2 \cup A_3 \cup A_4 \cup A_5$. 
+
+All five of the counts $|A_1|, |A_2|, \ldots, |A_5|$ will be be $4!$ (place one number in its spot, and arrange the other four in any way at all). Likewise, all ten counts like $|A_1 \cap A_2|$ will be $3!$ (place two numbers in the correct spots, and arrange the remaining three in any way at all. Continuing, counts for $A_1 \cap A_2 \cap A_3$
+type will be $2!$, and for the $A_1 \cap A_2 \cap A_3 \cap A_4$ type will be $1!$. Finally, $A_1 \cap A_2 \cap A_3 \cap A_4 \cap A_5| = 1$ (every number is its correct spot). So,
+\begin{gather*}
+|A_1 \cup A_2 \cup A_3 \cup A_4 \cup A_5|\\
+ = 5(4!) - 10(3!) + 10(2!) - 5(1!) + 1
+= 120 - 60 + 20 - 5 + 1 = 76. 
+\end{gather*}
+
+\end{Solution}
+
+\begin{Solution}{31.5}
+
+Using the {\it good = total - bad} method, the number of permutations of $1,2,3,4,5$ with no digit in its correct spot
+will be the total number of permutations of $1,2,3,4,5$ minus the number of those permutations with at least one numbers in its correct spot.  From the problem above, that is $5! - 76 = 120 - 76 = 44$. 
+
+\end{Solution}
+

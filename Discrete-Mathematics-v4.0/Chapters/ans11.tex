@@ -1,0 +1,53 @@
+\section*{Chapter 11}
+
+\begin{Solution}{11.1}
+There are many different correct answers to these problems.
+
+  \begin{tasks}
+         \task $f(x) = x+1$
+         \task $f(x) = 1$
+         \task $f(x)= e^{x}$
+         \task $f(x) = x^{3} - x$
+  \end{tasks}
+\end{Solution}
+
+\begin{Solution}{11.2}
+\ %
+ \begin{tasks}
+          \task As a set of ordered pairs $f = \{ (1,a), (2,b), (3,c), (4,d), (5,e)\}$
+          \task No such function can exist since $|B| > |A|$.
+          \task No such function can exist since $|A|< |B|$.
+          \task As a set of ordered pairs $g = \{ (a,1), (b,2), (c,3), (d,4), (e,5), (f,5) \}$
+  \end{tasks}
+\end{Solution}
+
+\begin{Solution}{11.3}
+The composition of two functions is a function, but the composition of two equivalence relations need not be an equivalence relation.
+However, the composition of an equivalence relation {\itshape with itself} will be an equivalence relation. Here is a proof.
+
+Suppose $E$ is an equivalence relation on a set $A$.
+
+ Since $E$ is reflexive on $A$, for any $a\in A$, $(a,a)\in E$ is true, and since $(a,a)$ and $(a,a)$ are in $E$, 
+ the composition rule tells us $(a,a)\in E\circ E$!  So $E\circ E$ is reflexive on $A$.
+ 
+ Next, suppose $(a,b)\in E\circ E$. That means there is an $x$ in $A$ such that $(a,x)$ and $(x,b)$ are in $E$. Since $E$
+ is an equivalence relation, it is symmetric, so $(b,x)$ and $(x,a)$ are in $E$. The composition rule then tells us $(b,a)$
+ is in $E\circ E$. That proves $E\circ E$ is symmetric.
+ 
+ Finally, suppose $(a,b)$ and $(b,c)$ are in $E\circ E$. That means there an $x$ in $A$ such that $(a,x)$ and $(x,b)$ are in $E$
+ and there is a $y$ in $A$ such that $(b,y)$ and $(y,c)$ are in $E$. From $(x,b)$ and $(b,y)$ in $E$, we see $(x,y)$ is in $E$. Then
+ From $(a,x)$ and $(x,y)$ in $E$, we get $(a,y)$ is in $E$. And finally, $(a,y)$ and $(y,c)$ in $E$ tells us $(a,c)$ is in $E\circ E$.
+ So $E\circ E$ is transitive.
+ 
+ Putting the pieces together, we have proved $E\circ E$ is an equivalence relation on $A$.
+
+\end{Solution}
+
+\begin{Solution}{11.4}
+Suppose $g : A\to B$ and $f : B \to C$ are both one{-}to{-}one. To show $f\circ g: A \to C$ is one{-}to{-}one, suppose
+$x$ and $y$  are in $A$, and $f\circ g(x) = f\circ g(y)$. We want to show $x=y$.
+
+Since $f\circ g(x) = f\circ g(y)$,  the definition of the composition of functions tells us $f(g(x)) = f(g(y))$. Since $f$ is
+one{-}to{-}one, we can conclude $g(x) = g(y)$, and then, since $g$ is one{-}to{-}one, we get $x=y$. $\clubsuit$
+
+\end{Solution}

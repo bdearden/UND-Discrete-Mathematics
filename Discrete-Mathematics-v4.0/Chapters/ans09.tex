@@ -1,0 +1,54 @@
+    \section*{Chapter 9}
+\begin{Solution}{9.1}
+   $R=\{ (1,1),(2,2),(3,3) \}$ (There are seven more correct answers since any subset of $R$ would also be okay.)
+\end{Solution}
+\begin{Solution}{9.2}
+\ %
+  \begin{tasks}
+       \task $R$ is not reflexive since, for example $(1,1)\not\in R$.
+       \task $R$ is irreflexive  since none of $(1,1), (2,2), (3,3), (4,4)$ are in $R$.
+       \task $R$ is symmetric since the reverse of each ordered pair in $R$ is also in $R$.
+       \task $R$ is not antisymmetric since, for example, $(1,2)$ and $(2,1)$ are both in $R$, but $1\not= 2$.
+       \task $R$ is not transitive since, for example, $(1,2)$ and $(2,3)$ are both in $R$, but $(1,3)$ is not in $R$.
+   \end{tasks}
+\end{Solution}
+\begin{Solution}{9.3}
+\quad
+    \begin{tasks}(2)
+        \task reflexive, symmetric, transitive
+        \task transitive, antisymmetric
+        \task symmetric
+        \task reflexive, symmetric, transitive
+    \end{tasks}
+\end{Solution}
+\begin{Solution}{9.4}
+\ %
+Recall that for a set $A$, the notation $|A|$ is the cardinal number of $A$ (in other words, the number of elements in $A$).
+    \begin{tasks}
+       \task $C$ is reflexive since any set $A$ has the same number of elements as itself!
+       \task $C$ is not irreflexive  since, for example, $|\{1\}| =  |\{1\}|$, so $\{1\}\,C\,\{1\}$ is true.
+       \task $C$ is not symmetric since, for example, $\{1\}\,C\,\{1,2\}$ is true, but $\{1,2\}\,C\,\{1\}$ is false.
+       \task $C$ is not antisymmetric since, for example, $\{1\}\,C\,\{2\}$ and  $\{2\}\,C\,\{1\}$ are both true, 
+                       but $\{1\}\not=\{2\}$.
+       \task $C$ is transitive since if $|A|\leq |B|$ and $|B|\leq |D|$, then $|A|\leq |D|$ (by the transitive property
+                       of the {\itshape less than or equal to} relation for numbers).
+   \end{tasks}
+\end{Solution}
+
+\begin{Solution}{9.5}
+ For any universe of discourse $\mathcal{U}$, a relation on $\mathcal{U}$  is defined to be any  subset of
+$\mathcal{U}\times\mathcal{U}$. The empty set is a subset of $\mathcal{U}\times\mathcal{U}$.
+\end{Solution}
+
+\begin{Solution}{9.6}
+$\{1,2\} M \{1,2\}$  is false, so $M$  is not reflexive.
+$\{1\} M \{1\}$  is true, so $M$ is not irreflexive.
+$\{1\} M \{1,2\}$  and  $\{1,2\} M \{1\}$
+are true, but  $\{1\}\neq \{1,2\}$
+so $M$ is not antisymmetric.
+If $|A\cap B| =1$  then \\
+ $|B\cap A |= 1$, (since $A\cap B = B \cap A$), so $M$ is symmetric.
+$\{1\} M \{1,2\}$  and  $\{1,2\} M \{2\} $ are true,
+but  $\{1\} M \{2\}$  is false,
+so $M$ is not transitive.
+\end{Solution}

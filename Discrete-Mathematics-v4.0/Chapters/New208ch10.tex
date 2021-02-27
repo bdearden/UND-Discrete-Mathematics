@@ -1,0 +1,407 @@
+\chapter{Equivalence Relations}
+
+\newthought{Relations capture the essence} of many different mathematical concepts. 
+ In this chapter, we will show how to put the idea of {\itshape
+are the same kind} in terms of a special type of relation.
+
+  Before considering the formal concept of {\itshape same kind} let's look at a few
+simple examples. Consider the question, posed about an ordinary deck of $52$
+cards: {\itshape How many different kinds of cards are there?} One possible answer is:
+{\itshape There are $52$ kinds of cards}, since all the cards are different. But
+another possible answer in certain circumstances is: {\itshape There are four kinds of
+cards} (namely clubs, diamonds, hearts, and spades). Another possible answer is:
+{\itshape There are two kinds of cards, red and black}. Still another answer is: {\it
+There are $13$ kinds of cards: aces, twos, threes, $\cdots$, jacks, queens, and
+kings}. Another answer, for the purpose of many card games is: {\itshape There are ten
+kinds of cards, aces, twos, threes, up to nines, while tens, jacks, queens, and kings
+are all considered to be the same value (usually called 10)}. You can certainly
+think of many other ways to split the deck into a number of different kinds.
+
+  Whenever the idea of {\itshape same kind} is used, some properties of the objects
+being considered are deemed important and others are ignored. For instance, when
+we think of the the deck of cards made of the $13$ different ranks, ace through
+king, we are agreeing the the suit of the card is irrelevant. So the jack of
+hearts and the jack of clubs are taken to be the same for what ever purposes we
+have in mind.
+
+\section{Equvialence relation}
+  The mathematical term for {\itshape same kind} is {\bfseries equivalent}. There are
+three basic properties always associated with the idea of equivalence.
+\begin{enumerate}
+ \item \emph{Reflexive}: Every object is equivalent to itself.
+ \item \emph{Symmetric}: If object $a$  is equivalent to object $b$, then $b$ is
+ also equivalent to $a$.
+ \item \emph{Transitive}: If $a$ is equivalent to $b$ and $b$ is equivalent to
+ $c$, then $a$ is equivalent to $c$.
+\end{enumerate}
+
+
+  To put the idea of equivalence in the context of a relation, suppose we have
+a set $A$ of objects, and a rule for deciding when two objects in $A$ are the
+same kind (equivalent) for some purpose. Then we can define a relation $E$ on the
+set $A$ by the rule that the pair $(s,t)$ of elements of $A$ is in the relation
+$E$ if and only if $s$ and $t$ are the same kind. For example, consider again the
+deck of cards, with two cards considered to be the same if they have the same
+rank. Then a few of the pairs in the relation $E$ would be $($ace hearts, ace
+spades$)$, $($three diamonds, three clubs$)$, $($three clubs, three diamonds$)$,
+$($three 
+diamonds, three diamonds$)$, $($king diamonds, king clubs$)$, and so on.
+
+  Using the terminology of the previous chapter, this relation $E$, and in
+fact any relation that corresponds to notion of equivalence, will be reflexive,
+symmetric, and transitive. For that reason, any reflexive, symmetric, transitive
+relation on a set $A$ is called an {\bfseries equivalence relation} on $A$.
+
+\section{Equivalence class of a relation}
+  Suppose $E$ is an equivalence relation on a set $A$ and that $x$ is one
+particular element of $A$. The {\bfseries equivalence class of $x$} is the set of all
+the things 
+in $A$ that are equivalent to $x$. The symbol used for the equivalence class of $x$ is
+$[x]$, so the definition can be written in symbols as $[x]=\{y\in A|y\,E\,x\}$.
+
+For instance, think once more about the deck of
+cards 
+with the 
+equivalence relation {\itshape having the same rank}. The equivalence class of the two
+of spades would be the set $[2\spadesuit]=\{2\clubsuit, 2\diamondsuit, 
+2\heartsuit, 2\spadesuit\}$. 
+That would also be the equivalence class of the two of diamonds. On
+the other hand, if the equivalence relation we are using for the deck is {\itshape having
+the same suit}, then the equivalence class of the two of spades would be 
+
+$[2\spadesuit]=\{A\spadesuit
+, 2\spadesuit , 3\spadesuit , 4\spadesuit , 5\spadesuit , 6\spadesuit,
+ 7\spadesuit , 8\spadesuit , 9\spadesuit,
+10\spadesuit , J\spadesuit , Q\spadesuit , K\spadesuit \}$.
+
+ 
+ The most important fact about the collection of different equivalence
+classes for an equivalence relation on a set $A$ is that they split the set $A$
+into separate pieces. In fancier words, they {\bfseries partition} the set $A$. For
+example, the equivalence relation of having the same rank splits a deck of cards
+into $13$ different equivalence classes. In a sense, when using this equivalence
+relation, there are only $13$ different objects, four of each kind.
+
+\section{Examples}
+Here are a few more examples of equivalence relations.
+
+\begin{exmp}
+Define $R$ on $\N$ by $aRb$ iff $a=b$. In other words, equality is an 
+equivalence relation. 
+If fact, this example explains the choice of name for such relations. 
+\end{exmp}
+
+\begin{exmp} 
+Let $A$ be the set of logical propositions and define $R$ on $A$ by
+$pRq$ iff $p\equiv q$. 
+\end{exmp}
+
+\begin{exmp}  
+Let $A$ be the set of people in the world and define $R$ on $A$ 
+by $aRb$ iff $a$ and $b$ are the same age in years.
+\end{exmp}
+
+\begin{exmp} 
+Let $A=\{1,2,3,4,5,6\}$ and $R$ be the relation on $A$ with the 
+matrix from exercise 3. part a) of chapter 9.
+\end{exmp}
+
+\begin{exmp}\label{ex:10.5} 
+Define $P$ on $\Z$ by $a\,P\,b$ iff $a$ and $b$ are
+both even, or both odd. We say $a$ and $b$ have the same parity.
+\end{exmp}
+
+
+For the equivalence relation {\itshape has the same rank} on a set of cards
+in a $52$ card deck, there are $13$ different equivalence classes. One of the classes
+contains all the aces, another contains all the $2$'s, and so on.
+
+\clearpage
+\begin{exmp}
+ For the equivalence relation from example \ref{ex:10.5}, the equivalence class of $2$ is the
+ set of all even integers. 
+ \begin{align*}
+  [2] = \{ n\,|\, 2\,P\,n\} &=\{ n\,|\, 2 \text{ has the same parity as } n\,\} \\
+                            &= \{ n\,|\, n \text{ is even}\,\} = \{ \cdots, -4, -2,0,2,4, \cdots\}
+ \end{align*}
+ In this example, there are two different equivalence classes, the one comprising
+ all the even integers, and the other comprising all the odd integers. As far
+ as parity is concerned, $-1232215$ and $171717$ are {\itshape the same}.
+\end{exmp}
+
+
+Suppose $E$ is an equivalence relation on $A$. 
+The most important fact about equivalence classes is that every
+element of $A$ belongs to exactly one equivalence class. Let's prove that.
+
+\begin{thm}\label{thm:eqvrel->partition}
+ Let $E$ be an equivalence relation on a set $A$, and let
+ $a\in A$. Then there is exactly one equivalence class to which $a$ belongs.
+\end{thm}
+\begin{proof}
+ Let $E$ be an equivalence relation on a set $A$, and suppose $a\in A$.
+ Since $E$ is reflexive, $a\,E\,a$, and so $a\in [a]$ is true. That proves that $a$
+ is in at least one equivalence class. To complete the proof, we need to show that
+ if $a\in [b]$ then $[b]=[a]$. 
+ 
+ Now, stop and think: Here is what we know: 
+\begin{enumerate}
+ \item $E$ is an equivalence relation on $A$,
+ \item $a\in [b]$, and 
+ \item the definition of equivalence class.
+\end{enumerate} Using those three pieces of
+ information, we need to show the two sets $[a]$ and $[b]$ are equal.
+ Now, to show two sets are equal, we show they have the same elements.
+ In other words, we want to prove 
+\begin{enumerate}
+ \item If $c\in [a]$, then $c\in [b]$, and%
+\marginnote{For homework, you will complete the proof of this theorem  by doing part (1).} %
+   
+ \item If $c\in [b]$, then $c\in [a]$.
+\end{enumerate}
+ Let's give a direct proof of (2).
+ 
+ Suppose $c\in [b]$. Then, according to the definition of $[b]$, $c\,E\,b$.
+ The goal is to end up with {\itshape So $c\in [a]$}.  Now, we know $a\in [b]$,
+ and that means $a\,E\,b$. Since $E$ is symmetric and $a\,E\,b$, it follows that $b\,E\,a$.
+ Now we have $c\,E\,b$ and $b\,E\,a$. Since $E$ is transitive, we can conclude
+ $c\,E\,a$, which means $c\in [a]$ as we hoped to show. That proves (2).
+\end{proof}
+
+ 
+
+\section{Partitions}
+\begin{defn}
+ A {\bfseries partition} of a set  $A$ is a collection of nonempty, 
+ pairwise disjoint subsets of $A$, so that $A$ is
+ the union of the subsets in the collection. 
+ So for example $\{\{1,2,3\}\,\{4,5,6\}\}$ is a partition
+ of $\{1,2,3,4,5,6\}$. 
+ The subsets forming a partition are called the {\bfseries parts of the partition}.
+\end{defn}
+
+
+So to express the meaning of theorem \ref{thm:eqvrel->partition} above in different words: The different equivalence 
+classes of an equivalence relation on a set partition the set into nonempty disjoint
+pieces. More briefly: the equivalence classes of $E$ {\bfseries partition} $A$.
+
+\section{Digraph of an equivalence relation}
+The fact that an equivalence relation partitions the underlying set
+is reflected in the digraph of an equivalence relation.
+If we pick an equivalence class $[a]$ of an equivalence relation
+$E$ on a finite set $A$ and we pick $b\in [a]$, then $b\,E\,c$ for all $c\in [a]$. This is true
+since $a\,E\,b$ implies $b\,E\,a$ and if $a\,E\,c$, then transitivity fills in $b\,E\,c$. So in any digraph
+for $E$ every vertex of $[a]$ is connected to every other vertex in $[a]$ (including itself)
+by a directed edge. Also no vertex in $[a]$ is connected to any  vertex in $A-[a]$. 
+So the digraph
+of $E$ consists of separate components, one for each distinct equivalence
+class, where each component contains every possible directed edge.
+\section{Matrix representation of an equivalence relation}
+In terms of a matrix representation of an equivalence relation $E$ on a finite set $A$ 
+of size $n$,
+let the distinct equivalence classes have size $k_1, k_2,... k_r$, 
+where $k_1+k_2+...+k_r = n$.
+Next list the elements of $A$ as 
+$a_{1,1},...,a_{k_1,1},a_{1,2},...,a_{k_2,2},.....,a_{1,r},...,a_{k_r,r}$
+where the $i$th equivalence class is $\{a_{1,i},...,a_{k_i,i}\}$. 
+Then the matrix for $R$ with respect to this
+ordering is of the form 
+\[
+ \left[
+  \begin{matrix}
+   J_{k_1}&  0 & 0 & ... & 0 \\
+   0 & J_{k_2} & 0 & ... & 0 \\ 
+   \vdots & \ddots &\ddots & \ddots & \vdots \\
+   0 & ... & 0 & J_{k_{r-1}} & 0 \\
+   0 & ... & 0 & 0 & J_{k_r}
+  \end{matrix}
+ \right]
+\]
+where $J_m$ is the all $1$'s matrix of size $k_m\times k_m$.
+Conversely if the digraph of a relation can be drawn to take the above form, 
+or if it has a matrix representation
+of the above form, then it is an equivalence relation and therefore reflexive, 
+symmetric, and transitive.
+
+\clearpage
+
+\section{Exercises} 
+
+\begin{exer}
+Let $A = \{0,1,2\}$. Let $R = \{(0,0), (1,1), (2,2), (0,1), (1,0)\}$. 
+Is $R$ and equivalence relation on $A$? If it is, what are the equivalence classes?
+\end{exer}
+
+\begin{exer}
+Let $A = \{0,1,2,3\}$. Let $R = \{(0,0), (1,1), (2,2), (0,1), (1,0)\}$. 
+Is $R$ and equivalence relation on $A$? If it is, what are the equivalence classes?
+\end{exer}
+
+\begin{exer}
+Let $A = \{0,1,2\}$. Let $R = \{(0,0), (1,1), (2,2), (0,1)\}$. 
+Is $R$ and equivalence relation on $A$? If it is, what are the equivalence classes?
+\end{exer}
+
+\begin{exer}
+Let $A = \{0,1,2\}$. Let $R = \{(0,0), (1,1), (2,2), (0,1), (1,0),  (1,2), (2,1) \}$. 
+Is $R$ and equivalence relation on $A$? If it is, what are the equivalence classes?
+\end{exer}
+
+\begin{exer}
+True or False: The relation $R = \{ (1,1), (2,2)\}$ on $A = \{1,2\}$ is both symmetric and antisymmetric.
+\end{exer}
+
+\begin{exer}
+The relation $S$ is defined on the set $\Z$ of all integers by the rule $m\,S\, n$ if and only if $m^{2} = n^{2}$.
+Is $S$ an equivalence relation on $\Z$? If it is, what are the equivalence classes of $S$?
+\end{exer}
+
+\begin{exer}
+Let $L$ be the collection of all straight lines in the plane. Four examples of elements in $L$: $x + y = 0$, 2x-y - 5$, x = 7, y = 0$.
+A relation $C$ on $L$ is defined by the rule $l_{1}\, C \, l_{2}$ provided the lines $l_{1}$ and $l_{2}$ have at least one point in common.
+(The letter $C$ should remind us of {\itshape cross}, and, loosely speaking, two lines are related if they cross each other. We will have to 
+agree that a line crosses itself.) Is $C$ an equivalence relation on $L$? If it is, what are the equivalence classes of $C$?
+\end{exer}
+
+\begin{exer}
+Let $R$ be a relation on a non-empty set $A$ that is both symmetric, transitive. And, suppose that
+for each  $a\in A$,  $aRb$ for at least one  $b\in A$. Prove that $R$ is reflexive, hence, an equivalence relation.
+\end{exer}
+
+\begin{exer} Let $E$ be an equivalence relation on a set $A$, and let $a, b \in A$. Prove that
+either  $[a]\cap [b] = \emptyset$ or else $[a] = [b]$.
+\end{exer}
+
+
+\begin{exer} Let $A=\{1,2,3,4,5,6,7,8\}$. 
+Form a partition of $A$ using $\{1,2,4\}, \{3,5,7\}$, and $\{6,8\}$.
+These are the equivalence classes for an equivalence relation, $E$, on $A$.
+\begin{tasks}(2)
+     \task Draw a digraph of $E$.
+     \task Determine a $0$-$1$ matrix of $E$. 
+\end{tasks}
+\end{exer}
+
+\begin{exer} Determine if each matrix represents an equivalence relation on $\{a,b,c,d,e,f,g,h\}$.
+If the matrix represents an equivalence relation find the equivalence classes.  The natural order
+of the elements,  $[a,b,c,d,e,f,g,h]$, defines the matrices.
+
+\vspace*{0.25cm}
+\begin{enumerate*}[label=(\alph*), itemjoin=\qquad]
+\item 
+ $\left[
+\begin{matrix}
+ 1&0&1&0&1&0&1&0\\ 
+ 0&1&0&1&0&1&0&0\\ 
+ 1&0&1&0&1&0&1&0\\
+ 0&1&0&1&0&1&0&0\\ 
+ 1&0&1&0&1&0&1&0\\ 
+ 0&1&0&1&0&1&0&0\\ 
+ 1&0&1&0&1&0&1&0\\
+ 0&0&0&0&0&0&0&1
+\end{matrix}
+\right]$ 
+
+\item 
+$\left[
+\begin{matrix}
+ 1&1&0&0&0&0&1&1\\
+ 1&1&0&0&0&0&1&1\\ 
+ 0&0&1&1&0&0&0&0\\ 
+ 0&0&1&1&0&0&0&0\\
+ 0&0&0&0&1&1&0&0\\ 
+ 0&0&0&0&1&1&0&0\\ 
+ 1&1&0&0&0&0&1&1\\
+ 1&1&0&0&0&0&1&1 
+\end{matrix}
+\right]$
+\end{enumerate*}
+\end{exer}
+
+\begin{exer} 
+Complete the proof of theorem~\ref{thm:eqvrel->partition} on page~\pageref{thm:eqvrel->partition} by proving part (1).
+\end{exer}
+
+\clearpage
+
+\section{Problems}
+
+\begin{prob} 
+Let $A$ be the set of people alive on earth. 
+For each relation defined below, determine if
+it is an equivalence relation on $A$. If it is, describe the equivalence classes.
+If it is not, determine which properties of an equivalence relation fail.
+\begin{tasks}
+  \task $a\,H\,b \iff$  $a$ and $b$ are the same height.
+  \task $a\,G\,b \iff$  $a$ and $b$ have a common grandparent.
+  \task $a\,L\,b \iff$  $a$ and $b$ have the same last name.
+  \task $a\,N\,b \iff$ $a$ and $b$ have a name (first name  or last name) in common.
+  \task $a\,W\,b \iff$ $a$ and $b$ were born less than a day apart.
+\end{tasks}
+\end{prob}
+
+\begin{prob}
+Let $L$ be the collection of all straight lines in the plane. Four examples of elements in $L$: $x + y = 0$, 2x-y - 5$, x = 7, y = 0$.
+A relation $P$ on $L$ is defined by the rule $l_{1}\, P \, l_{2}$ provided the lines $l_{1}$ and $l_{2}$ are parallel.
+Is $P$ an equivalence relation on $L$? If it is, what are the equivalence classes of $P$?
+\end{prob}
+
+\begin{prob}
+\ %
+  \begin{tasks}
+     \task Given an example of an equivalence relation on $\N$ for which there are exactly
+     two equivalence classes.
+     \task Given an example of an equivalence relation on $\N$ for which every equivalence class
+     has cardinality two.
+  \end{tasks}
+\end{prob}
+
+\begin{prob} 
+Consider the relation \textbf{$B(x,y) : x$ is the brother of $y$} on the set, $M$,
+of living human males. Is  $M$ reflexive? Is $M$ symmetric? Is $M$ transitive?
+(To be precise, {\itshape brothers} will mean two different males with the same two
+parents. Don't consider half{-}brothers for this problem.) 
+\end{prob}
+
+\begin{prob}
+Let $A = \{ a,b,c,d,e,f,g\}$. There are many different equivalence relations on $A$.
+  \begin{tasks}
+    \task Of all the equivalence relations on $A$, which have the smallest number of ordered pairs?
+    \task Of all the equivalence relations on $A$, which have the  largest number of ordered pairs?
+  \end{tasks}
+\end{prob}
+
+\begin{prob}
+The relation $R = \{ (a,a), (a,b)\}$ is not an equivalence relation on the set $A = \{ a,b,c\}$. What is the fewest number of ordered pairs that need to be added to $R$ so the result is an equivalence relation on $A$?
+\end{prob}
+
+\begin{prob}
+ Prove or give a counterexample: Suppose $R$ is an equivalence relation on the lower case letters of the alphabet. True or False: All the equivalence classes of $R$ have the same cardinal number. 
+\end{prob}
+
+\begin{prob}
+Let $A$ be the set of all ordered pairs of positive integers.
+So some members of $A$ are $(3,6),  (7,7), (11,4), (1,2981)$. A relation on $A$ is defined by the rule 
+$(a,b) R (c,d)$ if and only if $ad = bc$. For example $(3,5) R (6,10)$ is true since $(3)(10)=(5)(6)$.\\[3pt]
+  \begin{tasks}
+     \task Explain why $R$ is an equivalence relation on $A$.
+     \task List four ordered pairs in the equivalence class of $(2,3)$.
+  \end{tasks}
+\end{prob}
+
+\begin{prob}   
+Let $A=\{1,2,3,4,5,6\}$. 
+Form a partition of $A$ using $\{1, 2\}, \{3, 4, 5\}$, and $\{6\}$.
+These are the equivalence classes for an equivalence relation, $E$, on $A$.
+ Draw the  {\bf digraph} of $E$.
+ \end{prob}
+
+\begin{prob}
+Let $A = \{ 1,2,3\}$. The relation $E = \{ (1,1),(2,2),(3,3),(2,3),(3,2)\}$ is an
+equivalence relation on $A$.  $F=\{ (1,1),(2,2),(3,3),(1,2),(2,1)\}$ 
+is another equivalence relation on $A$. Compute the composition $F\circ E$.
+Is $F\circ E$ and equivalence relation on $A$?
+\end{prob}
+
+
+

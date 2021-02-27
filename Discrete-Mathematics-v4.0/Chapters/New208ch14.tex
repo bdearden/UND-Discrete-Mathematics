@@ -1,0 +1,216 @@
+\chapter{Recursively Defined Sequences}
+
+\newthought{
+Besides specifying the terms} of  a sequence with a formula, such as $a_n = n^2$, 
+an alternative is to give an initial term, usually something like $b_1$, (or the first few terms, $b_1$, $b_2$,$b_3$\dots) of a sequence, and
+then give a rule for building new terms from old ones. In this case, we say the sequence
+has been defined {\bfseries recursively}. 
+
+\begin{exmp}
+ For example, suppose $b_1=1$, and for $n>1$, $b_n = 2b_{n-1}$. Then the $1^{st}$ 
+term of the sequence will be $b_1=1$ of course. To determine $b_2$, we apply the
+rule $b_2 = 2b_{2-1} = 2b_1 = 2\cdot 1 = 2$. Next, applying the rule again, 
+ $b_3= 2b_{3-1} = 2b_2 = 2\cdot2=4$. Next $b_4 = 2b_3 = 8$. Continuing in this fashion,
+we can form as many terms of the sequence as we wish: $1,2,4,8,16,32,\cdots$.
+In this case, it is easy to guess a formula for the terms of the sequence: 
+$b_n=2^{n-1}$.
+\end{exmp}
+
+In general, to define a sequence recursively, (1) we first give one or more initial terms
+(this information is called the {\bfseries initial condition(s)} for the sequence), and
+then (2) we give a rule for forming new terms from previous terms (this rule
+is called the {\bfseries recursive formula}).
+
+\begin{exmp}\label{exmp:recursive seq}
+ Consider the sequence defined recursively by $a_1 = 0$, and, for
+ $n\geq 2$, $a_n = 2a_{n-1} +1$. The five terms of this sequence are
+ \[
+ 0,\quad 2\cdot0+1=1,\quad 2\cdot1+1=3,\quad 2\cdot3+1 = 7,
+   \quad 2\cdot7+1=15\quad \cdots
+ \]
+
+
+ In words, 
+we can describe this sequence by saying the initial term is $0$ and each
+new term is one more than twice the previous term.
+Again, it is easy to guess a formula that produces the terms of this sequence:
+$a_n = 2^{n-1}-1$.  
+\end{exmp}
+Such a formula for the terms of a sequence is called a {\bf
+closed form formula} to distinguish it from a recursive formula.
+
+\section{Closed form formulas}
+There is one big advantage to knowing a closed form formula for a sequence.
+In  example \ref{exmp:recursive seq} above, the closed form formula for the sequence tells us
+immediately that $a_{101} = 2^{100}-1$, but using the recursive formula
+to calculate $a_{101}$  means we have to calculate in turn $a_1,a_2,\cdots a_{100}$,
+making $100$ computations. The closed form formula allows us to jump directly
+to the term we are interested in.  The recursive formula forces us to compute
+$99$ additional terms we don't care about in order to get to the one we want. 
+With such a
+major drawback why even introduce recursively defined sequences at all? The answer
+is that there are many naturally occurring sequences that have simple recursive 
+definitions but have no reasonable closed form formula, or even no closed form formula 
+at all in terms of familiar operations. In such cases, a recursive definition is better than nothing.
+
+\subsection{Pattern recognition}
+There are methods for determining closed form formulas for some special 
+types of recursively defined sequences. Such techniques are  studied 
+later in chapter~\ref{chpt:solns to recur rels}.
+For now we are only interested in  understanding recursive definitions, and 
+determining some closed form formulas by the method of 
+\emph{pattern recognition} (aka \emph{guessing}).
+
+\subsection{The Fibonacci Sequence}
+The most famous recursively defined sequence is due to Fibonacci. There
+are two initial conditions: $f_0 = 0$ and $f_1=1$. %
+\marginnote{The index starts at \textbf{zero}, by tradition.} The recursive rule is,
+for $n\geq 2$, $f_n = f_{n-1}+f_{n-2}$. In words, each new term is the sum
+of the two terms that precede it. So, the {\bfseries Fibonacci sequence} begins 
+\[
+0,\ 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21,\ 34,\ 55,\ 89,\ 144,\ 233,\ \cdots
+\]
+There is a closed form formula for the Fibonacci Sequence, 
+but it is not at all easy to guess:
+\[
+f_n = {1\over{\sqrt5}}\left({1+\sqrt{5}}\over 2\right)^n 
+-{1\over{\sqrt5}}\left({1-\sqrt{5}}\over 2\right)^n
+\]
+ 
+ \subsection{The Sequence of Factorials}
+For a positive integer $n$,  the symbol  $n!$ is 
+read $\mathbf{n}$ \textbf{factorial} and it is defined to be the product of
+all the positive integers from $1$ to $n$.\marginnote{For example, 
+$5! = 1\cdot2\cdot3\cdot4\cdot5 = 120$.} In order to make many
+formulas work out nicely, the value of $0!$ is defined to be $1$.
+
+A  recursive formula can be given for $n!$. The initial term is
+$0!=1$, and the recursive rule is, for $n\geq 1$, $n! = n[ (n-1)!]$.
+Hence, the first few factorial values are:
+\begin{align*}
+ 1! &= 1[0!] = 1\cdot 1  = 1, \\
+ 2! &= 2[1!] = 2\cdot 1 = 2, \\ 
+ 3! &= 3[2!] = 3\cdot 2 = 6,  \\
+ 4! &= 4[3!] = 4\cdot 6 = 24, \\
+    &\phantom{~}\vdots
+\end{align*}
+
+We sometimes write a {\itshape general} formula for the factorial as %
+\marginnote{Why is this \textbf{not} a closed form formula?}
+\[
+n!=1\cdot2\cdot3\cdot4\cdots n, \text{ for $n>0$.}
+\]
+
+The sequence of factorial grows very quickly. Here are the first few terms:
+\[
+1,\ 2,\ 6,\ 24,\ 120,\ 720,\ 5040,\ 40320,\ 362880,\ 3628800,\ 39916800,\ 479001600,\
+6227020800,\ \cdots
+\]
+
+\section{Arithmetic sequences by recursion}
+Consider the terms of an arithmetic sequence with initial term $a$ and common difference
+$d$:
+\[
+a,\  (a+d),\  (a+2d),\cdots,\ (a+(n-1)d),\cdots.
+\]
+These terms may clearly  be found by adding $d$ to the current term to get the next. That is,
+the arithmetic sequence may be defined recursively as (1) $a_1=a$, and (2) for $n\geq 2$,
+$a_n = a_{n-1}+d$.
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}
+List the first five terms of the sequence defined recursively by
+$a_{1} = 3$, and, for $n\geq 2$, $a_{n} = a_{n-1}(2+a_{n-1})$.
+\end{exer}
+
+\begin{exer}
+List the first seven terms of the sequence defined recursively by
+$a_{0} = 1$, $a_{1}= 1$, and, for $n\geq 2$, $a_{n} = 1+a_{n-1}a_{n-2}$.
+\end{exer}
+
+\begin{exer}
+List the first ten terms of the sequence defined recursively by
+$a_{0} = 1$, and, for $n\geq 1$, $a_{n} = 1+a_{\lfloor{\frac{n}{2}}\rfloor}$.
+\end{exer}
+
+\begin{exer}
+List  the first ten terms of the sequence defined recursively by
+$a_{0} = 1$, and for $n\geq 1$, $a_n = 2n-a_{n-1}-1$, and guess
+a closed form formula for $a_n$.
+\end{exer}
+
+\begin{exer}
+The first few terms of a sequence are 
+\[
+1,\, 11,\,21,\,1211,\,111221,\,312211,\,13112221,\,1113213211.
+\]
+There is an easy recursive rule for building  the terms of this sequence. Guess the next term.
+\end{exer}
+
+\begin{exer}
+Let $d$ be a fixed real number.
+ For a positive integer $n$,
+the symbol $nd$ means the sum of $n$ $d$'s.  Give  a recursive definition of $nd$
+analogous to the definition of $n!$ given in this chapter.
+\end{exer}
+
+\clearpage
+
+\section{Problems}
+
+\begin{prob}
+
+ List the first five terms of the sequence defined recursively by
+ $a_1 = 2$, and, for $n\geq 2$, $a_n = a_{n-1}^2 -1$.
+ 
+\end{prob}
+
+\begin{prob}
+ 
+List the first five terms of the sequence defined recursively by
+$a_1 =2$, and, for $n\geq 2$, $a_n = 3a_{n-1}+2$. Guess a closed
+form formula %
+\marginnote{Hint: This is a lot like  example \ref{exmp:recursive seq}.}
+for the sequence.
+  
+\end{prob}
+
+\begin{prob}
+ 
+ List the first five terms of the sequence with initial terms
+$u_0=2$ and $u_1=5$, and, for $n\geq 2$, $u_n = 5u_{n-1}-6u_{n-2}$.
+Guess a closed %
+\marginnote{Hint: The terms
+are simple combinations of powers of $2$ and powers of $3$.}
+ form formula for the sequence. 
+  
+\end{prob}
+
+\begin{prob} 
+
+ Let $r$ be a fixed real number different from $0$.
+ For a positive integer $n$,
+the symbol $r^n$ means the product of $n$ $r$'s. For convenience,
+$r^0$ is defined to be $1$. Give a recursive definition of $r^n$
+analogous to the definition of $n!$ given in this chapter.
+  
+\end{prob}
+
+\begin{prob}
+ 
+ Give a recursive definition of the geometric sequence
+with initial term $3$ and common ratio $2$.
+  
+\end{prob}
+
+\begin{prob}
+ 
+ Generalize problem 5: give a recursive definition of  the geometric sequence
+with initial term $a$ and common ratio $r$.
+  
+\end{prob}
+ 
+

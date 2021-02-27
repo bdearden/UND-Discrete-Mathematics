@@ -1,0 +1,415 @@
+\chapter{The Method of Characteristic Roots}\label{chpt:char roots}
+
+\newthought{There is no method} that will solve all recurrence relations. However, for one
+particular type, there is a standard technique. The type is called a 
+{\bf linear recurrence relation with constant coefficients}. In 
+such a recurrence relation, the recurrence formula has the form
+$$
+a_n=c_1a_{n-1}+c_2a_{n-2}+...+c_ka_{n-k}+ f(n)
+$$
+where $c_1,\cdots,c_k$ are constants with $c_k\not=0$, and $f(n)$ is any function
+of $n$.
+
+The {\bfseries degree} of the recurrence is $k$, the number of terms we need to go back
+in the sequence to compute each new term. If $f(n)=0$, then the recurrence relation
+is called homogeneous. Otherwise it is called {\bfseries nonhomogeneous}.
+
+
+In chapter~\ref{chpt:solns to recur rels}, we noted that some simple non-homogeneous 
+linear recurrence relations with constant coefficients can be solved by unfolding.
+This method is not powerful enough for more general problems. In this chapter we introduce a basic 
+method that, in principle at least, can  be used to  solve any homogeneous linear recurrence relation 
+with constant coefficients. 
+
+\section{Homogeneous, constant coefficient recursions}
+We begin by considering the degree $2$ case. That is, we have a recurrence relation of the form 
+$a_n=c_1a_{n-1}+c_2a_{n-2}$, for $n\geq 2$, where $c_1$ and $c_2$ are real constants.
+We must also have two initial conditions $a_0$ and $a_1$. That is, we are given 
+$a_0$ and $a_1$ and the formula $a_n=c_1a_{n-1}+c_2a_{n-2}$, for $n\geq 2$. 
+Notice that $c_2\neq 0$ or else we have a linear recurrence relation with constant coefficients 
+and degree $1$. What we seek is a {\bf closed form formula} for $a_n$, which is a function
+of $n$ alone, and which is therefore independent of the previous terms of the sequence.
+
+
+\subsection{Basic example of the method}
+Here's the technique in a specific example:
+
+The problem we will solve is to find a formula for the terms of
+the sequence
+\begin{align*}
+ a_0 &= 4 \text{ and } a_1 = 8, \text{ with} \\
+ a_n &= 4a_{n-1}+12a_{n-2}, \text{for $n\geq2$.}
+\end{align*}
+The first thing to do is to ignore the initial conditions, and
+concentrate on the recurrence relation. And the way to solve the
+recurrence relation is to guess the solution. Well, actually, it is to
+guess the {\bfseries form} of the solution\sidenote{An \emph{educated} guess!}. 
+For such a recurrence you should
+guess that the solution looks like $a_n=r^n$, for some constant $r$.
+In other words, guess the solution is simply the powers of some fixed
+number. The good news is that this guess will always be correct! You
+will always find some solutions of this form. When this guess is plugged
+into the recurrence relation and the equation is simplified, the result
+is an equation that can be solved for $r$. That equation is called the
+{\bfseries characteristic equation} for the recurrence.  In our example, when
+$a_n=r^n$ for each $n$, the result is $r^n=4r^{n-1}+12r^{n-2}$, and
+canceling $r^{n-2}$ from each term, and rearranging the equation, we get
+$r^2-4r-12=0$. That's the characteristic equation. The left side can
+be factored, and the equation then looks like $(r-6)(r+2)=0$, and we see
+the solutions for $r$ are $r=6$ and $r=-2$. And, sure enough, if you
+check it out, you will see that $a_n=6^n$ and $a_n=(-2)^n$ both satisfy
+the given recurrence relation.  In other words, we find that
+\begin{align*}
+    6^n &=4\cdot6^{n-1}+12\cdot6^{n-2}, \text{ for all $n\geq2$, and} \\ 
+ (-2)^n &=4\cdot(-2)^{n-1}+12\cdot(-2)^{n-2}, \text{ for all $n\geq2$.}
+\end{align*}
+
+Using the characteristic equation, we have a method of finding
+some solutions to a recurrence relation.  This method will not find all
+possible solutions however.  \emph{BUT...} if we find {\bfseries all} the solutions
+to the characteristic equation, then they can be combined in a certain
+way to produce all possible solutions to the recurrence relation. The
+fact to remember is that if $r=a,b$ are the two solutions
+to the characteristic equation (for a recurrence of order two), then
+every possible solution to the linear homogenous recurrence relation
+must look like \sidenote{Actually, that is not quite true. There
+is a slight catch to be mentioned later (see section~\ref{sect:repeated roots}).}
+\[
+\alpha a^n+\beta b^n,
+\]
+for some constants $\alpha,\beta$. In the
+example we have been working on, every possible solution looks like\sidenote{This expression is called the \textbf{general solution}
+of the recurrence relation.}
+\[
+  a_n=\alpha (6)^n+\beta (-2)^n.
+\]
+
+Once we have figured out the general solution to the recurrence
+relation, it is time to think about the initial conditions.  In our
+case, the initial conditions are $a_0=4$  and $a_1=8$.  The idea is to
+select the constants $\alpha$ and $\beta$ of the general solution
+$a_n=\alpha 6^n+\beta (-2)^n$ so it will produce the correct two initial values.
+For $n=0$ we see we need $4=a_0=\alpha 6^0+\beta (-2)^0 = \alpha+\beta$, and for
+$n=1$, we need $8=a_1=\alpha 6^1+\beta (-2)^1 = 6\alpha-2\beta$. Now, we solve the 
+following pair of equations for $\alpha$ and $\beta$:
+\begin{align*}
+  \alpha +  \beta &=4, \\
+ 6\alpha - 2\beta &=8.
+\end{align*}
+Performing a bit of algebra, we learn that $\alpha=2$ and
+$\beta=2$.  Thus the solution to the recurrence is
+\[
+a_n=2\cdot6^n+2\cdot(-2)^n.
+\]
+
+\subsection{Initial steps: the characteristic equation and its roots}
+The steps in solving a recurrence problem are:
+\begin{enumerate}
+ \item Determine the characteristic equation.
+ \item Find the solutions to the characteristic equation.
+ \item Write down the general solution to the recurrence relation.
+ \item Select the constants in the general solution to produce the correct
+ initial conditions.
+\end{enumerate}
+
+
+\section{Repeated characteristic roots.}\label{sect:repeated roots}
+And now, about the little lie mentioned above: One catch with the method of
+characteristic equation occurs when the equation has repeated roots. Suppose, for
+example, that when the characteristic equation is factored the result is
+$(r-2)(r-2)(r-3)(r+5)=0$.  The characteristic roots are $2,2,3$ and
+$-5$. Here $2$ is a repeated root.  If we follow the instructions 
+given above, then the general solution we would write down is
+\begin{equation}\label{eqn:rep roots incorrect}
+ a_n= \alpha 2^n+\beta 2^n+\gamma 3^n+\delta (-5)^n.
+\end{equation}
+However, this expression will {\bfseries not} include all possible solutions
+to the recurrence relation. Happily, the problem is not too hard to
+repair: each time a root of the characteristic equation is repeated,
+multiply it by an additional factor of $n$ in the general solution, and
+then proceed with step 4 as described earlier.
+
+For our example, we modify one of the $2^n$ terms in equation~\ref{eqn:rep roots incorrect}. The correct general solution looks like\marginnote{Notice the extra factor of $n$ in the second term.}
+\[
+ a_n= \alpha 2^n+\beta n\cdot 2^n+\gamma 3^n+\delta (-5)^n.
+\]
+
+
+If $(r-2)$ had been a four fold factor of the characteristic
+equation\sidenote{in other words, if $2$ had been a characteristic root four
+times}, then the part of the general solution involving the $2$'s would
+look like \marginnote{Each new occurrence of a $2$ is multiplied by one more factor of $n$.}
+\[
+ \alpha 2^n+\beta n\cdot2^n+\gamma n^2\cdot2^n+\delta n^3\cdot2^n.
+\]  
+
+
+
+\section{The method of characteristic roots more formally}
+Let's describe the method of {\bfseries characteristic equation} a little more
+formally.  First, the characteristic equation is  denoted  by $\chi(x)=0$ % 
+\sidenote{For the general degree $2$ case above we have $\chi(x)=x^2-c_1x-c_2$.}. Notice
+that the degree of $\chi(x)$ coincides with the degree of the recurrence relation.
+Notice also that the non-leading coefficients of $\chi(x)$ are simply the negatives of the
+coefficients of the recurrence relation. In general, 
+the characteristic equation of $a_n=c_1a_{n-1}+...+c_ka_{n-k}$ is 
+\[
+ \chi(x)=x^k-c_1x^{k-1}-...-c_{k-1}x-c_{k}=0.
+\]
+A number $r$ (possibly complex) is a {\bfseries characteristic root} if $\chi(r)=0$. From basic algebra we know 
+that $r$ is a root of a polynomial if and only if $(x-r)$ is a factor of the polynomial. 
+When $\chi(x)$ is a degree $2$ polynomial, by the quadratic formula, either $\chi(x)=(x-r_1)(x-r_2)$, 
+where $r_1\neq r_2$, or $\chi(x)=(x-r)^2$, for some $r$.
+\begin{thm}
+ Let $c_1$ and $c_2$ be real numbers. Suppose that the polynomial $\chi(x)=x^2-c_1x-c_2$
+ has two distinct roots $r_1$ and $r_2$. Then a sequence $a:\N\to \R$ is a solution of the
+ recurrence relation $a_n=c_1a_{n-1}+c_2a_{n-2}$, for $n\geq 2$ if and only if
+  $a_m=\alpha r_1^m+\beta r_2^m$, 
+ for all $m\in \N$, and for some constants $\alpha$ and $\beta$.\marginnote{The constants are determined by the initial conditions (see equation~\ref{eqn:alpha beta}).}
+ \ms
+\end{thm}
+\begin{proof}
+ If $a_m=\alpha r_1^m+\beta r_2^m$ for all $m\in \N$, where $\alpha$ and $\beta$ are some
+ constants, then since $r_i^2-c_1r_i-c_2=0$, we have $r_i^2=c_1r_i+c_2$, for $i=1$
+ and $n=2$.
+ Hence, for $n\geq 2$, we have
+ \begin{align*}
+  c_1a_{n-1}+c_2a_{n-2}&= c_1(\alpha r_1^{n-1}+\beta r_2^{n-1}) + c_2(\alpha r_1^{n-2}+\beta r_2^{n-2})\\
+  &= \alpha r_1^{n-2}(c_1r_1 + c_2) + \beta r_2^{n-2}(c_1r_2+c_2) \text{ distributing and combining,} \\
+  &= \alpha r_1^{n-2}\cdot r_1^2 + \beta r_2^{n-2}\cdot r_2^2 \text{ by the remark above,} \\
+  &= \alpha r_1^n+\beta r_2^n = a_n.
+ \end{align*}
+ Conversely, if $a$ is a solution of the recurrence relation and has initial terms $a_0$ and $a_1$, then
+ one checks that the sequence $a_m=\alpha r_1^m+\beta r_2^m$ with 
+ \begin{equation}\label{eqn:alpha beta}
+  \alpha = \frac{a_1-a_0\cdot r_2}{r_1-r_2}, \text{ and } \beta =\frac{a_0r_1-a_1}{r_1-r_2}
+ \end{equation}
+ also satisfies the relation and has the same initial conditions. The equations for $\alpha$ and $\beta$
+ come from solving the system of linear equations
+ \begin{align*}
+  a_0 & =\alpha (r_1)^0 + \beta (r_2)^0 = \alpha + \beta \\
+  a_1 & = \alpha (r_1)^1 + \beta (r_2)^1 = \alpha r_1 + \beta r_2.
+ \end{align*}
+ This system is solved using techniques from a prerequisite course.
+\end{proof} 
+
+\begin{exmp}
+ Solve the recurrence relation $a_0=2, a_1=3$ and $a_n=a_{n-2}$, for $n\geq 2$.
+\end{exmp}
+\begin{soln}
+ The recurrence relation is a linear homogeneous recurrence relation of degree 2 with
+ constant coefficients $c_1=0$ and $c_2=1$. The characteristic polynomial is 
+ $$\chi(x)=x^2-0\cdot x-1=x^2-1.$$
+ The characteristic polynomial has two distinct roots since
+ \[
+  x^2-1=(x-1)(x+1).
+ \] 
+ Let's say $r_1=1$ and $r_2=-1$.
+ Then, we find the system of equations:
+ \begin{align*}
+  2&=a_0=\alpha 1^0 + \beta (-1)^0 = \alpha + \beta \\
+  3 &= a_1=\alpha 1^1 +\beta (-1)^1 = \alpha + \beta (-1) = \alpha -\beta.
+ \end{align*}
+ Adding the two equations eliminates $\beta$ and gives $5=2\alpha$, so $\alpha=5/2$.
+ Substituting this into the first equation, $2=5/2 + \beta$, we see that $\beta = -1/2$.
+ Thus, our solution is
+ \[
+  a_n=\frac{5}{2}\cdot 1^n + \frac{-1}{2} (-1)^n = \frac{5}{2} - \frac{1}{2}\cdot (-1)^n.
+ \]
+\end{soln} 
+
+
+\begin{exmp}
+ Solve the recurrence relation $a_1=3$, $a_2=5$, and, 
+ \[
+  a_n=5a_{n-1}-6a_{n-2}, \text{ for $n\geq 3$.}
+ \]
+\end{exmp}
+\begin{soln}
+ Here the characteristic polynomial is 
+ \[
+  \chi(x)=x^2-5x+6=(x-2)(x-3),
+ \]
+ with roots $r_1=2$ and $r_2=3$. Now, we suppose that
+\[
+ a_m=\alpha 2^m + \beta 3^m, \text{ for all $m\geq 1$.}
+\] 
+ The initial conditions give rise to the system of equations
+ \begin{align*}
+ 3&=a_1=\alpha 2^1 + \beta 3^1 = 2\alpha + 3\beta \\
+ 5& =a_2 = \alpha 2^2 +\beta 3^2 = 4\alpha + 9\beta.
+ \end{align*}
+ If we multiply the top equation through by $2$, we obtain
+ \begin{align*}
+  6& =4\alpha + 6\beta \\
+  5& = 4\alpha + 9\beta.
+ \end{align*}
+ Subtracting the second equation from the first eliminates $\alpha$ and yields $1=-3\beta$. 
+ So, we have found that $\beta= -1/3$.
+ Substitution into the first equation yields $3=2\alpha + 3\cdot (-1/3)$, so $\alpha = 2$.
+ Thus 
+\[
+ a_m=2\cdot 2^m - {1\over 3}\cdot 3^m = 2^{m+1} - 3^{m-1}, \text{ for all $m\geq 1$.}
+\]
+\end{soln} 
+
+\section{The method for repeated roots}
+The other case we mentioned had a characteristic polynomial of degree two with one repeated root.
+Since the proof is similar we simply state the theorem.
+
+\begin{thm}
+ Let $c_1$ and $c_2$ be real numbers with $c_2\neq 0$ and suppose that
+ the polynomial $x^2-c_1x-c_2$ has a root $r$ with multiplicity $2$, so that $x^2-c_1x-c_2=(x-r)^2$.
+ Then, a sequence $a:\N\to \R$ is a solution of the
+ recurrence relation $a_n=c_1a_{n-1}+c_2a_{n-2}$, for $n\geq 2$ if and only if 
+\[
+  a_m=(\alpha +\beta m) r^m,
+\]
+ for all $m\in \N$, and for some constants $\alpha$ and $\beta$.
+\end{thm}
+
+\begin{exmp}
+ Solve the recurrence relation $a_0=-1, a_1=4$ and $a_n=4a_{n-1}-4a_{n-2}$, for $n\geq 2$.
+\end{exmp}
+\begin{soln}
+ In this case we have $\chi(x)=x^2-4x+4=(x-2)^2$. So, we may suppose that 
+\[
+  a_m=(\alpha + \beta m)2^m, \text{ for all $m\in \N$.}
+\]
+ The initial conditions give rise to the system of equations
+ \begin{align*}
+  -1&=a_0=(\alpha +\beta \cdot 0)2^0 = (\alpha )\cdot 1= \alpha \\
+  4 & = a_1 = (\alpha + \beta \cdot 1)2^1 = 2(\alpha + \beta)\cdot 2.
+ \end{align*}
+ Substituting $\alpha =-1$ into the second equation gives $4=2(\beta - 1)$, so $2=\beta - 1$ and $\beta = 3$.
+ Therefore $a_m=(3m-1)2^m$, for all $m\in \N$.
+\end{soln}
+
+\section{The general case}
+Finally, we state\sidenote{without proof} the general method of characteristic roots.
+ 
+\begin{thm}
+ Let $c_1, c_2, ..., c_k\in \R$ with $c_k\neq 0$. Suppose that the characteristic polynomial
+ factors as
+\begin{align*}
+ \chi(x) &=x^k-c_1x^{k-1}-c_2x^{k-2}-...-c_{k-1}x-c_k \\
+         &=(x-r_1)^{j_1}(x-r_2)^{j_2} \cdots (x-r_s)^{j_s}
+\end{align*}
+where $r_1$, $r_2$, $\ldots$, $r_s$ are distinct roots of $\chi(x)$, and $j_1$, $j_2$, $\ldots$, $j_s$ are positive integers such that 
+\[
+  j_1+j_2+j_3+...+j_s=k.
+\]
+ Then a sequence $a:\N\to\R$ is a solution of the recurrence relation
+\begin{align*}
+ a_n&=c_1a_{n-1}+c_2a_{n-2}+...+c_ka_{n-k}\quad \text{ for $n\geq k$}  \\
+\intertext{if and only if}
+ a_m &= p_1(m)r_1^m+p_2(m)r_2^m+...+p_s(m)r_s^m\quad \text{ for all $m\in \N$,} \\
+\intertext{where} 
+ p_i(m) &= \alpha_{0,i} + \alpha_{1,i}m + \alpha_{2,i} m^2 + ...+\alpha_{j_i-1,i} m^{j_i-1} 
+ \quad 1\leq i\leq s
+\end{align*}
+ and the $\alpha_{l,i}$'s are constants.
+\end{thm}
+
+There is a problem with the general case. It is true that given the recurrence relation we 
+can simply write down the characteristic polynomial. However it can be quite a challenge
+ to factor it as required by the theorem.
+Even if we succeed in factoring it we are faced with the tedious task of setting up and solving 
+a system of $k$ linear equations in $k$ unknowns (the $\alpha_{l,i}$'s). While in theory such a system can be solved using the methods of
+ elimination or  substitution  covered in a college algebra course, in practice, the amount
+of labor involved can become overwhelming. For this reason, computer algebra systems are often
+used in practice to help solve systems of equations, or even the original recurrence relation.
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+For each of the following sequences find a recurrence relation satisfied by the sequence. Include a sufficient
+number of initial conditions to completely specify the sequence.
+\begin{enumerate}[label=(\alph*)]
+ \item $a_n=2n+3, n\geq 0$
+ \item $a_n=3\cdot 2^n, n\geq 1$
+ \item $a_n=n^2, n\geq 1$
+ \item $a_n=n+(-1)^n, n\geq 0$
+\end{enumerate}
+\end{exer}
+
+\noindent\textit{Solve each of the following recurrence relations:}
+\begin{exer}
+$a_0=3, a_1=6,$ and $a_n=a_{n-1}+6a_{n-2},$ for $n\geq 2$.
+\end{exer}
+
+\begin{exer}
+$a_0=4,a_1=7,$ and $a_n=5a_{n-1}-6a_{n-2},$ for $n\geq 2$.
+\end{exer}
+
+\begin{exer}
+$a_2=5, a_3=13,$ and $a_n=7a_{n-1}-10a_{n-2},$ for $n\geq 4$.
+\end{exer}
+
+\begin{exer}
+$a_1=3, a_2=5,$ and $a_n=4a_{n-1}-4a_{n-2},$ for $n\geq 3$.
+\end{exer}
+
+\begin{exer}
+$a_0=1, a_1=6,$ and $a_n=6a_{n-1}-9a_{n-2},$ for $n\geq 2$.
+\end{exer}
+
+\begin{exer}
+$a_1=2, a_2=8$, and $a_n=a_{n-2}$, for $n\geq 3$.
+\end{exer}
+
+\begin{exer}
+$a_0=2, a_1=5, a_2 = 15$, and $a_n=6a_{n-1}-11a_{n-2}+6a_{n-3}$, for $n\geq 3$.
+\end{exer}
+
+\begin{exer}
+Find a closed form formula for the terms of the Fibonacci sequence: $f_0=0$, $f_1=1$, and
+for $n\geq 2$, $f_n=f_{n-1}+f_{n-2}$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Solve $a_0=1$, and $a_n=2a_{n-1},$ for $n\geq 1$ using the characteristic equation method.
+\end{prob}
+
+\begin{prob}
+Solve $a_0=2, a_1=5$ and $a_n=a_{n-1}+6a_{n-2},$ for $n\geq 2$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=3,a_1=7,$ and $a_n=6a_{n-1}-5a_{n-2},$ for $n\geq 2$.
+
+\end{prob}
+
+
+\begin{prob}
+$a_2=5, a_3=13,$ and $a_n=3a_{n-1}+10a_{n-2},$ for $n\geq 4$.
+\end{prob}
+
+
+\begin{prob}
+$a_1=3, a_2=5,$ and $a_n=8a_{n-1}-16a_{n-2},$ for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_1=2, a_2=8$, and $a_n=4a_{n-2}$, for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=0, a_1=1, a_2 = 2$, and $a_n=-a_{n-1}+4a_{n-2}+4a_{n-3}$, for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=0$, $a_1=1$, and
+for $n\geq 2$, $a_n=2a_{n-1}+a_{n-2}$.
+
+\end{prob}
+
+
+

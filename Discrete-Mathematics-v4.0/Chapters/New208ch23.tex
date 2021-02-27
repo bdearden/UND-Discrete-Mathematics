@@ -1,0 +1,383 @@
+\chapter{GCD's Reprised}\label{chpt:gcd's reprised}
+
+\newthought{The $\gcd$ of $a$ and $b$ is defined} to be the largest integer that divides them both. But there is 
+another way to describe that $\gcd$. First, a little vocabulary: by a 
+{\bfseries linear combination} of $a$ and $b$ we mean any expression of the form
+$as+bt$ where $s,t$ are integers. For example, $4\cdot5 + 10\cdot2 = 40$ is a linear
+combination of $4$ and $10$. Here are some more linear combinations of $4$ and $10$:
+\[
+ 4\cdot1 + 10\cdot1 = 14, \quad
+ 4\cdot0 + 10\cdot0 = 0, \text{ and,} \quad
+ 4\cdot(-11) + 10\cdot1 = -34.
+\]
+
+\section{The $\gcd(a,b)$ as a linear combination of $a$ and $b$}
+If we make a list of all possible linear combinations of $4$ and $10$, an unexpected pattern
+appears: $\cdots, -6,-4,-2,0,2,4,6,\cdots$. Since $4$ and $10$ are both even, we are sure to
+see only even integers in the list of linear combinations, but the surprise is that {\itshape every}
+even number is in the list. Now here's the connection with $\gcd$'s: The $\gcd$ of $4$ and $10$
+is $2$, and the list of all linear combinations is exactly all multiples of $2$. Let's  prove that
+was no accident.
+
+\begin{thm}\label{thm:gcd lin comb}
+Let $a,b$ be two integers (not both zero). Then the smallest positive number
+in the list of the linear combinations of $a$ and $b$ is $\gcd(a,b)$.
+In other words, the $\gcd(a,b)$ is the smallest positive integer that can be written as a linear
+combination of $a$ and $b$.
+\end{thm}
+\begin{proof}Let $L = \{\,as+bt\,|\, s, t \hbox{ are integers and } as+bt>0\,\}$. Since $a,b$
+are not both $0$, we see this set is nonempty. As a nonempty set of positive integers, it must 
+have a least element, say $m$. Since $m\in L$, $m$ is a linear combination of $a$ and $b$. 
+Say $m= as_0+bt_0$. We need to show $m= \gcd(a,b) = d$. As noted above, since $d|a$ and
+$d|b$, it must be that $d|(as_0+bt_0)$, so $d|m$. That implies $d\leq m$. We complete the
+proof by showing $m$ is a common divisor of $a$ and $b$. The plan is to divide $a$ by $m$
+and show the remainder must be $0$. So write $a=qm+r$ with $0\leq r<m$. Solving for $r$
+we get $0\leq r = a-qm = a-q(as_0+bt_0) = a(1-qs_0) + b(-qt_0) <m$. That shows $r$ is a 
+linear combination of $a$ and $b$ that is less than $m$. Since $m$ is the smallest positive
+linear combination of $a$ and $b$, the only option for $r$ is $r=0$. Thus $a=qm$, and so
+$m|a$. In the same way, $m|b$. Since $m$ is a common divisor or $a$ and $b$, it follows
+that $m\leq d$. Since the reverse inequality is also true, we conclude $m=d$.
+\end{proof}
+
+And now we are ready for the punch-line.
+
+\begin{thm}
+Let $a,b$ be two integers (not both zero). Then the list of all the linear
+combinations of $a$ and $b$ consists of all the multiples of $\gcd(a,b)$.
+\end{thm}
+\begin{proof}Since  $\gcd(a,b)=d$  certainly divides any linear combination of $a$ and $b$, only
+multiples of $d$ stand a 
+chance to be in the list. Now we need to show that if $n$ is a multiple of the $d$ then $n$ will
+appear in the list for sure. According to the last theorem, we can find integers
+$s_0,t_0$ so that $d=as_0+bt_0$. Now since $n$ is a multiple of $d$,
+we can write $n = de$. Multiplying both sides of $d=as_0+bt_0$ by
+$e$ gives $a(s_0e) + b(t_0e) = de = n$, and that shows $n$ does appear
+in the list of linear combinations of $a$ and $b$.
+\end{proof}
+
+So, without doing any computations, we can be sure that the
+set of all linear combinations of $15$ and $6$ will be all multiples
+of $3$. 
+
+\section{Back-solving to express $\gcd(a,b)$ as a linear combination}\label{sect:gcd back-solving}
+In practice, finding integers $s$ and $t$ so that $as+bt=d=\gcd(a,b)$ is
+carried out by using the Euclidean algorithm applied to $a$ and $b$ and
+then {\itshape back-solving}.
+
+\begin{exmp}\label{exmp:gcd(55,35) backward}
+Let $a=35$ and $b=55$. Then the Euclidean algorithm gives
+\begin{align*}
+ 55&=35\cdot 1+20 \\
+ 35&=20\cdot 1+15 \\ 
+ 20&=15\cdot 1 + 5 \\ 
+ 15&=5\cdot 3+0
+\end{align*}
+The penultimate equation allows us to write $5=1\cdot 20 +(-1)\cdot 15$ as a linear combination
+of $20$ and $15$. We then use the equation $35=20\cdot 1 + 15$, to write $15=1\cdot 35+(-1)\cdot 20$.
+We can substitute this into the previous expression for $5$ as a linear combination of $20$ and $15$
+to get $5=1\cdot 20 +(-1)\cdot 15=1\cdot 20 +(-1)\cdot (1\cdot 35 + (-1)\cdot 20$). Which can be simplified
+by collecting $35$'s and $20$'s to write $5=2\cdot 20+(-1)\cdot 35$. Now we can use the
+top equation to write $20=1\cdot 55+(-1)\cdot 35$ and substitute this into the expression
+giving $5$ as a linear combination of $35$ and $20$. We get $5=2\cdot (1\cdot 55+(-1)\cdot 35)+(-1)\cdot 35$.
+This simplifies to $5=2\cdot 55+(-3)\cdot 35$.
+\end{exmp}
+
+\section{Extended Euclidean Algorithm}\label{sec:ext euc alg}
+The sort of computation in section~\ref{sect:gcd back-solving}
+gets a little tedious, keeping track of equations
+and coefficients. Moreover, the back-substitution method isn't
+very pleasant from a programming perspective since all the
+equations in the Euclidean algorithm need to be saved before
+solving for the coefficients in a linear combination for the $\gcd(a,b)$.
+The Extended Euclidean Algorithm is a forward-substition method that
+allows us to compute  linear combinations as we calculate remainders on the
+way to finding $\gcd(a,b)$.
+
+There are two new ideas that we need to add to our Euclidean Algorithm for computing
+$\gcd(a,b)$: every remainder can be written as a linear combination of $a$ and $b$, and
+we can use the quotient--remainder computation to generate new linear combinations.
+An example is the best way to see how this works.
+
+\begin{exmp}\label{exmp:ext euc alg gcd(6765,987)}
+Let $a=6567$ and $b=987$. We would like to find $\gcd(a,b)=\gcd(6567,987)$ and coefficients
+$s$ and $t$ in a linear combination: $a(s) +b(t)=\gcd(a,b)$. Suppose that we had found the remainders
+$r_3=303$ and $r_4=39$, and had found corresponding linear combinations:
+\begin{align*}
+ \text{\bfseries eqn 3: } &6567(2)+987(-13) = 303, \text{ and}\\
+ \text{\bfseries eqn 4: } &6567(-3)+987(20) =39.
+\end{align*}
+ 
+
+To find the next remainder, $r_5$, the Euclidean Algorithm has us calculate the
+quotient, $q_4=7$, and then the remainder as $r_5 = r_3 - r_4\times q_5 = 30$%
+\marginnote{\color{Red}Check this computation!}. The Extended
+Euclidean Algorithm finds the next equation, (eqn 5), by performing the same operation on (eqn 3) and (eqn 4):
+\begin{align*}
+ \left(6567(2)+987(-13)\right) - \left(6567(-3)+987(20)\right)\times(7) 
+   &= (303) - (39)\times(7),\\
+   6567(23) + 987(-153) &= 30.
+\end{align*}
+\begin{margintable}
+\renewcommand{\tabcolsep}{1pt}
+\begin{tabular}{rrrcrrcrl}
+   \text{eqn -1: }           & $6567($& 1)    &+& $987($& $0)$,    &=& $6567,$\\
+   \text{eqn \phantom{-}0: } & $6567($& 0)    &+& $987($& $1)$,    &=& $987,$\\
+   \text{eqn \phantom{-}1: } & $6567($& 1)    &+& $987($& $-6)$,   &=& $645,$ &\ $(q_1=6),$\\
+   \text{eqn \phantom{-}2: } & $6567($&-1)    &+& $987($& $7)$,    &=& $342,$ &\ $(q_2=1),$\\
+   \text{eqn \phantom{-}3: } & $6567($& 2)    &+& $987($& $-13)$,   &=& $303,$&\ $(q_3=1),$\\
+   \text{eqn \phantom{-}4: } & $6567($&-3)    &+& $987($& $20)$,    &=& $39,$ &\ $(q_4=1),$\\
+   \text{eqn \phantom{-}5: } & $6567($& 23)   &+& $987($&$-153)$, &=& $30,$ &\ $(q_5=7),$\\
+   \text{eqn \phantom{-}6: } & $6567($&-26)   &+& $987($& $173)$,  &=& $9,$ &\ $(q_6=1),$\\
+   \text{eqn \phantom{-}7: } & $6567($& 101)  &+& $987($&$-672)$, &=& $3,$ &\ $(q_7=3),$\\ 
+   \text{eqn \phantom{-}8: } & $6567($&-329)  &+& $987($& $2189)$, &=& $0,$ &\ $(q_8=3).$ \\
+ \addlinespace
+\end{tabular}
+%\caption{eqn i: $6567(s_i)+987(t_i)=r_i$}\label{tbl:gcd(6567,98) eqns}
+\end{margintable}
+In order to get the process started we need two initial equations based on the
+values of $a$ and $b$. That is, we will pretend that they are ``remainders'', say
+$r_{-1}=6567$ and $r_0=987$, that come before the first true remainder, $r_1$.
+The complete Extended Euclidean Algorithm process is shown in the table.
+%Table~\ref{tbl:gcd(6567,98) eqns}. 
+The last equation with a non-zero remainder
+is a linear
+combination of $6567$ and $987$ equal to the $\gcd(6567,987)=3$. That is, we have
+\[
+ 6567(101)+987(-672)=3.
+\]
+
+
+\end{exmp}
+Notice that every equation in Example~\ref{exmp:ext euc alg gcd(6765,987)} 
+has the same form:
+\begin{equation}\label{eqn:gcd(6567,987) form}
+  6567(s_i)+987(t_i)=r_i.
+\end{equation}\marginnote{The $s_i$ and $t_i$ are called \textit{B\'ezout Coefficients}.}
+The only values that change are the linear combination coefficients, $s_i$ and $t_i$, 
+the remainders, $r_i$, and the quotient values $q_{i}$. If we remember the equation
+form \ref{eqn:gcd(6567,987) form}, we could just write the changing values in a tabular form (see Table~\ref{tbl:gcd(6567,98) tabular}).
+\begin{margintable}[0.25cm]
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|*{5}{>{\raggedleft\arraybackslash}p{0.65cm}|}}
+\hline
+ $i$&$s_i$&$t_i$&$r_i$&$q_{i}$\\
+\hline\hline
+$-1$&$1$&$0$&$6567$&\\
+\hline
+$0$&$0$&$1$&$987$&\\
+\hline
+$1$&$1$&$-6$&$645$&$6$\\
+\hline
+$2$&$-1$&$7$&$342$&$1$\\
+\hline
+$3$&$2$&$-13$&$303$&$1$\\
+\hline
+$4$&$-3$&$20$&$39$&$1$\\
+\hline
+$5$&$23$&$-153$&$30$&$7$\\
+\hline
+$6$&$-26$&$173$&$9$&$1$\\
+\hline
+$7$&$101$&$-672$&$3$&$3$\\
+\hline
+$8$&$-329$&$2189$&$0$&$3$\\
+\hline\addlinespace
+\end{tabular}
+\caption{$i$: $6567(s_i)+987(t_i)=r_i,\ q_{i}$}\label{tbl:gcd(6567,98) tabular}
+\end{margintable}
+To generate a new, $i$th row in a table consider the two consecutive previous
+ rows as equations:
+\[
+ a(s_{i-2})+b(t_{i-2})=r_{i-2}, \text{ and }
+ a(s_{i-1})+b(t_{i-1})=r_{i-1}.
+\]
+After finding the quotient $q_{i}$ so that $r_{i-2}=q_{i}\dot r_{i-1}+r_{i}$, we
+subtract $q_{i}$ times the $i-1$ equation from the $i-2$ equation. 
+
+\noindent
+Simplifying the resulting expression, we obtain
+\begin{equation}\label{eqn: a(s)+b(t)=r, i-1, i-2}
+ a\left(s_{i-2} - q_{i}\cdot s_{i-1}\right) 
+  + b\left(t_{i-2} - q_{i}\cdot t_{i-1}\right) 
+  = r_{i-2} - q_{i}\cdot r_{i-1}.
+\end{equation}
+This is our new, $i$th equation:
+\begin{equation}\label{eqn:a(s)b(t)=r, i}
+ a\left(s_i\right) + b\left(t_i\right) = r_i.
+\end{equation}
+Comparing equations~\ref{eqn: a(s)+b(t)=r, i-1, i-2} with equation~\ref{eqn:a(s)b(t)=r, i}, we see that the $s_i$ and $t_i$ are calculated in exactly the same way from the previous two values as the remainder $r_i$ is.
+
+Since the equation number $i$ plays no role in the computations, we need not include
+that column in the tableaux. 
+
+\begin{exmp}
+ Find $d=\gcd(55,35)$ and a linear combination $55(s)+35(t)=d$.%
+ \begin{margintable}
+ \renewcommand{\arraystretch}{1.25}
+ \begin{tabular}{|*{4}{>{\raggedleft\arraybackslash}p{0.5cm}|}}
+ \hline
+  $s_i$&$t_i$&$r_i$&$q_{i}$\\
+ \hline\hline
+  $1$&$0$&$55$&\\
+ \hline
+  $0$&$1$&$35$&\\
+ \hline
+  $1$&$-1$&$20$&$1$\\
+ \hline
+  $-1$&&$15$&$1$\\
+ \hline
+  &&&$1$\\
+ \hline
+  &&&$3$\\
+ \hline\addlinespace
+ \end{tabular}
+% \caption{$55(s_i)+35(t_i)=r_i,\ q_{i}$}\label{tbl:gcd(55,35) tabular}
+ \end{margintable}%
+ Complete the tableaux in the table %Table~\ref{tbl:gcd(55,35) tabular} 
+ using the Extended
+ Euclidean Algorithm. Compare these calculations to those of Example~\ref{exmp:gcd(55,35) backward}, where we used the back-substitution method.
+\end{exmp}
+
+Often, when performing the Algorithm by hand it is more convenient to write
+the tableaux horizontally, as in the following example.
+\begin{exmp}
+Find $\gcd(107653,22869)$, and write it as
+a linear combination of those two numbers.
+The complete Extended Euclidean Algorithm table is displayed in table~\ref{tbl:gcd(107653,22869)},
+where the rows correspond to $r_{i}$, $q_i$, $t_i$, $s_i$, respectively.
+
+\begin{table}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|*{13}{>{\raggedleft\arraybackslash}p{0.996cm}|}}
+ \hline
+ 107653&22869&16177&6692&2793&1106&581&525&56&21&14&7&0 \\
+ \hline
+  &&4&1&2&2&2&1&1&9&2&1&2 \\
+ \hline
+ 0&1&-4&5&-14&33&-80&113&-193&1850&-3893&5743&-15379 \\
+ \hline
+ 1&0&1&-1&3&-7&17&-24&41&-393&827&-1220&3267 \\
+ \hline
+\end{tabular}
+\caption[][2.65cm]{$\gcd(107653,22869)$}\label{tbl:gcd(107653,22869)}
+\end{table}
+
+Thus, we may conclude that 
+\[
+\gcd(107653,22869) = 7 = (107653)(-1220)+(22869)(5743).
+\]
+\end{exmp}
+
+\section{General Linear Combinations for $\gcd(a,b)$}
+In section~\ref{sec:ext euc alg} we saw how the Extended Euclidean Algorithm may
+be used to find \textbf{a} linear combination of the form $a(s)+b(t)=\gcd(a,b)$.
+ It is often
+necessary to find all such linear combinations, (see section~\ref{sec:find all lin combs}). In particular,  such general linear combinations are found in the study of cryptography. The Algorithm stops when we reach a remainder of zero. It turns out that
+the corresponding values of $s_i$ and $t_i$, which we haven't used yet, allow us to
+find the form for \textbf{all} linear combinations that equal $\gcd(a,b)$.
+
+\begin{exmp}\label{exmp:gen soln gcd(6567,987)}
+ Consider example~\ref{exmp:ext euc alg gcd(6765,987)} wherein we wanted to express
+ $\gcd(6567,987)$ as a linear combination. We found at the end of the process
+ that $\gcd(6567,987)=3$ and
+ \begin{align*}
+   6567(101)+987(-672)    &= 3,\text{ and, }\\
+   6567(-329) + 987(2189) &= 0.
+ \end{align*}
+ Now, for any integer, say $n$, we may multiply the last equation by $n$ and retain
+ zero on the right. Finally, if we add that new equation to the previous one, we
+ obtain
+ \begin{align*}
+   6567(101-329n)+987(-672+2189n)    &= 3,\text{ and, }\\
+     6567(-329n) + 987(2189n) &= 0.
+ \end{align*}
+ The new penultimate equation gives the form for all the linear combinations
+ equal to the $\gcd(6567,987)$:
+ \[
+  6567(101-329n)+987(-672+2189n)  =\gcd(6567,987)=3.
+ \]
+\end{exmp}
+
+Each pair of B\'ezout Coefficients can be shown to be relatively prime\footnote{See page~\pageref{def:rel prime} for the definition of relatively prime.}.
+In particular, the last equation in the Extended Euclidean Algorithm,
+\[
+ a(s_{k+1}) + b(t_{k+1}) = 0,
+\]
+has minimal coefficients $s_{k+1}$ and $t_{k+1}$ in that every other such pair
+is a common multiple of these two\footnote{See section~\ref{sec:find all lin combs}.}.
+This means that, given any integer $n$, $ns_{k+1}$ and $nt_{k+1}$ also satisfy the
+equation. In fact, it is easy to see that
+\[
+ a(ns_{k+1}) + b(nt_{k+1}) =0.
+\]
+Finally, to obtain the general solution, as we did in example~\ref{exmp:gen soln gcd(6567,987)}, we add this to the B\'ezout equation for the $\gcd(a,b)$,
+obtaining\marginnote{One of $s_{k+1}$ and $t_{k+1}$ will always be negative!}
+\[
+ a(s_k+ns_{k+1}) + b(t_k +nt_{k+1}) = \gcd(a,b).
+\]
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+Determine $\gcd(13447,7667)$ and write it as a linear combination of $13447$ and $7667$.
+Try both the method of back-substitution and the Extended Euclidean Algorithm
+ to determine a suitable linear combination.
+\end{exer}
+
+\begin{exer}
+What can you conclude about $\gcd(a,b)$ if there are integers $s,t$ with $as+bt=1$?
+\end{exer}
+
+\begin{exer}
+What can you conclude about $\gcd(a,b)$ if there are integers $s,t$ with $as+bt=19$?
+\end{exer}
+
+\begin{exer}
+ What can you conclude about $\gcd(a,b)$ if there are integers $s,t$ with
+ $as+bt=18$?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Determine $\gcd(41559,39417)$ and write it as a linear combination of $41559$ and $39417$.
+Try both the method of back-substitution and the Extended Euclidean Algorithm
+ to determine a suitable linear combination.
+\end{prob}
+ 
+\begin{prob}
+ What can you conclude about $\gcd(a,b)$ if there are integers $s,t$ with $as+bt=12$?
+ \end{prob}
+ 
+ \begin{prob}
+ What is the smallest positive integer that can be written as a linear combination of $2191$ and $1351$?
+ \end{prob}
+ 
+ \begin{prob}
+ {\bf Definition:} The {\it least common multiple} of the positive integers $a$ and $b$ is the smallest positive integer
+ that is divisible by both $a$ and $b$.\\[3pt]
+ 
+ Example: the least common multiple of $24$ and $18$ is $72$. Write that as $\lcm(24,18) = 72$. You might recall
+ the notion of least common multiple from the time you learned how to add fractions. The idea was that to add two fractions,
+ $\frac{a}{b}$ and $\frac{c}{d}$, first write the two as equivalent fractions with the same denominator. For example, to add 
+ $\frac{2}{3}$ and $\frac{5}{4}$, write them as $\frac{8}{12}$ and $\frac{15}{12}$, then add to get $\frac{23}{12}$. 
+ The least common denominator when adding $\frac{a}{b}$ and $\frac{c}{d}$ is the least common multiple of the 
+ denominators, $\lcm(b,d)$\\
+ 
+ Determine $\lcm(22,33)$. (The answer is not $726$.)
+ 
+ \end{prob}
+ 
+ \begin{prob}
+ The result  when $\gcd(a,b)$ and $\lcm(a,b)$ are multiplied is always a simple combination of $a$ and $b$. 
+ Example: $\gcd(6,4)\lcm(6,4) = 2\cdot 12 = 24$.
+ Try a few more examples, and see if you can guess the value of $\gcd(a,b)\lcm(a,b)$.
+ \end{prob}
+ 
+ 
+ 
+
+
+
+

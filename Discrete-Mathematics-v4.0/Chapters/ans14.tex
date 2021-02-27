@@ -1,0 +1,33 @@
+    \section*{Chapter 14}
+\begin{Solution}{14.1}
+$3,\,15,\,255,\,65535,\,4294967295$
+\end{Solution}
+
+\begin{Solution}{14.2}
+$1,\,1,\,2,\,3,\,7,\,22,\,155$
+\end{Solution}
+
+\begin{Solution}{14.3}
+$1,\,2,\, 3,\,3,\,4,\,4,\,4,\,4,\,5,\,5$ 
+\end{Solution}
+
+\begin{Solution}{14.4}
+$1,\,0,\,3,\,2,\,5,\,4,\,7,\,6,\,9,\,8$. It looks like the terms alternately give one more and one less then the term index.\\
+ That suggests $a_n = n +(-1)^n$.
+\end{Solution}
+
+\begin{Solution}{14.5}
+This is the {\itshape Look{-}and{-}Say sequence} introduced by John Horton Conway. After the initial term equal to $1$, each new term is produced by {\itshape reading} the previous term. Examples:
+\begin{itemize}
+\item for the second term, read the first term ($1$) as "{\itshape one $1$}" (so $11$)
+\item for the next term, read $11$ as "{\itshape two $1$}" (so $21$)
+\item next, read $21$ as "{\itshape one $2$ and one $1$}" (so $1211$)
+\item next $1211$ is "{\itshape one $1$, one $2$, and two $1$}" (so $111221$)
+\end{itemize}
+and so on. The term following $1113213211$ is $31131211131221$.
+\end{Solution}
+
+\begin{Solution}{14.6}
+For $n=1$, we define $1d$ to equal $d$. Now for the recursive part of the definition: 
+For $n>1$, we define $nd = (n-1)d + d$.
+\end{Solution}

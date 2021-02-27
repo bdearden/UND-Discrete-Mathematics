@@ -1,0 +1,116 @@
+\chapter{Solutions to Recurrence Relations}\label{chpt:solns to recur rels}
+
+\newthought{In chapter~\ref{chpt:counting use recur}, it was} pointed out that 
+recursively defined
+sequences suffer from one major drawback: In order to compute a
+particular term in the sequence, it is necessary to first compute all
+the terms of the sequence leading up to the one that is wanted. Imagine
+the chore to calculate the $250^{th}$ Fibonacci number, $f_{250}$! For
+problems of computation, there is nothing like having a formula like
+$a_n= n^2$, into which it is merely necessary to plug the number of
+interest.
+
+\section{Solving a recursion by conjecture}
+It may be possible to find a formula for a sequence that is
+defined recursively. When that can be done, you have the best of both
+the formula and recursive worlds.  If we find a formula for the
+terms of a recursively defined sequence, we say we have {\bfseries solved}
+the recursion.
+
+
+\begin{exmp}\label{exmp: recur a_n=2a_{n-1}+1}
+ Here is an example: The sequence
+ $\{a_n\}$ is defined recursively by the initial condition $a_0=2$, and
+ the recursive formula $a_n=2a_{n-1}-1$ for $n\geq1$. If
+ the first few terms of this sequence are written out, the results are
+ \[
+ 2,3,5,9,17,33,65,129,\cdots,
+ \]
+  and it shouldn't be too long before the\marginnote{You have to recognize the slightly hidden powers of $2$: $1,2,4,8,16,32,64,\dots$.}
+ pattern becomes clear. In fact, it looks like $a_n=2^n+1$ is the formula
+ for $a_n$.
+ 
+ To prove that guess is correct, induction would be the best way to
+ go. Here are the details. Just to make everything clear, here is what we
+ are going to show: If $a_0=2$, and $a_n=2a_{n-1}-1$ for $n\geq1$, then
+ $a_n=2^n+1$ for all $n\geq0$. The basis for the inductive proof is the
+ case $n=0$. The correct value for $a_0$ is $2$, and the guessed formula
+ has value $2$ when $n=0$, so that checks out. Now for the inductive step:
+ suppose that the formula for $a_k$ is correct for a particular
+ $k\geq0$. That is, assume $a_k=2^k+1$ for some $k\geq0$. Let's show that the formula must
+ also be correct for $a_{k+1}$.  That is, we want to show
+ $a_{k+1}=2^{k+1}+1$. Well, we know that $a_{k+1}=2a_k-1$, and hence
+ $a_{k+1}=2(2^k+1)-1=2^{k+1}+2-1=2^{k+1}+1$, just as was to be proved.
+ It can now be concluded that the formula we guessed is correct for all
+ $n\geq0$.
+\end{exmp}
+
+
+In example~\ref{exmp: recur a_n=2a_{n-1}+1}, it was possible to guess the correct formula
+for $a_n$ after looking at a few terms.  In most cases the formula will
+be so complicated that that sort of guessing will be out of the
+question. 
+
+
+\section{Solving a recursion by unfolding}
+There is a method that will nearly automatically solve any recurrence
+of the form $a_0 = a$ and for, $n\geq 1$, $a_n= ba_{n-1}+c$ (where
+$a,b,c$ are constants). The method is called {\bfseries unfolding}. 
+
+\begin{exmp}
+ As an example, let's solve $a_0=2$ and, for $n\geq 1$, $a_n=5+2a_{n-1}$.
+ The plan is to write down the recurrence relation, and then substitute
+ for $a_{n-1}$, then for $a_{n-2}$, and so on, until we reach $a_0$.
+ It looks like this
+ \begin{align*}
+  a_n & = 5+2a_{n-1} \\
+  & = 5+2(5+2a_{n-2}) = 5 + 5(2) + 2^2a_{n-2} \\
+  & =  5 + 5(2) + 2^2(5+2a_{n-3})= 5+5(2)+5(2^2)+ 2^3a_{n-3}.
+ \end{align*}
+ 
+ 
+ If this substitution is continued, eventually we reach an expression we can compute in closed
+ form: \marginnote{In the next to last step we use the formula for adding the terms of a geometric sequence.}
+ \begin{align*}
+  a_n & =  5+5(2)+5(2^2)+ 5(2^3) + \cdots +5(2^{n-1})+ 2^na_0 \\
+  & = 5(1+2+2^2+\cdots+2^{n-1}) + 2^n(2) \\
+  & = 5{{2^n-1}\over{2-1}} + 2(2^n) \\
+  & =5(2^n-1) + 2(2^n) \\
+  & = 7(2^n) -5.
+ \end{align*}
+
+\end{exmp}
+
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+Guess the solution to $a_0=2$, and $a_1=4$, and, for $n\geq2$, $a_n = 4a_{n-1}-3a_{n-2}$
+and prove your guess is correct by induction.
+\end{exer}
+
+\begin{exer}
+Solve by unfolding: $a_0 = 2$, and, for $n\geq 1$, $a_n = 5a_{n-1}$.
+\end{exer}
+
+\begin{exer}
+Solve by unfolding:  $a_0 = 2$, and, for $n\geq 1$,  $a_n = 5a_{n-1}+ 3$.\\
+Hint: This one will involve applying the  geometric sum formula.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Guess the solution to $a_0=1$, and $a_1=5$, and, for $n\geq2$, $a_n = a_{n-1}+2a_{n-2}$
+and prove your guess is correct by induction.
+\end{prob}
+
+\begin{prob}
+Solve by unfolding: $a_0 = 2$, and, for $n\geq 1$, $a_n = 7a_{n-1}$.
+\end{prob}
+
+\begin{prob}
+Solve by unfolding:  $a_0 = 2$, and, for $n\geq 1$,  $a_n = 7a_{n-1}+ 3$.
+\end{prob}
+

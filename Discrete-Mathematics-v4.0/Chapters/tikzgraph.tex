@@ -1,0 +1,9 @@
+\documentclass{article}
+\usepackage{tikz} 
+\begin{document}
+\begin{tikzpicture}
+\draw[->] (-3,0) -- (4.2,0) node[right] {$x$};
+\draw[->] (0,-3) -- (0,4.2) node[above] {$y$};
+\draw [smooth,samples=100,domain=0:10] plot({\x},{\x*\x*\x});
+\end{tikzpicture}
+\end{document}

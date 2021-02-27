@@ -1,0 +1,185 @@
+\chapter{The Integers}
+
+\newthought{{\bfseries Number theory} is concerned} with the integers and their properties. 
+In this chapter  the rules of the arithmetic of integers are reviewed. The 
+surprising fact is that all the dozens of rules and tricks you know for working 
+with integers (and for doing algebra, which is just arithmetic with symbols) 
+are consequences of just a few basic facts. The list of facts given in sections~\ref{sect:integer operations} and \ref{sect: Z order properties}
+is actually longer than necessary; several of these rules can be derived
+from the others. 
+
+
+\section{Integer operations}\label{sect:integer operations}
+The set of  {\bfseries integers}, $\{ \cdots ,  -2,-1,0,1,2,\cdots\}$,  is denoted by 
+the symbol $\Z$.
+The two familiar arithmetic operations for the integers, addition and
+multiplication, obey  several basic rules. First, notice that addition and
+multiplication are {\bfseries binary operations}. In other words, these two
+operations combine a pair of integers to produce a value. It is not possible to add
+(or multiply) three numbers at a time. We can figure out the sum of three numbers,
+but it takes two steps: we select two of the numbers, and add them up, and then
+add the third to the preliminary total. Never are more than two numbers added
+together at any time. A list of the seven fundamental facts about
+addition and multiplication of integers follows.
+
+\clearpage
+\begin{enumerate}
+ \item The integers are {\bfseries closed} with respect to addition and multiplication.
+ 
+ That means that when two integers are added or multiplied, the result is another
+ integer. In symbols, we have 
+ \[
+ \forall a,b\in \Z,\ ab\in \Z \text{ and } a+b\in \Z.
+ \]
+ 
+ 
+ \item Addition and multiplication of integers are {\bfseries commutative} 
+ operations.
+ 
+ That means that the {\it order} in which the two numbers are combined has no
+ effect on the final total. Symbolically, we have
+ \[
+ \forall a,b\in \Z,\ a+b=b+a \text{ and }  ab=ba.
+ \]
+ 
+ 
+ \item Addition and multiplication of integers are {\bfseries associative} 
+ operations.
+ In other words, when we compute the sum (or product) of three integers, it does
+ not matter whether we combine the first two and then add the third to the total, 
+ or add the first to the total of the last two. The final total will be the same
+ in either case. Expressed in symbols, we have
+ \[
+ \forall a,b,c\in \Z,\ a(bc)=(ab)c \text{ and } a+(b+c)=(a+b)+c.
+ \]
+ 
+ 
+ \item There is an {\bfseries additive identity} denoted by $0$. 
+ It has the property that when it is added to any number the result is
+ that number right back again. In symbols, we see that
+ \[
+ 0+a=a=a+0 \text{ for all } a\in \Z.
+ \]
+ 
+ 
+ \item Every integer has an {\bfseries additive inverse}: $\forall n\in \Z, \exists m\in \Z$ 
+ so that $n+m=0=m+n$. As usual, $m$ is denoted by $-n$. So, we write $n+(-n)=(-n)+n = 0$.
+ 
+ 
+ \item $1$ is a {\bfseries multiplicative identity}. That is, we have $1a=a=a1$ for all $a\in \Z$.
+ 
+ And finally, there is a rule which establishes a connection between the operations of addition and multiplication.
+ 
+ 
+\clearpage 
+ \item Multiplication {\bfseries distributes} over addition. Again, we symbolically write
+ \[
+ \forall a,b,c\in \Z,\ a(b+c)=ab+ac.
+ \]
+\end{enumerate}
+
+
+The seven facts in section~\ref{sect:integer operations}, together with a few concerning ordering stated in section~\ref{sect: Z order properties},  tell all there is to 
+know 
+about arithmetic. Every other fact
+can be proved from these. For example, here is a proof of the cancellation
+law for addition using the facts listed above.
+
+\begin{thm}[Integer cancellation law]
+ For integers $a,b,c$, if $a+c = b+c$ then $a=b$.
+\end{thm}
+\begin{proof}
+ Suppose $a+c=b+c$. Add $-c$ to both sides of  that equation
+ (applying fact 5 above) to get
+ $(a+c) + (-c) = (b+c) +(-c)$. Using the associative rule, that equation
+ can be rewritten as $a+ (c+(-c)) = b + (c+(-c))$, and that becomes
+ $a+0=b+0$. By property 4 above, that means $a=b$.
+\end{proof}
+
+\begin{thm}
+For any integer $a$, $a0=0$.
+\end{thm}
+\begin{proof}
+Here are the steps in the proof. You supply the justifications
+for the steps.
+\begin{align*}
+ a0& = a(0+0) \\
+ a0 & = a0 + a0 \\
+ a0 + (-(a0)) & = (a0 + a0) + (-(a0)) \\
+ a0 + (-(a0)) & = a0 + (a0 + (-(a0))) \\
+ 0 & = a0 + 0 \\
+ 0 & = a0
+\end{align*}
+\end{proof}
+
+Your justification for each step should be stated as using one, or more, of the fundamental facts 
+as applied to the specific circumstance in each line.
+
+
+\clearpage
+\section{Order properties}\label{sect: Z order properties}
+The integers also have an order relation, {\it $a$ is less than or
+equal to $b$}: $a\leq b$. This relation satisfies three fundamental
+order properties: $\leq$ is a reflexive, antisymmetric, and transitive relation on $\Z$.
+ 
+ The notation $b\geq a$ means the same as $a\leq b$. Also $a<b$ (and $b>a$)
+ are shorthand ways to say $a\leq b$ and $a\not= b$.
+ 
+ The {\bfseries trichotomy law} holds: 
+ for $a\in \Z$ exactly one of $a>0, a=0,$ or  $a<0$ is true.
+
+The ordering of the integers is related to the arithmetic by several rules:
+\begin{enumerate}
+
+ \item If $a<b$, then $a+c<b+c$ for all $c\in \Z$.
+ 
+ \item If $a<b$ and $c>0$, then $ac<bc$.
+ 
+ \item If $a<b$ and $c<0$, then $bc<ac$.
+\end{enumerate}
+
+And, finally, the rule that justifies proofs by induction:
+
+The Well Ordering Principle for $\Z$:
+ The set of positive integers is {\bfseries well-ordered}: 
+  every nonempty subset of positive integers has a least element. 
+
+
+\clearpage
+\section{Exercises}
+
+\begin{exer} 
+Prove that if $a>0$ and $b>0$, then $ab>0$.
+\end{exer}
+
+\begin{exer}\label{zero property}
+Prove that if $ab=0$, then $a=0$ or $b=0$.  Hint: Try an indirect proof with four cases.
+Case 1: Show that if $a>0$ and $b>0$, then $ab\not=0$. Case 2: Show that if $a>0$ and $b<0$,
+then $ab\not=0$. There are two  more similar cases. (This fact is called the {\it zero property}.)
+\end{exer}
+
+\begin{exer} 
+Prove the cancellation law for multiplication: 
+For integers $a,b,c$, with $c\not=0$, if $ac=bc$, then $a=b$. (Hint: Use exercise \ref{zero property})
+\end{exer}
+
+
+
+\section{Problems}
+
+\begin{prob}
+Prove that if $a>0$ and $b<0$, then $ab <0$.
+\end{prob}
+
+\begin{prob}
+Prove that if $n$ is an integer, then $n^{2}\geq 0$.
+\end{prob}
+
+\begin{prob}
+Prove that is $m^{2} = n^{2}$, then $m=n$ or $m = -n$.\\
+ (Hint from algebra: $a^{2}-b^{2} = (a+b)(a-b)$.) 
+\end{prob}
+
+
+
+

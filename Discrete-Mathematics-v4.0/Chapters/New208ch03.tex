@@ -1,0 +1,282 @@
+\chapter{Predicates and Quantifiers}
+
+
+\newthought{%
+The sentence $x^2-2=0$ is not} a proposition. It cannot be assigned a truth
+value unless some more information is supplied about the variable $x$.
+Such a statement is called a  {\bfseries predicate} or a {\bfseries propositional
+function}.  
+
+\section{Predicates}
+Instead of using a single letter to denote
+a predicate, a symbol such as $S(x)$ will be used to indicate the dependence of the sentence on a 
+variable. Here are two more examples of
+predicates. 
+\begin{enumerate}
+\item $A(c) : $ {\itshape Al drives a $c$}, and 
+\item $B(x,y) :$ {\itshape $x$ is the brother of $y$}.\marginnote{The second example is an instance of a {\bfseries two-place predicate}.}
+\end{enumerate}
+%\marginnote{The second example is an instance of a {\bfseries two-place predicate}.}
+With a given predicate, there is an associated set of objects which can be
+used in place of the variables. For example, in the predicate $S(x) : x^2-2=0$, 
+it is understood that the $x$ can be replaced by a number. Replacing $x$ by, say, the
+word {\itshape blue} does not yield a meaningful sentence. For the predicate
+$A(c)$ above, $c$ can be replaced %
+\marginnote{Usually the domain of discourse is left for the
+reader to guess, but if the domain of discourse is something other than an obvious choice,
+the writer will mention the domain to be used.}%
+ by, say, makes of cars (or maybe types of nails!).
+ For $B(x,y)$, the $x$ can be replaced by any human male, and the $y$ by any human. 
+The collection of possible replacements for a variable in a predicate is called the 
+{\bfseries domain of discourse} for that variable.
+
+\section{Instantiation and Quantification}
+A predicate is not a proposition, but it can be converted into a proposition. There
+are three ways to modify a predicate to change it into a proposition. Let's use
+$S(x) : x^2-2=0$ as an example.
+
+The first way to change $S(x)$ to make it into a proposition is to assign a 
+specific value from the variable's domain of discourse to the variable.
+For example, setting $x=3$, gives the (false) proposition $S(3) : 3^2 - 2=0$.
+On the other hand, setting $x=\sqrt{2}$ gives the (true) proposition 
+$S(\sqrt{2}): (\sqrt{2})^2-2 = 0$. The process of setting a variable equal to a specific
+object in its domain of discourse is called {\bfseries instantiation}. Looking at the
+two-place predicate $B(x,y) : $ $x$ is the brother of $y$, we can instantiate
+both variables to get the (true) proposition {\itshape $B($Donny, Marie$) : 
+$ Donny is the brother of Marie}. Notice that the sentence
+{\itshape $B($Donny, y$) : $ Donny is the brother of $y$} has not been
+converted into a proposition since it cannot be assigned a truth value without some
+information about $y$. But it has been converted from a two-place predicate to a
+one-place predicate.
+
+A second way to convert a predicate  to a proposition is to precede the predicate
+with the phrase {\itshape There is an $x$ such that}.
+For example, {\itshape There is an $x$ such that } $S(x)$ would become
+ {\itshape There is an $x$ such that } $x^2-2=0$. This proposition is true 
+if there is at least one choice of $x$ in its domain of discourse for which
+the predicate becomes a true statement. The phrase   {\itshape There is an $x$ such that }
+is denoted in symbols by $\exists x$, so the proposition above would be written
+as $\exists x\, S(x)$ or $\exists x\, (x^2-2=0)$. When trying to determine the truth
+value of the proposition $\exists x\, P(x)$, it is important to keep the domain
+of discourse for the variable in mind. For example, if the domain for $x$ in  
+ $\exists x\, (x^2-2=0)$ is all integers, the proposition is false. But if its
+domain is all real numbers, the proposition is true. The phrase  
+{\itshape There is an $x$ such that } (or, in symbols, $\exists x$) is called
+ {\bfseries existential quantification}\sidenote{In English it can also be read as
+{\itshape There exists $x$} or {\itshape For some $x$}.}.
+
+The third and final way to convert a predicate into a proposition is by
+{\bfseries universal quantification}\sidenote{The phrase {\itshape For all $x$} is
+also rendered in English as {\itshape For each $x$} or
+{\itshape For every $x$}.} . The universal quantification of a predicate, $P(x)$,
+is obtained  by preceding the predicate with the phrase {\itshape For all $x$}, producing
+the proposition {\itshape For all $x, P(x)$}, or, in symbols, $\forall x\, P(x)$. This
+proposition is true provided the predicate becomes a true proposition for every object
+in the variable's domain of discourse. Again, it is important to know the domain
+of discourse for the variable since the domain will have an effect on the truth 
+value of the quantified proposition in general. 
+
+For multi-placed predicates, these three conversions can be mixed and matched. For example,
+using the obvious domains for the predicate {\itshape $B(x,y) : $ $x$ is the 
+brother of $y$} here are some conversions into propositions:
+
+\begin{enumerate}
+\item $B(Donny, Marie)$ has both variables instantiated. The proposition is true.
+
+\item $\exists y\, B(Donny, y)$ is also a true proposition. It says {\itshape Donny} is
+somebody's brother. The first variable was instantiated, the second was existentially
+quantified.
+
+\item $\forall y\, B(Donny,y)$ says everyone has Donny for a brother, and that is false.
+
+\item $\forall x\, \exists y\, B(x,y)$ says every male is somebody's brother, and that is false.
+
+\item $\exists y\,\forall x\, B(x,y)$ says there is a person for whom every male is a brother, and that is false.
+
+\item $\forall x\, B(x,x)$ says every male is his own brother, and that is false.
+\end{enumerate}
+
+
+\section{Translating to symbolic form}
+Translation between ordinary language and symbolic language can get a little tricky when
+quantified statements are involved. Here are a few more examples.
+
+\begin{exmp}\label{exmp:Porche}
+Let $P(x)$ be the predicate \textbf{$x$ owns a Porsche}, and
+let $S(x)$ be the predicate \textbf{$x$ speeds}. The domain of discourse for the variable
+in each predicate will be the collection of all drivers. The proposition $\exists x P(x)$ says
+\textbf{Someone owns a Porsche}.  It could also be translated as \textbf{There
+is a person $x$ such that $x$ owns a Porsche}, but that sounds too stilted for ordinary
+conversation. A smooth translation is better. The proposition $\forall x (P(x)\to S(x))$
+says \textbf{All Porsche owners speed.} 
+
+Translating in the other direction, 
+the proposition \textbf{No speeder owns a Porsche} could be expressed
+as $\forall x (S(x) \to \lnot P(x))$.
+\end{exmp}
+
+\begin{exmp}\label{exmp:Al knows}
+Here's a more complicated example: translate the proposition \textbf{Al 
+knows only Bill} into symbolic form. Let's use $K(x,y)$ for the predicate \textbf{$x$ knows
+$y$}. The translation would be $K(Al,Bill)\land \forall x\,(K(Al,x)\to (x=Bill))$.
+\end{exmp}
+
+\begin{exmp}\label{exmp:sum of evens}
+For one last example, let's translate \textbf{The sum of two even integers is even}
+into symbolic form. Let $E(x)$ be the predicate \textbf{$x$ is even}. As with many statements
+in ordinary language, the proposition is phrased in a shorthand code that the reader is 
+expected to unravel. As
+given, the statement doesn't seem to have any quantifiers, but they are implied. 
+Before converting it to symbolic form, it might help to expand it to its more long winded version:
+\textbf{For every choice of two integers, if they are both
+even, then their sum is even}. Expressed this way, the translation to symbolic 
+form is duck soup:
+$\forall x\,\forall y\, ((E(x)\land E(y))\to E(x+y))$.
+\end{exmp}
+
+\section{Quantification and basic laws of logic}
+Notice  that if the domain of discourse consists of finitely many entries $a_1, ..., a_n$,
+then $\forall x\, p(x)\equiv p(a_1)\wedge p(a_2) \wedge ... \wedge p(a_n)$. 
+So the quantifier $\forall$ can be expressed in terms of the logical connective $\wedge$. 
+The existential quantifier and $\vee$ are similarly linked: 
+$\exists x\, p(x)\equiv p(a_1)\lor p(a_2) \lor ... \lor p(a_n)$.
+
+From the associative and commutative laws of logic  we see that we can rearrange any system of propositions which
+are linked only by $\wedge$'s or linked only by $\vee$'s.\sidenote{For instance, consider  examples~\ref{exmp:Porche} -- \ref{exmp:sum of evens} with finite domains of discourse.} Consequently any more generally 
+quantified proposition of the form $\forall x\forall y\, p(x,y)$ is logically equivalent 
+to $\forall y \forall x\, p(x,y)$.
+Similarly for statements which contain only existential quantifiers. But the distributive 
+laws come into play when $\wedge$'s and $\vee$'s are mixed. So care must be taken with
+predicates  which contain both existential and universal quantifiers, as the following example shows.
+
+\begin{exmp}
+Let $p(x,y): \mathbf{x+y=0}$ and let the domain of discourse be all real numbers for 
+both $x$ and $y$. The proposition $\forall y\,\exists x\, p(x,y)$ is true, since, for any given $y$, by setting (instantiating) $x=-y$ we convert $\mathbf{x+y=0}$ to the true statement
+$\mathbf{(-y)+y=0}$\sidenote{$(\forall y \in \mathbb{R})[(-y)+y=0]$ is a tautology.}. However the proposition $\exists x\, \forall y\, p(x,y)$ is false. If we set (instantiate) $y=1$, then
+$\mathbf{x+y=0}$ implies that $x=-1$. When we set $y=0$, we get $x=0$. Since $0\neq -1$ there is no $x$
+which will work for all $y$, since it would have to work for the specific values of $y=0$ and $y=1$.
+\end{exmp}
+
+\section{Negating quantified statements}
+To form the negation of  quantified statements, we apply De Morgan's laws. This can be seen in 
+case of a finite domain of discourse as follows:
+\begin{align*}
+\lnot (\forall x\, p(x))&\equiv\lnot (p(a_1)\wedge p(a_2) \wedge ... \wedge p(a_n))\\
+&\equiv \lnot p(a_1)\lor\lnot p(a_2) \lor \dots \lor\lnot p(a_n)\\
+&\equiv \exists x\, \lnot p(x)
+\end{align*}
+In the same way, we have $\lnot (\exists x\, p(x)) \equiv (\forall x\, \lnot p(x))$.
+\sidenote{Use De Morgan's laws to find a similar expression for 
+$\lnot(\exists x p(x))$.}
+
+
+\clearpage
+\section{Exercises}
+\begin{exer}
+Let $p(x): 2x\geq 4$, for integers $x$. Determine the truth values of the following propositions. 
+\begin{tasks}(2)
+	\task $p(2)$
+	\task $p(-3)$
+	\task $\forall x\, ((x\leq 10)\to p(x))$
+	\task $\exists x\, \lnot p(x)$
+\end{tasks}
+\end{exer}
+
+\begin{exer}\label{ex:quant->eng}
+Let $p(x,y)$ be {\itshape $x$ has read $y$}, where the domain of discourse for 
+$x$ is all students
+in this class, and the domain of discourse for $y$ is all novels. Express the
+following propositions in English. 
+\begin{tasks}(2)
+	\task $\forall x\, p(x$, War and Peace)
+	\task $\exists x\, \lnot p(x$, The Great Gatsby)
+	\task $\exists x\, \forall y\, p(x,y)$
+	\task $\forall y\, \exists x\, p(x,y)$
+\end{tasks}
+
+\end{exer}
+
+\begin{exer}\label{ex:eng->quant}
+Let $F(x,y)$ be the statement {\itshape $x$ can fool $y$}, where the domain of discourse
+for both $x$ and $y$ is  all people. Use quantifiers to express each of the 
+following statements. 
+\begin{tasks}(1)
+	\task I can fool everyone.
+	\task George can't fool anybody.
+	\task No one can fool himself.
+	\task There is someone who can fool everybody. 
+	\task There is someone everyone can fool.
+	\task Ralph can fool two different people.
+\end{tasks}
+
+\end{exer}
+
+\begin{exer}
+Negate each of the statements from exercise \ref{ex:quant->eng} in English. 
+
+\end{exer}
+
+\begin{exer}
+
+Negate each statement from exercise \ref{ex:eng->quant} in logical symbols.  Of course, the easy
+answer would be to simply put $\neg$ in front of each statement. But use the principle
+given at the end of this chapter to move the negation across the quantifiers.
+
+\end{exer}
+
+\begin{exer}
+
+Express symbolically: {\itshape The product of an even integer and an 
+odd integer is even}.
+\end{exer}
+
+\begin{exer}
+Express in words the meaning of 
+\[
+\exists x \, P(x) \land \forall x \,  \forall y \,\left( (P(x)\land P(y)) \to (x=y)\right).
+\]
+
+\end{exer}
+
+
+\clearpage
+\section{Problems}
+
+\begin{prob}\label{bensprob}
+Let $h$ be {\itshape Ben is healthy.}, $w$: {\itshape Ben is wealthy.}, and $s$: {\itshape Ben is wise.}\\
+Express the following in English:
+  \begin{tasks}
+     \task $h\land w$
+     \task $w \lor s$
+     \task $h \to (w \land s)$
+     \task $(h \to w) \land s$
+   \end{tasks}
+\end{prob}
+
+\begin{prob}\label{movieprob}
+Let $S(x,y)$ be the predicate {\itshape $x$ has seem $y$} where the domain of discourse for $x$
+is all students in this class and the domain of discourse for $y$ is all movies. Express the following in logical symbols using quantifiers.
+  \begin{tasks}
+     \task Every student in this class has seen {\itshape Gone With The Wind}.
+     \task No student in this class has seen {\itshape Jaws}.
+     \task {\itshape The Shape of Water} has been seen by someone in this class.
+     \task Some students have seen every movie.
+     \task For each movie, there is at least one student in the class who has seen that movie.
+   \end{tasks}
+\end{prob}
+
+\begin{prob}
+Negate the propositions in~\ref{bensprob} in English.
+\end{prob}
+
+\begin{prob}
+Negate the propositions in~\ref{movieprob} in symbols. Note: An easy way to do this is to simply write $\lnot$
+in front of the answers in ~\ref{movieprob}. Don't do that! Give the negation with no quantifiers coming after a negation symbol.
+\end{prob}
+
+\begin{prob}
+Negate the propositions in~\ref{movieprob} in English. Note: An easy way to do this is to simply write {\itshape
+It is not the case that ....} 
+in front of each proposition. Don't do that! Give the negation as a reasonably natural English sentence.
+\end{prob}
+

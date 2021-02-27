@@ -1,0 +1,467 @@
+\chapter{Relations}\label{ch:Relations}
+
+
+\newthought{Two-place predicates,} such as {\itshape $B(x,y) :$ $x$ is the brother of $y$}, play a 
+central role in mathematics. Such predicates can be used to describe many basic concepts. 
+As examples, consider the predicates given verbally:
+\begin{enumerate}
+ \item {\itshape $G(x,y) :$ $x$ is greater than or equal to $y$}
+ which compares the  magnitudes of two values.
+ 
+ \item {\itshape $P(x,y) :$ $x$ has the same parity as $y$} which
+ compares the parity of two integers.
+ 
+ \item {\itshape $S(x,y) :$ $x$ has square equal to $y$} which relates
+ a value to its square.
+\end{enumerate}
+
+\section{Relations}
+Two-place predicates are called {\bfseries relations}, probably because of examples
+such as the {\itshape brother of} given above. To be a little more complete about it,
+if $P(x,y)$ is a two-place predicate, and the domain of discourse for $x$ is the set $A$,
+and the domain of discourse for $y$ is the set $B$, then $P$ is called a {\bfseries relation
+from $A$ to $B$}.  When working with relations, some new vocabulary is used.
+The set $A$ (the domain of discourse for the first variable) is called the {\bfseries domain}
+of the relation, and the set $B$ (the domain of discourse for the second variable) is
+called the {\bfseries codomain} of the relation.
+
+\section{Specifying a relation}
+There are several different ways to specify a relation. One way is to give a verbal
+description as in the examples above. As one more example of a verbal description
+of a relation, consider 
+
+{\itshape $E(x,y) :$ The word $x$ ends with the letter $y$}. Here the domain
+will be words in English, and the codomain will the the twenty-six letters of the alphabet.
+We say the ordered pair $(cat,t)$ {\bfseries satisfies} the relation $E$, but that
+$(dog,w)$ does not.
+
+\subsection{By ordered pairs}
+When dealing with abstract relations, a verbal description is not always convenient. An
+alternate method is to tell what the domain and codomain are to be, and then simply list 
+the ordered pairs which will satisfy the relation.  For example, 
+if $A=\{1,2,3,4\}$ and $B=\{a,b,c,d\}$, then one of many possible  relations from $A$ to $B$
+would be $\{(1,b),(2,c),(4,c)\}$. If we name this relation $R$, we will write
+$R=\{(1,b),(2,c),(4,c)\}$. It would be tough to think of a natural verbal description
+of $R$. 
+
+When thinking of a relation, $R$, as a set of ordered pairs, it is common to write
+ $aRb$ in place of $(a,b)\in R$.
+For example, using the relation $G$ defined above, we can convey the fact that
+the pair $(3,2)$ satisfies the relation by writing any one of the following: (1) $G(3,2)$ is true,
+(2) $(3,2)\in G$, or (3) $3G2$. The third choice is the preferred one when discussing
+relations abstractly.  
+
+
+Sometimes the  ordered pair representation of a relation can be a bit cumbersome compared to the
+verbal description. Think about the ordered pair form of the relation $E$ given above:
+$E=\{\,(cat,t), (dog,g), (antidisestablishmentarianism, m), \cdots\,\}$. 
+
+\subsection{By graph}
+Another way
+represent a relation is with a {\bfseries graph}\sidenote{Here graph does \textbf{not} mean the sorts of
+graphs of  lines, curves and such discussed in an algebra course.}. Here, a  graph is a diagram made
+up of dots, called {\bfseries vertices}, some of which are joined by lines, called 
+{\bfseries edges}.  To draw a graph of a relation $R$ from $A$ to $B$, make
+a column of dots, one for each element of $A$, and label the dots with the names of those elements. Then, to the right of $A$'s column  make a column of dots
+for the elements of $B$. 
+Then connect the vertex labelled $a\in A$ to a vertex
+$b\in B$ with an edge provided $(a,b)\in R$. 
+The diagram  is called the {\bfseries bipartite graph 
+representation} of $R$.
+
+\begin{exmp}\label{ex:bipgraph 8.1}
+ Let $A=\{1,2,3,4\,\}$ and $B=\{a,b,c,d\,\}$, and let 
+$R=\{(1,a), (2,b), (3,c), (3,d), (4,d)\}$.
+Then the bipartite graph which represents $R$ is given in figure \ref{fig:bipgraph 8.1}.
+
+\begin{marginfigure}
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\begin{tikzpicture}[thick,
+  every node/.style={draw,circle},
+  fsnode/.style={fill=myblue},
+  ssnode/.style={fill=mygreen},
+  every fit/.style={ellipse,draw,outer sep=1pt,inner sep=1pt,text width=2cm},
+  ->,shorten >= 3pt,shorten <= 3pt
+]
+
+% the vertices of A
+\begin{scope}[start chain=going below,node distance=5mm]
+\foreach \i in {1,2,3,4}  %{1,2,...,4}
+  \node[fsnode,on chain] (f\i) [label=left: \i] {};
+\end{scope}
+
+% the vertices of V
+\begin{scope}[xshift=3cm,start chain=going below,node distance=5mm]
+\foreach \i in {a,b,...,d}  %{a,b,c,d}
+  \node[ssnode,on chain] (s\i) [label=right: \i] {};
+\end{scope}
+
+% the set A
+\node [myblue,fit=(f1) (f4),label=above:$A$] {};
+% the set B
+\node [mygreen,fit=(sa) (sd),label=above:$B$] {};
+
+% the edges
+\draw [-] (f1) -- (sa);
+\draw [-] (f2) -- (sb);
+\draw [-] (f3) -- (sc);
+\draw [-] (f3) -- (sd);
+\draw [-] (f4) -- (sd);
+\end{tikzpicture}
+\caption{Example bipartite graph}\label{fig:bipgraph 8.1}
+\end{marginfigure}
+\end{exmp}
+
+
+The choices made about the  ordering and the placement of the vertices for the elements of 
+$A$ and $B$ may make a difference in 
+the appearance of the graph, but all such graphs are considered equivalent. Also, edges can be 
+curved lines. All that matters is that such diagrams  
+convey graphically the same information as $R$ given as a set of ordered pairs.
+
+\subsection{By digraph: domain$=$codomain}
+It is common to have the domain and the codomain of a relation be the same set. If $R$ is a 
+relation from $A$ to $A$, then we will say $R$ is a  {\bfseries relation on $A$}.
+In this case there is a shorthand way of representing the relation by using 
+a {\bfseries digraph}. The word digraph is shorthand for {\itshape directed graph} 
+meaning the edges have a direction indicated by an arrowhead. Each element of $A$ is used to label a single point.
+An arrow connects the vertex labelled $s$ to the one labelled $t$ provided
+$(s,t)\in R$. An edge of the form $(s,s)$ is called a {\bfseries loop}.
+
+\begin{exmp}
+ Let $A=\{1,2,3,4,5\}$ and \\
+ $R=\{(1,1),(1,2),(2,2),(2,3),(3,3),(3,4),(4,4)\}$.
+Then a digraph for $R$ is shown in figure \ref{fig:bipgraph 8.2}
+\begin{marginfigure}
+\definecolor{myblue}{RGB}{80,80,160}
+\definecolor{mygreen}{RGB}{80,160,80}
+
+\begin{tikzpicture}[->,>=stealth',node distance=2cm,
+                    thick,main node/.style={circle,fill=blue!20,draw,outer sep=5pt}
+                   ]
+
+  \node[main node] (1) {1};
+  \node[main node] (5) [below right of=1] {5};
+  \node[main node] (2) [above right of=5] {2};
+  \node[main node] (3) [below right of=5] {3};
+  \node[main node] (4) [below left  of=5] {4};
+
+  \path%
+    (1) edge node [right] {} (2)  %{} is where the edge value would go
+        edge [loop left] node {} (1)
+    (2) edge [loop right] node {} (2)
+        edge [right] node {} (3)
+    (3) edge [right] node {} (4)
+        edge [loop right] node {} (3)
+    (4) edge [loop left] node {} (4);
+\end{tikzpicture}
+\caption{Example digraph}\label{fig:bipgraph 8.2}
+\end{marginfigure}
+\end{exmp}
+
+Again it is true that a different placement of the vertices may yield a different-looking, but equivalent, digraph.
+
+
+\subsection{By $0$-$1$ matrix}
+The last method for representing a relation is by using a $0${-}$1$ matrix. This method is particularly
+handy for encoding a relation in computer memory.
+An {\bfseries $m\times n$ matrix} is a rectangular array with $m$ rows and $n$ columns.
+Matrices are usually denoted by capital English letters. The entries of a matrix, usually
+denoted by lowercase English letters, are indexed by row and column. Either $a_{i,j}$ or $a_{ij}$
+stands for the entry in a matrix in the $i$th row and $j$th column. 
+A {\bfseries $0$-$1$ matrix} is one all of whose entries are $0$ or $1$. Given two 
+finite sets $A$ and $B$ with 
+$m$ and $n$ elements respectively, we may use the elements of $A$ (in some fixed order) to index the rows of an
+$m\times n$ $0$-$1$ matrix, and use the elements of $B$ to index the columns. So for a relation $R$
+from $A$ to $B$, there is a matrix of $R$, $M_{_R}$ with respect to the orderings of $A$ and $B$ which
+represents $R$. The entry of $M_{_R}$ in the row labelled by $a$ and column labelled by $b$
+is $1$ if $aRb$ and $0$ otherwise. This is exactly like using characteristic vectors to represent
+subsets of $A\times B$, except that the  vectors are cut into $n$ chunks of size
+$m$.
+
+\begin{exmp}
+ Let $A=\{1,2,3,4\}$ and $B=\{a,b,c,d\}$ as before, and consider the 
+ relation $R=\{(1,a),(1,b),(2,c),(4,c),(4,a)\}$.  Then a $0$-$1$ matrix which represents 
+ $R$ using the natural orderings of $A$ and $B$ is%
+ \marginnote{Note: This matrix may change appearance if  $A$ or $B$ is listed in a different order.}%
+\[ M_{_R}= %
+ \left[
+   \begin{matrix}
+    1&1&0&0\\ 0&0&1&0\\ 0&0&0&0\\ 1&0&1&0 
+   \end{matrix}
+ \right] 
+\]
+\end{exmp}
+
+\section{Set operations with relations}
+Since relations can be thought of as sets of ordered pairs, it makes sense to
+ask if one relation is a subset of another. Also, set operations such as union 
+and intersection can be carried out with relations. 
+
+\subsection{Subset relation using matrices}These notions can be
+expressed in terms of the matrices that represent the relations.
+Bit-wise operations on $0$-$1$ matrices are defined in the obvious way.
+Then  $M_{_{R\cup S}}=M_{_R}\vee M_{_S}$, and   
+$M_{_{R\cap S}}=M_{_R}\land M_{_S}$.
+Also, for two $0$-$1$ matrices of the
+same size $M\leq N$ means that wherever $N$ has a $0$ entry, the corresponding
+entry in $M$ is also $0$. Then
+$R\subseteq S$ means the same as  $M_{_R}\leq M_{_S}$.
+
+\section{Special relation operations}
+There are two new operations possible with relations.
+
+\subsection{Inverse of a relation}
+First, if $R$ is a relation from $A$ to $B$, then by reversing all the
+ordered pairs in $R$, we get a new relation, denoted $R^{-1}$, called 
+the {\bfseries inverse} of $R$.
+In other words, $R^{-1}$ is the  relation from $B$ to $A$ given
+by $R^{-1}=\{(b,a)|(a,b)\in R\}$. 
+A bipartite graph for $R^{-1}$ can be obtained from a bipartite graph for $R$ 
+simply by interchanging 
+the two columns of vertices with their attached edges (or, by rotating the diagram $180^\circ$). 
+
+If the matrix for $R$ is $M_{_R}$, then the matrix for $R^{-1}$ is produced
+by taking the columns of $M_{_{R^{-1}}}$ to be the rows of $M_{_R}$. A matrix
+obtained by changing the rows of $M$ into columns is called the 
+{\bfseries transpose} of $M$, and written as $M^T$. So, in symbols, 
+if $M$ is a matrix for $R$, then $M^T$ is a matrix for $R^{-1}$.
+
+\subsection{Composition of relations}
+The second operation with relations concerns the situation when 
+$S$ is a relation from $A$ to $B$ and $R$ is a relation from $B$ to $C$.
+In such a case, we can form the {\bfseries composition of $S$ by $R$} 
+which is denoted
+$R\circ S$. The composition is defined as
+$$R\circ S=\{(a,c)|a\in A, c\in C \text{ and } \exists b\in B, \text{ such that } 
+(a,b)\in S \text{ and } (b,c)\in R\}.$$
+
+\begin{exmp}
+ Let $A=\{1,2,3,4\}, B=\{\alpha, \beta\}$ and $C=\{a,b,c\}$.
+ Further let $S=\{(1,\alpha), (1,\beta),$
+  $(2,\alpha),(3,\beta), (4, \alpha)\}$ and $R=\{(\alpha, a), 
+ (\alpha, c), (\beta, b)\}$. 
+ 
+ Since $(1,\alpha)\in S$ and $(\alpha,a)\in R$, it
+ follows that $(1,a)\in R\circ S$. Likewise, since $(2,\alpha)\in S$ and 
+ $(\alpha,c)\in R$, it
+ follows that $(2,c)\in R\circ S$.
+ Continuing in that fashion shows that 
+ $$R\circ S=\{(1,a),(1,b),(1,c), (2,a),(2,c),(3,b),(4,a),(4,c)\}.$$
+
+\clearpage
+The composition can also be determined by looking at the bipartite graphs.
+Make a column of vertices for $A$ labelled $1,2,3,4$, then to the right a 
+column of points for $B$
+labelled $\alpha,\beta$, then again to the right a column of points for 
+$C$ labelled $a,b,c$. Draw in the edges as usual for $R$ and $S$. Then 
+a pair $(x,y)$ will be in $R\circ S$ provided there is a two edge path from
+$x$ to $y$. (See figure \ref{fig:comp rels 8.3} at right.)
+
+\begin{marginfigure}
+
+\begin{tikzpicture}[thick,
+  every node/.style={circle},
+  Asnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+  Bsnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+ Csnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+  ->,shorten >= 3pt,shorten <= 3pt
+]
+
+% the vertices of A
+\begin{scope}[start chain=going below,node distance=5mm]
+\foreach \i in {1,2,3,4}  %{1,2,...,4}
+  \node[Asnode,on chain] (A\i) [label=left: \i] {};
+\end{scope}
+
+% the vertices of B
+\begin{scope}[xshift=2cm,yshift=-7.75mm,start chain=going below,node distance=5mm]
+%\foreach \i in {1,2}
+  \node[Bsnode,on chain] (B1) [label=above: $\alpha$] {};
+  \node[Bsnode,on chain] (B2) [label=below: $\beta$] {};
+\end{scope}
+
+% the vertices of C
+\begin{scope}[xshift=4cm,start chain=going below,node distance=5mm]
+\foreach \i in {a,b,c} 
+  \node[Csnode,on chain] (C\i) [label=right: \i] {};
+\end{scope}
+
+% the edges
+\draw [blue] (A1) -- (B1);
+\draw [blue] (A1) -- (B2);
+\draw [blue] (A2) -- (B1);
+\draw [blue] (A3) -- (B2);
+\draw [blue] (A4) -- (B1);
+\draw [red] (B1) -- (Ca);
+\draw [red] (B1) -- (Cc);
+\draw [red] (B2) -- (Cb);
+
+%label relations
+\node[text=blue] at (10mm,2mm) {$S$};
+\node[text=red] at (30mm,2mm) {$R$};
+
+\end{tikzpicture}
+
+\begin{tikzpicture}[thick,
+  every node/.style={circle},
+  Asnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+  Bsnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+ Csnode/.style={fill=black!80,inner sep=0pt, minimum size=1.5mm},
+  ->,shorten >= 3pt,shorten <= 3pt
+]
+
+% the vertices of A
+\begin{scope}[start chain=going below,node distance=5mm]
+\foreach \i in {1,2,3,4}  %{1,2,...,4}
+  \node[Asnode,on chain] (A\i) [label=left: \i] {};
+\end{scope}
+
+
+% the vertices of C
+\begin{scope}[xshift=4cm,start chain=going below,node distance=5mm]
+\foreach \i in {a,b,c} 
+  \node[Csnode,on chain] (C\i) [label=right: \i] {};
+\end{scope}
+
+% the edges
+\draw [purple] (A1) -- (Ca);
+\draw [purple] (A1) -- (Cb);
+\draw [purple] (A1) -- (Cc);
+\draw [purple] (A2) -- (Ca);
+\draw [purple] (A2) -- (Cc);
+\draw [purple] (A3) -- (Cb);
+\draw [purple] (A4) -- (Ca);
+\draw [purple] (A4) -- (Cc);
+
+\node[text=purple] at (20mm,-20mm) {$R \circ S$};
+
+\end{tikzpicture}
+\caption{Composing relations: $R \circ S$}\label{fig:comp rels 8.3}
+\end{marginfigure}
+
+
+From the picture it is instantly clear that, for example, $(1,c)\in R\circ S$.
+
+In terms of $0$-$1$ matrices if $M_{_S}$ is the $m\times k$ matrix of $S$ with
+ respect to the given orderings
+of $A$ and $B$, and if $M_{_R}$ is the $k\times n$ matrix of $R$ with respect 
+to the given orderings of $B$
+and $C$, then whenever the $i,l$ entry of $S$ and $l,j$ entry of $R$ are both $1$, 
+then $(a_i,c_j)\in R\circ S$.
+\end{exmp}
+
+\subsection{Composition with matrices: Boolean product}
+This example motivates the definition of the {\bfseries Boolean product} of 
+$M_{_S}$ and $M_{_R}$ as the corresponding
+matrix $M_{_{R\circ S}}$ of the composition. More rigorously when $M$ 
+is an $m\times k$ $0$-$1$ matrix
+and $N$ is an $k\times n$ $0$-$1$ matrix, $M\odot N$ is the 
+$m\times n$ $0$-$1$ matrix whose
+$i,j$ entry is $(m_{i,1}\wedge n_{1,j})% 
+\vee (m_{i,2}\wedge n_{2,j}) \vee ,..., (m_{i,k}\wedge n_{k,j})$.
+This looks worse than it is. It achieves the desired result\sidenote{The boolean product is computed the same way as the ordinary matrix product where 
+multiplication and addition have been replaced with \textsf{and} and \textsf{or}, respectively.}.
+
+For the relations in the example above example
+\[
+M_{_{R\circ S}}=
+  \left[ \begin{matrix} 1&1&1\\ 1&0&1\\ 0&1&0\\ 1&0&1 \end{matrix} \right]
+   =
+  \left[\begin{matrix} 1&1\\ 1&0\\ 0&1\\ 1&0 \end{matrix}\right]\odot 
+    \left[\begin{matrix} 1&0&1\\ 0&1&0 \end{matrix}\right]=M_{_S}\odot M_{_R} %
+\]
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}\label{exer:08.1}
+ Let $A=\{a,b,c,d\}$ and \newline
+ $R=\{(a,a),(a,c),(b,b),(b,d),(c,a),(c,c),(d,b),(d,d)\}$ be a relation on $A$.
+ Draw a digraph which represents $R$. Find the matrix which represents $R$ 
+{\bfseries {with respect to the ordering $(d,c,a,b)$.}}
+\end{exer}
+
+\begin{exer}\label{exer:08.2}
+The matrix of a relation $S$ from $\{1,2,3,4,5\}$ to $\{a,b,c,d\}$ with respect to the given
+orderings is displayed below. Represent $S$ as a bipartite graph, and as a set of ordered pairs.
+\[
+ M_{_S}=\left[\begin{matrix} 1&1&0&0\\ 0&0&1&1\\ 1&0&0&1\\ 1&0&1&0\\ 0&1&1&0 \end{matrix}\right]
+\]
+\end{exer}
+
+\begin{exer} 
+Find the composition of $S$ by $R$ (as given in exercises~\ref{exer:08.1} 
+and \ref{exer:08.2}) as a set of ordered pairs. 
+Use the Boolean product to find $M_{_{R\circ S}}$ with respect to the natural orderings.
+\sidenote[][-0.25cm]{The natural ordering for R is \textbf{not} the ordering used in exercise \ref{exer:08.1}.}
+\end{exer}
+
+\begin{exer} 
+ Let $B=\{1,2,3,4,5,6\}$ and let 
+ \begin{align*}
+   R_1=\{&(1,2),(1,3),(1,5),(2,1),(2,2),(2,4),(3,3),(3,4),\\
+         &(4,1),(4,5),(5,5),(6,6)\}\text{ and }\\
+   R_2=\{&(1,2),(1,6),(2,1),(2,2), (2,3),(2,5),(3,1),(3,3),(3,6),\\
+         &(4,2),(4,3),(4,4),(5,1),(5,5),(5,6),(6,2),(6,3),(6,6)\}.
+ \end{align*}
+\begin{enumerate}[label=(\alph*)]
+\item Find $R_1\cup R_2$, $R_1\cap R_2$, and $R_1\oplus R_2$. 
+\item With respect to the given ordering of $B$ find the matrix of each relation in part (a)
+\end{enumerate}
+\end{exer}
+
+\clearpage
+\section{Problems}
+
+\begin{prob}
+ Let $A=\{a,b,c,d\}$ and $R=\{(a,a),(a,c),(b,d),(c,a),(c,c),(d,b)\}$ be a relation
+on $A$. Draw a digraph which represents $R$. Draw the bipartite graph which
+represents $R$.
+\end{prob}
+
+\begin{prob}
+ Let $A=\{a,b,c,d\}$ and $R=\{(a,a),(a,c),(b,d),(c,a),(c,c),(d,b)\}$ be a relation
+on $A$. What is the inverse of $R$?
+\end{prob}
+
+\begin{prob}
+Find the composition, $R\circ S$,  where $S = \{\,(1,a), (4,a),
+(5,b), (2,c),  (5,c), (3,d)\,\}$ with $R  =\{(a,x),(a,y),(b,x),(c,z),(d,z)\}$ as a set of ordered pairs.
+\end{prob}
+
+\begin{prob}
+Let $R_1=\{(1,2),(1,3),(1,5),(2,1),(6,6)\}$ and\\
+$R_2=\{(1,2),(1,6),(3,6), (4,2),(5,6),(6,2),(6,3)\}$. Find $R_1\cup R_2$ and $R_1\cap R_2$. 
+\end{prob}
+
+\begin{prob}
+Let $L$ be the relation {\itshape less than } on the set of integers. Examples $3\,L\,7$ and $-8\,L\, 0$ are
+true, but $5\,L\,2$ and $6\,L\,6$ are false. How would describe the relation $L^{-1}$?
+\end{prob}
+
+\begin{prob}
+True or False: For any relation $R$, $(R^{-1})^{-1} = R$. Explain your answer.
+\end{prob}
+
+\begin{prob}
+Are there relations $R$ for which $R=R^{-1}$? If not, explain why it is not possible. If so, give an example
+of such a relation.
+\end{prob}
+
+\begin{prob}
+Let $R$ be a relation on a set $A$, and let $R^{-1}$ be its inverse. Prove that if $(a,b)\in R\circ R^{-1}$,
+then $(b,a)\in R\circ R^{-1}$.
+\end{prob}
+
+\begin{prob}
+Let $A$ and $B$ be two sets. Explain why the empty set, $\emptyset$, is a relation from $A$ to $B$.
+\end{prob}
+
+\begin{prob}
+Let $S$ be a relation from $A$ to $B$, and let $R$ be a relation from $B$ to $C$. Prove
+$(R\circ S)^{-1} = S^{-1}\circ R^{-1}$.
+\end{prob}

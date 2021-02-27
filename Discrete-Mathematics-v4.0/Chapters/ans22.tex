@@ -1,0 +1,110 @@
+   \section*{Chapter 22}
+    
+\begin{Solution}{22.1a}
+
+\begin{align*}
+ 233 &= 2\cdot89+55 \\
+ 89 &= 1\cdot55+34 \\
+  55 &= 1\cdot34+21 \\
+  34 &= 1\cdot21+13\\
+  21  &= 1\cdot13+8 \\
+  13  &= 1\cdot8+5 \\
+  8  &= 1\cdot5+3 \\
+  5  &= 1\cdot3+2 \\
+  3  &= 1\cdot2+1 \\
+  2  &= 2\cdot1+0 \\
+  \end{align*}
+ 
+$\gcd(233,89) = 1$
+
+
+
+\end{Solution}
+
+\begin{Solution}{22.1b}
+
+
+\begin{align*}
+ 1001 &= 77\cdot13+0 \\
+ \end{align*}
+ 
+$\gcd(1001,13) = 13$
+
+\end{Solution}
+
+\begin{Solution}{22.1c}
+
+
+\begin{align*}
+ 2457 &= 1\cdot 1458+999 \\
+ 1458 &= 1\cdot999+ 459 \\
+  99 &= 2\cdot459+81 \\
+  459 &= 5\cdot81+54 \\
+  81  &= 1\cdot54+27 \\
+  54  &= 2\cdot27+0 \\
+  \end{align*}
+
+$\gcd(2457,1458) = 27$
+
+\end{Solution}
+
+\begin{Solution}{22.1d}
+
+
+\begin{align*}
+ 567 &= 1\cdot349+218 \\
+ 349 &= 1\cdot218+131 \\
+  218 &= 1\cdot131+87 \\
+  131 &= 1\cdot87+44 \\
+  87  &= 1\cdot44+43 \\
+  44  &= 1\cdot43+1 \\
+  43 &= 43\cdot1 + 0\\
+\end{align*}
+
+$\gcd(567,349) = 1$
+
+\end{Solution}
+
+\begin{Solution}{22.2}
+
+\begin{align*} 
+  987654321  &= 8\cdot123456789+9 \\
+  123456789  &= 13717421\cdot9+0
+\end{align*}
+
+$\gcd(987654321,123456789) = 9$
+
+\end{Solution}
+
+\begin{Solution}{22.3}
+There are many good answers to this problem. 
+\begin{algrthm}
+  \hrule\kern5pt\relax
+  \begin{algorithmic}%[1]
+     \Require{integers $m\geq 0$ and $n>0$}
+     \Ensure{integer value of $\gcd(m,n)$} 
+     \State $q \gets m$ \Comment{$q$ represents a quotient of a division}
+     \State $r \gets n$ \Comment{$r$ represents the remainder of a division}     
+     \While{$r > 0$}
+       \State $g \gets r$ \Comment{Save current $r$. It will hold the gcd eventually}
+       \State $q \gets \lfloor \frac{m}{n}\rfloor$ \Comment{New quotient when $m$ is divided by $n$}
+       \State $r \gets m - qn$ \Comment{New remainder when $m$ is divided by $n$}
+       \State $m \gets n$ \Comment{Update $m$}
+       \State $n \gets r$   \Comment{Update $n$}
+     \EndWhile
+     \State \textbf{output} $g$ \Comment{The last nonzero remainder}
+\end{algorithmic}
+  \hrule\kern5pt\relax
+
+\end{algrthm}
+
+\end{Solution}
+
+\begin{Solution}{22.4}
+Since $n$ divides both $n$ and $2n$, that means $n$
+is a common divisor of $n$ and $2n$. On the other hand, no integer larger
+than $n$ can divide $n$. So $n$ is the largest common divisor of $n$ and $2n$.
+So $\gcd(n,2n) = n$.
+\end{Solution}
+
+

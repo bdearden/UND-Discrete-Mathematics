@@ -1,0 +1,455 @@
+\chapter{Rules of Inference}
+
+\newthought{%
+The heart of mathematics} is proof. In this chapter, we give a careful
+description of what exactly constitutes a proof in the realm of propositional 
+logic. Throughout the course 
+various methods of proof will be demonstrated, including the
+particularly important style of proof called {\itshape induction}. It's important to 
+keep in mind
+that all proofs, no matter
+what the subject matter might be, are based on the notion of a valid argument as 
+described
+in this chapter, so the ideas presented here are fundamental to all of mathematics.
+
+
+Imagine
+trying carefully to define what a proof is, and it quickly becomes clear just how
+difficult a task that is.  So it shouldn't come as a surprise that the
+description takes on a somewhat technical looking aspect.  But don't let all
+the symbols and abstract{-}looking notation be misleading.  All these rules
+really boil down to plain old common sense when looked at
+correctly.
+
+The usual form of a theorem in mathematics is: If $a$ is true and $b$ is
+true and $c$ is true, etc., then $s$ is true. The $a$, $b$, $c$, $\cdots$ are called
+the {\bfseries hypotheses}, and the statement $s$ is called the {\bfseries conclusion}. 
+For example,
+a mathematical theorem might be: if $m$ is an even integer and $n$ is an
+odd integer, then $mn$ is an even integer.  Here the hypotheses are {\itshape $m$ is
+an even integer} and {\itshape $n$ is and odd integer}, and the conclusion is 
+{\itshape $mn$ is an even integer}.
+
+\section{Valid propositional arguments}
+In this section we are going to be concerned with proofs from the
+realm of propositional logic rather than the sort of theorem from mathematics 
+mentioned above.
+We will be interested in arguments in which the {\bfseries form} of the argument is the
+item of interest rather than the {\bfseries content} of the statements in the argument.
+
+For example, consider the simple argument: 
+(1) {\itshape My car is either red or blue}
+and (2) {\itshape My car is not red}, and so 
+(3) {\itshape My car is blue}.  Here the hypotheses
+are (1) and (2), and the conclusion is (3). It should be clear that this is a 
+{\bfseries valid argument}. That
+means that if you agree that (1) and (2) are true, then you {\itshape must} accept that 
+(3) is 
+true as well.
+
+\begin{defn}  An argument is called {\bfseries valid} provided that if you agree 
+that all the 
+hypotheses are true,
+then you must accept the truth of the conclusion.  
+\end{defn}
+
+Now the content of that argument 
+(in other words,
+the stuff about {\itshape my} and {\itshape cars} and {\itshape colors}) really have nothing to 
+do with the validity
+of the argument. It is the {\bfseries form} of the argument that makes it valid. 
+The form of this argument is
+(1) $p\lor q$ and (2) $\lnot p$, therefore (3) $q$. Any argument that has this form 
+is valid, whether it
+talks about cars and colors or any other notions. For example, here is another 
+argument of the very same 
+form: (1) {\itshape I either read the book or just looked at the pictures} 
+and (2) {\itshape I didn't read the book}, 
+therefore (3) {\itshape I just looked at the pictures}.
+
+
+Some arguments involve quantifiers. 
+For instance, consider the classic example of a logical argument: 
+(1) {\itshape All men are
+mortal} and 
+(2) {\itshape Socrates is a man}, and so (3) {\itshape Socrates is mortal}.
+Here the hypotheses are the statements (1) and (2), 
+and the conclusion is statement (3).
+If we let $M(x)$ be {\itshape $x$ is a man} and $D(x)$ be {\itshape $x$ is mortal} (with
+domain for $x$ being everything!), then this argument could be symbolized as shown.
+
+\begin{margintable}
+\begin{tabular}{l}
+$\forall{x}(M(x)\to D(x))$ \\
+$M$(Socrates)\\
+\hline
+\thus $D$(Socrates)
+\end{tabular}
+\end{margintable}
+
+
+The general form of a proof that a logical argument is valid consists in assuming all 
+the hypotheses
+have truth value $T$, and showing, by applying valid rules of logic, 
+that the conclusion
+must also have truth value $T$.
+
+\clearpage
+Just what are the valid rules of logic that can be used in the course
+of the proof? They are called the Rules of Inference, and there are  seven
+of them listed in the table below. Each rule of inference arises
+from a tautology, and actually there is no end to the rules of inference,
+since each new tautology can be used to provide a new rule of inference.
+But, in real life, people rely on only a few basic rules of
+inference, and the list provided in the table is plenty
+for all normal purposes.
+
+\begin{table}
+\centering
+\begin{tabular}{ l  l l }
+\toprule
+\textbf{Name} & \span{\bfseries Rule of Inference} \\
+\midrule
+Modus Ponens & $p$ and $p\rightarrow q$ & $\thus q$ \\
+\addlinespace
+Modus Tollens & $\neg q$ and  $p\rightarrow q$ & $\thus \neg p$ \\
+\addlinespace
+Hypothetical Syllogism\hspace*{0.25cm} & $p\rightarrow q$ and $q\rightarrow r$ & $\thus p\rightarrow r$ \\
+\addlinespace
+Addition & $p$  & $\thus p\vee q$ \\
+\addlinespace
+Simplification & $p\wedge q$ & $\thus p$ \\
+\addlinespace
+Conjunction & $p$ and $q$ &  $\thus p\wedge q$\\
+\addlinespace
+Disjunctive Syllogism & $p\vee q$ and $\neg p$ &  $\thus q$ \\
+\bottomrule
+\end{tabular}
+\caption{Basic rules of inference}
+\label{tbl:rules infer}
+\end{table}
+
+It is important not to merely look on these rules as marks on the
+page, but rather to understand what each one says in words. For example,
+Modus Ponens corresponds to the common sense rule: if we are told {\itshape $p$ is true},
+and also {\itshape If $p$ is true, then so is $q$}, then 
+we would leap to the reasonable conclusion that {\itshape $q$ is true}. That is all
+Modus Ponens says. Similarly, for the rule of proof of Disjunctive Syllogism:
+knowing 
+ {\itshape Either $p$ or $q$ is true}, and {\itshape $p$ is not true}, 
+we would immediately
+conclude {\itshape $q$ is true}. 
+That's the rule we applied in the {\itshape car} example above. 
+Translate the remaining six rules of inference into
+such common 
+sense statements. Some may sound a little awkward, but they ought to all
+elicit an {\itshape of course that's right} feeling once understood. Without 
+such an understanding, the rules seem like
+a jumble of mystical symbols,  and building logical arguments will be pretty
+difficult. 
+
+What exactly goes into a logical argument?  Suppose we want to prove
+(or show valid) an argument of the form 
+{\itshape If $a$ and $b$ and $c$ are true, then
+so 
+is $s$}. One way that will always do the trick is to construct a truth table
+as in examples earlier in the course.  We check the rows in the table where
+all the hypotheses are true, and make sure the conclusion is also true in those rows. 
+That would complete the proof. In fact that is exactly the method used to 
+justify the seven
+rules of inference given in the table. But building truth tables is
+certainly tedious business, and it certainly doesn't seem too much like the
+way we learned to do proofs in geometry, for example. An alternative is the
+construction of a logical argument which begins by assuming the hypotheses
+are all true and  applies the basic rules of inferences from the table  until the
+desired conclusion is shown to be true.
+
+Here is an example of such a proof. 
+Let's show that the argument displayed in figure~\ref{fig:a logic arg}
+is valid.
+
+\begin{marginfigure}
+  \begin{tabular}{l}
+  $p$\\
+  $p\to q$\\
+  $s\lor r$\\
+  $r\to\neg{q}$\\
+  \midrule
+  \thus $s\lor t$
+  \end{tabular}
+  \caption{A logical argument}\label{fig:a logic arg}
+\end{marginfigure}
+
+ Each step in the argument will be  justified
+in some way, either
+\begin{enumerate*}
+ \item as a hypothesis (and hence assumed to have truth value $T$), or
+ \item as a consequence of previous steps and some rule of inference from the table, or
+ \item as a statement logically equivalent to a previous statement in the proof.  
+\end{enumerate*} 
+ Finally  the last statement
+in the proof will be the desired conclusion. Of course, we could  prove the
+argument valid by constructing 
+a $32$ row truth table instead! Well, actually we wouldn't need all $32$ rows, but
+it would be pretty tedious in any case.
+
+Such 
+proofs can be viewed as games in which the hypotheses serve as the starting
+position in a game, the goal is to reach the conclusion as the final position
+in the game, and the rules
+of inference (and logical equivalences) specify the legal moves. Following this
+outline, we can be sure every step in the proof is a true statement, and, in 
+particular, the desired conclusion is true, as we hoped to show.
+\begin{table}
+ \textbf{Argument:}
+   \begin{tabular}[t]{l}
+   $p$\\
+   $p\to q$\\
+   $s\lor r$\\
+   $r\to\neg{q}$\\
+   \midrule
+   \thus $s\lor t$
+   \end{tabular}
+ \quad\textbf{Proof:}
+ \begin{tabular}[t]{r l l}
+ (1)& $p$                   & hypothesis\\
+ (2)& $p\rightarrow q$      & hypothesis\\
+ (3)& $q$                   & Modus Ponens (1) and (2)\\
+ (4)& $r\rightarrow \neg q$ & hypothesis\\
+ (5)& $q\rightarrow \neg r$ & logical equivalent of (4)\\
+ (6)& $\neg r$              & Modus Ponens (3) and (5)\\
+ (7)& $s\lor r$             & hypothesis\\
+ (8)& $r\lor s$             & logical equivalence of (7)\\
+ (9)& $s$                   & Disjunctive Syllogism (6) and (8)\\
+ (10)& $s\lor t$            & Addition
+ \end{tabular}
+ \caption{Proof of the validity of an argument}\label{tbl:proof of arg}
+\end{table}
+
+One step more complicated than the last example are arguments that are presented
+in words rather than symbols. In such a case, it is necessary to first convert
+from a verbal argument to a symbolic argument, and then check the argument to see
+if it is valid. For example, consider the argument: {\itshape Tom is a cat. If Tom
+is a cat, then Tom likes fish. Either Tweety is a bird or Fido is a dog.
+If Fido is a dog, then Tom does not like fish. So, either Tweety is a bird or
+I'm a monkey's uncle.} Just reading this argument, it is difficult to decide
+if it is valid or not. It's just a little too confusing to process. But it is valid,
+and in fact it is the very same argument as given above. Let
+$p$ be {\itshape Tom is a cat}, let $q$ be {\itshape Tom likes fish}, let $s$ be
+{\itshape Tweety is a bird}, let $r$ be  {\itshape Fido is a dog}, and let
+$t$ be {\itshape I'm a monkey's uncle}. Expressing the statements in the 
+argument in terms of $p,q,r,s,t$ produces exactly the symbolic argument proved above.   
+
+\section{Fallacies}
+Some logical arguments have a convincing ring to them but are nevertheless
+invalid. The classic example is an argument of the form {\itshape If it is snowing,
+then it is winter. It is winter. So it must be snowing.} A moment's 
+thought
+is all that is needed to be convinced  the conclusion does not follow from the two
+hypotheses. Indeed, there are many winter days when it does not snow. The error
+being made is called the {\bfseries fallacy of affirming the conclusion}. In 
+symbols,
+the argument is claiming that $[(p\to{q}) \land{q}]\to p$ is a tautology, but in
+fact, checking a truth table shows that it is not a tautology. Fallacies arise
+when statements that are not tautologies are treated as if they were
+tautologies.
+
+
+\section{Arguments with quantifiers}
+Logical arguments involving propositions using quantifiers require a few
+more rules of inference. As before, these rules really amount to no more than a
+formal way to express common sense. For instance, if the proposition
+$\forall\,x\,P(x)$ is true, then certainly for every object $c$ in the
+universe of discourse, $P(c)$ is true. After all, if the statement $P(x)$ is true
+for every possible choice of $x$, then, in particular, it is true when $x=c$. The
+other three rules of inference for quantified statements are just as obvious.  
+All four quantification rules appear in table~\ref{tbl:quant rules}.
+
+
+\begin{table}
+\resizebox{\textwidth}{!}{%
+ \begin{tabular}{ll}
+ \toprule
+ \textbf{Name} & \textbf{Instantiation Rules}  \\
+ \midrule
+ Universal Instantiation &$\forall x P(x)$  $\thus P(c)$ if $c$ is in the domain of $x$ \\
+ \addlinespace
+ Existential Instantiation &$\exists x P(x)$  $\thus P(c)$ for some $c$ in the domain of $x$ \\
+ \bottomrule
+ \addlinespace
+ \toprule
+ \textbf{Name} & \textbf{Generalization Rules}  \\
+ \midrule
+ Universal Generalization 
+ & $P(c)$ for \textbf{arbitrary} $c$ in the domain of $x$  $\thus \forall x\,P(x)$ \\
+ Existential Generalization 
+ &  $P(c)$ for some $c$ in the domain of $x$ \qquad $\thus \exists x\,P(x)$  \\
+ \bottomrule
+ \end{tabular}
+ } %end resizebox
+ \caption{Quantification rules}\label{tbl:quant rules}
+\end{table}
+
+
+\begin{exmp}
+ Let's analyze the following (fictitious, but obviously valid) argument 
+to see how these rules of inference are used. {\itshape All books written by
+Sartre are hard to understand. Sartre wrote a book about kites. So, there
+is a book about kites that is hard to understand.} Let's use to following
+predicates to symbolize the argument:
+\begin{enumerate}
+\item $S(x) :  x $ was written by Sartre.
+\item $H(x) : x $ is hard to understand.
+\item $K(x) : x $ is about kites.
+\end{enumerate}
+The domain for $x$ in each case is {\itshape all books}.
+In symbolic form, the argument and a proof are
+
+%\vfill
+%\eject
+
+
+\textbf{Argument:}
+\begin{tabular}[t]{l}
+$\forall{x}(S(x)\rightarrow H(x))$ \\
+$\exists{x}(S(x) \land K(x))$ \\
+\hline
+$\thus \exists{x}(K(x)\land H(x))$
+\end{tabular}
+
+\medskip
+
+\textbf{Proof:}
+\begin{tabular}[t]{l l}
+1) $\exists{x}(S(x) \land K(x))$& hypothesis \\
+2) $S(c)\land K(c) \hbox{ for some } c $& Existential Instantiation (1) \\ 
+3) $S(c)$& Simplification (2) \\ 
+4) $\forall{x}(S(x) \to H(x))$& hypothesis \\ 
+5) $S(c)\to H(c)$& Universal Instantiation (4) \\ 
+6) $H(c)$& Modus Ponens (3) and (5) \\ 
+7) $K(c) \land S(c)$& logical equivalence (2) \\ 
+8) $K(c)$& Simplification (7) \\ 
+9) $K(c)\land H(c)$& Conjunction (8) and (6) \\ 
+10) $\exists{x}(K(x)\land H(x))$& Existential Generalization (9)
+\end{tabular}
+\end{exmp}
+
+\clearpage
+
+
+
+
+\section{Exercises}
+
+\begin{exer}
+  Show {\itshape $p\lor q$ and $\neg p \lor r, \quad \thus q\lor r$} is a valid rule
+of inference.  It is called {\bfseries Resolution}.
+\end{exer}
+
+\begin{exer}
+Prove the following argument is valid. {\itshape All Porsche owners are 
+speeders. No owners of sedans buy premium fuel.  Car owners that do not buy
+premium fuel never speed. So Porsche owners do not own sedans.}
+Use {\itshape all car owners} as the domain of discourse.
+\end{exer}
+
+\begin{exer}
+Prove the following symbolic argument is valid.
+\begin{center}
+  \begin{tabular}{l}
+  $\lnot p\to (r \land \lnot s)$  \\ 
+  $ t\to s$   \\ 
+  $u\to \lnot p$   \\ 
+  $\lnot w$ \\
+  $u \lor w$   \\ 
+  \hline
+  $\thus  \lnot t \lor w$
+  \end{tabular}
+\end{center}
+\end{exer}
+
+
+
+\clearpage
+\section{Problems}
+
+
+\begin{prob}
+  Show that {\itshape $p\to q$ and $\neg p,\quad \thus \neg q$} is not a valid rule
+of inference. It is called the \textbf{Fallacy of denying the hypothesis}. 
+
+\end{prob}
+
+\begin{prob}
+Prove the following symbolic argument is valid.
+\begin{center}
+  \begin{tabular}{l}
+  $\lnot p\land  q$  \\ 
+  $ r\to p$   \\ 
+  $\neg r\to s$   \\ 
+  $s\to t$   \\ 
+  \hline
+  $\thus  t$
+  \end{tabular}
+\end{center}
+\end{prob}
+
+\begin{prob}
+Prove the following symbolic argument is valid.
+\begin{center}
+  \begin{tabular}{l}
+  $p\lor  q$  \\ 
+  $ q\to r$   \\ 
+  $(p \land s)\to t$   \\ 
+  $\lnot r$   \\ 
+  $\lnot q \to (p \land s)$   \\ 
+  \hline
+  $\thus  t$
+  \end{tabular}
+\end{center}
+\end{prob}
+
+\begin{prob}
+Prove the following symbolic argument is valid.
+\begin{center}
+  \begin{tabular}{l}
+  $(\lnot p\lor  q) \to r$  \\   
+  $ s \lor \lnot q$   \\ 
+  $\lnot t$\\
+  $p \to t$   \\ 
+  $(\lnot p \land r) \to \lnot s$   \\ 
+  \hline
+  $\thus  \lnot q$
+  \end{tabular}
+\end{center}
+\end{prob}
+
+\begin{prob}\label{pr:valid Ralph}
+Express the following argument is symbolic form and prove the argument is valid. 
+{\itshape If Ralph doesn't do his homework 
+or he doesn't feel sick, then he will go to the party and  he will stay up late. If he goes to the
+party, he will eat too much.  He didn't eat too much. So Ralph did his homework.}
+\end{prob}
+
+\begin{prob}
+In problem \ref{pr:valid Ralph}, show that you can logically deduce that Ralph felt sick.
+\end{prob}
+
+\begin{prob}
+In prob \ref{pr:valid Ralph}, can you logically deduce that Ralph stayed up late?
+\end{prob}
+
+\begin{prob}
+Prove the following symbolic argument.
+
+\begin{tabular}[t]{l}
+$\exists{x}(A(x)\land\neg B(x))$ \\
+$\forall{x}(A(x) \to C(x))$ \\
+\hline
+$\thus \exists{x}(C(x)\land \neg B(x))$
+\end{tabular}
+
+\end{prob}
+
+
+

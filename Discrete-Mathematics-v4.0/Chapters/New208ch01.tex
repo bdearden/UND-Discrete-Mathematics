@@ -1,0 +1,434 @@
+\chapter{Logical Connectives and Compound Propositions}\label{ch:logic prop}
+
+
+\begin{quote}
+\newthought{Logic is concerned with forms of reasoning.} Since reasoning is involved in most intellectual activities, logic is relevant to a broad range of pursuits. The study of logic is essential for students of computer science. It is also very valuable for mathematics students, and others who make use of mathematical proofs, for instance, linguistics students. In the process of reasoning one makes inferences. In an inference one uses a collection of statements, the premises, in order to justify another statement, the conclusion. The most reliable types of inferences are deductive inferences, in which the conclusion must be true if the premises are. Recall elementary geometry: Assuming that the postulates are true, we prove that other statements, such as the Pythagorean Theorem, must also be true. Geometric proofs, and other mathematical proofs, typically use many deductive inferences. (Robert L. Causey)\sidenote{\url{www.cs.utexas.edu/\~rlc/whylog.htm}}
+\end{quote}
+ 
+ 
+\section{Propositions} 
+The basic objects in logic are {\bfseries propositions}. A proposition is a statement which is either true ($T$) or
+false ($F$) but not both. For example in the language of mathematics $\mathit p : 3+3=6$ is a true proposition
+while  $\mathit q:2+3=6$ is a false proposition. {\itshape What do you want for lunch?} is a question, 
+not a proposition. Likewise {\itshape Get lost!} is a command, not a proposition. 
+The sentence {\itshape There are exactly $10^{87} + 3$ stars in the universe} is a proposition, despite the fact
+that no one knows its truth value. Here are two, more subtle, examples:
+
+\begin{enumerate}
+\item {\itshape He is more than three feet tall} is not a proposition since, until we are told to whom {\itshape he}
+refers, the statement cannot be assigned a truth value. The mathematical sentence $x+3 = 7$ is not a proposition for the
+same reason. In general, sentences containing variables are not propositions unless some information is supplied about
+the variables. More about that later however.
+
+\marginnote{%
+Sometimes a little common sense is required. For example {\itshape It is raining} 
+is a proposition, but its truth value is not constant, 
+and may be arguable. That is, someone might say {\itshape It is not raining, it is just drizzling},
+or {\itshape Do you mean on Venus?} Feel free to ignore this sort of quibbling.
+}
+\item {\itshape This sentence is false} is not a proposition. It seems to be both true and false.
+ In fact if is $T$ then it says it is 
+$F$ and if it is $F$ then it says it is $T$. It can be dangerous using sentences that refer to themselves. 
+If course, using a knife can also be dangerous, but we do use knives safely when we are careful. Likewise,
+using self-referential sentences can be done safely if care is taken.
+\end{enumerate}
+
+ Simple propositions, such as {\itshape It is raining}, and {\itshape The streets are
+wet}, can be combined to create more complicated propositions such as {\itshape It is
+raining and the streets are not wet}. These sorts of involved propositions are
+called {\bfseries compound propositions}. Compound propositions are built up from simple
+propositions using a number of {\bfseries connectives} to join or modify the simple
+propositions. In the last example, the connectives are {\bfseries and} which joins the
+two clauses, and {\bfseries not}, which modifies the second clause.
+
+It is important to keep in mind that since a compound proposition is,
+after all, a proposition, it must be classifiable as either true or false. That
+is, it must be possible to assign a truth value to any compound proposition.
+There are mutually agreed upon rules to allow the determination of exactly when a
+compound proposition is true and when it is false. Luckily these rules jive nicely
+with common sense (with one small exception), so they are easy to remember and understand.
+
+
+\section{Negation: \textbf{not}}
+The simplest logical connective is  {\bfseries negation}. 
+In normal English sentences, this connective is indicated by appropriately inserting  {\itshape not} in the statement, by preceding the
+statement with {\itshape it is not the case that}, or for mathematical statements, by using a slanted slash.
+For example, if $p$ is the proposition $2+3 = 4$, then  the negation of $p$ is denoted by the symbol
+$\lnot p$ and it is the proposition  $2+3\neq 4$. In this case, $p$ is false
+ and $\lnot p$ is true.  If $p$ is {\itshape It is raining}, then $\lnot p$ is {\itshape It is not raining} or even
+the stilted sounding 
+{\itshape It is not the case that it is raining}. 
+The negation of a proposition $p$ is the proposition whose truth value is the opposite of $p$ in all cases.
+The behavior of $\lnot p$ can be exhibited 
+in a {\bfseries truth table}. In each row of the truth table \ref{tbl:not} we list a possible truth value of $p$ 
+and the corresponding truth value of $\lnot p$.
+
+\begin{margintable}
+\begin{tabular}{@{ }c | c@{ }@{ }c}
+p & $\sim$ & p\\
+\hline 
+T & \textcolor{red}{F} & T\\
+F & \textcolor{red}{T} & F\\
+\end{tabular}
+\caption{Logical Negation}
+\label{tbl:not}
+\end{margintable}
+
+
+\section{Conjunction: \textbf{and}}
+The connective that corresponds to the word {\itshape and} is called {\bfseries conjunction}.  The
+conjunction of $p$ with $q$ is denoted  by $p\wedge q$ and read  as {\itshape $p\hbox{ and }q$}. The conjunction of
+$p$ with $q$ is declared to be true exactly when both of $p,q$ are true. It is false otherwise. This behavior
+is exhibited in the truth table \ref{tbl:conjunction}. 
+
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\land$ & q & \\
+\hline 
+T & T &  & T & \textcolor{red}{T} & T & \\
+T & F &  & T & \textcolor{red}{F} & F & \\
+F & T &  & F & \textcolor{red}{F} & T & \\
+F & F &  & F & \textcolor{red}{F} & F & \\
+\end{tabular}
+\caption{Logical Conjunction}
+\label{tbl:conjunction}
+\end{margintable}
+
+Four rows are required in this table since when $p$ is true, $q$ may be either true or
+false and  when $p$ is false it is possible for $q$ to be either true or false. Since a truth
+value must be assigned to $p\land q$ in every possible case, one row in the truth table is needed
+for each of the four possibilities. 
+
+
+\section{Disjunction: \textbf{or}}
+The logical connective {\bfseries disjunction} corresponds to the word {\itshape or} of ordinary language. The
+disjunction  of $p$ with $q$ is denoted by $p\lor q$, and read as {\itshape $p \hbox{ or }q$}. 
+The disjunction $p\lor q$ is true if at least one of $p,q$
+is true. 
+
+Disjunction is also called {\bfseries inclusive-or}, since it includes the
+possibility that both component statements are true. In everyday language, there is a second use of {\itshape or} with a different meaning.
+For example, in the proposition {\itshape Your ticket wins a prize if its serial number contains a $3$ or a $5$}, 
+the 
+{\itshape or} would
+normally be interpreted in the inclusive sense 
+(tickets that have both a $3$ and $5$ are still winners),
+ but in the proposition {\itshape With dinner you get mashed potatoes or french fries}, the {\itshape or}
+is being used in the {\bfseries exclusive-or} sense. %
+ 
+The rarely used (at least in mathematics)\sidenote{In a mathematical setting, always assume the inclusive-or is intended unless 
+the exclusive sense is explicitly indicated.}   exclusive-or is also called the {\bfseries disjoint disjunction} of $p$ with
+$q$ and is denoted by $p\oplus q$. Read that as {\itshape $p\hbox{ xor } q$} if it is necessary to say it in words. 
+The value of $p\oplus q$ is true if exactly one of $p,q$ is true. 
+The exclusion of both being true is the difference between 
+inclusive-or and exclusive-or. The truth table shown officially defines these two connectives. 
+
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\lor$ & q &  &  & p & $\oplus$ & q & \\
+\hline 
+T & T &  & T  & \textcolor{red}{T} & T  &  &  & T & \textcolor{red}{F} & T & \\
+T & F &  & T & \textcolor{red}{T} &  F &  &  &  T & \textcolor{red}{T} &  F & \\
+F & T &  & F & \textcolor{red}{T} &  T&  &  &  F & \textcolor{red}{T} &  T & \\
+F & F &  & F & \textcolor{red}{F} &  F &  &  &  F & \textcolor{red}{F} &  F & \\
+\end{tabular}
+\caption{Logical or and xor}
+\label{tbl:or,xor}
+\end{margintable}
+
+\section{Logical Implication and Biconditional}
+
+The next two logical connectives correspond to the ordinary language phrases {\itshape If $\cdots$, then $\cdots$}
+and the (rarely used in real life but common in mathematics)  {\itshape $\cdots$ if and only if $\cdots$}.
+
+\subsection{Implication: \textbf{If \textellipsis, then \textellipsis} }
+In mathematical discussions, ordinary English words are used in ways
+that usually correspond to the way we use words in normal conversation.
+The connectives  {\bfseries not}, {\bfseries and}, \textbf{or}  mean pretty much what would be
+expected.
+But the {\bfseries implication}, denoted $p\to q$ and read as
+{\itshape If $p$, then $q$} can be a little mysterious at first. This is partly because when the  {\itshape If $p$, then $q$}
+construction is used in everyday speech, there is an implied connection between the proposition $p$ (called the {\bfseries hypothesis})
+ and the proposition $q$ (called the {\bfseries conclusion}). For example, in the statement 
+{\itshape If I study, then I will pass the test},
+there is an assumed connection between studying and passing the test. However, in logic, the connective is going
+to be used to join any two propositions, with no relation necessary between the hypothesis and conclusion. What truth value
+should be assigned to such bizarre sentences as {\itshape If I study, then the moon is $238,000$ miles from earth}?  
+
+Is it true or false? Or maybe it is neither one? Well, that last option isn't too
+pleasant because that sentence is supposed to be  a proposition, and to be a
+proposition it has to have truth value either $T$ or $F$. So it is  going to have
+to be classified as  one  or the other.
+  In everyday conversation, the choice isn't likely to be too important whether it is
+classified it as either true or false in the case described. But
+an important part of mathematics is knowing when propositions are true and when they
+are 
+false.  The official choices are given in
+the truth table for $p\to q$. We can make sense of this with an example.
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\rightarrow$ & q & \\
+\hline 
+T & T &  & T & \textcolor{red}{T} & T & \\
+T & F &  & T & \textcolor{red}{F} & F & \\
+F & T &  & F & \textcolor{red}{T} & T & \\
+F & F &  & F & \textcolor{red}{T} & F & \\
+\end{tabular}
+\caption{Logical Implication}
+\label{tbl:implication}
+\end{margintable}
+\begin{exmp}
+ First consider the statement which Bill's dad makes to Bill:
+{\itshape If you get an A in math, then I will buy you a new car.}
+If Bill gets an A and his dad buys him a car, then dad's statement is true, and everyone is happy (that is the first row 
+in the table).  In the second row, Bill gets an A, and his dad 
+doesn't come through. Then Bill's going to be rightfully upset since his father lied to him (dad made a false statement).
+In the last row of the table 
+he can't complain if he doesn't get an A, and his dad doesn't buy him the car (so again dad made a true statement). 
+Most people feel comfortable with 
+those three rows.  In the third row of the table, Bill doesn't get an A, and his dad  buys him a car anyhow. 
+This is the funny case. It seems that calling dad a liar in this
+case would be a little harsh on the old man. So it is declared that dad told the truth. 
+Remember it this way: an implication is true unless the hypothesis is true and the conclusion is false.
+\end{exmp}
+
+
+\subsection{Biconditional: \textbf{\textellipsis if and only if \textellipsis} }
+The {\bfseries biconditional} is the logical connective corresponding to the phrase {\itshape $\cdots$ if and only if $\cdots$}. It is denoted by $p\iff q$,
+(read {\itshape $p\hbox{ if and only if }q$}), and  often more tersely written as {\itshape $p\hbox{ iff }q$}. The 
+biconditional is true when the two component propositions have the same truth value, and it
+is false when their truth values are different. Examine the truth table to see how this works.
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c | c@{ }@{ }c@{ }@{ }c@{ }@{ }c@{ }@{ }c}
+p & q &  & p & $\longleftrightarrow$ & q & \\
+\hline 
+T & T &  & T & \textcolor{red}{T} & T & \\
+T & F &  & T & \textcolor{red}{F} & F & \\
+F & T &  & F & \textcolor{red}{F} & T & \\
+F & F &  & F & \textcolor{red}{T} & F & \\
+\end{tabular}
+\caption{Logical biconditional}
+\label{tbl:biconditional}
+\end{margintable}
+
+
+\section{Truth table construction}
+The connectives described above combine at most two simple propositions. 
+More complicated propositions can be formed by joining  compound propositions with those
+connectives.
+For example, $p\land (\lnot q)$, $(p\lor q)\to (q\land (\lnot r))$, and
+$(p\to q)\iff((\lnot p)\lor q)$ are compound propositions, where parentheses have been
+used, just as in ordinary algebra, to avoid ambiguity.  
+Such extended compound propositions really are propositions. That is, if the truth
+value of each component is known, it is possible to determine the truth
+value of the entire proposition. The necessary computations can be exhibited in a 
+truth table.
+\begin{exmp}Suppose that $p, q$ and $r$ are propositions. To construct a truth table for
+$(p\wedge q)\to r$, first notice that eight rows will be needed in the table to account for
+all the possible combinations of truth values of the simple component statements 
+$p,q\hbox{ and } r$. This is so since there are, as noted above, four rows needed to account for the
+choices for $p\hbox{ and }q$, so there will be those four rows paired with $r$ having truth value $T$, and four more with $r$ having truth value $F$, for a total of $4+4=8$. In general,
+if there are $n$ simple propositions in a compound statement, the truth table for the compound statement will have $2^n$ rows.
+Here is the truth table for $(p\wedge q)\to r$, with an auxiliary column for $p\wedge q$
+to serve as an aid for filling in the last column.
+\end{exmp}
+\begin{margintable}
+\begin{tabular}{@{ }c@{ }@{ }c@{ }@{ }c | c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c@{ }@{}c@{}@{ }c@{ }@{ }c@{ }@{ }c}
+p & q & r &  & ( & p & $\land$ & q & ) & $\rightarrow$ & r & \\
+\hline 
+T & T & T &  &  & T & T & T &  & \textcolor{red}{T} & T & \\
+T & T & F &  &  & T & T & T &  & \textcolor{red}{F} & F & \\
+T & F & T &  &  & T & F & F &  & \textcolor{red}{T} & T & \\
+T & F & F &  &  & T & F & F &  & \textcolor{red}{T} & F & \\
+F & T & T &  &  & F & F & T &  & \textcolor{red}{T} & T & \\
+F & T & F &  &  & F & F & T &  & \textcolor{red}{T} & F & \\
+F & F & T &  &  & F & F & F &  & \textcolor{red}{T} & T & \\
+F & F & F &  &  & F & F & F &  & \textcolor{red}{T} & F & \\
+\end{tabular}
+\caption{Truth table for $(p \land q) \to r$}
+\label{tbl:p&q->r}
+\end{margintable}
+
+Be careful about  how propositions are grouped. For example, if
+truth tables for $p\wedge (q\to r)$ and $(p\wedge q)\to r$ are constructed, they
+turn out not to be the same in every row. Specifically if $p$ is false, then
+$p\wedge q$ is false, and $(p\wedge q)\to r$ is true. Whereas when $p$ is false
+$p\wedge (q\to r)$ is false. So writing $p\wedge q\to r$ is ambiguous.
+
+
+\section{Translating to propositional forms}
+Here are a few examples of translating between propositions expressed in ordinary 
+language and propositions expressed in the language of logic.
+
+\begin{exmp}
+Let $c$ be the proposition {\itshape It is cold}
+and $s :$  {\itshape It is snowing}, and $h :$  {\itshape I'm staying home}.
+Then $(c\land s)\to h$ is the proposition {\itshape If it is cold and snowing, then
+I'm staying home}. While $(c\lor s)\to h$ is {\itshape If it is either cold or 
+snowing, then I'm staying home}. Messier is $\lnot (h\to c)$ which could be expressed
+as {\itshape It is not the case that if I stay home, then
+it is cold}, which is a little too convoluted for our minds to grasp quickly. Translating in the
+other direction, the proposition {\itshape It is snowing and it is either 
+cold or I'm staying home} would be symbolized as $s\land(c\lor h)$. \sidenote{Notice the parentheses
+are needed in this last proposition since  $(s\land c)\lor h$ does not capture the meaning of the
+ordinary language sentence, and  $s\land c\lor h$ is ambiguous.} 
+\end{exmp}
+
+\section{Bit strings}
+There is a connection between logical connectives and certain 
+operations on  bit strings. There are two {\bfseries binary digits} 
+(or {\bfseries bits}):  $0$ and $1$. A {\bfseries bit string of length $n$} is any
+sequence of $n$ bits. For example, $0010$ is a bit sting of length four.
+Computers use bit strings to encode and manipulate information. Some bit string
+operations are really just disguised truth tables. Here is the connection:
+Since a bit can be one of two values, bits can be used to represent truth
+values. Let $T$ correspond to $1$, and $F$ to $0$. Then given two bits,
+logical connectives can be used to produce a new bit. For example $\lnot 1 = 0$, and
+$1\lor 1 =1$.  This can be extended to strings of bits of the same length by
+combining corresponding bit in the two strings. For example,
+ $01011\wedge 11010=(0\wedge 1) (1\wedge 1) (0\wedge 0) (1\wedge 1) (1\wedge 0)=01010$.
+
+
+\clearpage
+
+\section{Exercises}
+\begin{exer}
+Determine which of the following sentences are propositions. \\
+Assume you are speaking the sentence.
+ 
+\begin{tasks}(2)
+	\task There are seven days in a week.
+	\task Get lost!
+	\task Pistachio is the best ice cream flavor.
+	\task  If $x=2$, then $x^2-2x+1=0$.
+	\task If $x>1$, then $x^2+2x+1>5$.
+	\task All unicorns have four legs.\label{ex:1.last}
+\end{tasks}
+  
+\end{exer}
+
+\begin{exer}
+Construct truth tables for each of the following.
+\begin{tasks}(3)
+	\task $p\oplus \lnot q$	
+	\task $\lnot (q\to  p)$	
+	\task $q \wedge \lnot p$	
+	\task $\lnot q\lor p$	
+	\task $p\to (\lnot q\wedge r)$
+\end{tasks}
+
+\end{exer}
+
+
+\begin{exer}
+Perform the indicated bit string operations. The bit strings are given
+in groups of four bits each for ease of reading. 
+\begin{tasks}
+      \task $(1101~0111\oplus 1110~0010)\wedge 1100~1000$
+      \task $(1111~1010 \wedge 0111~0010)\lor 0101~0001$
+      \task $(1001~0010 \lor 0101~1101)\wedge (0110~0010 \lor 0111~0101)$
+\end{tasks}
+\end{exer}
+
+\begin{exer}
+ Let $s$ be the proposition {\itshape It is snowing} and $f$ be the proposition 
+{\itshape It is below freezing}. Convert the following English sentences into statements
+using the symbols $s$, $f$ and logical connectives.
+\begin{tasks}
+      \task It is snowing and it is not below freezing.
+      \task It is below freezing and  it is not snowing.
+      \task If it is not snowing, then it is not below freezing.
+\end{tasks}
+\end{exer}
+
+\clearpage
+\begin{exer}
+Let $j$ be the proposition {\itshape Jordan played} and $w$ be the proposition 
+{\itshape The Wizards won}.
+Write the following propositions as English sentences. 
+
+\begin{tasks}(3)
+	\task $\lnot j\wedge w$  
+	\task $j\to \lnot w$ 
+	\task $w\lor j$
+	\task $w \to \lnot j$
+\end{tasks}
+\end{exer}
+
+\begin{exer}
+ Let $c$ be the proposition {\itshape Sam plays chess}, let $b$ be {\itshape Sam has the black pieces}, 
+and let $w$ be
+{\itshape Sam wins}.
+\begin{tasks}
+       \task Translate into English: $(c\land \lnot b)\to w$.
+       \task Translate into symbols: {\itshape If Sam didn't win his chess game, then he  played black.}  
+\end{tasks}
+\end{exer}
+
+\clearpage
+\section{Problems}
+
+\begin{prob}
+Determine which of the following sentences are propositions\\
+ Assume you are speaking the sentence.
+\begin{tasks}
+	\task Today is Tuesday.
+	\task Why are you whining?
+	\task The Vikings are the worst team in professional sports.
+	\task This sentence has five words. 
+	\task There is a black hole at the center of every galaxy.
+\end{tasks}
+\end{prob}
+
+\begin{prob}
+Construct truth tables for each of the following.
+\begin{tasks}
+	\task 	$\neg q\longrightarrow \neg p$.
+	\task 	$p\longrightarrow (q\wedge r)$. \\
+                    (You will need eight rows for this one.)
+\end{tasks}
+\end{prob}
+
+\begin{prob}
+Perform the indicated bit string operations. The bit strings are given
+in groups of four bits each for ease of reading. 
+\begin{tasks}
+        \task $(1001~0101\oplus 1010~0110)\wedge 1100~1000$     
+        \task $(1110~1010 \wedge 0101~0010)\lor 0111~1001$
+        \task $(1111~0011 \lor 0111~0101)\wedge (0010~0010 \lor 0110~0100)$
+\end{tasks}
+\end{prob}
+
+\begin{prob}
+Let $s$ be the proposition {\it It is snowing} and $f$ be the proposition 
+{\it It is below freezing}. Convert the following English sentences into statements
+using the symbols $s$, $f$ and logical connectives.
+
+\begin{tasks}
+       \task It is snowing and it is below freezing.
+       \task If it is snowing, then it is below freezing.
+\end{tasks}
+\end{prob}
+
+\marginnote{% 
+English ambiguity:\\
+(1) A pedestrian is hit by a New York taxi every three minutes. 
+He is getting sick and tired of it.\\
+
+(2) One morning I shot an elephant in my pajamas. 
+How he got in my pajamas, I don't know. \\
+ (Groucho Marx as Captain Spaulding)
+ }
+ 
+\begin{prob}
+Like any natural language, spoken English can be ambiguous. It is sometimes necessary to rely on context, voice inflection or other clues, to correctly interpret a sentence. Propositional logic, correctly written, is never ambiguous. Express the following two sentence pairs in symbolic form that correctly conveys the intended meaning.
+\begin{tasks}
+ \task {\itshape Dinner comes with peas and carrots or french fries}. \\
+ Intended: You get either the peas/carrots combination, or else you get french fries.\\
+ Intended: You get  peas together with your choice  of one of carrots  or french fries.\\
+ 
+ \task  A similar scenario with algebraic operations: {\itshape Two plus three times four.}\\
+Intended: add two and three, and multiply the total by four. \\
+Intended: add two to the product of three and four.
+\end{tasks}
+\end{prob}

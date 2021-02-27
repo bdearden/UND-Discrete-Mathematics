@@ -1,0 +1,134 @@
+   \section*{Chapter 26}
+      
+\begin{Solution}{26.1a}
+Taking $0$ hours as midnight, the time $3122$ hours after $16$ hundred hours is\\
+ $16+3122 \equiv 3138\equiv 18 \,(\bmod\,24)$ hundred hours (or $6$pm).
+
+\end{Solution}
+
+\begin{Solution}{26.1b}
+Taking Sunday as day $0$ of a week, Monday will be $1$. So, $3122$ after a Monday is\\
+$1 + 3122 \equiv 3123 \equiv 1 \,(\bmod\,7)$. So, it is a Monday.
+
+\end{Solution}
+
+\begin{Solution}{26.1c}
+Taking January as month $0$, November with be month $10$. So, $3122$ months later it will be\\
+$10+3122 \equiv 3132 \equiv 0 \, (\bmod 12)$. So, it will be January.
+
+\end{Solution}
+
+\begin{Solution}{26.2}
+The integers in $[7]_{11}$ are given by adding any number of $11$'s to $7$. In other words,
+$7, 18, 29, 40, 51, \ldots$ and $-4, -15, -25, \ldots$. More compactly: $7+11k$, for all integers $k$, 
+ $-\infty<k<\infty$.
+
+\end{Solution}
+
+\begin{Solution}{26.3}
+\begin{align*}
+1211 &\equiv 1\,(\bmod\,5)\\
+218 &\equiv 3 \,(\bmod\,5)\\
+-100 &\equiv 0 \,(\bmod\,5)\\
+-3333 &\equiv 2 \,(\bmod\,5)\\
+\end{align*}
+
+The missing equivalence class is $[4]_5$. Any value in that equivalence class will do for the fifth value.
+So the possible answer is any number of the form $4 + 5k$, for an integer $k$. In particular, $4$ would work (or $-1$, or $10004$, or $-6$, and so on).
+
+\end{Solution}
+
+\begin{Solution}{26.4}
+$2311+3912 \equiv 11 + 12 \equiv 23 \, (\bmod\, 25)$
+
+\end{Solution}
+
+\begin{Solution}{26.5}
+$(2311)(3912) \equiv (11)(12) \equiv 132 \equiv 7\, (\bmod\, 25)$
+
+\end{Solution}
+
+\begin{Solution}{26.6}
+Since $1111\equiv 4\,(\bmod\,9)$, the problem can be rewritten\\
+ as $4^{2222}\equiv n \, (\bmod\,9)$.
+
+Let's check small powers of $4$ modulo $9$:\\
+\begin{align*}
+4^{1} &\equiv 4\, (\bmod\,9)\\
+4^{2} &\equiv 16 \equiv 7 \, (\bmod\,9)\\
+4^{3} &\equiv (4)(4^{2}) \equiv (4)(7) \equiv 28 \equiv 1\, (\bmod\,9)\\
+\end{align*}
+
+Taking advantage of the fact that $4^{3}\equiv 1\, (\bmod\,9)$, it follows that
+
+$1111^{2222} \equiv 4^{2222} \equiv (4^{3})^{740} \cdot 4^{2} \equiv 1^{740}\cdot16 \equiv 16 \equiv 7 \, (\bmod\,9)$
+
+\end{Solution}
+
+\begin{Solution}{26.7}
+Since $\gcd(4,7) = 1$ and $1$ divides $3$. There will be exactly one solution modulo $7$ to $4x\equiv 3\,(\bmod\,7)$. Let's use trial{-}and{-}error to find that solution. Testing $x = 0,1, 2, 3, 4, 5, 6$, we find $(4)(6)equiv 24 \equiv 3\,(\bmod\,7)$, and so the solution is $x\equiv 6 \,(\bmod\,7)$. Incidentally, it would be incorrect to say the solution is $x=6$ since we are working modulo $7$ and so the solution has to be given modulo $7$.
+
+\end{Solution}
+
+\begin{Solution}{26.8}
+Using the the Extended Euclidean Algorithm, we get $57(-5) + 11(26) = 1 = \gcd(57,11)$, and since $1$ divides $8$, there will be exactly one solution to $11x\equiv 8 \, (\bmod\,57)$. To find that solution, multiply both sides of $57(-5) + 11(26) = 1 = \gcd(57,11)$ (cleverly) by $8$ to get $57(-40) + 11(208) = 8$. So one solution to
+$11x\equiv 8\,(\bmod\,57)$ is $x = 208$. That means all solutions are given by
+$x \equiv 208 \equiv 37\,(\bmod\,57)$. Note that giving the solution as $x \equiv 208\,(\bmod\,57)$ is correct,
+but people expect to see solutions to $x\equiv n\,(\bmod\, m)$ written with the value of $n$ in the range $0$ to $m-1$. 
+
+\end{Solution}
+
+\begin{Solution}{26.9}
+$\gcd(14,231) = 7$ and $7$ does not divide $3$, so $14x\equiv 3\,(\bmod\,231)$ has no solutions.
+
+\end{Solution}
+
+\begin{Solution}{26.10}
+To solve $8x \equiv 16\,(\bmod\,28)$, we look for solutions to $8x+28y = 16$, We can simplify that equation by
+dividing through by $4 = \gcd(8,28)$ to get $2x + 7y = 4$. Solving that equation is the same as solving
+$2x\equiv 4 \, (\bmod \,7)$. (Short cut: when solving $ax\equiv b\,(\bmod\,m)$ where $\gcd(a,m) = d$ divides $b$, we can simplify the original equation by dividing $a,b,m$ each by $d$ to get $\frac{a}{d}x\equiv \frac{b}{d}\,(\bmod\,\frac{m}{d})$.). The equation $2x\equiv 4 \, (\bmod \,7)$ with have exactly one solution modulo $7$ (but remember that $\gcd(8,28) = 4$, so the original equation will have four solutions modulo $28$). A little trial{-}and{-}error
+(or plain old common sense) shows  $2x\equiv 4 \, (\bmod \,7)$ has solution $x\equiv 2\,(\bmod\,7)$. It is acceptable to leave the answer in this form, but since the problem was given modulo $28$, it is good manners to provide the solutions modulo $28$. Since $x$ has to be $2$ modulo $7$, the solutions modulo $28$ will be the four values from $0$ to $27$ that are equal to $2$ modulo $7$. Final answer then: $x \equiv 2, 9, 16, 23 \,(\bmod\,28)$.
+
+\end{Solution}
+
+\begin{Solution}{26.11}
+Since $\gcd(91,231) = 7$, and $7|189$, we see the congruence will have\\ 
+seven solutions modulo $231$. As in problem 10, to simplify the work a bit we could cancel\\
+ $7$'s in the given congruence, and rewrite the problem as $13x\equiv 27\,(\bmod{33})$. \\
+Solving that (using the Extended Euclidean Algorithm for example),\\
+ we get $x\equiv 30\,(\bmod{33})$ for the solution. Since the problem was\\
+ given modulo $231$, we should express the solutions modulo $231$ as well. \\
+Solutions: $x\equiv 30, 63, 96, 129, 162, 195, 228 \,(\bmod{231})$.
+
+\end{Solution}
+
+\begin{Solution}{26.12a}
+Let $d = \gcd(a,m)$ and suppose $s$ is a solution to $ax\equiv b\, (\bmod\,m)$ so that 
+$as\equiv b\, (\bmod\,m)$.  If $x$ represents a solution to $ax\equiv b\, (\bmod\,m)$,
+then $ax \equiv as \, (\bmod\,m)$. Rearrange that as $ax-as \equiv 0\,(\bmod\,m)$, or
+$a(x-s) \equiv 0\,(\bmod\,m)$.  That means $m$ divides $a(x-s)$, and so there is an integer $k$
+with $mk = a(x-s)$. Now $d$ also divides $a$ and $m$ since $d = \gcd(a,m)$. 
+So, we can divide both sides in that equation by $d$ to get
+\[
+\frac{m}{d} (k) = \frac{a}{d}(x-s).
+\]
+So $\frac{m}{d}$ divides $\frac{a}{d}(x-s)$. But $\frac{m}{d}$ is relatively prime to $\frac{a}{d}$, and so 
+$\frac{m}{d}$ must divide $x-s$. In other words, there is an integer $r$ such that 
+$x-s = r(\frac{m}{d})$. Rearrange that as $x = s + r(\frac{m}{d})$. 
+
+\end{Solution}
+
+\begin{Solution}{26.12b}
+Suppose $0\leq r_1 < r_2 < d$, and that $d$ is a positive divisor $m$. We want to show the numbers $x_1= s+r_1(\frac{m}{d})$ and $x_2= s+r_2(\frac{m}{d})$ and not equivalent modulo $m$. In other words, we want to show that $m$ does not divide 
+\[
+x_2 - x_2 = (s+r_2(\frac{m}{d}))- (s+r_1(\frac{m}{d})) = \frac{m}{d}(r_2 - r_1).
+\]
+Well, suppose $m$ does divide $\frac{m}{d}(r_2 - r_1)$. That means there is an integer $k$ such that
+$mk = \frac{m}{d}(r_2 - r_1)$. Cancel the common factor $m$, and multiply both sides by $d$ to get
+$dk = r_2-r_1$. That equation tells us $r_2-r_1$ is a multiple of $d$. Since $0\leq r_1 < r_2 < d$,
+we know $0<r_2-r_1<d$, and none of the integers in that range is a multiple of $d$. We have reached a
+contradiction, and so we can conclude the $x_1$ and $x_2$ are different modulo $m$. (Notice that this means 
+that the numbers $s, s+\frac{m}{d}, s+2\frac{m}{d}, s+3\frac{m}{d},\ldots,s+(d-1)\frac{m}{d}$ are $d$ different
+values modulo $m$.)
+ 
+\end{Solution}

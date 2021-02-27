@@ -1,0 +1,68 @@
+    \section*{Chapter 3}
+\begin{Solution}{3.1}
+\quad
+    \begin{tasks}(4)
+        \task T
+        \task* F
+        \task* F  (e.g., $(0\leq 10) \to (2\cdot0\geq 4)$ is false.)
+        \task* T  (e.g., $\lnot (2\cdot 0 \geq 4)$ is true.)
+    \end{tasks}
+\end{Solution}
+\begin{Solution}{3.2}
+\quad
+    \begin{tasks}(1)
+\task Everyone in class has read \textit{War and Peace}.
+\task Someone in class has not read \textit{The Great Gatsby}.
+\task Someone in class has read every novel.
+\task For each novel there is at least one person in the class who has read that novel.
+    \end{tasks}
+\end{Solution}
+\begin{Solution}{3.3}
+\quad
+	\begin{tasks}(2)
+		\task* $\forall y \, F(\text{I},y)$
+		\task* $\lnot\exists y \, F(\text{George},y)] \equiv  \forall y \, \lnot F(\text{George},y)$
+		\task* $\lnot \exists x \, F(x,x) \equiv \forall x \, \neg F(x,x)$
+		\task $\exists x \, \forall y \,F(x,y)$
+		\task $\exists y \, \forall x \, F(x,y)$
+		\task* $\exists y \, \exists z \, ((y\not= z) \land F(\text{Ralph},y)\land F(\text{Ralph},z))$
+	\end{tasks}
+\end{Solution}
+\begin{Solution}{3.4}
+\quad
+	\begin{tasks}(1)
+		\task Someone in class has not read \textit{War and Peace}.
+		\task Everyone in class has read \textit{The Great Gatsby}.
+		\task No student in class has read every novel.
+		\task There is a novel that no one in class has read.
+	\end{tasks}
+\end{Solution}
+\begin{Solution}{3.5}
+\quad
+	\begin{tasks}(2)
+		\task $\exists y \, \lnot F(I,y)$
+		\task $\exists y \, F(George,y)$
+		\task $\exists x \,F(x,x)$
+		\task $\forall x \, \exists y \, \lnot F(x,y)$
+		\task* $\forall y \, \exists x \, \lnot F(x,y)$
+		\task* This one is a little complicated.\\
+		$\forall y \forall z ( (y=z) \lor \lnot F(Ralph,y) \lor \lnot F(Ralph,z)).$\\
+                  In plain English name any two (not necessarily different) people. Either they are the same person,
+                      or else Ralph cannot fool at least one of the two. A logically equivalent, and maybe easier to fathom 
+                      version converting the disjunctive form above to an implication: \\
+                      $\forall y \forall z ( (F(Ralph,y) \land F(Ralph,z)) \to (y=z)).$ \\
+                      In plain English: If Ralph can fool both $y$ and $z$, 
+                      then $y$ and $z$ are actually the same person. Or, in more natural sounding English, Ralph can 
+                      fool at most one person.
+
+	\end{tasks}
+\end{Solution}
+\begin{Solution}{3.6}
+	$\forall x \, \forall y \,\left( (E(x) \land O(y)) \to E(x\cdot y)\right)$, \\
+	where  $E(x)$: \textit{$x$ is an even integer} and $O(y)$: \textit{$y$ is an odd integer}.
+\end{Solution}
+\begin{Solution}{3.7}
+\quad
+``There is an $x$ so $P(x)$ holds, and, for any $x$ and $y$, if both $P(x)$ and $P(y)$ hold, then $x$ and $y$ are equal.''\\
+Or, more succinctly: ``There is exactly one $x$ for which $P(x)$ is true.''
+\end{Solution}

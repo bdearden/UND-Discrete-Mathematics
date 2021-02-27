@@ -1,0 +1,73 @@
+   \section*{Chapter 23}
+    
+\begin{Solution}{23.1}
+Part 1 (back-substitution method):
+
+\begin{align*}
+ 13447 &= 1\cdot7667+5780 \\
+ 7667 &= 1\cdot5780+ 1887\\
+  5780 &= 3\cdot1887+119 \\
+  1887 &= 15\cdot119+102 \\
+  119  &= 1\cdot102+17 \\
+  102  &= 6\cdot17+0
+\end{align*}
+
+$\gcd(13447,7667) = 17$.
+
+\begin{align*}
+17 &= (1)(119)+ (-1)(102)\\[3pt]
+     &= (1)(119) + (-1)(1887 +(-15)(119)) = (-1)(1887) + (16)(119)\\[3pt]
+     &= (-1)(1887) + (16)(5780 +(-3)(1887)) = (16)(5780) + (-49)(1887)\\[3pt]
+     &= (16)(5780) +(-49)(7667 + (-1)(5780 ) = (-49)(7667) + (65)(5780)\\[3pt]
+     &= (-49)(7667) +(65)(13447 + (-1)(7667)) = (65)(13447) + (-114)(7667)
+\end{align*}
+
+$(65)(13447) + (-114)(7667) = 17 = \gcd(13447,7667)$
+
+\vskip 10pt
+
+Part 2 (Extended Euclidean Algorithm Table):
+
+\begin{table}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|*{8}{>{\raggedleft\arraybackslash}p{0.996cm}|}}
+ \hline
+ 13447&7667&5780&1887&119&102&17&0 \\
+  \hline
+  &&1&1&3&15&1&6 \\
+ \hline
+ 0&1&-1&2&-7&107&-114&791 \\
+ \hline
+ 1&0&1&-1&4&-61&65&-451 \\
+ \hline
+\end{tabular}
+\end{table}
+
+Thus, we may conclude that 
+\[
+\gcd(13447,7667) = 17 = (65)(13447) + (-114)(7667).
+\]
+
+You'll likely agree that the Extended Euclidean Algorithm table is a lot neater and much less prone to error.
+
+
+
+\end{Solution}
+
+
+\begin{Solution}{23.2}
+Since the only values that can be written as a linear combination of $a$ and $b$ are multiples of $\gcd(a,b)$, it must be that $1$ is a multiple of $\gcd(a,b)$. Or, saying the same thing  another way, $gcd(a,b)$ must be a positive divisor of $1$. The only choice is $\gcd(a,b) = 1$.
+
+\end{Solution}
+
+\begin{Solution}{23.3}
+Since the only values that can be written as a linear combination o $a$ and $b$ are multiples of $\gcd(a,b)$, it must be that $19$ is a multiple of $\gcd(a,b)$. Or, saying the same thing  another way, $gcd(a,b)$ must be a positive divisor of $19$. So, $\gcd(a,b) = 1$ or $19$.
+
+
+\end{Solution}
+
+\begin{Solution}{23.4}
+Since the only values that can be written as a linear combination o $a$ and $b$ are multiples of $\gcd(a,b)$, it must be that $18$ is a multiple of $\gcd(a,b)$. Or, saying the same thing  another way, $gcd(a,b)$ must be a positive divisor of $18$. So, $\gcd(a,b) = 1, 2, 3, 6, 9,$ or $18$.
+\end{Solution}
+
+

@@ -1,0 +1,399 @@
+\chapter{Modular Arithmetic}
+
+
+\newthought{Karl Friedrich Gauss made} the important discovery of modular arithmetic. 
+Modular arithmetic is also called {\itshape clock arithmetic}, and we
+are actually used to doing modular arithmetic {\itshape all the time} (pun 
+intended). For example,
+consider the question {\itshape If it is $7$ o'clock now, what time
+will it be in $8$ hours?}. Of course the answer is $3$ o'clock, and
+we found the answer by adding $7+8 = 15$, and then subtracting $12$
+to get $15-12=3$. Actually, we are so accustomed to that sort of calculation,
+we probably just immediately blurt out the answer without stopping to think
+how we figured it out. But trying a less familiar version of the same
+sort of problem makes it plain exactly what we needed to do to answer such
+questions: \textit{If it is $7$ o'clock now, what time
+will it be in $811$ hours?} To find out, we add $7+811 = 818$, then divide
+that by $12$, getting $818 = (68)(12) + 2$, and so we conclude it will
+be $2$ o'clock. The general rule is: to  find the time $h$ hours after
+$t$ o'clock, add $h+t$, divide by $12$ and take the remainder.
+
+There is nothing special about the number $12$ in the above discussion. We can
+imagine a clock with any integer number of hours (greater than $1$) on the clock.
+For example, consider a clock with $5$ hours. What time will it be $61$ hours after
+$2$ o'clock. Since $61+2 = 63 = (12)(5) + 3$, the answer is $3$ o'clock.
+
+In the general case, if we have a clock with $m$ hours, then the time $h$ hours after
+$t$ o'clock will be the remainder when $t+h$ is divided by $m$.
+
+\section{The modulo $m$ equivalence relation}
+This can all be expressed in more mathematical sounding language. The key is 
+obviously the notion of remainder. That leads to the following definition:
+\begin{defn}\marginnote{
+So, the reason it is $2$ o'clock $811$ hours after $7$ o'clock is that
+\[811+7\equiv 2 \pmod {12}\]}
+Given an integer $m>1$, we say that two integers $a$ and $b$ are 
+{\bfseries congruent 
+modulo $m$}, and write $a\equiv b\pmod m$, in case $a$ and $b$ leave the same
+remainder when divided by $m$.
+\end{defn}
+
+
+\begin{thm}
+ Congruence modulo $m$ defines an equivalence relation on $\Z$.
+\end{thm}
+\begin{proof}
+The relation is clearly reflexive since every number leaves the same
+remainder as itself when divided by $m$. Next, if $a$ and $b$ leave the same remainder 
+when divided by $m$, so do $b$ and $a$, so the relation is symmetric. Finally, if
+$a$ and $b$ leave the same remainder, and $b$ and $c$ leave the same remainder, then
+$a$ and $c$ leave the same remainder, and so the relation is transitive.
+\end{proof}
+
+There is an alternative way to think of congruence modulo $m$.
+
+\begin{thm}
+ $a\equiv b \pmod m$ if and only if $m | (a-b)$.
+\end{thm}
+\begin{proof}
+Suppose $a\equiv b \pmod m$. That means $a$ and $b$ leave the same 
+remainder, say $r$ when divided by $m$. So we can write $a=jm+r$ and $b=km+r$.
+Subtracting the second equation from the first gives $a-b = (jm+r)-(km+r)
+= jm-km = (j-k)m$, and that shows $m | (a-b)$.
+
+For the converse, suppose $m | (a-b)$. Divide $a,b$ by $m$ to get  quotients and
+remainders: $a = jm+r$ and $b=km+s$, where $0\leq r,s<m$. We need to show that
+$r=s$. Subtracting the second equation from the first gives
+$a-b = m(j-k) + (r-s)$. Since $m$ divides $a-b$ and $m$ divides $m(j-k)$, we can
+conclude $m$ divides $(a-b)-m(j-k) = r-s$. Now since $0\leq r,s<m$, the quantity
+$r-s$ must be one of the numbers $m-1, m-2,\cdots, 2, 1, 0, -1, -2,\cdots -(m-1)$.
+The only number in that list that $m$ divides is $0$, and so $r-s=0$. That is,
+$r=s$, as we wanted to show.
+\end{proof}
+
+\section{Equivalence classes modulo $m$}
+The equivalence class of an integer $a$ with respect to congruence modulo $m$ will be 
+denoted
+by $\displaystyle[a]$, or $\displaystyle[a]_m$ in case we are employing more than one number $m$ as a \emph{modulus}.
+In other words, $[a]$ is the set of all integers that leave the same remainder
+as $a$ when divided by $m$. Or, another way to say the same thing, $[a]$ comprises 
+all integers $b$ such that $b-a$ is a multiple of $m$. That means $b-a =km$, or
+$b=a+km$. 
+
+
+That last version is often the easiest way\marginnote{For example, the equivalence class of $7$ modulo $11$ would be %
+\[[7] = \{\cdots, -15, -4, 7, 18, 29, 40,\cdots\}.\]} to think about the integers that
+appear in $[a]$: start with $a$ and add and subtract any number of $m$'s.
+
+
+We know that the distinct equivalence classes partition $\Z$.
+Since dividing an integer by $m$ leaves one of $0,1,2,\cdots,m-1$ as a remainder,
+we can conclude that there are exactly $m$ equivalence classes modulo $m$.
+In particular,  $[0],[1],[2],[3],...[m-1]$ is a list of all the different
+equivalence classes modulo $m$. It is traditional\marginnote{\dbend} when working with modular
+arithmetic to drop the $[\,]$ symbols denoting the equivalence classes, and simply
+write the representatives. So we would say, modulo $m$, there are $m$ numbers:
+$0,1,2,3,\cdots, m-1$. But keep in mind that each of those numbers really
+represents a set, and we can replace any number in that list with another
+equivalent to it modulo $m$. For example, we can replace the $0$ by $m$.
+The list $1,2,3\cdots, m-1,m$ still consists of all the distinct values modulo $m$.
+
+
+\section{Modular arithmetic}
+One reason the relation of congruence modulo $m$ useful is that addition
+and multiplication of numbers modulo $m$ acts in many ways just like arithmetic
+with ordinary integers.
+
+\begin{thm}
+ If 
+ $a\equiv c\pmod m$, and $b\equiv d\pmod m$,
+ then $a+b\equiv c+d\pmod m$ and $ab\equiv cd\pmod m$.
+\end{thm}
+\begin{proof}
+Suppose $a\equiv c\pmod m$ and $b\equiv d\pmod m$. 
+Then there exist integers $k$ and $l$
+with $a=c+km$ and $b=d+lm$. So 
+$a+b=c+km+d+lm=(c+d)+(k+l)m$. This can be rewritten as $(a+b)-(c+d)=(k+l)m$, 
+where $k+l\in \Z$.
+So $a+b\equiv c+d\pmod m$. The other part is done  similarly.
+\end{proof}
+
+\begin{exmp}
+What is the remainder when $1103+112$ is divided by $11$?
+We can answer this problem in two different ways. We could add $1103$ and $112$,
+and then divide by $11$. Or, we could determine the remainders when each of $1103$ and
+$112$ is divided by $11$, then add those remainders before dividing by $11$. 
+The last theorem promises us the
+two answers will be the same. In fact $1103+112 = 1215 = (110)(11) + 5$ 
+so that $1103+112\equiv 5 \pmod{11}$. On the other hand
+$1103 = (100)(11)+3$ and $112 = (10)(11)+2$, so that
+$1103+112\equiv 3+2\equiv 5 \pmod{11}$. 
+\end{exmp}
+
+\begin{exmp}
+ A little more impressive is the same sort of problem with operation of multiplication:
+ what is the remainder when $(1103)(112)$ is divided by $11$?
+ The calculation looks like $(1103)(112) \equiv (3)(2)\equiv 6 \pmod{11}$.
+\end{exmp}
+
+\begin{exmp}\label{exmp:inspiring mod 11}
+ For a really  awe inspiring example, let's find the remainder when $1103^{112}$ is 
+ divided by $11$. In other words, we want to find $x=0,1,2,\cdots 10$ 
+ so that $1103^{112}\equiv x\pmod{11}$.
+ 
+ Now $1103^{112}$ is a pretty big number (in fact, since $\log 1103^{112} 
+ =112\log 1103 = 340.7\cdots$, the number has $341$ digits). 
+ In order to solve this problem, let's start by thinking small: Let's compute
+ $1103^n$, for $n=1,2,3,\cdots$.
+ \begin{align*}
+  1103^1 & \equiv 1103 \equiv 3 \pmod{11} \\
+  1103^2 & \equiv 3^2 \equiv 9 \pmod{11} \\
+  1103^3 & \equiv 1103(1103^2)\equiv 3(9) \equiv 27 \equiv 5 \pmod{11} \\
+  1103^4 & \equiv (1103)(1103^3) \equiv 3(5) \equiv 15\equiv 4 \pmod{11} \\
+  1103^5 & \equiv (1103)(1103^4) \equiv 3(4) \equiv 12 \equiv 1 \pmod{11}
+  \end{align*}
+ 
+ Now that last equation is very interesting. It says that whenever we
+ see $1103^5$ we may just as well write $1$ if we are working modulo $11$.
+ And now we see there is an easy way to determine
+ $1103^{112}$ modulo $11$:
+ \[
+ 1103^{112} \equiv 1103^{5(22) + 2}\equiv (1103^{5})^{22}(1103^2)
+ \equiv 1^{22}(9) \equiv 9 \pmod {11}
+ \]
+\end{exmp}
+
+\clearpage
+The sort of computation in example~\ref{exmp:inspiring mod 11} appears 
+to be just a curiosity, but in fact the last sort of 
+example forms the basis of one version of public key cryptography.  Computations of
+exactly that type (but with much larger integers) are made whenever you log into
+a secure Internet site. It's reasonable to say that e-commerce owes its existence
+to the last theorem.  
+
+
+While modular arithmetic in many ways behaves like ordinary arithmetic, there are some 
+differences to watch for. One important difference is the familiar \textit{rule of 
+cancellation}:\marginnote{\dbend} in ordinary arithmetic, if $ab=ac$ and $a\not=0$, then $b=c$.
+This rule fails in modular arithmetic. For example, 
+$3\not\equiv0\pmod 6$ 
+and  $(3)(5)\equiv (3)(7)\pmod 6$, but $5\not\equiv 7\pmod{6}$.
+
+
+\section{Solving congruence equations}
+Solving congruence equations is a popular sport.
+Just as with regular arithmetic with integers, if we want to solve $a+x\equiv b\pmod m$, 
+we can simply set $x\equiv b-a \pmod m$. So, for example, solving 
+$55+x\equiv 11 \pmod 6$ we would get $x \equiv 11-55\equiv -44 \equiv 4 \pmod 6$.
+  
+Equations involving multiplication, such as  $ax\equiv b\pmod m$, are much more 
+interesting.
+If the modulus $m$ is small, equations of this sort can be solved by trial-and-error:
+simply try all possible choices for $x$. For example, testing $x=0,1,2,3,4,5,6$
+in the equation $4x\equiv 5 \pmod 7$, we see $x\equiv 3 \pmod 7$ is the only solution.
+The equation $4x \equiv 5 \pmod 8$ has no solutions at all. And the equation
+$2x\equiv 4\pmod 6$ has $x\equiv 2,5 \pmod 6$ for solutions.
+
+Trial-and-error is not a suitable approach for large values of $m$. There is a method
+that will produce all solutions to $ax\equiv b \pmod m$.   It turns out that such
+equations are really just linear Diophantine equations in disguise, and that is the 
+key to the proof of the following theorem. 
+
+\begin{thm}%
+\marginnote{This is why $4x\equiv 5 \pmod 7$ has a solution: $gcd(4,7)=1$ and $1 | 5$.
+And, why $4x \equiv 5 \pmod 8$ has no solutions: $gcd(4,8)=4$, but
+$4\notdivides{5}$.}%
+ The congruence $ax\equiv b\pmod m$ can be solved for 
+ $x$ if and only if $d=\gcd(a,m)$ divides $b$.
+\end{thm}%
+\begin{proof}
+ Solving $ax\equiv b\pmod m$ is the same as finding $x$
+ so that $m | (ax-b)$ and that's the same as finding $x$ and $y$ so that
+ $ax-b = my$. Rewriting that last equation in the form $ax+(-m)y = b$,
+ we can see solving $ax\equiv b\pmod m$ is the same as solving the 
+ linear Diophantine equation $ax + (-m)y = b$. We know that
+ equation has a solution if and only if $gcd(a,m) | b$, so that proves the
+ theorem.
+\end{proof}
+ 
+
+The theorem also shows that $2x\equiv 4\pmod 6$  has a solution
+since $gcd(2,6)=2$ and $2 | 4$. But why does this last equation have two
+solutions? The answer to that is also provided by the results concerning
+linear Diophantine equations.
+
+
+Let $\gcd(a,m) = d$. The solutions to $ax\equiv b\pmod m$ are the
+same as the solutions for $x$ to $ax +(-m)y = b$. Supposing
+that last equation has a solution with $x= s$, then we know all
+possible choices of $x$ are given by $x = s + k\frac{m}{d}$.
+So if $x=s$ is one solution to $ax\equiv b\pmod m$, then all solutions
+are given by $x = s +k\frac{m}{d}$, where $k$ is any integer. In other words, all solutions are
+given by $x\equiv s \pmod{ \frac{m}{d}}$, and so there are $d$ solutions modulo $m$,
+
+\begin{exmp}
+Let's find all the solutions to $2x\equiv 4\pmod 6$.
+Since $x=2$ is obviously one solution, we see all solutions are
+given by $x = 2+k\frac{6}{2} = 2+3k$, where $k$ is any integer.
+When $k=0,1$ we get $x=2,5$, and other values of $k$ repeat these two
+modulo $6$.  Looking at the solutions written as
+$x = 2+k\frac{6}{2} = 2+3k$, we can see another way to express the solutions
+would be as $x\equiv 2 \pmod 3$. 
+\end{exmp}
+
+\begin{exmp}
+Find all solutions to $42x\equiv 35\pmod{91}$.
+
+Using the continued fraction method (or just staring at the numbers
+$42$ and $91$ long enough) we see $gcd(91,42) = 7$ and, since $7 | 35$,
+the equation will have a solution. In fact, since $gcd(42,91)=7$, there
+are going to be seven solutions modulo $91$. All we need is to find one
+particular solution, then the others will all be easy to determine. Again
+using the continued fraction method (or just playing with $42$ and $91$
+a little bit) we discover $(42)(-2) + (91)(1) = 7 = gcd(42,91)$. Multiplying 
+by $5$ gives $(42)(-10) + (91)(5)=35$. The only thing we care about is
+that $x=-10$ is one solution to $42x\equiv 35\pmod{91}$.
+As above, it follows that all solutions are given by 
+$x\equiv -10 \pmod\;{\frac{91}{gcd(42,91)}}$. 
+That's the same as $x\equiv -10 \pmod{13}$, or, even more
+neatly, $x\equiv 3 \pmod {13}$. 
+In other words, the solutions are $3,16,29,42,55,68,81$ modulo $91$.
+\end{exmp}
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer} \ {}
+\begin{enumerate}[label=(\alph*)]
+ \item On a military ($24$-hour) clock, what time is it $3122$ hours after $16$ hundred hours?
+ 
+ \item What day of the week is it $3122$ days after a Monday?
+ 
+ \item What month is it $3122$ months after November?
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+List  the integers in $\left[7\right]_{11}$.
+\end{exer}
+
+\begin{exer}
+In a listing of the five equivalence classes modulo $5$, four of the values
+are $1211$, $218$, $-100$, and $-3333$. What are the possible choices for
+the fifth value?
+\end{exer}
+
+\begin{exer}
+Determine $n$ between  $0$ and $24$ such that\\
+$2311+3912 \equiv n \pmod{25}$.
+\end{exer}
+
+\begin{exer}
+Determine $n$ between  $0$ and $24$ such that \\
+$(2311)(3912) \equiv n \pmod{25}$.
+\end{exer}
+
+\begin{exer}
+Determine $n$ between  $0$ and $8$ such that\\
+$1111^{2222}\equiv n \pmod 9$.
+\end{exer}
+
+\begin{exer}
+Solve:  $4x\equiv 3\pmod 7$.
+\end{exer}
+
+\begin{exer}
+Solve $11x\equiv 8\pmod {57}$.
+\end{exer}
+
+\begin{exer}
+Solve: $14x\equiv 3\pmod {231}$.
+\end{exer}
+
+\begin{exer}
+Solve $8x\equiv 16\pmod {28}$
+\end{exer}
+
+\begin{exer}
+Solve: $91x\equiv 189\pmod {231}$
+\end{exer}
+
+\begin{exer}
+Let $d = gcd(a,m)$, and let $s$ be a solution\\
+ to $ax \equiv b \pmod{m}$.
+\begin{enumerate}[label=(\alph*)]
+ \item Show that if $ax \equiv b \pmod{m}$, then there is an integer $r$ such that
+ $x = s + r\left(\frac{m}{d}\right)$.
+ 
+ \item If $0\leq r_1< r_2 < d$, then the numbers $x_1 = s + r_1\left(\frac{m}{d}\right)$
+ and\\
+  $x_2 = s + r_2\left(\frac{m}{d}\right)$ are not congruent modulo $m$.
+\end{enumerate}
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+ Suppose we have a $52$ card deck with the cards in order, top to bottom, $\text{ace }, 2, 3, \ldots,\text{ queen, king}$ for clubs, then diamonds, then hearts, then spades. A step consists to taking the top card and moving it to the bottom of the deck. We start with the ace of clubs as the top card. After two steps, the top card is the $3$ of clubs. What is the top card after $735$ steps?
+\end{prob}
+
+\begin{prob}
+The marks on a combination lock are numbered $0$ to $39$. If the lock is at  mark $19$, and the dial is turned one mark clockwise, it will be
+at mark $18$. If the lock is at mark $19$ and turned $137$ marks clockwise, at what mark will it be?
+\end{prob}
+
+\begin{prob}
+List the integers in $[11]_{7}$.
+\end{prob}
+
+\begin{prob}
+Arrange the numbers $-39, -27, -8, 11, 37, 68, 91$ \\
+so they are in the order $0,1,2,3,4,5,6$ modulo $7$.
+\end{prob}
+
+\begin{prob}
+Determine $n$ between $0$ and $16$ such that\\
+ $311+891 \equiv n \,(\bmod\,17)$.
+\end{prob}
+
+\begin{prob}
+Determine $n$ between $0$ and $16$ such that \\
+$(405)(777) \equiv n \,(\bmod\,17)$.
+\end{prob}
+
+\begin{prob}
+Determine $n$ between $0$ and $16$ such that\\
+ $710^{447} \equiv n \,(\bmod\,17)$.
+\end{prob}
+
+\begin{prob}
+Solve: $3x\equiv 5\,(\bmod\, 8)$.
+\end{prob}
+
+\begin{prob}
+Solve: $13x\equiv 12\,(\bmod\, 68)$.
+\end{prob}
+
+\begin{prob}
+Solve: $15x\equiv 12\,(\bmod\, 27)$.
+\end{prob}
+
+\begin{prob}
+Solve: $12x\equiv 9\,(\bmod\, 88)$.
+\end{prob}
+
+\begin{prob}
+Solve: $33x\equiv 183\,(\bmod\,753 )$.
+\end{prob}
+
+
+\begin{prob}
+There is exactly one $n$ between $0$ and $55$ such that \\
+$n\equiv 6\,(\bmod\,7)$ and $n\equiv 1\,(\bmod\,8)$. Determine that $n$.
+\end{prob}
+
+\begin{prob}
+There is exactly one $n$ between $0$ and $19548$ such that $n\equiv 22\,(\bmod\,173)$ and $n\equiv 80\,(\bmod\,113)$. Determine that $n$.
+\end{prob}
+ 

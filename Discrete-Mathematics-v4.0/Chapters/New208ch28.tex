@@ -1,0 +1,453 @@
+\chapter{The Two Fundamental Counting Principles}
+
+\newthought{The next few chapters will deal} with the topic of {\bf combinatorics:} the art of
+counting. By counting we mean determining the number of different ways of 
+arranging objects in certain patterns or the number of ways of carrying out 
+a sequence of tasks. For example, suppose we want to count the number of ways
+of making a bit string of length two. Such a problem is small enough that the 
+possible arrangements can be counted by {\itshape brute force}. In other words,
+we can simply make a list of all the possibilities: $00, 01, 10, 11$. So the answer is
+four. If the problem were to determine the number of bit strings of length fifty,
+the brute force method loses a lot of its appeal. For problems where brute force
+counting is not a reasonable alternative, there are a few principles we can apply
+to aid in the counting. In fact, there are just two basic principles on which all
+counting ultimately rests.
+
+Throughout this chapter, all sets mentioned will be finite sets, and if $A$ is a set, $|A|$
+will denote the number of elements in $A$.
+
+\section{The sum rule}
+The {\bfseries sum rule} says that if the sets $A$ and $B$ are disjoint, then
+\[
+\lvert A\cup B\rvert = \lvert A\rvert+\lvert B\rvert.
+\]
+
+\clearpage
+\begin{exmp}
+ For example, if $A=\{a,b,c\}$ and $B=\{j,k,l,m,n\}$, then $\lvert A\rvert=3, \lvert B\rvert=5$, and, sure
+ enough, 
+ \[
+ \lvert A\cup B\rvert = \lvert \{a,b,c,j,k,l,m,n\}\rvert = 8 = 3+5.
+ \]
+\end{exmp}
+
+Care must be used when\marginnote{\dbend}
+applying the sum principle that the sets are disjoint. If $A=\{a,b,c\}$ and $B=\{b,c,d\}$,
+then $\lvert A\cup B \rvert = 4$, and not $6$.
+
+\begin{exmp}
+ As another example of the sum principle, if we have a collection of $3$ dogs and $5$ cats,
+ then we can select one of the animals in $8$ ways.
+\end{exmp}
+
+\subsection{Counting two independent tasks}
+The sum principle is often expressed in different language: If we can do task $1$ in $m$ ways
+and task $2$ in $n$ ways, and the tasks are {\itshape independent} (meaning that both
+tasks cannot be done at the same time), then there are $m+n$ ways to do one of the two tasks.
+The independence of the tasks is the analog of the disjointness of the sets in the set version
+of the sum rule.
+
+A serious type of error\marginnote{\dbend}
+ is trying to use the sum rule for tasks that are
+not independent. For instance, suppose we want to know \emph{in how many different ways
+we can select  either a deuce or a six from an ordinary deck of $52$ cards.} We
+could let the first task be the process of selecting a deuce from the deck. That
+task can be done in $4$ ways since there are $4$ deuces in the deck. For the
+second task, we will take the operation of selecting a six from the deck. Again,
+there are $4$ ways to accomplish that task. Now these tasks are independent since
+we cannot simultaneously pick a deuce and a six from the deck. So, according to
+the sum rule, there are $4+4=8$ ways of selecting one card from a deck, and having
+that card be either a deuce or a six.\
+
+Now consider the similar sounding question: \emph{In how many ways can we select
+either a deuce or a diamond from a deck of $52$ cards?} We could let the first task
+again be the operation of selecting a deuce from the deck, with $4$ ways to carry
+out that task. And we could let the second task be the operation of selecting a
+diamond from the deck, with $13$ ways to accomplish that. But in this case, the
+answer to the question is not $4+13 = 17$, since these tasks are not
+independent. It is possible to select a card that is both a deuce and a
+diamond. So the sum rule cannot be used. What is the correct answer? Well, there
+are $13$ diamonds, and there are $3$ deuces besides the two of diamonds, and so
+there are actually $16$ cards in the deck that are either a deuce or a diamond. That
+means there are $16$ ways to select a card from a deck and have it turn out to be
+either a deuce or a diamond.
+
+\subsection{Extended sum rule}
+The sum rule can be extended to the case of more than two sets (or more than two tasks):
+If $A_1, A_2, A_3, \cdots,A_n$ is a collection of {\itshape pairwise disjoint} sets,
+then $|A_1\cup A_2\cup A_3\cup\cdots\cup A_n| = |A_1|+|A_2|+|A_3|+\cdots+|A_n|$.
+Or, in terms of tasks: If task $1$ can be done in $k_1$ ways, and task $2$ in $k_2$,
+and task $3$ in $k_3$ ways, and so on, until task $n$ can be done in $k_n$ ways,
+and if the tasks are all independent\sidenote{They must be \textbf{pairwise} independent!}, 
+then we can do one task in $k_1+k_2+k_3+\cdots + k_n$
+ways. 
+
+\begin{exmp}
+ For example, if we own three cars, two bikes, a motorcycle, four pairs of roller skates, and
+ two scooters, then we can select one of these modes of transportation in 
+ $3+2+1+4+2= 12$ ways.
+\end{exmp}
+
+\subsection{Sum rule and the logical \textit{or}}
+The sum rule is related to the logical connective {\itshape or}. That is reasonable since the
+sum rule counts the number of elements in  the set $A\cup B = \{\,x\,|\,x\in A\hbox{ or } x\in B\,\}$.
+In terms of tasks, the sum rule counts the number of ways to do either task $1$ or task $2$.
+Generally speaking, when the word {\itshape or} occurs in a counting problem, the sum rule
+is the tool to use.\marginnote{But, verify independence!}
+\ms
+ \section{The product rule}
+The logical connective {\itshape and} is related to the second fundamental counting principle:
+the {\bfseries product rule}. The product rule says: 
+\[
+\lvert A\times B \rvert = \lvert A \rvert \cdot \lvert B \rvert.
+\] 
+An explanation of this
+is that $A\times B$ consists of all ordered pairs $(a,b)$ where $a\in A$ and $b\in B$. 
+There are $\lvert A \rvert$ choices for $a$ and then $\lvert B \rvert$ choices for $b$. 
+
+\subsection{Counting two sequential tasks: logical \textit{and}}
+In terms of tasks, the product rule says that if task $1$ can be done in $m$ ways
+ and 
+task $2$ can be done in $n$ ways after task $1$ has been done, then there are
+$mn$ ways to do both tasks, the first
+then the second. Here the relation with the logical connective {\itshape and} is also obvious. We
+need to do task $1$ and task $2$. Generally speaking, the appearance of {\itshape and} in a 
+counting problem suggests the product rule will come into play.
+
+\subsection{Extended product rule}
+As with the sum rule, the product rule can be used for situations with more than two sets
+or more than two tasks. In terms of sets, the product rule reads
+$\lvert A_1\times A_2\times \cdots A_n \rvert = \lvert A_1\rvert\cdot\lvert A_2 \rvert \cdots \lvert A_n \rvert$. In terms of tasks, it reads,
+if task $1$ can be done in $k_1$ ways, and for each of those ways, task $2$ can be done in 
+$k_2$ ways, and for each of those ways, task $3$ can be done in $k_3$ ways, and so on, until
+for each of those ways, task $n$ can be done in $k_n$ ways, then we can do
+task $1$ followed by task $2$ followed by task $3$, etc, followed by task $n$ in
+$k_1k_2k_3\cdots k_n$ ways. That sounds worse than it really is.
+
+\begin{exmp}
+ How many bit strings are there of length five?
+ \begin{soln}
+ We can think of task $1$ as filling in the first (right hand) position, task $2$ as filling in the
+ second position, and so on.
+ We can argue that 
+ we have two ways to do task $1$,
+ and then two ways to do task $2$, 
+ and then two  ways to do task $3$, 
+ and then two ways to do task $4$, 
+ and then two ways to do task $5$.
+ So, by the product rule, \marginnote{The same reasoning shows that, in general, there are $2^n$ bit strings of length $n$.}
+ there are $2\cdot 2\cdot 2\cdot 2\cdot 2=2^5=32$ ways to do all five tasks, and so there
+ are $32$  bit strings of length five.
+ \end{soln}
+\end{exmp}
+
+
+\begin{exmp}
+Suppose we are buying a car with five choices
+for the exterior color and three choices for the interior color. Then there is a
+total of $3\cdot5=15$ possible color combinations that we can choose from. The
+first task is to select an exterior color, and there are $5$ ways to do that. The
+second task is to select an interior color, and there are $3$ ways to do that. So
+the product rule says there are $15$ ways total to do both tasks. Notice that
+there is no requirement of independence of tasks when using the product
+rule. However, also notice that the number of ways of doing the second task \textbf{must}
+be the same no matter what choice is made for doing the first task.
+\end{exmp}
+
+\begin{exmp}\label{exmp:two-digit 1-9}
+For another,
+slightly more complicated, example of the product rule in action, suppose we
+wanted to make a two-digit number using the digits $1$, $2$, $3$, $4$, $5$, $6$,
+$7$, $8$, and $9$. How many different such two-digit numbers could we form? Let's
+make the first task filling in the left digit, and the second task filling in the
+right digit. There are $9$ ways to do the first task. And, no matter how we do
+the first task, there are $9$ ways to do the second task as well. So, by the
+product rule, there are $9\cdot9=81$ possible such two-digit numbers. 
+\end{exmp}
+
+\begin{exmp}\label{exmp:two-digit no dups}
+ Now, let's
+ change the problem in example~\ref{exmp:two-digit 1-9} a little bit. 
+ Suppose we wanted two-digit numbers made up of
+ those same nine digits, but we do not want to use a digit more than once in any of
+ the numbers. In other words, $37$ and $91$ are OK, but we do not want to count
+ $44$ as a possibility. We can still make the first task filling in the left digit,
+ and the second task filling in the 
+ right digit. And, as before, there are $9$ ways to do the first task. But now,
+ once the first task has been done, there are only $8$ ways to do the second task,
+ \marginnote{No matter in what way the first task  was done, there are always $8$ ways to
+ to the second task in sequence. What if you chose to pick the second digit first?}
+ since the digit used in the first task is no longer available for doing the
+ second task. For instance, if the digit $3$ was selected in the first task,
+ then for the second task, we will have to choose from the eight digits $1$, $2$,
+ $4$, $5$, $6$, 
+ $7$, $8$, and $9$. So, according to the product rule, there are $9\cdot8=72$ ways
+ of building such a number. 
+\end{exmp}
+
+
+\begin{exmp}\label{exmp:two-digits no dup 2}
+ Just for fun, here is another way to see the answer in example~\ref{exmp:two-digit no dups} is
+ $72$. We saw above that there are $81$ ways to make a two-digit number when we
+ allow repeated digits. But there are $9$ two digit numbers that do have
+ repeated digits (namely $11$, $22$, $\cdots$, $99$). That means there must be
+ $81-9 =72$  two-digit numbers without repeated digits.
+\end{exmp}
+
+\subsection{Counting by subtraction: $Good \,=\, Total\,-\,Bad$}
+The trick we used in example~\ref{exmp:two-digits no dup 2}  looks like a new counting principle, but it is really the sum rule being
+applied in a tricky way. Here's the idea. Call the set of all the two-digit numbers
+(not using $0$) $T$, call the set with no repeated digits $N$, and call the set
+with repeated digits $R$. By the sum rule, $|T|=|N|+|R|$, so $|N| = |T|-|R|$.
+This is a very common trick. 
+
+Generally, suppose we are interested in counting some arrangements,
+let's call them the {\itshape Good} arrangements. But it is not easy for some reason
+to count the {\itshape Good} arrangements directly. So, instead, we count the {\itshape Total}
+number of arrangements, and subtract the number of {\itshape Bad} arrangements:
+\[
+Good \,=\, Total\,-\,Bad.
+\]
+Let's have another example of this trick.
+\begin{exmp}\label{exmp:words >0 vowels}
+ By a word of length five, we will mean any string
+ of five letters from the $26$ letter alphabet. How many words contain
+ at least one vowel. The vowels are: \textsf{a,e,i,o,u}.
+ 
+ By the product rule, there is a total of $26^5$ possible words of
+ length five. The bad words are made up of only the $21$ non-vowels.
+ So, by the sum rule, the number of good words is $26^5-21^5$.
+\end{exmp}
+
+
+\section{Using both the sum and product rules}
+As in  example~\ref{exmp:words >0 vowels}, 
+most interesting counting problems involve a combination of both the sum and
+product rules.
+
+\begin{exmp}
+Suppose we wanted to count the number of different possible bit strings of length
+five that start with either three $0$'s or with two $1$'s. Recall that a bit
+string is a list of $0$'s and $1$'s, and the length of the bit string is the total
+number of $0$'s and $1$'s in the list. So, here are some bit strings that satisfy
+the stated conditions: $00001$, $11111$, $11011$, and $00010$. On the other hand,
+the bit strings $00110$ and $10101$ do not meet the required condition. 
+
+To do this
+problem, let's first count the number of {\itshape good} bit strings that start with
+three $0$'s. In this case, we can think of the construction of such a bit string as
+doing five tasks, one after the other, filling in the leftmost bit, then the next
+one, then the third, the next, and finally the last bit. There is only one way to
+do the first three tasks, since we need to fill in $0$'s in the first three
+positions. But there are two ways to do the last two tasks, and so, according to
+the product rule there are $1\cdot1\cdot1\cdot2\cdot2 = 4$ bit strings of length
+five starting with three $0$'s. Using the same reasoning, there are
+$1\cdot1\cdot2\cdot2\cdot2=8$ bit strings of length five starting with two
+$1$'s. Now, a bit string cannot both start with three $0$'s and also with two
+$1$'s, (in other words, starting with three $0$'s and starting with two $1$'s are
+independent). And so, according to the sum rule, there will be a total of $4+8=12$
+bit strings of length five starting with either three $0$'s or two $1$'s.
+\end{exmp}
+
+\begin{exmp}
+ How many words of six letters (repeats OK) contain exactly
+ one vowel?
+ \begin{soln}
+  Let's break the construction of a good word down into a number of tasks. \begin{enumerate}[label=Task \arabic*:, itemindent=1cm]
+    \item Select a spot for the vowel: $6$ choices.
+     
+     \item Select a vowel for that spot: $5$ choices.
+     
+     \item Fill first empty spot with a non-vowel: $21$ choices
+     
+     \item Fill next empty spot with a non-vowel: $21$ choices
+     
+     \item Fill next empty spot with a non-vowel: $21$ choices
+     
+     \item Fill next empty spot with a non-vowel: $21$ choices
+     
+     \item Fill last empty spot with a non-vowel: $21$ choices
+   \end{enumerate}
+   By the product rule, the number of good words is $6\cdot5\cdot21^5$.
+ \end{soln}
+ 
+\end{exmp}
+
+\begin{exmp}\label{exmp:license plates}
+Count the number of strings on license plates which either 
+consist of three capital English letters, followed by three digits, or consist of two digits
+followed by four capital English letters.
+\begin{soln}
+Let $A$ be the set of strings which consist of three capital English letters
+followed by three digits, and $B$ be the set of strings which consist of two digits followed
+by four capital English letters. By the product rule $\lvert A \rvert=26^3\cdot 10^3$ since
+there are 26 capital English letters and 10 digits. Also by the product rule
+$\lvert B \rvert=10^2\cdot 26^4$. Since $A\cap B=\emptyset$, by the sum rule
+the answer is $26^3\cdot 10^3 + 10^2\cdot 26^4$.
+\end{soln}
+\end{exmp}
+
+
+\section{Answer form $\longleftrightarrow$ solution method}
+In the previous examples we might continue on with the arithmetic. For instance, in
+the last, example~\ref{exmp:license plates},
+using the distributive law on our answer to factor out common terms
+we see $\lvert A\cup B \rvert=10^2\cdot 26^3(10+26)$
+is an equivalent answer.
+This, in turn, simplifies to $\vert A\cup B \rvert=10^2\cdot 26^3\cdot 36$, and that gives 
+\[
+\lvert A\cup B \rvert=100\cdot17576\cdot 36=63,273,600.
+\]
+
+Of all of these answers the most valuable is probably 
+$26^3\cdot 10^3 + 10^2\cdot 26^4$, since {\bfseries the form
+of the answer is indicative of the manner of solution.} 
+We can readily observe
+that the sum rule was applied to two disjoint subcases. For each subcase
+the product rule was applied to compute the intermediate answer. As a general
+rule, answers to counting problems should be left in this uncomputed form.
+
+The next most useful solution is the last one. When we have an answer of this
+form we can use it to consider whether or not our answer makes sense intuitively.
+For example if we knew that $A$ and $B$ both were subsets of a set of cardinality 
+$450$ and we computed that $\lvert A\cup B \rvert>450$, this would indicate that we made
+an error, either in the logic of our counting, or in arithmetic, or both.
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+To meet the science requirement a student must take
+ one of the following courses: a choice of $5$ biology courses, $4$
+physics courses, or $6$ chemistry courses. In how many ways can the
+one course be selected?
+\end{exer}
+
+\begin{exer}
+Using the data of problem 1, a student has decided to take one biology,
+one physics, and one chemistry course. How many different such selections
+are possible?
+\end{exer}
+
+\begin{exer}
+A serial code is formed in one of three ways: (1) two letters followed by two digits, or
+(2) three letters followed by one digit, or (3) four letters. How many different codes are there?
+ (Unless otherwise
+indicated, {\itshape letters} will means
+ upper case letters chosen from the usual
+$26$-letter alphabet and {\itshape digits} are selected from 
+$\{0,1,2,3,4,5,6,7,8,9\}$.) 
+\end{exer}
+
+\begin{exer}
+How many words of length
+six are there if letters may be repeated? (Examples: BBBXBB, ABATBC are OK).
+\end{exer}
+
+\begin{exer}
+How many words of length
+six are there if letters may not be repeated? (Examples: BBBBXB, ABATJC are bad
+but ABXHYR is OK).
+\end{exer}
+
+\begin{exer}
+A true/false test contains 25 questions. 
+\begin{enumerate}[label=(\alph*)]
+ \item How many ways can a student complete the test if every question 
+ must be answered?
+ 
+ \item How many ways can a student complete the test if questions 
+ can be left unanswered?
+\end{enumerate}
+\end{exer}
+
+\begin{exer}
+How many binary strings of length less than or equal to nine are there?
+\end{exer}
+
+\begin{exer}
+How many eight-letter words contain at least one $A$?
+\end{exer}
+
+\begin{exer}
+How many seven-letter words contain at most one $A$?
+\end{exer}
+
+\begin{exer}
+How many nine-letter words contain at least two $A$'s?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+My piggy bank contains $20$ pennies, $4$ nickels, $7$ dimes, and $2$ quarters. In how many ways can I select one coin?
+\end{prob}
+
+\begin{prob}
+My piggy bank contains $20$ pennies, $4$ nickels, $7$ dimes, and $2$ quarters. In how many ways can I select four coins, one of each value?
+\end{prob}
+
+\begin{prob}
+A multiple choice test contains 10 questions. There are four possible answers
+for each question.
+\begin{enumerate}[label=(\alph*)]
+ \item How many ways can a student complete the test if every question 
+ must be answered?
+ 
+ \item How many ways can a student complete the test if questions 
+ can be left unanswered?
+\end{enumerate}
+\end{prob}
+
+\begin{prob}
+Computer ID's are length seven strings made up of any combination of seven different letters and digits. How many different ID's are there? 
+\end{prob}
+
+\begin{prob}
+Computer ID's are length seven strings made up of any combination of seven letters and digits, with repeats allowed. How many different ID's are there? 
+\end{prob}
+
+\begin{prob}A code word is either a sequence of three letters followed
+by two digits or two letters followed by three digits. (Unless otherwise
+indicated, {\itshape letters} will means
+ upper case letters chosen from the usual
+$26$-letter alphabet and {\itshape digits} are selected from 
+$\{0,1,2,3,4,5,6,7,8,9\}$.) How many different code words are possible?
+\end{prob}
+
+\begin{prob}
+Code words consist of five letters followed by five digits. How many code word contain at least one $X$?
+\end{prob}
+
+\begin{prob}
+Code words consist of five letters followed by five digits. How many code word contain exactly one $X$?
+\end{prob}
+
+
+\begin{prob}
+Code words consist of five letters followed by five digits. How many code word contain exactly two $X$'s?
+\end{prob}
+
+
+\begin{prob}
+How many bit strings of length ten begin and end with $1$'s?
+\end{prob}
+
+\begin{prob}
+How many bit strings of length t least two but no more than ten begin and end with $1$'s?
+\end{prob}
+
+\begin{prob}
+There are five roads from $A$ to $B$, three roads from $B$ to $C$, and five roads from $C$ to $D$. How many different routes are there 
+from $A$ to $B$ to $C$ to $D$?
+\end{prob}
+
+\begin{prob}
+There are five roads from $A$ to $B$, three roads from $B$ to $C$, and five roads from $C$ to $D$. How many different round trip routes are there 
+from $A$ to $D$ and back to $A$?
+\end{prob}
+
+\begin{prob}
+ There are five roads from $A$ to $B$, three roads from $B$ to $C$, and five roads from $C$ to $D$. How many different round trip routes are there 
+from $A$ to $D$ and back to $A$ if you cannot travel over any road more than once?
+\end{prob}

@@ -1,0 +1,286 @@
+   \section*{Chapter 37}
+    
+\begin{Solution}{37.1}
+
+For problem 36.2, we know the general solution to the related homogeneous recursion is
+\[
+a_n^{(h)} = \alpha(-2)^n +\beta3^n.
+\]
+
+That general solution of the related homogeneous recursion needs to be paired up with a particular solution of the original 
+recursive formula
+
+\[
+a_n = a_{n-1} + 6a_{n-2}+1.
+\]
+Since the nonhomogeneous part of the original recursion is the constant $1$, our first guess should be that there
+will be a particular solution of the form $a_n = A$, a constant. Putting that guess in the recursive formula, we get
+
+\[
+A = A + 6A + 1 \text{ with solution } A = -\frac{1}{6}.
+\]
+
+So that general solution to the nonhomogeneous recursion is
+
+\[
+a_n = \alpha(-2)^n +\beta3^n - \frac{1}{6}.
+\]
+
+Using the initial conditions produces the system
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha + \beta  - \frac{1}{6} &= 3\\
+     -2\alpha + 3\beta - \frac{1}{6} &= 6\\
+     \end{aligned}
+   \right.
+\]
+with solution $\alpha = \frac{2}{3} $ and $\beta = \frac{5}{2}$. So the solution to the original recursive formula is
+
+\[
+a_n = \frac{2}{3}(-2)^n +\frac{5}{2}(3^n) - \frac{1}{6}.
+\]
+
+\end{Solution}
+
+\begin{Solution}{37.2}
+
+For problem 36.4, we know the general solution to the related homogeneous recursion is
+\[
+a_n^{(h)} = \alpha2^n +\beta5^n.
+\]
+
+That general solution  of the related homogeneous recursion needs to be paired up with a particular solution of the original 
+recursive formula
+
+\[
+a_n = 7a_{n-1} - 10a_{n-2}+n.
+\]
+Since the nonhomogeneous part of the original recursion is  $n$, our first guess should be that there
+will be a particular solution of the form $a_n = An+B$,  a general first degree expression. Putting that guess in the recursive formula, we get
+
+\[
+An + B = 7(A(n-1)+ B) - 10(A(n-2) + B) + n.
+\]
+Gathering all the term on the left side of the equation gives
+\[
+(4A-1)n + (-13A+4B) = 0.
+\]
+That tells us $4A-1 = 0$ and $-13A+5B = 0$. So, $A=\frac{1}{4}$ and $B= \frac{13}{16}$.
+
+We finally have the general solution to the original problem:
+\[
+a_n =  \alpha2^n +\beta5^n + \frac{n}{4} +\frac{13}{16}.
+\]
+
+The last step is using the initial conditions to determine $\alpha$ and $\beta$. Remember that the given initial conditions were for $n = 2,3$: $a_2 = 5$ and $a_3 = 13$. The system to solve is
+
+\[
+  \left\{
+    \begin{aligned}
+     4\alpha + 25\beta  +\frac{1}{4}(2) + \frac{13}{16} &= 5\\
+     8\alpha + 125\beta +\frac{1}{4}(3) + \frac{13}{16} &= 13\\
+     \end{aligned}
+   \right.
+\]
+with solution $\alpha = \frac{7}{12}$ and $\beta = \frac{13}{240}$.  Assembling the pieces,  the solution is
+
+\[
+a_n = \frac{7}{12}(2^n) + \frac{13}{240}(5^n) + \frac{n}{4} +\frac{13}{16}.
+\]
+
+\end{Solution}
+
+\begin{Solution}{37.3}
+
+For problem 36.5, we know the general solution to the related homogeneous recursion is
+\[
+a_n^{(h)} = \alpha2^n +\beta n 2^n.
+\]
+
+That general solution  of the related homogeneous recursion  needs to be paired up with a particular solution of the original 
+recursive formula
+
+\[
+a_n = 4a_{n-1}-4a_{n-2}+ 2^n.
+\]
+Since the nonhomogeneous part of the original recursion is  $2^n$, our first guess should be that there
+will be a particular solution of the form $a_n = A2^n$ a multiple of that exponential expression.  Putting that guess in the recursive formula, we get
+
+\[
+A2^n = 4(A2^{n-1}) - 4(A2^{n-2}) + 2^n.
+\]
+
+Moving all the terms involving $A$ to the left side of the equation gives
+
+\[
+A() = 2^n
+\]
+which can be rewritten as
+
+\[
+A(0) = 2^n, \text{which isn't possible}.
+\]
+
+Now, hold on: that makes some sense because our general solution to the homogeneous equation already
+has a term of the form $A2^n$, so we won't need any more of those. Likewise, we are already accounting
+for terms like $An2^n$. So let's take our guess for a particular solution up two notches to $a_n= An^22^n$.
+Putting that guess in the recursive formula, we get
+
+\[
+An^{2}2^n = 4(A(n-1)^{2}2^{n-1}) - 4(A(n-2)^{2}2^{n-2}) + 2^n.
+\]
+
+Moving all the terms involving $A$ to the left side of the equation  and combining terms gives
+
+\[
+A2^{n+1} = 2^n \text{ and so } A= \frac{1}{2}.
+\]
+ So, a particular solution is $a_{n}^{(p)} =\frac{1}{2}(2^{n}) n^{2}= 2^{n-1}n^{2}$.
+ 
+ The general solution to the original problem is
+ 
+ \[
+ a_{n} = \alpha2^n +\beta n 2^n + 2^{n-1}n^{2}.
+ \]
+ 
+ The last step is using the initial conditions to determine $\alpha$ and $\beta$. Remember that the given initial conditions were for $n = 1,2$: $a_1 = 3$ and $a_2 = 5$. The system to solve is
+
+\[
+  \left\{
+    \begin{aligned}
+     2\alpha + 2\beta  + 1&= 3\\
+     4\alpha + 8\beta +8 &= 5\\
+     \end{aligned}
+   \right.
+\]
+
+with solution $\alpha = \frac{11}{4}$ and $\beta = -\frac{7}{4}$.  Assembling the pieces,  the solution is
+
+\[
+a_n = \frac{11}{4}(2^n) - \frac{7}{4} (n 2^n)+ 2^{n-1}n^{2}.
+\]
+
+
+\end{Solution}
+
+\begin{Solution}{37.4}
+
+For problem 36.6, we know the general solution to the related homogeneous recursion is
+\[
+a_n^{(h)} = \alpha3^n +\beta n 3^n.
+\]
+
+That general solution  of the related homogeneous recursion needs to be paired up with a particular solution of the original 
+recursive formula
+
+\[
+a_n = 6a_{n-1}  -9a_{n-2}+n.
+\]
+Since the nonhomogeneous part of the original recursion is  $n$, our first guess should be that there
+will be a particular solution of the form $a_n = An+B$, the general first degree polynomial in $n$. 
+Putting that guess in the recursive formula, we get
+
+\[
+An+B = 6(A(n-1)+B) - 9(A(n-2)+B) + n.
+\]
+
+Moving all the terms to the left side of the equation  and combining terms gives
+
+\[
+(4A-1)n +(4B-12A) = 0 \text{ which implies  } A= \frac{1}{4} \text{ and } B = \frac{3}{4}.
+\]
+ So, a particular solution is $a_{n}^{(p)} =\frac{1}{4}n + \frac{3}{4}$.
+ 
+ The general solution to the original problem is
+ 
+ \[
+ a_{n} = \alpha3^n +\beta n 3^n +\frac{1}{4}n + \frac{3}{4}.
+ \]
+ 
+ The last step is using the initial conditions to determine $\alpha$ and $\beta$. The given initial conditions are $a_0 = 1$ and $a_1 = 6$. The system to solve is
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha   + \frac{3}{4} &= 1\\
+     3\alpha + 3\beta +1 &= 6\\
+     \end{aligned}
+   \right.
+\]
+
+with solution $\alpha = \frac{1}{4}$ and $\beta = \frac{17}{12}$.  Assembling the pieces,  the solution is
+
+\[
+a_n = \frac{1}{4}(3^n) + \frac{17}{12} (n 3^n)+ \frac{1}{4}n + \frac{3}{4} .
+\]
+
+
+\end{Solution}
+
+\begin{Solution}{37.5}
+
+For problem 36.8, we know the general solution to the related homogeneous recursion is
+
+\[
+a_n^{(h)} = \alpha +\beta 2^n +\gamma 3^n.
+\]
+
+That general solution  of the related homogeneous recursion needs to be paired up with a particular solution of the original 
+recursive formula
+
+\[
+a_n = 6a_{n-1} - 11a_{n-2}+ 6a_{n-3} + 2n+1.
+\]
+Since the nonhomogeneous part of the original recursion is the linear polynomial $2n+1$, our first guess should be that there
+will be a particular solution of the form $a_n = An+B$, the general linear polynomial.  Putting that guess in the recursive formula, we get
+
+\[
+An+B = 6(A(n-1)+B) - 11(A(n-2)+B) + 6(A(n-3) +B) + 2n + 1.
+\]
+
+Moving all the terms to the left side of the equation  and combining terms gives
+\[
+-2n + (2A-1) = 0.
+\]
+Well, that's not possible, so we will need to lift the guess up a bit by multiplying by $n$: our new guess for a particular solution is $An^{2} + Bn$. Putting that guess in the recursive formula, we get
+
+\[
+An^{2}+Bn = 6(A(n-1)^{2}+B(n-1)) - 11(A(n-2)^{2}+B(n-2)) + 6(A(n-3)^{2} +B(n-3)) + 2n + 1.
+\]
+
+Moving all the terms to the left side of the equation  and combining terms gives
+
+\[
+(4a-2)n + (2B-16A - 1) = 0 \text{ which means } A= \frac{1}{2} \text{ and } B = \frac{9}{2}.
+\]
+
+So, we have a particular solution $a_{n}^{(p)} = \frac{1}{2}n^{2} + \frac{9}{2} n$.  Add ing that to the general solution of the related homogeneous recursion, we see the general solution to the original problem is
+ 
+ \[
+ a_{n} = \alpha +\beta  2^n + \gamma 3^{n}+ \frac{1}{2}n^{2} + \frac{9}{2}n.
+ \]
+ 
+ The last step is using the initial conditions to determine $\alpha$, $\beta$, and $\gamma$. The given initial conditions are $a_0 = 2$, $a_1 = 5$, and $a_2 = 15$. The system to solve is
+
+\[
+  \left\{
+    \begin{aligned}
+     \alpha   + \beta  + \gamma  &= 2\\
+     \alpha + 2\beta +3\gamma + 5 &= 5\\
+     \alpha + 4\beta +9\gamma + 10 &= 15\\
+     \end{aligned}
+   \right.
+\]
+
+with solution $\alpha = 8$, $\beta = -10$, and $\gamma = 4$.  Assembling the pieces,  the solution is
+
+\[
+a_n = 8 -10\cdot 2^{n}  + 4\cdot 3^{n} + \frac{1}{2}n^{2} + \frac{9}{2}n.
+\]
+
+{\it Whew: I'm relieved  there were only five of these annoying, tedious, tiresome, monotonous  problems.}
+ 
+\end{Solution}
+

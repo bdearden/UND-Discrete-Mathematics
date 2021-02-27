@@ -1,0 +1,238 @@
+\newcommand{\notdivides}{{\mathrm{/}\mkern-9.0mu{|}}} %replaces \cent in math mode
+\chapter{The \textsf{divides} Relation and Primes}
+
+\newthought{Given integers $a$ and $b$ we say} that $a$ {\bfseries divides} $b$ and write $a|b$ provided%
+\sidenote{That is, $a$ divides into $b$ \textbf{evenly}.}
+there is an integer $c$ with $b=ac$.
+ In that case we also say that 
+$a$ is a {\bfseries factor} of $b$, or that $a$ is a {\bfseries divisor}
+of $b$, or 
+ that $b$ is a {\bfseries multiple} of $a$.  For example $3|12$ since 
+$12 = 3\cdot 4$. Keep in mind that
+{\itshape divides} is  a relation. When you see $a|b$ you should think 
+{\itshape is that true or false}. Don't write things like $3|12 = 4$!
+If $a$ does not divide $b$,  write $a \notdivides b$.
+ For example, it is true%
+\sidenote{Fact: $3$ does not divide into $13$ \textbf{evenly}.}
+that $3 \notdivides{13}$.
+ 
+
+\section{Properties of \textsf{divides}}
+Here is a list of a few simple facts about the divisibility relation. 
+\begin{thm}
+For $a,b,c\in \Z$ we have
+\begin{enumerate}
+  \item $a|0$
+  
+  \item $\pm 1|a$ 
+  
+  \item If $a|b$, then $-a|b$
+  
+  \item If $a|b$ and $b|c$, then $a|c$. 
+  So $a|b$ is a transitive relation on $\Z$
+  
+  \item $a|-a$
+  
+  \item If $a|b$ and $b\not=0$, then $0<|a|\leq |b|$
+  
+  \item If $a|1$, then $a=\pm 1$
+  
+  \item If $a|b$ and $b|a$, then $a=\pm b$
+  
+  \item $a|b$ and $a|c$, then $a|(mb+nc)$ for all $m,n\in \Z$
+  
+  \item If $a|b$, then $a|bc$ for all $c\in \Z$
+\end{enumerate}
+\end{thm} 
+
+Here are the proofs of a few of these facts.
+\begin{enumerate}\itshape
+ \item[(1)] \textbf{Proof.} For any integer $a$, $a0 = 0$, so $a|0$. \qed
+ 
+ \item[(4)] \textbf{Proof.} Suppose $a|b$ and $b|c$. That means there are
+ integers $s,t$ so that $as=b$ and $bt=c$. Substituting $as$ for $b$ in the
+ second equation gives $(as)t = c$, which is the same as $a(st) = c$. 
+ That shows $a|c$. \qed
+ 
+ \item[(9)] \textbf{Proof.} Suppose $a|b$ and $a|c$. That means
+ there are integers $s,t$ such that $as=b$ and $at=c$. Multiply
+ the first equation by $m$ and the second by $n$ to get
+ $a(sm)= mb$ and $a(tn) = nc$. Now add those two equations:
+ $a(sm) + a(tn) = mb+nc$. Factoring out the $a$ on the left shows
+ $a(sm+tn) = mb+nc$, and so we see $a|(mb+nc)$. \qed
+\end{enumerate}
+
+
+\section{Prime numbers}
+The prime integers play a central role in number theory.
+A positive integer larger than $1$ is said to be { \bfseries prime} if its only positive divisors are $1$ and
+itself. The first few primes are $2,3,5,7,11,13,17,19,23,29,31,37$.
+
+
+A positive integer larger than $1$ which is not prime is { \bfseries composite}. So a composite number
+$n$ has a positive divisor $a$ which is neither $1$ nor $n$. By part (6) of the theorem above, $1<a<n$. 
+
+So, to check if an integer $n$ is a prime, we can trial divide it in turn by 
+$2,3,4,5,\cdots n-1$, and if we find one of these that divides $n$, we
+can stop, concluding that $n$ is not a prime. On the other hand,
+if we find that none of those divide $n$, then we can conclude $n$
+is a prime. This algorithm for checking a number for primeness can
+be made more efficient. For example, there is really no need to test to see
+if $4$ divides $n$ if we have already determined that $2$ does not divide
+$n$. And the same reasoning shows that to test $n$ for primeness
+we need only check in to see if $n$ is divisible by any of
+$2,3,5,7,11,13$ and so on up to the largest prime less than $n$.
+For example, to test $15$ for primeness, we would trial divide by
+the six values $2,3,5,7,11,13$. But even this improved algorithm can 
+be made more efficient by the following theorem.
+
+\begin{thm}
+Every composite number $n$ has a divisor $a$, with \[2\leq a\leq \sqrt{n}.\]
+\end{thm}
+\begin{proof} 
+Suppose $n$ is a composite integer. That means 
+$n=ab$  where $1<a,b<n$.  Not both $a$ and $b$ are greater than 
+$\sqrt{n}$, for if so
+ $n=ab>\sqrt{n}\sqrt{n}=(\sqrt{n})^2=n$, and that is a 
+contradiction.
+\end{proof}
+
+So, if we haven't found a divisor of $n$ by the time we reach
+$\sqrt{n}$, then $n$ must be a prime.
+
+We can be a little more informative, as the next theorem shows.
+
+\begin{thm}
+Every integer $n>1$ is divisible by a prime.
+\end{thm}
+\begin{proof}
+Let $n>1$ be given. The set, $D$, of all integers greater
+than $1$  that divide $n$ is nonempty since $n$ itself is certainly in that
+set. Let $m$ be the smallest integer in that set. Then $m$ must be a prime
+since if $k$ is an integer with $1<k<m$ and $k|m$, then $k|n$, and so
+$k\in D$. That is a contradiction since $m$ is the smallest element of 
+$D$. Thus $m$ is a prime divisor of $n$.
+\end{proof}
+
+
+Among the more important theorems in number theory is the following.
+\begin{thm}
+The set of prime integers is infinite.
+\end{thm}
+\begin{proof}
+Suppose that there were only finitely many primes.
+List them all: $2,3,5,7,\cdots,p$. Form the number 
+$N=1+2\cdot3\cdot5\cdot7\cdots p$. According to the last theorem, there
+must be a prime that divides $N$, say $q$. Certainly $q$ also
+divides $2\cdot3\cdot5\cdot7\cdots p$ since that is the product of all 
+the primes, so $q$ is one of its factors. Hence $q$ divides
+$N-2\cdot3\cdot5\cdot7\cdots p$. But that's crazy since
+$N-2\cdot3\cdot5\cdot7\cdots p=1$. We have reached a contradiction,
+and so we can conclude there are infinitely many primes.
+\end{proof}
+
+\section{The division algorithm for integers}
+\begin{thm}[The Division Algorithm for Integers] 
+If $a,d\in \Z$, with $d>0$, there exist\marginnote{
+The quantities $q$ and $r$ are called the { \bfseries quotient}
+and {\bfseries remainder} when $a$ is divided by $d$.}
+unique integers $q$ and $r$, with $a=qd+r$, and $0\leq r<d$.
+
+\end{thm}
+\begin{proof}
+Let $S=\{a-nd|n\in \Z, {\rm {~and~}} a-nd \geq 0\}$. Then $S\neq \emptyset$, since $a-(-|a|)d\in S$ for sure.
+Thus, by the Well Ordering Principle, $S$ has a least element, call it $r$. Say $r=a-qd$. Then 
+we have $a=qd+r$, and $0\leq r$. If $r\geq d$, then $a=(q+1)d+(r-d)$, with $0\leq r-d$ contradicting
+the minimality of $r$. 
+
+To prove uniqueness, suppose that $a=q_1d+r_1=q_2d+r_2$, with $0\leq r_1,r_2<d$. Then 
+$d(q_1-q_2)=r_2-r_1$ which implies that $r_2-r_1$ is a multiple of $d$. Since $0\leq r_1,r_2<d$,
+we have $-d<r_2-r_1<d$. Thus the only multiple of $d$ which $r_2-r_1$ can possibly be is $0d=0$.
+So $r_2-r_1=0$ which is the same thing as $r_1=r_2$. Thus $d(q_1-q_2)=0=d0$. Since $d\neq 0$ we
+can cancel $d$ to get $q_1-q_2=0$, whence $q_1=q_2$.$\quad$ $\;$\
+\end{proof}
+
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer}
+  Determine the quotient and remainder when $107653$ is
+divided by $22869$.
+\end{exer}
+
+\begin{exer}
+Determine if $1297$ is a prime.
+\end{exer}
+
+\begin{exer}
+Prove or give a counterexample: The divides relation is reflexive.
+\end{exer}
+
+\begin{exer}
+Prove or give a counterexample: The divides relation is symmetric.
+\end{exer}
+
+\begin{exer}
+Prove or give a counterexample: The divides relation is transitive.
+\end{exer}
+
+\begin{exer}
+What is wrong with the expression $4|12 = 3$?
+\end{exer}
+
+\begin{exer}
+Show that none of the $1000$ consecutive integers $1001! + 2$ to $1001!+1001$ are primes.
+\end{exer}
+
+\begin{exer}
+ Prove: For $a,b,c\in \mathbb{Z}$, if $a|b$, then $-a|b$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+For positive integers, $a$ and $b$, if the quotient when $a$ is divided by $b$ is $q$,
+what are the possible quotients when $a+1$ is divided by $b$?
+\end{prob}
+
+\begin{prob}
+For positive integers, $a$ and $b$, if the quotient when $a$ is divided by $b$ is $q$,
+what are the possible quotients when $2a$ is divided by $b$?
+\end{prob}
+
+\begin{prob}
+Prove: For integers $a,b$, if $a|b$, then $-a|b$.
+\end{prob}
+
+\begin{prob}
+ Prove or give a counterexample: If $p$ is a prime, then $2p+1$ is a prime.
+\end{prob}
+
+\begin{prob} 
+Determine all the integers that $0$ divides. \\
+(Hint: Think about the definition of the divides relation.\\
+The correct answer is probably not what you expect.)
+\end{prob}
+
+\begin{prob}
+Determine if $3599$ is a prime. (Hint: This is easy since $3599 = 3600 - 1$)
+\end{prob}
+
+\begin{prob}
+Determine if $5129$ is a prime.
+\end{prob}
+
+\begin{prob}
+Prove property 10 of Theorem 21.1: For integers $a,b,c$, if $a|b$, then $a|bc$.
+\end{prob}
+
+\begin{prob}
+Suppose the remainder when $a$ is divided by $b$ is $r$. Determine the remainder when $a+2b$ is divided by $b$. More generally, if $k$ is any integer, determine the remainder when $a+kb$ is divided by $b$.
+\end{prob}
+
+\begin{prob}
+Show that for any integer $n$, there are $n$ consecutive non-prime integers.
+\end{prob}
+

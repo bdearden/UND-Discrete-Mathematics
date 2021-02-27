@@ -1,0 +1,307 @@
+\chapter{Inclusion-Exclusion Counting}\label{ch:Inclusion-Exclusion Counting}
+
+% Definition of circles
+%\def\firstcircle{(0,0) circle (1.5cm)}
+%\def\secondcircle{(0:2cm) circle (1.5cm)}
+%\def\universebox{ (-2,-1.75) rectangle (3.75,1.75);}
+%
+%\colorlet{circle edge}{blue!50}
+%\colorlet{circle area}{blue!20}
+%
+%\tikzset{hatchleft/.style={pattern=north west lines, pattern color=blue, draw=circle edge, thick},
+%    filled/.style={fill=circle area, draw=circle edge, thick},
+%    outline/.style={draw=circle edge, thick}}
+
+
+\newthought{The sum rule says} that {\bfseries if $A$ and $B$ are disjoint sets, then
+$|A\cup B|= |A| +|B|$}. If the sets are not disjoint, then this formula over counts the number
+of elements in the union of $A$ and $B$. For example, if $A=\{a,b,c\}$ and $B=\{c,d,e\}$,
+then 
+
+$$
+\lvert A\cup B \rvert =\lvert \{a,b,c\}\cup\{c,d,e\} \rvert= \vert \{a,b,c,d,e\} \rvert = 5.
+$$
+So, we see that $\lvert A\cup B \rvert\not=3+3 = \lvert A \rvert + \lvert B \rvert$. 
+
+
+\section{Inclusion-Exclusion principle}
+The correct way to count the number of elements in
+$|A\cup B|$ when $A$ and $B$ might not be disjoint is via the {\bfseries  inclusion-exclusion}
+formula. To derive this formula, notice that $A\cup B = (A-B)\cup B$,
+ and that the
+sets $A-B$ and $B$ are disjoint. So we can apply the sum rule to conclude
+\begin{marginfigure} %
+ % Set A U B = (A - B) U B
+\begin{tikzpicture}
+     \begin{scope}
+         \clip \firstcircle;
+         \draw[filled, even odd rule] \firstcircle node {$A$}
+                                      \secondcircle;
+     \end{scope}
+     \draw[thick, rounded corners] \universebox
+     \draw[outline] \firstcircle node {};
+       \draw[outline,pattern=north west lines, pattern color =blue!50]  \secondcircle node {$B$};
+%     \node[anchor=south] at (current bounding box.north) {$A - B$};
+ \end{tikzpicture} %
+\caption{ $A \cup B = \left(A - B\right) \cup B$}
+\end{marginfigure}
+\[
+\lvert A\cup B \rvert = \lvert (A-B)\cup B \rvert =  \lvert A-B \rvert +  \lvert B \rvert.
+\]
+Next, notice that $A = (A-B) \cup (A\cap B)$, and the two sets on the right are disjoint.
+So, using the sum rule, we get 
+\[
+\lvert A \rvert = \lvert (A-B)\cup(A\cap B) \rvert =  \lvert A-B \rvert + \lvert A\cap B \rvert,
+\]
+which we can rearrange as 
+\[
+\lvert A-B \rvert = \lvert A \rvert -  \lvert A\cap B \rvert.
+\]
+So, replacing $\lvert A-B \rvert$ by $\lvert A \rvert - \lvert A\cap B \rvert$ 
+in the formula $\lvert A\cup B \rvert = \lvert (A-B)\cup B \rvert = \lvert A-B \rvert + \lvert B \rvert$,
+we end up with the {\bfseries  inclusion-exclusion} formula:
+\[
+\lvert A\cup B \rvert = \lvert A \rvert +\lvert B \rvert-\lvert A\cap B \rvert.
+\]
+
+In words, to count the number of items in the union of two sets, include one for everything in the 
+first set, and include one for everything in the second set, then exclude one for each element in the
+overlap of the two sets (since those elements will have been counted twice).
+
+\begin{exmp}
+How many students are there in a discrete math class if 
+15 students are computer science majors, 7 are math majors, and 3 are double majors
+in math and computer science?
+\end{exmp}
+\begin{soln}
+Let $C$ denote the subset of computer science majors in the class, and
+$M$ denote the math majors. Then $\lvert C\rvert=15$, $\lvert M\rvert=7$ 
+and $\lvert C\cap M\rvert=3$. So by
+the principle of inclusion-exclusion there are 
+$\lvert C\rvert+\lvert M\rvert-\lvert C\cap M\rvert=15+7-3=19$ students in the class.\;\qed
+\end{soln}
+
+\begin{exmp}
+How many integers between $1$ and $1000$ are divisible by either
+$7$ or $11$?
+\end{exmp}
+\begin{soln}
+ Let $S$ denote the set of integers between $1$ and $1000$ divisible by $7$, and
+ $E$ denote the set of integers between $1$ and $1000$ divisible by $11$.
+ We need to count the number of integers in $S\cup E$. By the
+ principle of inclusion-exclusion, we have
+ \begin{align*}
+ \lvert S\cup E\rvert &= \lvert S\rvert+\lvert E\rvert-\lvert S\cap E\rvert 
+ = \left\lfloor{\frac{1000}{7}}\right\rfloor+ 
+ \left\lfloor{\frac{1000}{11}}\right\rfloor-
+ \left\lfloor{\frac{1000}{77}}\right\rfloor \\
+ &= 142+90-12 = 120.
+\end{align*}\;\qed
+\end{soln}
+
+\section{Extended inclusion-exclustion principle}
+The inclusion-exclusion principle can be extended to the problem of counting the number
+of elements in the union of three sets. The trick is the think of the union of three sets as the
+union of two sets. It goes as follows:
+\begin{align*}
+ \lvert A\cup B \cup C\lvert  &= \lvert (A\cup B) \cup C\lvert  \\
+ &= \lvert A\cup B\lvert  +\lvert C\lvert  - \lvert (A\cup B)\cap C\lvert  \\
+ &= \lvert A\lvert +\lvert B\lvert +\lvert C\lvert -\lvert A\cap B\lvert  -  \lvert (A\cup B)\cap C\lvert  \\
+ &= \lvert A\lvert +\lvert B\lvert +\lvert C\lvert -\lvert A\cap B\lvert  -  \lvert (A\cap C)\cup (B\cap C)\lvert  \\
+ &= \lvert A\lvert +\lvert B\lvert +\lvert C\lvert -\lvert A\cap B\lvert  -  \lvert (A\cap C)\cup (B\cap C)\lvert  \\
+ &= \lvert A\lvert +\lvert B\lvert +\lvert C\lvert -\lvert A\cap B\lvert  -\left(\lvert A\cap C\lvert + \lvert B\cap C\lvert  - \lvert (A\cap C)\cap(B\cap C)\lvert \right) \\
+ &= \lvert A\lvert +\lvert B\lvert +\lvert C\lvert -\lvert A\cap B\lvert  - \lvert A\cap C\lvert - \lvert B\cap C\lvert  +\lvert A\cap B\cap C\lvert. 
+\end{align*}
+
+
+This might more appropriately be named the inclusion-exclusion-inclusion formula, but nobody calls
+it that. In words, the formula says that to count the number of elements in the union of three
+sets, first, include everything in each set, then exclude everything in the overlap of each pair
+of sets, and finally, re-include everything in the overlap of all three sets.
+
+\begin{exmp}
+How many integers between $1$ and $1000$ are divisible by at least one of
+$7$, $9$, and $11$?
+\end{exmp}
+\begin{soln}Let
+ $S$ denote the set of integers between $1$ and $1000$ divisible by $7$, let
+ $N$ denote the set of integers between $1$ and $1000$ divisible by $9$, and
+ $E$ denote the set of integers between $1$ and $1000$ divisible by $11$.
+ We need to count the number of integers in $S\cup N \cup E$. By the
+ principle of inclusion-exclusion,
+ \begin{align*}
+  |S\cup N \cup  E| &= |S|+|N|+|E| -|S\cap N| - |S\cap E|-|N\cap E| + |S\cap N\cap E| \\ 
+  &= \left\lfloor{{1000}\over7}\right\rfloor+  \left\lfloor{{1000}\over9}\right\rfloor+
+  \left\lfloor{{1000}\over{11}}\right\rfloor- \left\lfloor{{1000}\over63}\right\rfloor-
+  \left\lfloor{{1000}\over{77}}\right\rfloor-\left\lfloor{{1000}\over{99}}\right\rfloor
+  +\left\lfloor{{1000}\over{693}}\right\rfloor \\
+  &= 142+111+90-15-12-10 + 1 = 307.
+ \end{align*}
+\end{soln}
+
+\clearpage
+There are similar inclusion-exclusion formulas for the union of four, five, six, $\cdots$ sets.
+The formulas can be proved by induction with the inductive step using the trick we 
+used above to go from two sets to three. However, there is a much neater way to prove the
+formula based on the Binomial Theorem. 
+
+\begin{thm}
+ Given finite sets $A_1,A_2,...,A_n$
+ \[
+ \left\lvert\bigcup_{k=1}^n {A_k}\right\rvert %
+   =\sum_{k=1}^n \lvert A_k\rvert - \sum_{1\leq j<k\leq n} \lvert A_j\cap A_k\rvert
+ +\cdots + (-1)^{n-1}\left\lvert\bigcap_{k=1}^n A_k\right\rvert.
+ \]
+\end{thm}
+\begin{proof}
+ Suppose $x\in\bigcup_{k=1}^n {A_k}$.  We need to show that $x$ is counted
+ exactly once by the right-hand side of the promised formula.
+ Say $x\in A_i$ for exactly $p$ of the sets $A_i$, where $1\leq p\leq n$.
+ 
+ The key to the proof is being able to count  the number of intersections in each summation 
+ on the right-hand
+ side of the offered formula that contain $x$ since we will account for $x$ once for each such term.
+ The number of such terms in the first sum is $\dl n = {p\choose 1}$,
+ the number in the second term is $\dl {p\choose 2}$, and, in general, the number of terms
+ in the $j^{th}$ sum will be $\dl {p\choose j}$ provided $j\leq p$. If $j>p$ then $x$ will not
+ be any of the intersections of $j$ of the sets, and so will not contribute any more to the
+ right side of the formula. 
+ 
+ So the total number of times $x$ is accounted for on the right hand side is
+ \begin{align*}
+  {p\choose 1}-{p\choose 2}&-...+(-1)^{p-1}{p\choose p} \\
+  &= 1- \left( {p\choose 0} -{p\choose 1}+{p\choose 2}-...+(-1)^p{p\choose p}\right) \\
+  &= 1 - (1-1)^p = 1.
+ \end{align*}
+Just as we hoped.
+\end{proof}
+
+\begin{exmp}
+How many students are in a calculus class if $14$ are math majors, $22$ are computer
+science majors, $15$ are engineering majors, and $13$ are chemistry majors, if $5$ students are double majoring
+in math and computer science, $3$ students are double majoring in chemistry and engineering, 
+$10$ are double majoring in computer science and engineering, $4$ are
+double majoring in chemistry and computer science, none are double majoring in math and engineering
+and none are double majoring in math and chemistry, and no student has more than two majors?
+\end{exmp}
+\begin{soln}
+Let $A_1$ denote the math majors, $A_2$ denote the computer science majors, $A_3$
+denote the engineering majors, and $A_4$ the chemistry majors. Then the information given is
+\begin{align*}
+&|A_1|=14,\quad |A_2|=22,\quad |A_3|=15,\quad |A_4|=13,\\
+ &|A_1\cap A_2|=5,\quad |A_1\cap A_3|=0,\quad |A_1\cap A_4|=0,\\[6pt]
+&\phantom{|A_1\cap A_2|=5,}|A_2\cap A_3|=10,\quad |A_2\cap A_4|=4,\quad |A_3\cap A_4|=3,\\[6pt]
+&|A_1\cap A_2\cap A_3|=0,\quad |A_1\cap A_2\cap A_4|=0,\\
+&\phantom{|A_1\cap A_2\cap A_3|=0,}|A_1\cap A_3\cap A_4|=0,\quad |A_2\cap A_3\cap A_4|=0,\\
+\intertext{and}
+ &|A_1\cap A_2\cap A_3\cap A_4|=0.
+\end{align*}
+So, by inclusion-exclusion, the number of students in the class
+is 
+\[
+14+22+15+13-5-10-4-3=42.
+\]
+\end{soln}
+
+\begin{exmp}
+ How many ternary strings (using $0$'s, $1$'s and $2$'s) of length $8$ either start
+ with a $1$, end with two $0$'s or have $4$th and $5$th positions $12$, respectively?
+\end{exmp}
+\begin{soln}
+ Let $A_1$ denote the set of ternary strings of length $8$ which start with a $1$,
+ $A_2$ denote the set of ternary strings of length $8$ which end with two $0$'s, and $A_3$
+ denote the set of ternary strings of length $8$ which have $4$th and $5$th positions $12$. 
+ By inclusion-exclusion, the answer is 
+ $3^7+3^6+3^6-3^5-3^5-3^4+3^3$.
+\end{soln}
+
+\section{Inclusion-exclusion with the \textit{Good=Total-Bad} trick}
+The inclusion-exclusion formula is often used along with the \textit{Good=Total-Bad}
+trick.
+
+\begin{exmp}
+ How many integers between $1$ and $1000$ are divisible by none of
+ $7$, $9$, and $11$?
+\end{exmp}
+\begin{soln}
+ There are $1000$ numbers between $1$ and $1000$ (assuming $1$ and $1000$ are included). 
+ As counted before, there are $307$ of those that are divisible by at least one of $7$, $9$, and $11$.
+ That means there are $1000-307 = 693$ that are divisible by none of $7$, $9$, or $11$.
+\end{soln}
+ 
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+At a certain college no student is allowed more than two majors.
+How many students are in the college if there are $70$ math majors, $160$ chemistry majors,
+$230$ biology majors, $56$ geology majors, $24$ physics majors, $35$ anthropology majors,
+$12$ double math-physics majors, $10$ double math-chemistry majors, $4$ double biology-math
+majors, $53$ double biology-chemistry majors, $5$ double biology-anthropology majors,
+and no other double majors? 
+\end{exer}
+
+\begin{exer}
+How many bit strings of length 15 start with the string $1111$, end with the string $1000$ or
+have $4^{th}$ through $7^{th}$ bits $1010$?
+\end{exer}
+
+\begin{exer}
+How many positive integers between $1000$ and $9999$ inclusive are not divisible by
+any of $4,10$ or $25$ (careful!)?
+\end{exer}
+
+\begin{exer}
+How many permutations of the digits $1,2,3,4,5$, have at least one digit in {\it its
+own spot}? In other words, a $1$ in the first spot, or a $2$ in the second, etc.
+For example, $35241$ is OK since it has a $4$ in the fourth spot, and $14235$ is OK, since
+it has a $1$ in the first spot (and also a $5$ in the fifth spot). But $31452$ is no good.
+Hint: Let $A_1$ be the set of permutations that have $1$ in the first spot, let $A_2$ be
+the set of permutations that $2$ in the second spot, and so on.
+\end{exer}
+
+\begin{exer}
+How many permutations of the digits $1,2,3,4,5$ have no digit in its own spot?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+The membership of a language club consists of seven people who speak only English, eight speak only French, five speak only Spanish, seven speak only English and Spanish, two speak only French and Spanish, there are none who speak only English and French, and there are four who speak all three languages. How many members are in the club?
+\end{prob}
+
+\begin{prob}
+How many integers between $1$ and $10000$ (inclusive) are divisible by at least one of $9$, $10$, or $11$? 
+\end{prob}
+
+\begin{prob}
+Suppose $p,q$ are two different primes. How many integers between $1$ and the product $pq$ are relatively prime to $pq$ (or, same thing,
+how many are divisible by neither of $p$ and  $q$)? (The correct answer will factor neatly.) 
+\end{prob}
+
+\begin{prob}
+Suppose $p,q,r$ are three different primes. How many integers between $1$ and the product $pqr$ are relatively prime to $pqr$ (or, same thing,
+how many are divisible by none of $p$, $q$ and $r$)? (The correct answer will factor neatly.) 
+\end{prob}
+
+\begin{prob}
+Suppose $p,q,r,s$ are four different primes. How many integers between $1$ and the product $pqrs$ are relatively prime to $pqrs$ (or, same thing,
+how many are divisible by none of $p$, $q$, $r$ and $s$)? (The correct answer will factor neatly.) 
+\end{prob}
+
+\begin{prob}
+Based on the results of the previous three problems, can you guess the neat formula for five, six, seven, and so on, different primes?
+\end{prob}
+
+\begin{prob} 
+Of the words of length ten using the alphabet $\Sigma =\{a,b,c\}$, how many either begin $abc$ or end $cba$ or have  $cccccc$ as the middle six letters? 
+\end{prob}
+
+\begin{prob}
+There are $6!$ permutations of the numbers $1,2,3,4,5,6$.  In some of these there is a run of three (or more) consecutive numbers that increase (left to right)
+such as $ 5 1 4 6 3 2$ which has the increasing run $1 4 6$. Others do not have any increasing runs of length three such as (a cheap example)
+$6 5 4 3 2 1$ and (not quite as cheap) $6 1 5 2 4 3$. How many of the $6!$ permutations contain no increasing runs of length three (or more)?
+(Hint: runs of length three can start with the first, second, third, or fourth spot in the permutation.)
+\end{prob}
+
+

@@ -1,0 +1,358 @@
+\chapter{The Binomial Theorem and Pascal's Triangle}
+
+\newthought{The quantity $C(n,k)$ is also written} as $\displaystyle \binom{n}{k}$, and called a {\it binomial 
+coefficient} . It gives the number of $k$-subsets of an $n$-set, or, equivalently, it gives
+the number of ways of selecting $k$ items from $n$ items. 
+
+\section{Combinatorial proof}
+Facts involving the binomial coefficients can  be proved algebraically, using the
+formula $\displaystyle \binom{n}{k} = {\frac{n!}{k!(n-k)!}}$. But often the same facts can be
+proved much more neatly by recognizing   $\displaystyle \binom{n}{k}$ gives the number
+of $k$-subsets of an $n$-set. This second sort of proof is called a combinatorial
+proof. Here is an example of each type of proof.
+
+\begin{thm}[Pascal's Identity]\label{thrm:Pascal's Id}
+ Let $n$ and $k$ be non-negative integers, then
+\[
+\binom{n+1}{k}=\binom{n}{k-1}+\binom{n}{k}.
+\]
+\end{thm}
+\begin{proof}(an algebraic proof) 
+\begin{align*}
+  {n\choose k-1}+{n\choose k}&= {\frac{n!}{(k-1)!(n-(k-1))!}}+ {\frac{n!}{k!(n-k)!}} \\
+ &=  {\frac{n!}{(k-1)!(n-k+1)!}}+ {\frac{n!}{k!(n-k)!}} \\
+ &= {\frac{n!}{(k-1)!(n-k)!}}\left(\frac{1}{n-k+1}+ \frac{1}{k}\right) \\
+ &=  {\frac{n!}{(k-1)!(n-k)!}}\left(\frac{k}{k(n-k+1)}+ {\frac{n-k+1}{k(n-k+1)}}\right) \\
+ &=  {\frac{n!}{(k-1)!(n-k)!}}{\frac{k+(n-k+1)}{k(n-k+1)}} \\
+ &= {\frac{n!}{(k-1)!(n-k)!}}{\frac{n+1}{k(n-k+1)}} \\
+ &= {\frac{n!(n+1)}{(k-1)!k(n-k)!(n-k+1)}} \\
+ &= {\frac{(n+1)!}{k!(n+1-k)!}} \\
+ &= {{n+1}\choose k}
+\end{align*}
+\end{proof}
+
+\begin{proof} (a combinatorial proof) Let $S$ be a set with $n+1$ elements. 
+Select one particular element $a\in S$. There are two ways to produce a subset of $S$
+of size $k$. We can include $a$ in the subset, and toss in $k-1$ of the remaining
+$n$ elements of $S$. There are $\displaystyle {n\choose{k-1}}$ to do that. Or, we can avoid $a$,
+and choose all $k$ elements from the other $n$ elements of $S$. There are $\displaystyle{n\choose k}$
+ways to do that. So, according to the sum rule, there is a total of
+$\displaystyle {n\choose{k-1}}+{n\choose k}$ subsets of size $k$ of $S$. But we know there are
+ $\displaystyle{{n+1\choose k}}$ subsets of size $k$ of $S$. So it must be that
+ $\displaystyle {n+1\choose k}={n\choose k-1}+{n\choose k}$.
+ \end{proof}
+
+\subsection{Constructing combinatorial proofs}
+The idea of a combinatorial proof is to ask a counting problem that  can be  answered in
+two different ways, and then conclude the two answers must be equal. In the proof above,
+we asked how many $k$-subsets there are of an $(n+1)$-set. We provided an argument to
+show two answers were correct: $\displaystyle {{n+1}\choose k}$ and $\displaystyle {n\choose{k-1}}+
+{n\choose k}$, and so we could conclude the two answers must be equal:
+\[
+{n+1\choose k}={n\choose k-1}+{n\choose k}.
+\]
+
+As in the combinatorial proof of Pascal's Identity~\ref{thrm:Pascal's Id}, 
+such arguments can be much less work, far less tedious,
+and much more illuminating, than algebraic proofs. Unfortunately, they can also be
+much more difficult to discover since it is necessary to dream up a good counting problem that
+will have as answers the two expressions we are trying to show are equal, and there
+is no algorithm for coming up with such a suitable counting problem.
+
+\begin{exmp}
+ Give a combinatorial%
+ \sidenote{An algebraic proof of this identity is absolutely trivial:
+ \begin{align*}
+     {n\choose k}  &= {\frac{n!}{k!(n-k)!}} \\
+    \intertext{and} 
+  {n\choose {n-k}} &= {\frac{n!}{(n-k)!(n-(n-k))!}} \\
+                   &= {\frac{n!}{k!(n-k)}}.
+ \end{align*}
+ Thus, we see  that the two expressions are indeed equal.}
+  proof of   $\displaystyle {n\choose k} = {n\choose {n-k}}$.
+\begin{soln}
+To provide a combinatorial proof, we ask {\it how many ways are there to
+grab $k$ elements of an $n$-set?}. One answer of course is $\displaystyle {n\choose k}$. But here
+is a second way to view the problem. We can select $k$ elements of an $n$-set by deciding
+on $n-k$ elements {\bfseries not} to pick. Since there are $\displaystyle {n\choose{n-k}}$ ways to select
+the $n-k$ not to pick, there must be $\displaystyle {n\choose{n-k}}$ ways to select $k$ elements
+of an $n$-set. Since the two answers must be equal we conclude that
+$\displaystyle {n\choose k} = {n\choose {n-k}}$.\;\qed
+\end{soln}
+\end{exmp}
+
+\begin{exmp}
+Give a combinatorial proof of {\bfseries Vandermonde's Identity}: 
+\[
+{{n+m}\choose k} = {n\choose 0}{m\choose k}+{n\choose 1}{m\choose {k-1}}+
+{n\choose 2}{m\choose {k-2}}+\cdots+{n\choose k}{m\choose 0}.
+\]
+\begin{soln}
+ Consider the set $\{a_1,a_2,\cdots,a_n,b_1,b_2,\cdots b_m\}$ of $n+m$ elements.
+ We ask, {\itshape how may $k$-subsets does the set have?}.
+ 
+  One answer of course  is  $\displaystyle{{n+m}\choose k}$. 
+  
+  But here's another way to answer the question: 
+ 
+ we can select $0$ of the $a$'s and $k$ of the $b$'s. 
+ There are $ {n\choose 0}{m\choose k}$ ways  to do that. 
+ 
+ Or we select $1$ of the $a$'s and $k-1$ of the $b$'s. 
+ There are $ {n\choose 1}{m\choose k-1}$ ways to do that. 
+ 
+ Or we select $2$ of the $a$'s and $k-2$ of the $b$'s. 
+ There are $ {n\choose 2}{m\choose k-2}$ ways to do that.
+ 
+ And so on, until we reach the option of  selecting $k$ of the $a$'s and $0$ of the $b$'s. 
+ There are $ {n\choose k}{m\choose 0}$ ways to do that.
+ 
+ By the sum rule, it follows that another way to count the number of $k$-subsets is
+ $$ {n\choose 0}{m\choose k}+{n\choose 1}{m\choose {k-1}}+
+ {n\choose 2}{m\choose {k-2}}+\cdots +{n\choose k}{m\choose 0}
+ $$
+ and that proves Vandermonde's Identity.\;\qed
+\end{soln}
+\end{exmp}
+ 
+\section{Pascal's Triangle}
+The binomial coefficients are so named because they appear when a binomial $x+y$ is raised
+to an integer power $\geq 0$. 
+To appreciate the connection, let's look at a table of the binomial coefficients $\displaystyle {n\choose k}$.
+The table is arranged in rows starting with row $n=0$, and within each row, the entries
+are arranged from left to right for $k=0,1,2,\cdots,n$.
+The result, called Pascal's Triangle,  is shown in figure~\ref{fig:Pascal's Triangle}.
+\begin{marginfigure}
+\centering
+\resizebox{\textwidth}{!}{ %
+%\includegraphics{./Graphics/PascalsTriangle-0.png}
+\def\N{5}
+\tikz[x=0.75cm,y=0.5cm, 
+  pascal node/.style={font=\footnotesize}, 
+  row node/.style={font=\footnotesize, anchor=west, shift=(180:1)}]
+  \path  
+    \foreach \n in {0,...,\N} { 
+       (-\N/2-1, -\n) node  [row node/.try]{Row \n:}
+        \foreach \k in {0,...,\n}{
+          (-\n/2+\k,-\n) node [pascal node/.try] {%
+%            \pgfkeys{/pgf/fpu}%
+%            \pgfmathparse{round(\n!/(\k!*(\n-\k)!))}%
+%            \pgfmathfloattoint{\pgfmathresult}%
+%            \pgfmathresult%
+             $\binom{\n}{\k}$  
+        }}} 
+(-2.5,-5.75) node [row node/.try] {$\iddots$}
+(0.75,-5.75) node [row node/.try] {$\vdots$}
+(3.75,-5.75) node [row node/.try] {$\ddots$};
+}\caption{Pascal's Triangle}\label{fig:Pascal's Triangle}
+\end{marginfigure}
+
+Filling in  the numerical values for the binomial coefficients gives the table shown in
+figure~\ref{fig:Pascal's Triangle (numeric)}.
+\begin{marginfigure}
+\centering
+\resizebox{\textwidth}{!}{ %
+%\includegraphics{./Graphics/PascalsTriangle_numeric-0.png}
+\def\N{5}
+\tikz[x=0.75cm,y=0.5cm, 
+  pascal node/.style={font=\footnotesize}, 
+  row node/.style={font=\footnotesize, anchor=west, shift=(180:1)}]
+  \path  
+    \foreach \n in {0,...,\N} { 
+       (-\N/2-1, -\n) node  [row node/.try]{Row \n:}
+        \foreach \k in {0,...,\n}{
+          (-\n/2+\k,-\n) node [pascal node/.try] {%
+            \pgfkeys{/pgf/fpu}%
+            \pgfmathparse{round(\n!/(\k!*(\n-\k)!))}%
+            \pgfmathfloattoint{\pgfmathresult}%
+            \pgfmathresult%
+ %            $\binom{\n}{\k}$  
+        }}} 
+(-2.5,-5.75) node [row node/.try] {$\iddots$}
+(0.75,-5.75) node [row node/.try] {$\vdots$}
+(3.75,-5.75) node [row node/.try] {$\ddots$};
+}\caption{Pascal's Triangle (numeric)}\label{fig:Pascal's Triangle (numeric)}
+\end{marginfigure}
+
+
+Note that we number the rows starting with $0$.
+We already know quite a bit about the entries in Pascal's Triangle. Since $\displaystyle {n\choose 0} 
+={n\choose n} = 1$ for all $n$, each row begins and ends with a $1$. From the symmetry
+formula $\displaystyle {n\choose k} = {n\choose {n-k}}$, the rows read the same in  both directions.
+By Pascal's Identity, each entry in a row is the sum of the two entries diagonally above it.
+That last fact makes it easy to add new rows to Pascal's Triangle.
+
+The numbers in the first, second, and third rows of Pascal's triangle probably seem familiar.
+ In fact, we see that %
+ \marginnote{%
+ The coefficients in these binomial expansions are exactly the entries in the corresponding
+ rows of Pascal's Triangle. This even works for the $0^{th}$ row: $(x+y)^0 = 1$.%
+ }%
+\begin{align*}
+ (x+y)^0 = &{\color{blue}1}\\
+ (x+y)^1 = x+y = {\color{blue}1}\cdot x &+{\color{blue}1}\cdot y\\
+ (x+y)^2 = x^2+2xy +y^2 = {\color{blue}1}\cdot x^2 + &{\color{blue}2}\cdot xy + {\color{blue}1}\cdot y^2\\
+ (x+y)^3 = x^3 + 3x^2y + 3xy^2 + y^3 = 
+  {\color{blue}1}\cdot x^3 + {\color{blue}3}\cdot x^2y &+ {\color{blue}3}\cdot xy^2 + {\color{blue}1}\cdot y^3\\
+\end{align*}
+
+
+\section{The Binomial Theorem}
+The fact that the coefficients in the expansion of the binomial $(x+y)^n$ (where $n\geq 0$ is 
+an integer) can be read off from the $n^{th}$ row of Pascal's Triangle is called the
+Binomial Theorem. We will give two proofs of this theorem, one by induction, and the
+other a combinatorial proof. 
+
+\begin{thm}[The Binomial Theorem] When $n$ is a non-negative integer and $x,y\in \R$
+\[
+(x+y)^n=\sum_{k=0}^n {n\choose k} x^k y^{n-k}.
+\]
+\end{thm}
+\begin{proof}{\itshape (by induction on $n$)} When $n=0$ the result is clear. So suppose that for some
+$n\geq 0$ we have $\displaystyle{(x+y)^n=\sum_{k=0}^n {n\choose k}x^k y^{n-k}}$, for any $x,y\in \R$. Then, we have 
+\begin{align*}
+ (x+y)&^{n+1} =(x+y)^n(x+y), \\
+ & = \Big[\sum_{k=0}^n {n\choose k} x^k y^{n-k} \Big](x+y) \quad {\text{~by~inductive~hypothesis}}, \\
+ & = \Big[\sum_{k=0}^n {n\choose k} x^{k+1} y^{n-k}\Big]+\Big[\sum_{k=0}^n {n\choose k} x^k y^{n+1-k}\Big] \\
+ & = {n\choose n} x^{n+1} + \Big[\sum_{k=0}^{n-1} {n\choose k} x^{k+1} y^{n-k}\Big] + \Big[\sum_{k=1}^n {n\choose k} x^k y^{n+1-k}\Big]+
+ {n\choose 0}y^{n+1} \\
+ & = {n\choose n} x^{n+1} + \Big[\sum_{l=1}^{n} {n\choose l-1} x^l y^{n-(l-1)}\Big] + \Big[\sum_{k=1}^n {n\choose k} x^k y^{n+1-k}\Big]+
+ {n\choose 0}y^{n+1} \\
+ & = {n\choose n} x^{n+1} + \Big[\sum_{l=1}^{n} {n\choose l-1} x^l y^{n+1-l}\Big] + \Big[\sum_{k=1}^n {n\choose k} x^k y^{n+1-k}\Big]+
+ {n\choose 0}y^{n+1} \\
+ & = {n\choose n} x^{n+1} + \Big[\sum_{k=1}^{n} \Big[{n\choose k-1} + {n\choose k}\Big] x^k y^{n+1-k}\Big]+ {n\choose 0}y^{n+1} \\
+ & = {n+1\choose n+1} x^{n+1} + \Big[\sum_{k=1}^{n} {n+1\choose k} x^k y^{n+1-k}\Big]+ {n+1\choose 0}y^{n+1} \quad
+ {\text{ by~Pascal's~identity}}, \\
+ &= \sum_{k=0}^{n+1} {n+1\choose k} x^k y^{n+1-k}.
+ \end{align*}
+\end{proof}
+
+\clearpage
+Now, let's look at a combinatorial proof of the Binomial Theorem. 
+\begin{proof}
+ When the binomial
+ $
+ (x+y)^n = (x+y)(x+y)(x+y)\cdots(x+y)
+ $
+ is expanded, the terms are produced by selecting either the $x$ or the $y$ from each
+ of the $n$ factors $x+y$ appearing on the right side of the equation. The number of 
+ ways of selecting exactly $k$ $x$'s from the $n$ available is $\displaystyle {n\choose k}$, and
+ so that will be the coefficient of the term $x^ky^{n-k}$ in the expansion.\marginnote{Isn't this amazing!}
+\end{proof}
+
+\begin{exmp}
+The coefficient of $x^7y^3$ in the expansion of $(x+y)^{10}$
+is 
+\[
+ \binom{10}{7} = {\frac{10!}{7!3!}}= {\frac{10\cdot9\cdot8}{1\cdot2\cdot3}}
+= 120.
+\]
+\end{exmp}
+
+\begin{exmp}The coefficient of  $x^7y^3$ in the expansion of $(2x-3y)^{10}$ is 
+\[
+ {{10}\choose 7}2^7(-3)^3 = {\frac{10!}{7!3!}}2^7(-3)^3= -{\frac{10\cdot9\cdot8}{1\cdot2\cdot3}}
+ 2^73^3 
+ = -120\cdot128\cdot27 = -414720.
+\]
+\end{exmp}
+
+From the binomial theorem we can derive facts such as 
+
+\begin{thm}
+A finite set with $n$ elements has $2^n$ subsets.
+\end{thm}
+\begin{proof}
+By the sum rule the number of subsets of an $n$-set is
+\[
+\sum_{k=0}^n {n\choose k}=\sum_{k=0}^n {n\choose k} 1^k 1^{n-k}.
+\]
+By the Binomial Theorem $\displaystyle{\sum_{k=0}^n {n\choose k} 1^k 1^{n-k} = (1+1)^n=2^n}.$
+\end{proof}
+
+\begin{thm}If $n\geq 1$, then 
+\[
+{n\choose 0}-{n\choose 1}
++{n\choose 2}-\cdots +(-1)^n {n\choose n} = 0.
+\]
+\end{thm}
+\begin{proof}By the Binomial Theorem, 
+\[{n\choose 0}-{n\choose 1}
++{n\choose 2}-\cdots +(-1)^n {n\choose n} = (1-1)^n = 0.
+\]
+\end{proof}
+
+\clearpage
+\section{Exercises}
+
+\begin{exer}
+Determine the sixth row of Pascal's Triangle.
+\end{exer}
+
+\begin{exer}
+Determine the coefficient of  $x^3y^7$ in the expansion\\ of $(3x-2y)^{10}$.
+\end{exer}
+
+\begin{exer}
+Give an algebraic proof that $\displaystyle {{2n}\choose 2} = 2{n\choose 2} + n^2$.
+\end{exer}
+
+\begin{exer}
+Give an algebraic proof that $\displaystyle \binom{r}{s}\binom{s}{t} = \binom{r}{t}\binom{r-t}{s-t}$.
+\end{exer}
+
+\begin{exer}
+Give a combinatorial proof that $\displaystyle \binom{r}{s}\binom{s}{t} = \binom{r}{t}\binom{r-t}{s-t}$.
+\end{exer}
+
+\begin{exer}
+Using the same reasoning as in the combinatorial proof of the Binomial Theorem,
+determine the coefficient of $x^4y^5z^6$ in the expansion of $(x+y+z)^{15}$.
+\end{exer}
+
+\begin{exer}
+Show that if $p$ is a prime and $0< k<p$, then $p$ divides $\displaystyle {p\choose k}$.
+Hint: When $\displaystyle {p\choose k}$ is written out, how many times does $p$ occur as a factor
+of the numerator and how many times as a factor of the denominator?
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Determine the seventh row of Pascal's Triangle.
+\end{prob}
+
+\begin{prob}
+Determine the coefficient of  $x^5y^2$ in the expansion\\ of $(2x-5y)^{7}$.
+\end{prob}
+
+\begin{prob}
+Give a combinatorial  proof that $\displaystyle {{2n}\choose 2} = 2{n\choose 2} + n^2$.\\
+Hint: How many ways are there to select a 2-subset of $\{a_1,a_2,\cdots,a_n,b_1,b_2,\cdots b_n\}$?
+\end{prob}
+
+\begin{prob}
+Give an algebraic proof that $\displaystyle \binom{n}{2}\binom{n-2}{m-2} = \binom{n}{m}\binom{m}{2}$.
+\end{prob}
+
+\begin{prob}
+Give a combinatorial proof that $\displaystyle \binom{n}{2}\binom{n-2}{m-2} = \binom{n}{m}\binom{m}{2}$.
+\end{prob}
+
+\begin{prob}
+Give an algebraic proof that $\displaystyle m\binom{n}{m} = n\binom{n-1}{m-1}$.
+\end{prob}
+
+\begin{prob}
+Give a combinatorial proof that $\displaystyle m\binom{n}{m} = n\binom{n-1}{m-1}$.
+\end{prob}
+
+
+\begin{prob}
+Give a combinatorial proof that $\displaystyle{{3m\choose 3}={m\choose 3}+2m{m\choose 2}+m{2m\choose 2} +{2m\choose 3}}$.
+\end{prob}
+
+
+\begin{prob}
+Determine the coefficient of $x^3y^2z^3$ in the expansion\\ of $(x+2y-3z)^8$.
+\end{prob}

@@ -1,0 +1,247 @@
+\chapter{Linear Diophantine Equations}\label{chap:lin dio eqns}
+
+\newthought{Consider the following problem:}
+ 
+Al buys some books at \$$25$ each, and some magazines at \$$3$ each. If he spent 
+a total of \$$88$, how many books and how many magazines did Al buy?
+At first glance, it does not seem we are given enough information to solve
+this problem. Letting $x$ be the number of books Al bought, and $y$ the number
+of magazines, then the equation we need to solve is $25x+3y = 88$. 
+Thinking back to college algebra days, we recognize $25x+3y = 88$ as the
+equation of a straight line in the plane, and any point along the line
+will give a solution to the equation. For example, 
+$x=0$ and $y = \frac{88}{3}$ is one solution. But, in the context of 
+this problem, that solution makes no sense because Al cannot buy a fraction
+of a magazine. We need a solution in which $x$ and $y$ are both integers.
+In fact, we need even a little more care than that. The solution 
+$x=-2$ and $y = 46$ is also unacceptable since Al cannot buy a negative number
+of books. So we really need solutions in which
+$x$ and $y$ are both nonnegative integers. The problem can be solved by brute
+force: If $x= 0$, $y$ is not an integer. If $x=1$, then $y = 21$, so
+that is one possibility. If $x=2$, $y$ is not an integer. If $x=3$, $y$ is 
+not an integer. And, if $x$ is $4$ or more, then $y$ would have to be
+negative. So, it turns out there is only one possible solution:
+Al bought one book, and $21$ magazines.
+
+\section{Diophantine  equations}
+The above question is an example of a Diophantine problem. Pronounce 
+Diophantine as
+\textit{dee-uh-FAWN-teen} or \textit{dee-uh-FAWN-tine}, or, the more common 
+variations, 
+\textit{die-eh-FAN-teen} or \textit{die-eh-FAN-tine}.
+\url{http://www.merriam-webster.com/audio.php?file=diopha01&word=Diophantine equation})
+\marginnote{For a modern pronunciation of Diophantus's name 
+($\Delta\iota{o}\phi\alpha\nu\tau{o}\zeta$) see
+\url{http://www.pronouncenames.com/Diophantus}}. In general,
+problems in which we are interested in finding solutions in which the
+variables are to be integers are called {\bf Diophantine} problems.
+
+
+In this chapter we will learn how to easily find the solutions to
+all linear Diophantine equations: $ax+by = c$ where $a,b,c$ are given
+integers. To show some of the subtleties of such problems, here are 
+two more examples:
+\begin{enumerate}
+ \item Al buys some books at \$$24$ each, and some magazines at \$$3$ each. 
+ If he spent 
+ a total of \$$875$, how many books and how many magazines did Al buy? For
+ this question we need to solve the Diophantine equation $24x+3y=875$.
+ In this case there are no possible solutions. For any integers $x$ and
+ $y$, the left-hand side will be a multiple of $3$ and so cannot be equal
+ to $875$ which is not a multiple of $3$.
+ 
+ 
+ \item  Al buys some books at \$$26$ each, and some magazines at \$$3$ each. 
+ If he spent 
+ a total of \$$157$, how many books and how many magazines did Al buy?
+ Setting up the equation as before, we need to solve the Diophantine equation
+ $26x+3y=157$. A little trial and error, testing $x=0,1,2,3,$ and so on
+ shows there are two possible answers this time:
+ $(x,y) \in  \{(2,35), (5,9)$\}.
+\end{enumerate}
+
+
+
+\section{Solutions and $\gcd(a,b)$}
+Determining all the  solutions to $ax+by = c$ is closely connected with the idea of
+$\gcd$'s. One connection is theorem~\ref{thm:gcd lin comb}. 
+Here is how solutions of $ax+by=c$ are related.
+
+\begin{thm}
+$ax+by =c$ has a solution in the integers if and
+only if 
+$\gcd(a,b)$ divides $c$. 
+\end{thm}
+
+So, for example, $9x+6y = 211$ has no solutions (in the integers) while
+$9x+ 6y = 213$ does have solutions. To find a solution to the last
+equation, apply the Extended Euclidean Algorithm method to write the $\gcd(9,6)$ as a 
+linear combination of $9$ and $6$ (actually, this one is easy to do
+by sight): $9\cdot 1 + 6\cdot (-1) = 3$, then multiply both sides
+by ${{213}/{\gcd(9,6)}}= {{213}/3} =  71$ to get
+$(71)9+ (-71)6 = 213$. That shows $x=71$, $y=-71$ is a solution
+to $9x+6y=213$.
+
+But that is only one possible solution. When a linear Diophantine 
+equation has one solution it will have infinitely many. In the example
+above, another solution will be $x= 49$ and $y=-38$. Checking
+shows that $(49)9 + (-38)6 = 213$. 
+
+\section{Finding all solutions}\label{sec:find all lin combs}
+There is a simple recipe for all solutions, once one particular
+solution has been found. 
+
+\begin{thm}
+ Let $d = \gcd(a,b)$. Suppose $x=s$ and $y=t$
+ is one solution to $ax+by=c$. Then all solutions are given by
+ \[
+ x = s + k\frac{b}{d}\quad\text{and}\quad y = t - k\frac{a}{d}\quad
+ \text{where, }  k=\text{ any integer}.
+ \] 
+\end{thm}
+\begin{proof}
+It is easy to check that all the displayed $x$, $y$
+pairs are solutions simply by plugging in:
+\[
+a\left(s+k\frac{b}{d}\right)+ b
+\left(t-k\frac{a}{d}\right) = as+\frac{abk}{d} +bt -\frac{abk}{d}
+= as+bt = c.
+\]
+
+Checking that the displayed formulas for $x$ and $y$ give all
+possible solutions is trickier. Let's assume $a\not= 0$.
+Now suppose $x=u$ and $y = v$ is a solution.
+That means $au+bv = c = as+bt$. It follows that $a(u-s) = b(t-v)$.
+Divide both sides of that equation by $d$ to get
+\[
+\frac{a}{d}(u-s) = \frac{b}{d}(t-v).
+\]
+That equation shows 
+$\displaystyle \frac{a}{d}{\;\biggl|\;}\frac{b}{d}(t-v)$.  %\;\vrule height 12pt depth 6pt width .4pt\; 
+Since $\displaystyle \frac{a}{d}$ and $\displaystyle \frac{b}{d}$ are relatively prime, we
+conclude that
+ $\displaystyle \frac{a}{d}{\;\biggl|\;} (t-v)$. Let's say
+$\displaystyle k\frac{a}{d} = t-v$. Rearrange that equation to get
+\[
+v = t - k\frac{a}{d}.
+\]
+
+Next, replacing  $t-v$ in the equation  
+$\displaystyle \frac{a}{d}(u-s) = \frac{b}{d}(t-v)$ with $\displaystyle k\frac{a}{d}$ gives
+
+\[
+\frac{a}{d}(u-s) = \frac{b}{d}(t-v) = \frac{b}{d}\left(k\frac{a}{d}\right).
+\]
+Since $\displaystyle \frac{a}{d}\not= 0$, we can cancel that factor. So, we have
+\[
+u-s = k\frac{b}{d}\quad \hbox {so that}\quad u = s+k\frac{b}{d}.
+\]
+
+That proves the solution $x=u$, $y=v$ is given by the displayed
+formulas.
+\end{proof}
+
+\section{Examples}
+\begin{exmp}
+Determine all the solutions to $221x+91y = 39$.
+
+Using the Extended Euclidean Algorithm method, we learn that $\gcd(221,91) = 13$
+and since $13|39$, the equation will have infinitely many solutions.
+The Extended Euclidean Algorithm table provides a linear combination of
+$221$ and $91$ equal to $13$:  $221(-2) + 91(5) = 13$. Multiply
+both sides by $3$ and we get $221(-6) + 91(15) = 39$. So
+one particular solution to $221x+91y = 39$ is $x=-6$, $y=15$.
+According the the theorem above, all solutions are given by
+\[
+x = -6 + k{\frac{91}{13}} = -6+7k
+\quad\text{ and }\quad
+y = 15-k{\frac{221}{13}} = 15-17k,
+\]
+where $k$ is any integer.
+\end{exmp}
+
+\begin{exmp}
+Armand buys some books for \$$25$ each
+ and some cd's
+for \$$12$ each. If he spent a total of \$$331$, how many books and how many
+cd's did he buy?
+
+Let $x=$ the number of books, and $y=$ the number of cd's.
+We need to solve $25x+12y = 331$.
+The $\gcd$ of $25$ and $12$ is $1$, and there is an obvious linear
+combination of $25$ and $12$ which equals $1$:  $25(1) + 12(-2) = 1$.
+Multiplying both sides by $331$ gives $25(331) +12(-662)= 331$.
+So one particular solution to $25x+12y = 331$ is $x=331$ and
+$y=-662$. Of course, that won't do for an answer to the given problem
+since we want $x,y\geq 0$. To find the suitable choices for $x$ and $y$,
+let's look at all the possible solutions to $25x+12y = 331$. We have that
+\begin{align*}
+x = 331 + 12k \quad&\text{ and }\quad y = -662-25k. \\
+\intertext{We want $x$ and $y$ to be at least $0$, and so we need}
+331+12k\geq 0 \quad&\text{ and }\quad -662-25k\geq 0. \\
+\intertext{Which means that}
+k \geq -{\frac{331}{12}} \quad&\text{ and }\quad k\leq-{\frac{662}{25}}, \\
+\intertext{or}
+ -{\frac{331}{12}}\leq &k\leq-{\frac{662}{25}}. \\
+\end{align*}
+The only option for $k$ is $k=-27$, and so we see Armand
+bought $x = 331+12(-27) = 7$ books and $y = -662-25(-27) = 13$
+cd's.
+\end{exmp}
+
+
+\clearpage
+
+\section{Exercises}
+\begin{exer}
+Find all integer solutions to $21x+48y =8$.
+\end{exer}
+
+\begin{exer}
+Find all integer solutions to $21x+48y =9$.
+\end{exer}
+
+\begin{exer}
+ Find all integer solutions to $33x+12y =7$.
+\end{exer}
+
+\begin{exer}
+Find all integer solutions to $33x+12y =6$.
+\end{exer}
+
+\begin{exer}
+Sal sold some ceramic vases for \$$59$ each, and a number of ash trays for \$$37$ each.
+If he took in a total of \$$4270$, how many of each item did he sell? 
+\end{exer}
+
+
+\section{Problems}
+
+\begin{prob}
+Find all integer solutions to $14x+ 77y = 69$.
+\end{prob}
+
+\begin{prob}
+Find all integer solutions to $14x+ 77y = 70$.
+\end{prob}
+
+\begin{prob}
+Beth stocked her video store with a number of video game 
+machines at \$79 each, and a number of video games at \$41 each.
+If she spent a total of \$6358, how many of each item did she purchase?
+\end{prob}
+
+\begin{prob}
+If you all you have are dimes and quarters, in how many ways can you pay a \$$7$ bill?\\
+ (For example, one way would be $10$  dimes and $24$ quarters.)
+\end{prob}
+ 
+\begin{prob}
+How many integer solutions are there to the equation $11x  + 7y = 137$ if the value of $x$
+has to be at least $-15$ and not more than $20$. 
+\end{prob}
+
+\begin{prob}
+Determine all integer solutions to $5x - 7y = 99$. (Watch that minus sign!)
+\end{prob}
+

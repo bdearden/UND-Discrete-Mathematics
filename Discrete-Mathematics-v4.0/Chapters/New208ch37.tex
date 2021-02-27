@@ -1,0 +1,276 @@
+\chapter{Solving Nonhomogeneous Recurrences}\label{ch:Solving Nonhomogeneous Recurrences}
+
+\newthought{When a linear recurrence relation} with constant coefficients for a
+sequence $\{s_n\}$ looks like
+$$s_n= c_1s_{n-1}+c_2s_{n-2}+\cdots+c_ks_{n-k} + f(n),$$
+where $f(n)$ is some (nonzero) function of $n$, then the recurrence
+relation  is said to be {\bfseries nonhomogeneous}. For example, $s_n =
+2s_{n-1}+n^2+1$ is a nonhomogeneous recurrence. Here $f(n) = n^2+1.$
+The methods used in the last chapter are not adequate to deal with
+nonhomogeneous problems. But it wasn't all a waste since those methods
+do provide one step in the solution of nonhomogeneous problems.
+
+
+\section{Steps to solve nonhomogeneous recurrence relations}
+% The 
+%steps used to solve nonhomogeneous linear recurrence relations with 
+%constant coefficients are:
+\begin{enumerate}[label=Step (\arabic*):]
+ \item Replace the $f(n)$ by $0$ to create a
+ homogeneous recurrence relation,
+ $$s_n= c_1s_{n-1}+c_2s_{n-2}+\cdots+c_ks_{n-k}.$$
+ Now solve this and write down the general solution\sidenote{We learned
+ to do this in chapter~\ref{chpt:char roots}.}. For example, in the case of no repeated roots,  
+ the general solution will look something
+ like:
+ $$s_n=a_1r_1^n+a_2r_2^n+\cdots+a_kr_k^n,$$
+ where the constants $a_1,a_2,\cdots,a_k$ are to be determined.
+ 
+\clearpage
+ \item Next, find one {\bfseries particular solution} to the
+ original nonhomogeneous recursion.  In other words, one
+ specific sequence that obeys the recursive formula (ignoring the 
+ initial conditions).  A method for finding a particular
+ solution that works in many cases is to guess! Actually, it is to make
+ an educated guess. Reasonable guesses depend on the form of $f(n)$. 
+ There is an algorithm that will produce the correct guess,
+ but it is so complicated it isn't worth learning for the few simple
+ examples we will be doing. Instead, rely on the following guidelines
+ to guess the form of a  particular solution.
+ 
+ Roughly, the plan is the guess a particular solution that is the most general
+ function of the same type as $f(n)$. Specifically, table~\ref{tabl:particular solns}
+ shows reasonable guesses.
+ \begin{margintable}
+ \centering
+ \begin{tabular}{cl}
+  \toprule
+  $f(n)$ 
+  & Particular Solution Guess \\
+  \midrule
+  $c$ (a constant)      & $A$ (constant) \\
+  $n$                   & $An+B$ \\
+  $n^2$                 & $An^2+Bn+C$ \\
+  $n^3$                 & $An^3+Bn^2+Cn+D$ \\
+  $2^n$                 & $A2^n$ \\
+  $r^n$ ($r$ constant)  & $Ar^n$ \\
+  \bottomrule\addlinespace
+ \end{tabular}\caption{Particular solution patterns}\label{tabl:particular solns}
+ \end{margintable}
+ 
+ 
+ These guesses can be {\itshape mixed-and-matched}. For example, if 
+ \[
+  f(n)= 3n^2+5^n,
+ \] then a reasonable candidate particular solution
+ would be 
+ \[
+  An^2+Bn+C+D5^n. 
+ \]
+ 
+ Once a guess has been made for the form of a particular solution, that
+ guess is plugged into the recurrence relation, and the coefficients
+ $A,B,\cdots$ are determined. In this way a specific particular solution
+ will be found.
+ 
+ It will sometimes happen that when the equations are set up to determine
+ the coefficients of the particular solution, an inconsistent system
+ will appear. In such a case, as with repeated characteristic roots, the
+ trick is (more-or-less) to multiply the guess for the particular solution by $n$, and
+ try again.
+ 
+ \item Once a particular solution has been found, add the particular 
+ solution of step (2) to the general solution of the
+ homogeneous recurrence found in step (1).  If we denote a particular
+ solution by $h(n)$, then the total general solution looks like
+ \[
+  s_n=a_1r_1^n+a_2r_2^n+\cdots+a_kr_k^n+h(n).
+ \]
+ 
+ \item Invoke the initial conditions to
+ determine the values of the coefficients
+  $a_1,a_2,\cdots,a_k$
+ just as we did for the
+ homogeneous problems in chapter~\ref{chpt:char roots}.  
+ 
+\end{enumerate}
+
+
+
+
+
+The major oversight made solving
+a nonhomogeneous recurrence relation is trying to determine the coefficients
+ $a_1,a_2,\cdots,a_k$ before
+the particular solution is added to the general solution. This mistake
+will usually lead to inconsistent information about the coefficients,
+and no solution to the recurrence will be found.
+
+
+\section{Examples}
+\begin{exmp}
+ Let's solve the Tower of Hanoi recurrence using this
+ method.
+ 
+ The recurrence is $H_0=0$, and, for $n\geq 1$, $H_n = 2H_{n-1}+1$.
+ We know the closed form formula for $H_n$ is $2^n-1$ already, but let's
+ work it out using the method outlined above.
+ \begin{enumerate}[label=Step (\arabic*):]
+   \item Find the general solution of related homogeneous recursion 
+   (indicated by the superscript $(h)$):
+   $H_n^{(h)} = 2H_{n-1}^{(h)}$. That will be $H_n^{(h)} = A2^n$.
+   
+   \item Guess the particular solution (indicated by superscript $(p)$): 
+   $H_n^{(p)} = B$, a constant. Plugging that guess into the
+   recurrence gives  $B = 2B+1$, and so we see $B=-1$.
+   
+   \item Hence, the general solution to the Tower of Hanoi recurrence is
+   \[
+    H_n = H_n^{(h)}+H_n^{(p)} = A2^n -1.
+   \]
+   
+   \item Now, use the initial condition to determine $A$: When $n=0$, we
+   want
+   $0 = A2^0-1$ which means $A=1$. Thus, we find the expected result:
+   \[
+    H_n = 2^n-1, \text{ for $n\geq 0$}.
+   \]
+ \end{enumerate}
+\end{exmp}
+
+\clearpage
+\begin{exmp}
+ Here is a more complicated example worked out in 
+ detail to exhibit the
+ method. Let's solve the recurrence
+\begin{align*}
+  s_1 &=2,\quad s_2=5 \quad\text{ and}, \\
+  s_n &=s_{n-1}+6s_{n-2}+3n-1, \quad\text{ for $n\geq3.$}
+\end{align*}
+\begin{enumerate}[label=Step (\arabic*):]
+  \item Find the general solution of $s_n=s_{n-1}+6s_{n-2}.$ After
+  finding the characteristic equation, and the characteristic roots, the
+  general solution turns out to be $s_n=a_13^n+a_2(-2)^n$.
+  
+  \item To find a particular solution let's guess that there is a
+  solution $h(n)$ that looks like $h(n)=an+b$, where $a$ and $b$ are to be
+  determined. To find values of $a$ and $b$ that work, we substitute this
+  guess for a solution into the original recurrence relation. In this
+  case, the result of plugging in the guess $(s_n=h(n)=an+b)$ gives us:
+  \[
+   an+b=a(n-1)+b+6(a(n-2)+b)+3n-1.
+  \]
+  which can be rearranged to
+  \[
+   (6a+3)n+(-13a+6b-1)=0.
+  \]
+  If this equation is to be correct for all $n$, then, in particular, it
+  must be correct when $n=0$ and when $n=1$, and that tells us that
+  \begin{align*}
+       -13a+6b-1&=0 \quad\text{ and}, \\
+   6a+3-13a+6b-1&=0.
+  \end{align*} 
+  Solving this pair of equations we find $a=-{1\over2}$ and
+  $b=-{{11}\over{12}}.$ And, sure enough, if you plug this alleged
+  solution into the original recurrence, you will see it checks.
+  
+  \item Write down the general solution to the original nonhomogeneous
+  problem by adding the particular solution of step (2) to the general
+  solution from step~(1) getting:
+  \[
+   s_n=a_13^n+a_2(-2)^n+\left(-\frac{1}{2}\right)n+\left(-{\frac{11}{12}}\right).
+  \]
+  
+  
+  \item Now $a_1,a_2$ can be calculated: For $n=1$, the first initial condition
+  gives 
+  \begin{align*}
+    2 &=a_13^1+a_2(-2)^1+ \left(-{1\over2}\right)1+\left(-{{11}\over{12}}\right), \\
+    \intertext{and for $n=2$, we get} 
+    5 &=a_13^2+a_2(-2)^2+ \left(-{1\over2}\right)2+\left(-{{11}\over{12}}\right).
+  \end{align*}
+   Solving these two equations for $a_1$ and $a_2$, we find that $a_1=
+  {{11}\over{12}}$ and $a_2=-{1\over3}$.\par
+  So the solution to the recurrence is
+  \[
+   s_n={\frac{11}{12}}3^n-{\frac{1}{3}}(-2)^n+\left(-\frac{1}{2}\right)n+\left(-{\frac{11}{12}}\right).
+  \]
+\end{enumerate}
+ 
+
+\end{exmp}
+\clearpage
+\section{Exercises}
+{\itshape Use the general solutions for the
+related homogeneous problems of chapter~\ref{chpt:char roots} to help solve
+the following nonhomogeneous recurrence relations with initial conditions.}
+
+\begin{exer}
+ $a_0=3, a_1=6$ and $a_n=a_{n-1}+6a_{n-2}+1,$ for $n\geq 2$.
+\end{exer}
+
+\begin{exer}
+$a_2=5, a_3=13$ and $a_n=7a_{n-1}-10a_{n-2}+n,$ for $n\geq 4$.
+\end{exer}
+
+\begin{exer}
+$a_1=3, a_2=5$ and $a_n=4a_{n-1}-4a_{n-2}+2^n$, for $n\geq 3$.
+\end{exer}
+
+\begin{exer}
+$a_0=1, a_1=6$ and $a_n=6a_{n-1}-9a_{n-2}+n,$ for $n\geq 2$.
+\end{exer}
+
+\begin{exer}
+$a_0=2, a_1=5, a_2 = 15$, and 
+$a_n=6a_{n-1}-11a_{n-2}+6a_{n-3}+2n+1$, for $n\geq 3$.
+\end{exer}
+
+\section{Problems}
+
+\begin{prob}
+Solve $a_0=1$, and $a_n=2a_{n-1} + 1,$ for $n\geq 1$. 
+\end{prob}
+
+\begin{prob}
+Solve $a_0=2, a_1=5$ and $a_n=a_{n-1}+6a_{n-2} + 2,$ for $n\geq 2$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=3,a_1=7,$ and $a_n=6a_{n-1}-5a_{n-2} + n,$ for $n\geq 2$.
+
+\end{prob}
+
+
+\begin{prob}
+$a_2=5, a_3=13,$ and $a_n=3a_{n-1}+10a_{n-2} + n+ 2,$ for $n\geq 4$.
+\end{prob}
+
+
+\begin{prob}
+$a_1=3, a_2=5,$ and $a_n=8a_{n-1}-16a_{n-2} n^{2},$ for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_1=2, a_2=8$, and $a_n=4a_{n-2} + 2^{n}$, for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=0, a_1=1, a_2 = 2$, and $a_n=-a_{n-1}+4a_{n-2}+4a_{n-3}+ 2n$, for $n\geq 3$.
+\end{prob}
+
+
+\begin{prob}
+$a_0=0$, $a_1=1$, and
+for $n\geq 2$, $a_n=2a_{n-1}+a_{n-2}+1$.
+
+\end{prob}
+
+
+
+
+
+

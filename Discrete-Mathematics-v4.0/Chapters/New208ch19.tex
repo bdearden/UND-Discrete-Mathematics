@@ -1,0 +1,212 @@
+\chapter{The Growth of Functions}
+
+\newthought{Now that we have an idea} of how to determine the efficiency of an algorithm by computing
+its worst case scenario function, $w(n)$,  we need to be able to decide when one algorithm
+is better than another. For example, suppose we have two algorithms to solve a certain
+problem, the first with $w_1(n) = 10000n^2$, and the second with 
+$w_2(n) = 2^n$.
+Which algorithm would be the better choice to implement based on these functions?
+To find out, let's assume that our computer can carry out one billion steps per second,
+and estimate how long each algorithm will take to solve a worst case problem for various values
+of $n$.
+\begin{table}[h!t]
+\centering
+\begin{tabular}{ c  c  c  c  c }
+\toprule
+$w(n)$ & $n=10$ & $n=20$ & $n=50$ & $n=100$ \\
+\midrule\addlinespace
+$10000n^2$ & $.001$ sec & $.004$ sec & $.025$ sec & $.1$ sec \\
+\addlinespace
+$2^n$ &   $.000001$ sec & $.001$ sec & $4.2$ months & $4\times 10^{11}$ centuries  \\
+\bottomrule
+\end{tabular}
+\caption{Problem size vs.~CPU time used}
+\end{table}
+
+So, it looks like the selection of the algorithm depends on the size of
+the problems we expect to run into. Up to size $20$ or so, it doesn't
+look like the choice makes a lot of difference, but for larger values of $n$,
+the $10000n^2$ algorithm is the only practical choice. 
+
+It is worth noting
+that the values of the efficiency functions for small values of $n$
+can be deceiving. It is also worth noting that, from a practical
+point of view, simply designing an algorithm to solve a problem
+without analyzing its efficiency can be a pointless exercise.
+
+\section{Common efficiency functions}
+There are a few types of efficiency functions that crop up
+often in the analysis of algorithms. In order of decreasing
+efficiency for large $n$ they are: $\log_2{n}$,
+$\sqrt{n}$, $n$, $n^2$, $n^3$, $2^n$, $n!$.
+
+Assuming one billion steps per second, here is how these
+efficiency functions compare for various choices of $n$.
+\begin{table}[h!t]
+\centering
+\resizebox{\textwidth}{!}{
+\begin{tabular}{c rrrr}
+\toprule\addlinespace
+$w(n)$ & $n=10$ & $n=20$ & $n=50$ & $n=100$ \\ \midrule\addlinespace
+$\log_2{n}$ & $.000000003$ sec & $.000000004$ sec & $.000000005$ sec & $.000000006$ sec \\
+$\sqrt{n}$ &   $.000000003$ sec & $.000000004$ sec & $.000000006$ sec & 
+$.000000008$ sec \\ 
+$n$ & $.00000001$ sec & $.00000002$ sec & $.00000004$ sec & $.00000006$ sec \\ 
+$n^2$ &   $.0000001$ sec & $.0000004$ sec & $.0000016$ sec & 
+$.0000036$ sec\\ 
+
+$n^3$ & $.000001$ sec & $.000008$ sec & $.000064$ sec & $.00022$ sec \\ 
+
+$2^n$ &   $.000001$ sec & $.001$ sec & $18.3$ minutes & 
+$36.5$ years\\ 
+
+$n!$ & $.0036$ sec & $77$ years & $2.6\times10^{29}$ centuries & $2.6\times
+10^{63}$ centuries \\ 
+\bottomrule
+\end{tabular}
+}
+\caption{Common efficiency functions for small values of $n$}
+\end{table}
+
+Even though the values in the first five rows of the table look 
+reasonably close together, that is a false impression fostered
+by the small values of $n$. For example, when $n = 1000000$,
+those five entries would be as in table~\ref{tbl:eff funcs 1000000}.
+\begin{margintable}
+\centering
+\begin{tabular}{c r}
+\toprule\addlinespace
+$w(n)$ & $n=1000000$\\ 
+\midrule\addlinespace
+$\log_2{n}$ & $.00000002$ sec \\ 
+$\sqrt{n}$ &   $.000001$ sec \\ 
+$n$ & $.001$ sec\\ 
+$n^2$ &   $17$ minutes \\ 
+$n^3$ & $31.7$ years \\ 
+\bottomrule\addlinespace
+\end{tabular}
+\caption{Efficiency functions where $n=1000000$}\label{tbl:eff funcs 1000000}
+\end{margintable}
+
+
+And, for even larger values of $n$, the $\sqrt{n}$ algorithm will require
+billions more years than the $\log_2{n}$ algorithm.
+
+\section{Big-oh notation}
+There is a traditional method of estimating the efficiency of an algorithm.
+As in the examples above, one part of the plan is to ignore tiny contributions
+to the efficiency function. In other words, we won't write expressions 
+such as $w(n) = n^2 + 3$, since the term $3$ is insignificant for the large
+values of $n$ we are interested in. As far as behavior for large values of $n$
+is concerned, the functions $n^2$ and $n^2+3$ are indistinguishable.
+A second part of the plan is to not distinguish between functions
+if one is always  say $10$ times the other. In other words, as far
+as analyzing efficiency, the functions $n^2$ and $10n^2$ are 
+indistinguishable. And there is nothing special about $10$ in those
+remarks. These ideas lead us to the idea of the order of growth with respect to $n$,
+$\mathbf{\mathcal{O}(g(n))}$, in the next definition.
+
+
+\begin{defn}
+The function {\bfseries $\mathbf{w(n)}$ is $\mathbf{\mathcal{O}(g(n))}$}%
+\marginnote{The symbol $\mathcal{O}(g(n))$ is read in english as {\itshape big-oh of $g(n)$}.}%
+provided there is a number $k>0$ such that $w(n)\leq kg(n)$ for
+all $n$ (or at least for all large values of $n$).
+
+\end{defn}
+
+As an example,  $n^3+2n^2 + 10n+4\leq(1+2+10+4)n^3 = 17n^3$ is
+$\mathcal{O}(n^3)$.  So if we have an algorithm with efficiency function
+$w(n) = n^3+2n^2 + 10n+4$, we can suppress all the unimportant
+details, and simply say the efficiency is $\mathcal{O}(n^3)$.
+In this example, it is also true that $w(n)$ is $\mathcal{O}(n^4)$, but that
+is less precise information. On the other hand, saying
+$w(n)$ is $\mathcal{O}(n^2)$ is certainly false. To indicate that we have the
+best possible big-oh estimate allowed by our analysis, we would say
+$w(n)$ is {\it at best} $\mathcal{O}(n^3)$.
+
+\marginnote{$\mathcal{O}(g(n))$ actually represents the set of functions dominated by $g(n)$.
+So, it would be proper to write $w(n)=n^3+2n^2+10n+4 \in \mathcal{O}(n^3)$. Moreover, we could write
+$\mathcal{O}(n^2) \subset \mathcal{O}(n^3)$ since the functions dominated by $n^2$ are among those dominated by $n^3$.}
+Loosely speaking, finding the $O$ estimate for a function selects the
+most influential, or dominant, term (for large values of the variable) in the function, 
+and suppresses any constant factor for that term.
+
+\section{Examples}
+In each example, we find a big-oh estimate for the given expression.
+\begin{exmp}
+We have that
+$n^4-3n^3+2n^2-6n+14$ is $\mathcal{O}(n^4)$, since for large $n$ the first term dominates
+the others.
+\end{exmp}
+
+\begin{exmp}
+ For large $n$, we have the inequalities:
+\begin{align*}
+(n^3\log_2 n+n^2-3)&(n^2+2n+8), \\
+ &\leq(1+1+3)n^3(\log_2{n})(1+2+8)n^2, \\
+ &\leq55n^5\log_2n.
+\end{align*}
+Hence, $(n^3\log_2 n+n^2-3)(n^2+2n+8)$ is $\mathcal{O}(n^5\log_2n)$. Alternatively, we have
+that $n^3\log_{2}n$ and $n^2$ dominate their respective factors. Thus, again, the
+product is $\mathcal{O}(n^5\log_2n)$\marginnote{Dominant factors may be multiplied.}.
+\end{exmp}
+
+\begin{exmp}
+ We see that $n^{5}+3(2)^n-14n^{22}+13\leq(1+3+14+13)2^n= 31(2^n)$.
+Hence, the expression is $\mathcal{O}(2^n)$. Or, since $3\cdot2^n$ dominates all the other terms
+for large $n$, we see that the expression is $\mathcal{O}(3\cdot2^n)$. That is, it is of order
+$\mathcal{O}(2^n)$ since the constant factor is really irrelevant.
+\end{exmp}
+
+
+\clearpage
+
+\section{Exercises}
+
+\begin{exer} 
+You have been hired for a certain job that can be completed in less 
+than two months, and offered two modes of
+payment. Method 1: You get \$1,000,000,000 a day for as long as the 
+job takes. Method 2: You get \$1 the first day, \$2 the second day,
+\$4 the third day, \$8 the fourth day, and so on, your payment doubling
+each day, for as long as the job lasts. Which method of payment do you choose?
+\end{exer}
+
+\begin{exer} 
+Suppose an algorithm has efficiency function $w(n) = n\log_2{n}$.
+Compute the worst case time required for the algorithm to solve problems
+of sizes $n=10,20,40,60$ assuming the operations are carried out at
+the rate of one billion per second. Where does this function fit
+in the table on the second page of this chapter?
+\end{exer}
+
+\begin{exer} 
+ Repeat exercise 2 for $w(n) = n^n$.
+\end{exer}
+
+\begin{exer} 
+ Explain why $3n^3 +400n^2+2\sqrt{n}$ is at least $\mathcal{O}(n^2)$.
+\end{exer}
+
+\begin{exer} 
+ Explain why $10n^2 +4n+2\sqrt{n}$  in not $\mathcal{O}(1000n)$.
+\end{exer}
+
+\begin{exer} 
+ Find the best possible big-oh estimate for $\sqrt{5n} + \log_2{10n} +1$.
+\end{exer}
+
+\begin{exer} 
+ Find the best possible  big-oh estimate of $\displaystyle 2n^2 +{3\over n}$.
+\end{exer}
+
+\begin{exer} 
+ Find the best possible  big-oh estimate of $\displaystyle {{2n^2+2n+1}\over{2n+1}}$.
+Hint: Begin by doing a long division.
+\end{exer}
+
+\clearpage
+
+\section{Problems}
+
